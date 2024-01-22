@@ -1,0 +1,8 @@
+//DB에서 쿼리를 사용하였을때 모두를 위해서 해당 쿼리를 무조건 이 텍스트 안에 적어주시길 바랍니다.
+//ex)
+//insert into member values(?,?,?,?);
+//create member ~~~~;
+//alter asdasd ~~~~~;
+//insert into member valuese(?????);
+//
+// 
