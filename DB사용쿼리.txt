@@ -3,6 +3,23 @@
 //insert into member values(?,?,?,?);
 //create member ~~~~;
 //alter asdasd ~~~~~;
-//insert into member valuese(?????);
+//insert into member values(?????);
 //
 // 
+
+
+CREATE SEQUENCE SEQ_MEMBER_IDX;
+
+CREATE table MEMBER
+(
+	m_idx NUMBER(10) NOT null,
+	m_id varchar(10) NOT null,
+	m_pw varchar(20) NOT null,
+	m_name varchar(10) NOT null,
+	m_email varchar(10) NOT null,
+	m_birth DATE,
+	m_addr varchar(100)
+);
+ALTER TABLE MEMBER ADD CONSTRAINT m_pk PRIMARY KEY (m_id);
+
+--시퀀스 생성, 테이블생성. 나중에 시퀀스 적용여부 결정할예정
