@@ -16,11 +16,11 @@
 <div class="container">
   <!-- 로그인과 회원가입 링크 -->
    <div align="right">
-      	<%--  <c:if test="${mem eq null}">  <!-- 로그인 세션이 null이면 로그인 회원가입 --> --%>
+      	<%--  <c:if test="${empty mem}">  <!-- 로그인 세션이 null이면 로그인 회원가입 --> --%>
         <a href="#">로그인</a> /
         <a href="#">회원가입</a>
        <%-- </c:if> --%>
-       <%-- <c:if test="${mem ne null }"> <!-- 로그인 세션이 null이 아니면 마이페이지,장바구니 -->
+       <%-- <c:if test="${!empty mem }"> <!-- 로그인 세션이 null이 아니면 마이페이지,장바구니 -->
        <a href="#">마이페이지</a>
        <a href="#">장바구니</a>
        </c:if> --%>
@@ -38,6 +38,7 @@
 	        <a class="dropdown-item" href="#">카테고리</a>
 	        <a class="dropdown-item" href="#">카테고리</a><!-- 카테고리 미정 -->
 	      </div>
+	 
 	    </li>
         <li class="nav-item">
           <a class="nav-link" href="#">홈</a>
