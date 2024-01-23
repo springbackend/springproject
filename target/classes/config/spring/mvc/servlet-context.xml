@@ -34,8 +34,4 @@
 		ref="sawon_daoBean"/> </beans:bean> -->
 	<!-- Autowired를 사용한 클래스가 있다면 반드시 servlet-context.xml에 추가되어야 할 코드 -->
 	<context:annotation-config />
-	<!-- VisitController 객체 생성 -->
-<!-- 	<beans:bean class="com.mega.vs.VisitController">
-		<beans:property name="visitDao" ref="visit_daoBean" />
-	</beans:bean> -->
 </beans:beans>
