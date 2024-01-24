@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,windows,macos
 
 ### Java ###
-MANIFEST.MF
+target/
 # Compiled class file
 *.class
 
