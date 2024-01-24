@@ -1,10 +1,12 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,windows,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,windows,macos
 
-### Java ###
 
+target/m2e-wtp/web-resources/META-INF/**/MANIFEST.MF
+target/m2e-wtp/web-resources/META-INF/**/pom.properties
+### Java ###
 # Compiled class file
-*.class
+*.classㅋ
 
 # Log file
 *.log
