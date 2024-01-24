@@ -20,14 +20,23 @@
 		<table>
 			<tr>
 				<th>아이디</th>
-				<td><input id="id"></td>
+				<td>
+					<!-- 아이디 아이콘 --> <input id="id">
+				</td>
 			</tr>
 			<tr>
 				<th>패스워드</th>
-				<td><input id="pwd" type="password"></td>
+				<td>
+					<!-- 패스워드 아이콘 --> <input id="pwd" type="password">
+				</td>
 			</tr>
 			<tr>
-				<td><input type="button" value="로그인하기" onclick="send(this.form);"></td>
+				<td><input type="checkbox" id="yuji"></td>
+				<td>로그인 상태 유지</td>
+			</tr>
+			<tr>
+				<td><input type="button" value="로그인하기"
+					onclick="send(this.form);"></td>
 				<td><input type="button" value="회원가입하기"
 					onclick="location.href='regist.do'"></td>
 			</tr>
