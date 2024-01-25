@@ -118,7 +118,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
-			<scope>test</scope>
+			
 		</dependency>
 
 		<!-- commons-dbcp -->
@@ -166,7 +166,7 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-		<!-- 파일 복사, 스트림클래스 기능-->
+		<!-- 파일 복사, 스트림클래스 기능 -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -177,6 +177,13 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.9.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>provided</scope>
 		</dependency>
 
 
