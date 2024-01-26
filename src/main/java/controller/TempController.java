@@ -23,4 +23,23 @@ public class TempController {
 	public String temphead() {
 		return VIEWPATH + "/temp/head.jsp";
 	}
+
+	@RequestMapping(value = "/index")
+	public String goindex() {
+		return VIEWPATH + "/main/index.jsp";
+	}
+
+	@RequestMapping(value = "/footer")
+	public String gofooter() {
+		return VIEWPATH + "/temp/footer.jsp";
+	}
+
+	@RequestMapping(value = "/dbCheckid.do")
+	public String dbCheckId() {
+		// String id= request.getParameter
+		// System.out.println("요청아이디 :" + id);
+		// int result = memberService.idcheck(id);
+		// session.setAttribute("result",result)
+		return VIEWPATH + "temp/checkid.jsp";
+	}
 }

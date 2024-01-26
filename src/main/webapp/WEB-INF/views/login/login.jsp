@@ -17,7 +17,7 @@
 	<!-- 로고이미지 위치 -->
 	<form action="" method="post">
 		<br>
-		<table>
+		<table align="center">
 			<tr>
 				<th>아이디</th>
 				<td>
@@ -47,5 +47,7 @@
 
 		</table>
 	</form>
+	
+	<jsp:include page="../temp/footer.jsp" flush="false" />
 </body>
 </html>
