@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- 
+	보완해야하는부분
+	
+	이메일 검증
+	회원가입 실패 예외처리
+	 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,8 +36,8 @@
 	}
 	function join(f) {
 		let joinForm = document.joinForm;
-		let name = joinForm.name.value;
 		let id = joinForm.id.value;
+		let name = joinForm.name.value;
 		let pwd = joinForm.pwd.value;
 		let rePwd = joinForm.rePwd.value;
 		let email = joinForm.email.value;
@@ -70,7 +76,16 @@
 			let gender = selectedGenderElement.value;
 			alert("유효성 통과");
 			joinForm.method = "post";
-			joinForm.action = "${contextPath}/joinMember.do"
+			url = "/joinMember.do";
+			let param = "id" + id + "name" + name + "pwd" + pwd + "email"
+					+ email + "gender" + gender;
+			sendRedirect(url, param, resultFn, "post");
+		}
+	}
+	function resultFn() {
+		//회원가입 결과
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			alert(xhr.responseText);
 		}
 	}
 </script>
