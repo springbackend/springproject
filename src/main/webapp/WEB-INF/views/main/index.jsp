@@ -15,17 +15,17 @@
 
 <div class="container">
   <!-- 로그인과 회원가입 링크 -->
-   <div align="right">
-      	<%--  <c:if test="${empty mem}">  <!-- 로그인 세션이 null이면 로그인 회원가입 --> --%>
+		<%-- <div align="right">
+      	 <c:if test="${empty mem}">  <!-- 로그인 세션이 null이면 로그인 회원가입 -->
         <a href="#">로그인</a> /
         <a href="#">회원가입</a>
-       <%-- </c:if> --%>
-       <%-- <c:if test="${!empty mem }"> <!-- 로그인 세션이 null이 아니면 마이페이지,장바구니 -->
+       </c:if>
+       <c:if test="${!empty mem }"> <!-- 로그인 세션이 null이 아니면 마이페이지,장바구니 -->
        <a href="#">마이페이지</a>
        <a href="#">장바구니</a>
-       </c:if> --%>
-    </div>
-  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+       </c:if>
+    </div> --%>
+		<nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- 내비게이션 링크 -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">

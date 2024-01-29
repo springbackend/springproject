@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 // top head
-
 @Controller
 public class TempController {
 	static final String VIEWPATH = "/WEB-INF/views";
@@ -14,22 +13,22 @@ public class TempController {
 		return VIEWPATH + "/temp/temp.jsp";
 	}
 
-	@RequestMapping(value = "/top")
+	@RequestMapping(value = "/top.do")
 	public String temptop() {
 		return VIEWPATH + "/temp/top.jsp";
 	}
 
-	@RequestMapping(value = "/head")
+	@RequestMapping(value = "/head.do")
 	public String temphead() {
 		return VIEWPATH + "/temp/head.jsp";
 	}
 
-	@RequestMapping(value = "/index")
+	@RequestMapping(value = "/index.do")
 	public String goindex() {
 		return VIEWPATH + "/main/index.jsp";
 	}
 
-	@RequestMapping(value = "/footer")
+	@RequestMapping(value = "/footer.do")
 	public String gofooter() {
 		return VIEWPATH + "/temp/footer.jsp";
 	}

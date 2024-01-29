@@ -5,15 +5,25 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인페이지</title>
-
+<script type="text/javascript" src="/beauty/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 	function send(f) {
 		alert('login button 호출');
+
 		let id = document.getElementById("id").value;
 		let pwd = document.getElementById("pwd").value;
+
+		if (id.trim() == "" || id == null) {
+			alert('아이디를 입력하세요');
+			return;
+		} else if (pwd.trim() == "" || pwd == null) {
+			alert('패스워드를 입력하세요');
+			return;
+		}
+
 		let url = "login.do";
 		let param = "id" + id + "pwd" + pwd;
-		sendRedirect(url, param, resultFn, "POST");
+		sendRequest(url, param, resultFn, "POST");
 	}
 	function resultFn() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
@@ -33,7 +43,7 @@
 			<tr>
 				<th>아이디</th>
 				<td>
-					<!-- 아이디 아이콘 --> <input id="id">
+					<!-- 아이디 아이콘 --> <input id="id" type="text">
 				</td>
 			</tr>
 			<tr>
@@ -52,9 +62,9 @@
 			</tr>
 			<tr>
 				<td><input type="button" value="아이디 찾기"
-					onclick="location.href='regist.do'"></td>
+					onclick="location.href='findid.do'"></td>
 				<td><input type="button" value="비밀번호 찾기"
-					onclick="location.href='regist.do'"></td>
+					onclick="location.href='findpwd.do'"></td>
 				<td><input type="button" value="회원가입하기"
 					onclick="location.href='regist.do'"></td>
 			</tr>

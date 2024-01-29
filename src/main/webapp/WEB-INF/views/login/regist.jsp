@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
-
+<script type="text/javascript" src="/beauty/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 	function check() {
 		let joinForm = document.joinForm;
@@ -23,10 +23,13 @@
 		if (id.length == 0 || id == "") {
 			alert("아이디를 입력해주세요.");
 			joinForm.id.focus();
+			return;
 		} else if (id.length < 5) {
 			alert("아이디는 5글자 이상이여야 합니다");
+			return;
 		} else if (regExp.test(id)) {
 			alert("특수문자는 입력할 수 없습니다.");
+			return;
 		} else {
 			window.open("${contextPath}/dbCheckid.do?user_id=" + id, "",
 					"width=500,height=300");
@@ -40,6 +43,7 @@
 		let name = joinForm.name.value;
 		let pwd = joinForm.pwd.value;
 		let rePwd = joinForm.rePwd.value;
+		let pnum = joinForm.pnum.value;
 		let email = joinForm.email.value;
 		let idCheck = true;
 		let selectedGenderElement = document
@@ -52,34 +56,46 @@
 		//유효성 검증로직
 		if (document.getElementById("id").readOnly != true) {
 			alert("아이디 중복체크를 해주세요.");
+			return;
 		} else if (name.length == 0 || name == "") {
 			alert("닉네임을 입력해주세요");
 			joinForm.name.focus();
+			return;
 		} else if (pwd.length == 0 || pwd == "") {
 			alert("비밀번호를 입력해주세요");
 			joinForm.pwd.focus();
+			return;
 		} else if (!regpwd.test(pwd)) {
 			alert("비밀번호는 영문 숫자 조합 8자리 이상이여야 합니다");
+			return;
 		} else if (rePwd.length == 0 || rePwd == "") {
 			alert("비밀번호를 다시 입력해주세요.");
 			joinForm.rePwd.focus();
+			return;
+		} else if (pnum.length == 0 || pnum == "") {
+			alert("전화번호를 입력하세요");
+			return;
 		} else if (rePwd != pwd) {
 			alert("입력하신 비밀번호가 다릅니다.");
+			return;
 		} else if (email.length == 0 || email == "") {
 			alert("이메일을 입력해주세요");
 			joinForm.email.focus();
+			return;
 		} else if (regemail.test(email)) {
 			alert("이메일을 제대로 입력해주세요.");
+			return;
 		} else if (selectedGenderElement == null) {
 			alert("성별을 선택하세요.");
+			return;
 		} else {
 			let gender = selectedGenderElement.value;
 			alert("유효성 통과");
 			joinForm.method = "post";
-			url = "/joinMember.do";
+			url = "/joinuser.do";
 			let param = "id" + id + "name" + name + "pwd" + pwd + "email"
 					+ email + "gender" + gender;
-			sendRedirect(url, param, resultFn, "post");
+			sendRequest(url, param, resultFn, "POST");
 		}
 	}
 	function resultFn() {
@@ -119,6 +135,11 @@
 				<td></td>
 			</tr>
 
+			<tr>
+				<th>전화번호</th>
+				<td><input id="pnum"></td>
+				<td></td>
+			</tr>
 			<tr>
 				<th>이메일</th>
 				<td><input id="email"></td>

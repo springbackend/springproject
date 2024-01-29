@@ -15,74 +15,67 @@
 		"Segoe UI Symbol", sans-serif;
 }
 
-.lab-int {
-	letter-spacing: -.3px;
-	position: sticky;
-	height: 30px;
+.topbannber {
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #fff;
-	border-bottom: 1px solid #f1f3f5;
-	z-index: 30;
-}
-
-
-section header {
-	width: 100%;
-}
-
-.lab-int-con {
-	letter-spacing: -.3px;
-	margin: 0 auto;
-	display: flex;
-	justify-content: space-between;
-	font-size: 14px;
-	padding: 0 16px;
-	padding-right: 16px;
+	flex-direction: row;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+	letter-spacing: -.3px;
+	font-size: 14px;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 16px;
+	height: 40px;
+	width: 100%;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+}
+
+.left_banner {
+	
+}
+
+.right_banner {
+	text-decoration: none;
+	color: inherit;
 }
 
 ul {
 	display: flex;
+	margin: 25px;
 	margin-block-start: 1em;
 	margin-block-end: 1em;
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
 	padding-inline-start: 40px;
-	padding-inline-end: 40px;
+	padding-inline-end: 60px;
 	flex-flow: row nowrap;
 }
 
 li {
-	align-items: center;
-	padding: 1px;
-	text-align: -webkit-match-parent;
 	list-style: none;
 }
 </style>
 </head>
 <body>
 	<section class="lab-inter">
-		<header class="">
-			<div class="lab-int-con">
-				<ul class="lab-int-con-left">
-					<li><a href="#">로고</a>
-					<li><a> </a>
-					<li><a href="#">로고2</a>
-					<li>
-				</ul>
-				<ul class="lab-int-con-right">
-					<li><a href="#">로그인</a>
-					<li><a> </a>
-					<li><a href="#">회원가입</a>
-					<li>
+		<div class="topbannber">
+			<div class="left_banner">
+				<ul class="leftui">
+					<li><a href="#">로고</a></li>
+
+					<li><a href="#">로고2</a></li>
+					<li></li>
 				</ul>
 			</div>
-		</header>
+			<div class="right_banner">
+				<ul class="rightui">
+					<li><a href="login.do">로그인</a></li>
+					<p>/</p>
+					<li><a href="#">회원가입</a></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
 	</section>
-
-
 
 </body>
 </html>

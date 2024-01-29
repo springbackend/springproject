@@ -35,11 +35,12 @@
 	<!-- Autowired를 사용한 클래스가 있다면 반드시 servlet-context.xml에 추가되어야 할 코드 -->
 	<context:annotation-config />
 
-
 	<beans:bean class="controller.LoginController">
 	</beans:bean>
 
 	<beans:bean class="controller.TempController">
+	</beans:bean>
+	<beans:bean class="controller.RegistController">
 	</beans:bean>
 </beans:beans>
 
