@@ -1,9 +1,9 @@
 # springproject
-
+## project environment
 JDK jdk-11.0.18 <br>
 sts-3.9.17.RELEASE <br>
-apache-tomcat-9.0.83 <br>
-oracleDB 11.2.0.2.0 <br>
+apache-tomcat-9.0.83 (port 9090)<br>
+oracleDB 11.2.0.2.0 (port 1521)<br>
 
 # 백엔드 최종 프로젝트
 
