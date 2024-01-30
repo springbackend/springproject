@@ -19,5 +19,10 @@ public class ProductDAO {
 		List<ProductVO> list = sqlSession.selectList("select_category", p_map);
 		return list;
 	}
+	
+	public int p_category_count(String p_category) {
+		int count = sqlSession.selectOne("p.select_category_count", p_category);
+		return count;
+	}
 
 }

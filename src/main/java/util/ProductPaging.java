@@ -29,7 +29,9 @@ public class ProductPaging {
 		//시작 페이지와 마지막 페이지를 구함.
 		
 		if (nowPage < 7) {
+			//시작페이지가 1이하로 내려가지않게
 		    startPage = Math.max(nowPage - 9, 1);
+		    //마지막페이지가 총페이지를 넘어가지않게
 		    endPage = Math.min(startPage + 9, totalPage);
 		} else {
 		    startPage = nowPage - 5;
