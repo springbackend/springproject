@@ -1,14 +1,19 @@
 package controller;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 // top head
 @Controller
 public class TempController {
+
+	public TempController(SqlSession sqlSession) {
+	}
+
 	static final String VIEWPATH = "/WEB-INF/views";
 
-	@RequestMapping(value = "/")
+	@RequestMapping(value = { "/", "/temp.do" })
 	public String temp() {
 		return VIEWPATH + "/temp/temp.jsp";
 	}
