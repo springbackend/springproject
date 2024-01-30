@@ -42,6 +42,10 @@
 	</beans:bean>
 	<beans:bean class="controller.RegistController">
 	</beans:bean>
+	
+	<beans:bean class="controller.ProductController">
+		<beans:property name="p_service" ref="product_serviceBean"/>
+	</beans:bean>
 </beans:beans>
 
 
