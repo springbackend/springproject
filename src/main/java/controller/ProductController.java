@@ -12,7 +12,7 @@ import service.ProductService;
 public class ProductController {
 	ProductService p_service;
 	
-	public void setP_service(ProductService p_service) {
+	public ProductController(ProductService p_service) {
 		this.p_service = p_service;
 	}
 	@RequestMapping("/product_category_list.do")

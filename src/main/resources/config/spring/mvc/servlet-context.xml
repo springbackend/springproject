@@ -56,7 +56,10 @@
 	<beans:bean class="controller.TempController">
 		<beans:constructor-arg ref="user_daoBean" />
 	</beans:bean>
-
+	
+	<beans:bean class="controller.ProductController">
+		<beans:constructor-arg ref="product_serviceBean"/>
+	</beans:bean>
 </beans:beans>
 
 

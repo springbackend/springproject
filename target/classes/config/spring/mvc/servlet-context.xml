@@ -10,37 +10,55 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
-
 	<!-- Enables the Spring MVC @Controller programming model -->
+
+	<!-- @controller 어노테이션을 사용하기위한 설정 -->
 	<annotation-driven />
+
+	<!-- @Autowired를 사용한 클래스가 있다면 반드시 servlet-context.xml에 추가되어야 할 코드 -->
+	<context:annotation-config />
+
+	<!-- 컴포넌트 스캔을 사용하기위한 설정 -->
+	<!-- <context:component-scan base-package="com.mega.db" /> -->
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
+	<!-- 파일이름에 .jsp로 자동 매핑하기위한 prefix 설정 -->
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<!-- <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 		<beans:property name="prefix" value="/WEB-INF/views/" /> <beans:property 
 		name="suffix" value=".jsp" /> </beans:bean> -->
 
-	<!-- <context:component-scan base-package="com.mega.db" /> -->
+	<!-- 생성자 주입 -->
+	<!-- DeptController <- dept_daoBean 예시 -->
+	<!-- <beans:bean class="com.mega.db.DeptController"> 
+			<beans:constructor-arg ref="dept_daoBean"/> 
+		</beans:bean> -->
 
-	<!-- DeptController를 수동생성하여 생성자 인젝션으로 DAO를 받아오자 -->
-	<!-- <beans:bean class="com.mega.db.DeptController"> <beans:constructor-arg 
-		ref="dept_daoBean"/> </beans:bean> -->
-	<!-- 세터 사용시 -->
-	<!-- <beans:bean class="com.mega.db.SawonController"> <beans:property name="sawonDao" 
-		ref="sawon_daoBean"/> </beans:bean> -->
-	<!-- Autowired를 사용한 클래스가 있다면 반드시 servlet-context.xml에 추가되어야 할 코드 -->
-	<context:annotation-config />
+	<!-- Setter 주입 -->
+	<!-- <beans:bean class="com.mega.db.SawonController"> 
+			<beans:property name="sawonDao" ref="sawon_daoBean"/> 
+		</beans:bean> -->
 
 	<beans:bean class="controller.LoginController">
 	</beans:bean>
-
-	<beans:bean class="controller.TempController">
+	<beans:bean class="controller.MainController">
+	</beans:bean>
+	<beans:bean class="controller.MyPageController">
+		<beans:constructor-arg ref="user_daoBean" />
 	</beans:bean>
 	<beans:bean class="controller.RegistController">
+	</beans:bean>
+	
+	<beans:bean class="controller.TempController">
+		<beans:constructor-arg ref="user_daoBean" />
+	</beans:bean>
+	
+	<beans:bean class="controller.ProductController">
+		<beans:constructor-arg ref="product_serviceBean"/>
 	</beans:bean>
 </beans:beans>
 

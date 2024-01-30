@@ -7,7 +7,7 @@ package util;
  */
 public class ProductPaging {
 	public static String getPaging(String pageURL,int nowPage, int rowTotal,int blockList, int blockPage,String p_category){
-		
+		//p_category 파라미터값
 		int totalPage/*전체페이지수*/,
             startPage/*시작페이지번호*/,
             endPage;/*마지막페이지번호*/

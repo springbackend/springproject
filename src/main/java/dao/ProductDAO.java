@@ -11,12 +11,12 @@ public class ProductDAO {
 	
 	SqlSession sqlSession;
 	
-	public void setSqlSession(SqlSession sqlSession) {
+	public ProductDAO(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
 	
 	public List<ProductVO> p_category_select(Map<String, Object> p_map){
-		List<ProductVO> list = sqlSession.selectList("select_category", p_map);
+		List<ProductVO> list = sqlSession.selectList("p.select_category", p_map);
 		return list;
 	}
 	
