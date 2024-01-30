@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 import com.google.common.base.Optional;
 
@@ -14,11 +15,18 @@ import vo.UserVO;
 
 public class UserDAO {
 
-	private SqlSession sqlSession;
+	SqlSession sqlSession;
 
-	public void setSqlSession(SqlSession sqlSession) {
+	// 생성자 주입
+	private UserDAO(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
+
+	/*
+	 * public void setSqlSession(Object arg0) {
+	 * 
+	 * }
+	 */
 
 	public List<UserVO> findAll() {
 		List<UserVO> list = sqlSession.selectList("u.select_list");
