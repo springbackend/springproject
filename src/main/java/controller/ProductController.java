@@ -20,7 +20,7 @@ public class ProductController {
 		Map<String, Object> p_map = p_service.p_category_service(p_category, page);
 		model.addAttribute("list", p_map.get("list"));
 		model.addAttribute("page", p_map.get("page_menu"));
-		return "category.jsp";
+		return "/WEB-INF/views/main/product_category.jsp";
 	}
 
 }
