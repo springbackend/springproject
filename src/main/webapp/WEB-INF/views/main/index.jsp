@@ -11,8 +11,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
-<body>
+<style>
 
+</style>
+
+<body>
+<!--  -->
 <div class="container">
   <!-- 로그인과 회원가입 링크 -->
 		<%-- <div align="right">
