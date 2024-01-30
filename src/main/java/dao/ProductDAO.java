@@ -1,0 +1,28 @@
+package dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import vo.ProductVO;
+
+public class ProductDAO {
+	
+	SqlSession sqlSession;
+	
+	public void setSqlSession(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+	}
+	
+	public List<ProductVO> p_category_select(Map<String, Object> p_map){
+		List<ProductVO> list = sqlSession.selectList("select_category", p_map);
+		return list;
+	}
+	
+	public int p_category_count(String p_category) {
+		int count = sqlSession.selectOne("p.select_category_count", p_category);
+		return count;
+	}
+
+}
