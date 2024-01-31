@@ -17,6 +17,10 @@
 	<!-- 생성자 주입 권장 https://mangkyu.tistory.com/125 -->
 	
 	
+	<bean id = "user_userBean" class= "dao.UserDAO">
+		<constructor-arg ref= "sqlSessionBean"/>
+	</bean>
+	
 	<bean id="product_daoBean" class="dao.ProductDAO">
 		<constructor-arg ref="sqlSessionBean"/>
 	</bean>

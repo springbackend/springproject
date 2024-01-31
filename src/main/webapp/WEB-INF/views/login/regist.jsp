@@ -50,9 +50,6 @@
 				.querySelector('input[name="gender"]:checked');
 		let regpwd = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
 		let regemail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-
-		/* 		alert("name:" + name + "\nid" + id + "\npwd" + pwd + "\nrePwd " + rePwd
-		 + "gender" + selectedGender); */
 		//유효성 검증로직
 		if (document.getElementById("id").readOnly != true) {
 			alert("아이디 중복체크를 해주세요.");
@@ -90,18 +87,27 @@
 			return;
 		} else {
 			let gender = selectedGenderElement.value;
-			alert("유효성 통과");
-			joinForm.method = "post";
-			url = "/joinuser.do";
-			let param = "id" + id + "name" + name + "pwd" + pwd + "email"
-					+ email + "gender" + gender;
-			sendRequest(url, param, resultFn, "POST");
+			url = "/beauty/joinuser.do";
+			let param = "id=" + id + "&name=" + name + "&pwd=" + pwd
+					+ "&email=" + email + "&gender=" + gender + "&pnum=" + pnum;
+			sendRequest(url, param, resultFn, "post");
 		}
 	}
 	function resultFn() {
 		//회원가입 결과
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			alert(xhr.responseText);
+			let result = decodeURI(decodeURIComponent(xhr.responseText));
+			// encodeURIComponent();
+			alert(result);
+			if (result == "성공") {
+				alert("가입을 환영합니다!");
+				//	회원가입에 성공했습니다. 윈도우 호출
+				location.href = "/beauty/login.do";
+				/* window.open(link); */
+			} else {
+				alert("서비스 문제로 회원가입에 실패했습니다 \n 처음부터 다시 해주시길바랍니다.");
+				location.href = "beauty/regist.do";
+			}
 		}
 	}
 </script>

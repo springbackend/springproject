@@ -1,6 +1,5 @@
 package controller;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,14 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TempController {
 
-
 	static final String VIEWPATH = "/WEB-INF/views";
 
-	@RequestMapping(value = { "/", "/temp.do" })
+	@RequestMapping(value = "/")
+	public String main() {
+		return "redirect:/temp.do";
+	}
+
+	@RequestMapping(value = { "/temp.do" })
 	public String temp() {
 		return VIEWPATH + "/temp/temp.jsp";
 	}
 
+	//컴포넌트 지역
 	@RequestMapping(value = "/top.do")
 	public String temptop() {
 		return VIEWPATH + "/temp/top.jsp";

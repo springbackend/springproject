@@ -11,17 +11,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM USER1
 		WHERE u_id = '${value}'
 	</select>
+	<!-- u_idx = user_seq.nextVal, -->
 	<insert id="insert_user" parameterType="user">
-		INSERT INTO MEMBER VALUES(
-			u_idx = user_seq.nextVal,
-			u_id = id,
-			u_pwd = pwd,
-			u_name = name,
-			u_pnum = pnum,
-			u_regidate = regidate,
-			u_regiip = regiip,
-			u_gender = gender,
-			u_email = email
+		INSERT INTO USER1
+		VALUES(
+		USER_SEQ.nextVal,
+		#{id},
+		#{name},
+		#{pwd},
+		#{pnum},
+		#{email},
+		#{gender},
+		#{regidate},
+		#{regiip},
+		#{addr},
+		#{birth}
 		)
 	</insert>
 </mapper>

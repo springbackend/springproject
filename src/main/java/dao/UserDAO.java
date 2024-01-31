@@ -35,8 +35,8 @@ public class UserDAO {
 		return vo;
 	}
 
-	public int insert(UserVO vo) {
-		int res = sqlSession.insert("u.insert", vo);
+	public int insert(UserVO uservo) {
+		int res = sqlSession.insert("u.insert_user", uservo);
 		if (res > 0) {
 			System.out.println("회원가입 성공");
 		} else {

@@ -46,11 +46,12 @@
 	<beans:bean class="controller.MainController">
 	</beans:bean>
 	<beans:bean class="controller.RegistController">
+		<beans:constructor-arg ref="user_userBean" />
 	</beans:bean>
-	
+
 	<beans:bean class="controller.TempController">
 	</beans:bean>
-	
+
 	<beans:bean class="controller.ProductController">
 		<beans:constructor-arg ref="product_serviceBean" />
 	</beans:bean>
