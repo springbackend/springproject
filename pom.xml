@@ -118,7 +118,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
-			
+
 		</dependency>
 
 		<!-- commons-dbcp -->
@@ -185,7 +185,12 @@
 			<version>1.18.24</version>
 			<scope>provided</scope>
 		</dependency>
-
+		<!-- JACKSON 라이브러리 -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
 
 	</dependencies>
 	<build>
