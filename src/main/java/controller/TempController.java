@@ -4,12 +4,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-// top head
+/* html 컴포넌트와 페이지등을 바로갈수있도록 만든 임시 페이지
+ * 
+ * 
+ * 
+ * 
+*/
 @Controller
 public class TempController {
 
-	public TempController(SqlSession sqlSession) {
-	}
 
 	static final String VIEWPATH = "/WEB-INF/views";
 

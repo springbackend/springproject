@@ -17,16 +17,9 @@ public class UserDAO {
 
 	SqlSession sqlSession;
 
-	// 생성자 주입
-	private UserDAO(SqlSession sqlSession) {
+	public UserDAO(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-
-	/*
-	 * public void setSqlSession(Object arg0) {
-	 * 
-	 * }
-	 */
 
 	public List<UserVO> findAll() {
 		List<UserVO> list = sqlSession.selectList("u.select_list");

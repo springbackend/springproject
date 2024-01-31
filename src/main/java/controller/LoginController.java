@@ -17,12 +17,6 @@ import vo.UserVO;
 public class LoginController {
 	static final String VIEWPATH = "/WEB-INF/views";
 
-	@Autowired
-	UserDAO dao;
-
-	@Autowired
-	SqlSession sqlSession;
-
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String login() {
 		System.out.println("login page");
@@ -35,11 +29,11 @@ public class LoginController {
 	public String loginreq(String id, String pwd) {
 		// 로그인 기능구현
 		String res = "";
-		UserVO vo = dao.findbyId(id);
-		if (vo != null) {
-		} else {
-			System.err.println("controller error : vo 반환값이 없습니다");
-		}
+//		UserVO vo = dao.findbyId(id);
+//		if (vo != null) {
+//		} else {
+//			System.err.println("controller error : vo 반환값이 없습니다");
+//		}
 		return String.valueOf(res);
 	}
 }
