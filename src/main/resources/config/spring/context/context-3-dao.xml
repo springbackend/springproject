@@ -27,4 +27,7 @@
 	<bean id="product_serviceBean" class="service.ProductService">
 		<constructor-arg ref="product_daoBean"/>
 	</bean>
+	
+	
+	
 </beans>

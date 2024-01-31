@@ -34,14 +34,12 @@
 
 	<!-- 생성자 주입 -->
 	<!-- DeptController <- dept_daoBean 예시 -->
-	<!-- <beans:bean class="com.mega.db.DeptController"> 
-			<beans:constructor-arg ref="dept_daoBean"/> 
-		</beans:bean> -->
+	<!-- <beans:bean class="com.mega.db.DeptController"> <beans:constructor-arg 
+		ref="dept_daoBean"/> </beans:bean> -->
 
 	<!-- Setter 주입 -->
-	<!-- <beans:bean class="com.mega.db.SawonController"> 
-			<beans:property name="sawonDao" ref="sawon_daoBean"/> 
-		</beans:bean> -->
+	<!-- <beans:bean class="com.mega.db.SawonController"> <beans:property name="sawonDao" 
+		ref="sawon_daoBean"/> </beans:bean> -->
 
 	<beans:bean class="controller.LoginController">
 	</beans:bean>
@@ -52,13 +50,13 @@
 	</beans:bean>
 	<beans:bean class="controller.RegistController">
 	</beans:bean>
-	
+
 	<beans:bean class="controller.TempController">
 		<beans:constructor-arg ref="user_daoBean" />
 	</beans:bean>
-	
+
 	<beans:bean class="controller.ProductController">
-		<beans:constructor-arg ref="product_serviceBean"/>
+		<beans:constructor-arg ref="product_serviceBean" />
 	</beans:bean>
 </beans:beans>
 
