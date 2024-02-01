@@ -2,6 +2,9 @@ package controller;
 
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,8 @@ import vo.ProductVO;
 
 @Controller
 public class ProductController {
+	@Autowired
+	ServletContext app;
 	ProductService p_service;
 	static final String VIEW_PATH = "/WEB-INF/views/main/";
 	
@@ -28,7 +33,12 @@ public class ProductController {
 	@RequestMapping("/product_view.do")
 	public String product_view(int p_idx,Model model) {
 		ProductVO p_vo = p_service.p_product_view(p_idx);
-		model.addAttribute("p_view", p_vo);
+		model.addAttribute("p_vo", p_vo);
+		return VIEW_PATH+"product_view.jsp";
+	}
+	
+	@RequestMapping("/product_view_test.do")
+	public String product_view_test() {
 		return VIEW_PATH+"product_view.jsp";
 	}
 

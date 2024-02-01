@@ -12,3 +12,7 @@ create table product(
 	p_hit number(10), --상품조회수(할수있으면 하루마다 조회수 초기화 )
 	p_sold number(10) -- 판매된 상품갯수(조회수랑 겹쳐서 애매하면 삭제)
 );
+
+insert into product values(seq_product_idx.nextval,'립스틱','입술에바름',sysdate,'woman','nofile','red',30000,0,0);
+
+update product set p_image = 'test_file.jpg' where p_idx = 1;
