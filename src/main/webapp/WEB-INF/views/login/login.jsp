@@ -8,11 +8,8 @@
 <script type="text/javascript" src="/beauty/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 	function send(f) {
-		alert('login button 호출');
-
 		let id = document.getElementById("id").value;
 		let pwd = document.getElementById("pwd").value;
-
 		if (id.trim() == "" || id == null) {
 			alert('아이디를 입력하세요');
 			return;
@@ -22,12 +19,14 @@
 		}
 
 		let url = "login.do";
-		let param = "id" + id + "pwd" + pwd;
+		let param = "id=" + id + "&pwd=" + pwd;
 		sendRequest(url, param, resultFn, "POST");
 	}
 	function resultFn() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
+			alert("state good");
 			alert(xhr.responseText);
+			location.href = "/beauty/main.do";
 		}
 	}
 </script>

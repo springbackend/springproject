@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p">
+	<select id="select_category" resultType="product" parameterType="java.util.Map">
+		select * from (select rank() over(order by p_idx desc) no,
+			p.* from product p where p.p_category = #{p_category}) where no between #{start} and #{end}
+	</select>
+	
+	<select id="select_category_count" resultType="int" parameterType="String">
+		select count(*) from product where p_category = #{p_category}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

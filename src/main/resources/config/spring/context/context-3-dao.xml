@@ -2,14 +2,33 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-
-
-	<!-- <bean id = "sawon_daoBean" class= "dao.SawonDAO"> <property name= "sqlSession" 
-		ref="sqlSessionBean"/> </bean> -->
-
-	<!-- <bean id="visit_daoBean" class="dao.VisitDAO"> <property name="sqlSession" 
-		ref="sqlSessionBean"/> </bean> -->
-	<bean id="user_daoBean" class="dao.UserDAO">
-		<property name="sqlSession" ref="sqlSessionBean" />
+	<!-- dao에 sqlSesson 집어넣는곳 -->
+	
+	<!-- 생성자 주입 방식 -->
+	<!-- <bean id="user_daoBean" class="dao.UserDAO">
+			<constructor-arg name="sqlSession" ref="sqlSessionBean"/>
+		</bean> -->
+	
+	<!-- Setter 주입 방식 -->
+	<!-- <bean id = "sawon_daoBean" class= "dao.SawonDAO"> 
+			<property name= "sqlSession" ref="sqlSessionBean"/> 
+		</bean> -->
+	
+	<!-- 생성자 주입 권장 https://mangkyu.tistory.com/125 -->
+	
+	
+	<bean id = "user_userBean" class= "dao.UserDAO">
+		<constructor-arg ref= "sqlSessionBean"/>
 	</bean>
+	
+	<bean id="product_daoBean" class="dao.ProductDAO">
+		<constructor-arg ref="sqlSessionBean"/>
+	</bean>
+
+	<bean id="product_serviceBean" class="service.ProductService">
+		<constructor-arg ref="product_daoBean"/>
+	</bean>
+	
+	
+	
 </beans>
