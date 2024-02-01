@@ -24,5 +24,10 @@ public class ProductDAO {
 		int count = sqlSession.selectOne("p.select_category_count", p_category);
 		return count;
 	}
+	
+	public ProductVO p_view(int p_idx) {
+		ProductVO p_vo = sqlSession.selectOne("p.select_product_view", p_idx);
+		return p_vo;
+	}
 
 }
