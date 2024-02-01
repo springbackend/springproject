@@ -71,21 +71,21 @@ li {
 				</ul>
 			</div>
 			<div class="right_banner">
-				<ul class="rightui">
-					<c:choose>
-						<c:when test="${sessionScope.status eq succes}">
-							<li><a href="/logout.do">로그아웃</a>
-								<p>/</p>
-							<li><a href="#">${sessionScope.nickname}님 환영합니다.</a></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="/login.do">로그인</a></li>
-							<p>/</p>
+				<c:choose>
+					<c:when test="${sessionScope.status eq succes}">
+						<ul class="rightui">
+							<li><a href="logout.do">로그아웃 /</a>
+							<li><a href="#">${sessionScope.nickname}님 환영합니다.</a>
+						</ul>
+					</c:when>
+					<c:otherwise>
+						<ul class="rightui">
+							<li><a href="login.do">로그인 /</a></li>
 							<li><a href="#">회원가입</a></li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-				<!-- <h3>${sessionScope.nickname</h3> -->
+						</ul>
+					</c:otherwise>
+				</c:choose>
+
 			</div>
 		</div>
 

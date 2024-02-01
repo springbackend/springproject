@@ -91,7 +91,7 @@ input {
 				<tr>
 					<th><a href="login.do">로그인페이지</a></th>
 					<th><a href="regist.do">회원가입페이지</a></th>
-					<th><a href="#">메인페이지</a></th>
+					<th><a href="main.do">메인페이지</a></th>
 					<th><a href="#">마이페이지</a></th>
 				</tr>
 				<tr>

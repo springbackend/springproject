@@ -68,7 +68,7 @@ public class LoginController {
 		}
 		return result;
 	}
-	@RequestMapping(value = "/logout")
+	@RequestMapping(value = "/logout.do", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
