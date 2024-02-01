@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.ProductService;
 import vo.ProductVO;
@@ -37,9 +38,12 @@ public class ProductController {
 		return VIEW_PATH+"product_view.jsp";
 	}
 	
-	@RequestMapping("/product_view_test.do")
-	public String product_view_test() {
-		return VIEW_PATH+"product_view.jsp";
+	@RequestMapping("/update_price.do")
+	@ResponseBody
+	public String product_update_price(int p_idx,int quantity) {
+		ProductVO p_vo = p_service.p_product_view(p_idx);
+		int price = p_vo.getP_price() * quantity;
+		return ""+price;
 	}
 
 }

@@ -13,7 +13,17 @@
 <script src="/beauty/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 	function updateprice() {
+		let quantity = document.getElementById('quantity').value;
 		
+		let url = 'update_price.do';
+		let param = 'p_idx='${p_vo.p_idx}+'&quantity='+quantity;
+		sendRequest(url,param,resultprice,'post');
+	}
+	
+	function resultprice() {
+		if(xhr.readyState == 4 &&xhr.status==200){
+			let data = xhr.responseText;
+		}
 	}
 </script>
 </head>
