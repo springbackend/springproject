@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,7 +54,7 @@ public class RegistController {
 		// id name pwd pnum email gender pnum 매핑
 		UserVO vo = new UserVO();
 		String result = "실패";
-
+		// 암호화
 		if (id != null && pwd != null && name != null && gender != null && pnum != null) {
 			vo.setId(id);
 			vo.setPwd(pwd);
@@ -66,6 +68,12 @@ public class RegistController {
 			System.out.println("set실패");
 			return String.valueOf(result);
 		}
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		//String temp = passwordEncoder.encode(pwd);
+		//판별
+		//System.out.println(passwordEncoder.matches(pwd, temp));
+		vo.setPwd(passwordEncoder.encode(vo.getPwd()));
+
 		// idx : DB시퀀스가 지정함
 		/*
 		 * birth: 사용자가 나중에 지정, regidate, regiip, addr

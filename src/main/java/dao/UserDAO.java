@@ -26,12 +26,8 @@ public class UserDAO {
 		return list;
 	}
 
-	public UserVO findbyId(String id) {
-		UserVO vo = sqlSession.selectOne("u.select_one", id);
-		if (vo == null) {
-			System.err.println("dao error : 반환값이 없습니다");
-			return vo;
-		}
+	public UserVO ismember(String id) {
+		UserVO vo = sqlSession.selectOne("u.ismember", id);
 		return vo;
 	}
 

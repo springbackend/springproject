@@ -24,7 +24,7 @@ public class TempController {
 		return VIEWPATH + "/temp/temp.jsp";
 	}
 
-	//컴포넌트 지역
+	// 컴포넌트 지역
 	@RequestMapping(value = "/top.do")
 	public String temptop() {
 		return VIEWPATH + "/temp/top.jsp";
@@ -43,6 +43,11 @@ public class TempController {
 	@RequestMapping(value = "/footer.do")
 	public String gofooter() {
 		return VIEWPATH + "/temp/footer.jsp";
+	}
+
+	@RequestMapping(value = "/main.do")
+	public String main1() {
+		return VIEWPATH + "/main/main.jsp";
 	}
 
 	@RequestMapping(value = "/dbCheckid.do")

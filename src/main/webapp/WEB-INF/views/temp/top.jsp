@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	
+</script>
 <style>
 * {
 	margin: 0;
@@ -68,13 +72,25 @@ li {
 			</div>
 			<div class="right_banner">
 				<ul class="rightui">
-					<li><a href="login.do">로그인</a></li>
-					<p>/</p>
-					<li><a href="#">회원가입</a></li>
-					<li></li>
+					<c:choose>
+						<c:when test="${sessionScope.status eq succes}">
+							<li><a href="/logout.do">로그아웃</a>
+								<p>/</p>
+							<li><a href="#">${sessionScope.nickname}님 환영합니다.</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="/login.do">로그인</a></li>
+							<p>/</p>
+							<li><a href="#">회원가입</a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
+				<!-- <h3>${sessionScope.nickname</h3> -->
 			</div>
 		</div>
+
+
+
 	</section>
 
 </body>
