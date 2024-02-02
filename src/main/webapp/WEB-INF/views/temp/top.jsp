@@ -10,87 +10,34 @@
 	
 </script>
 <style>
-* {
-	margin: 0;
-	padding: 0;
-	font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
-		Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
-		"Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
-		"Segoe UI Symbol", sans-serif;
-}
-
-.topbannber {
-	display: flex;
-	flex-direction: row;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
-	letter-spacing: -.3px;
-	font-size: 14px;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0 16px;
-	height: 40px;
-	width: 100%;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
-}
-
-.left_banner {
-	
-}
-
-.right_banner {
-	text-decoration: none;
-	color: inherit;
-}
-
-ul {
-	display: flex;
-	margin: 25px;
-	margin-block-start: 1em;
-	margin-block-end: 1em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	padding-inline-start: 40px;
-	padding-inline-end: 60px;
-	flex-flow: row nowrap;
-}
-
-li {
-	list-style: none;
-}
 </style>
 </head>
 <body>
 	<section class="lab-inter">
-		<div class="topbannber">
-			<div class="left_banner">
-				<ul class="leftui">
-					<li><a href="#">로고</a></li>
-
-					<li><a href="#">로고2</a></li>
-					<li></li>
-				</ul>
+		<div class="row align-items-center shadow p-3 mb-5 bg-body rounded"
+			style="height: 60px;">
+			<div class="col" style="width: 200px;" align="left">
+				<div>
+					<a href="temp.do">temp페이지</a> <a href="main.do">메인</a>
+				</div>
 			</div>
-			<div class="right_banner">
-				<c:choose>
-					<c:when test="${sessionScope.status eq succes}">
-						<ul class="rightui">
-							<li><a href="logout.do">로그아웃 /</a>
-							<li><a href="#">${sessionScope.nickname}님 환영합니다.</a>
-						</ul>
-					</c:when>
-					<c:otherwise>
-						<ul class="rightui">
-							<li><a href="login.do">로그인 /</a></li>
-							<li><a href="#">회원가입</a></li>
-						</ul>
-					</c:otherwise>
-				</c:choose>
+			<%-- 			<div style="background-color: red; width: 50px;">${sessionScope.status}</div> --%>
 
-			</div>
+			<c:choose>
+				<c:when test="${sessionScope.status eq 'succes'}">
+					<div class="col" style="width: 200px;" align="right">
+
+						<a href="logout.do">로그아웃</a> <a href="#">${sessionScope.nickname}님
+							환영합니다.</a>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="col" style="width: 200px;" align="right">
+						<a href="login.do">로그인</a> <a>/</a> <a href="#">회원가입</a>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
-
-
-
 	</section>
 
 </body>

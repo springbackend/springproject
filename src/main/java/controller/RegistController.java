@@ -64,26 +64,16 @@ public class RegistController {
 			vo.setEmail(email);
 			System.out.println("set성공");
 		} else {
-			// 임의의 계정 세팅
 			System.out.println("set실패");
 			return String.valueOf(result);
 		}
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		//String temp = passwordEncoder.encode(pwd);
-		//판별
-		//System.out.println(passwordEncoder.matches(pwd, temp));
 		vo.setPwd(passwordEncoder.encode(vo.getPwd()));
-
-		// idx : DB시퀀스가 지정함
-		/*
-		 * birth: 사용자가 나중에 지정, regidate, regiip, addr
-		 */
 		vo.setBirth("asd");
 		vo.setAddr("asd");
 		SimpleDateFormat rigidaytime = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 		Date date = new Date(System.currentTimeMillis());
 		String regidate = rigidaytime.format(date);
-		System.out.println(regidate);
 		vo.setRegidate(regidate);
 		vo.setRegiip(request.getRemoteAddr());
 		// 회원가입 수행

@@ -2,19 +2,3 @@
 	margin: 0px 0px;
 	padding: 0px 0px;
 }
-
-
-
-
-/*
-참고 예제
-  
-방식				예제									우선도
-!important		a{color: red !important;}			100000
-인라인			<p style="color: red;">				1000
-id 선택자			#name{}								100
-태그 선택자		p{}									1
-전체 선택자		*									0
-부정 선택자											-1
-
-*/ 
