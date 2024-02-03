@@ -53,6 +53,7 @@ public class ProductController {
 		return String.valueOf(totalprice);
 	}
 	
+
 	@RequestMapping("/product_search_list.do")
 	public String product_search_list(String keyword,String page,Model model) {
 		int nowpage =1;
