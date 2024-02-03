@@ -6,12 +6,6 @@
 <meta charset="UTF-8">
 <title>임시페이지</title>
 <style type="text/css">
-#container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
 .menu_bar {
 	width: 100%;
 }
@@ -25,14 +19,6 @@ th, td {
 	text-align: center;
 	height: 40px;
 	width: 100px;
-}
-
-input {
-	width: 100% 100%;
-}
-
-#footer {
-	align-items: center;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -48,82 +34,87 @@ input {
 			<jsp:include page="../temp/top.jsp" flush="false" />
 		</div>
 		<!-- 컨텐츠 -->
-		<div id="container">
+		<div id="container col">
 			<div class="menu_bar">
 				<jsp:include page="../main/index.jsp" flush="false" />
 			</div>
+			<hr>
 			<h1 align="center">임시페이지입니다</h1>
 			<hr>
+			<div class="row">
+				<div class="col" style="width: 20px"></div>
+				<div class="col">
+					<table class="table">
+						<caption>컴포넌트로 이동</caption>
+						<tr>
+							<td><a href="top.do">top</a></td>
+							<td><a href="menubar.do">menubar</a></td>
+							<td><a href="footer.do">footer</a></td>
+							<td><a href="index.do">index</a></td>
+						</tr>
+						<tr>
+							<th><a href="header.do">header</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
 
-			<table>
-				<caption>컴포넌트로 이동</caption>
-				<tr>
-					<th><a href="top.do">top (최상단 컴포넌트)</a></th>
-					<th><a href="menubar.do">메뉴바</a></th>
-					<th><a href="footer.do">footer</a></th>
-					<th><a href="index.do">index</a></th>
-				</tr>
-				<tr>
-					<th><a href="#">header</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-				</tr>
+						<tr>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
+						<tr>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
 
-				<tr>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-				</tr>
-				<tr>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-				</tr>
-
-			</table>
-			<br>
-			<hr>
-			<table>
-				<caption>페이지로 이동</caption>
-				<tr>
-					<th><a href="login.do">로그인페이지</a></th>
-					<th><a href="regist.do">회원가입페이지</a></th>
-					<th><a href="main.do">메인페이지</a></th>
-					<th><a href="#">마이페이지</a></th>
-				</tr>
-				<tr>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-				</tr>
-				<tr>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-				</tr>
-				<tr>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-				</tr>
-				<tr>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-					<th><a href="#">temp</a></th>
-				</tr>
-			</table>
+					</table>
+					<br> <br> <br>
+					<table class="table">
+						<caption>페이지로 이동</caption>
+						<tr>
+							<th><a href="login.do">로그인페이지</a></th>
+							<th><a href="regist.do">회원가입페이지</a></th>
+							<th><a href="main.do">메인페이지</a></th>
+							<th><a href="mypage.do">마이페이지</a></th>
+						</tr>
+						<tr>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
+						<tr>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
+						<tr>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
+						<tr>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
+					</table>
+				</div>
+				<div class="col" style="width: 20px"></div>
+			</div>
 		</div>
-		<!-- 푸터 -->
-		<div id="footer"><jsp:include page="../temp/footer.jsp"
-				flush="false" />
-		</div>
+	</div>
+	<!-- 푸터 -->
+	<div>
+		<jsp:include page="../temp/footer.jsp" flush="false" />
 	</div>
 </body>
 </html>

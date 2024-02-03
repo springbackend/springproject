@@ -13,22 +13,12 @@
 </head>
 <body>
 	<hr>
-	<div id="footer_ui">
-		<table>
-			<tr>
-				<td>업체명</td>
-			</tr>
-
-			<tr>
-				<td>연락처</td>
-			</tr>
-
-			<tr>
-				<td>Copyright</td>
-			</tr>
-		</table>
+	<div class="col">
+		<div align="center">업체명</div>
+		<hr>
+		<div align="center">연락처</div>
+		<hr>
+		<div align="center">Copyright</div>
 	</div>
-
-
 </body>
 </html>

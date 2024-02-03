@@ -14,6 +14,7 @@ public class TempController {
 
 	static final String VIEWPATH = "/WEB-INF/views";
 
+//컴포넌트 ===================================================
 	@RequestMapping(value = "/")
 	public String main() {
 		return "redirect:/temp.do";
@@ -30,9 +31,9 @@ public class TempController {
 		return VIEWPATH + "/temp/top.jsp";
 	}
 
-	@RequestMapping(value = "/head.do")
+	@RequestMapping(value = "/header.do")
 	public String temphead() {
-		return VIEWPATH + "/temp/head.jsp";
+		return VIEWPATH + "/temp/header.jsp";
 	}
 
 	@RequestMapping(value = "/index.do")
@@ -45,17 +46,6 @@ public class TempController {
 		return VIEWPATH + "/temp/footer.jsp";
 	}
 
-	@RequestMapping(value = "/main.do")
-	public String main1() {
-		return VIEWPATH + "/main/main.jsp";
-	}
+//페이지 (필요하면 제거후 옮길것)======================================================
 
-	@RequestMapping(value = "/dbCheckid.do")
-	public String dbCheckId() {
-		// String id= request.getParameter
-		// System.out.println("요청아이디 :" + id);
-		// int result = memberService.idcheck(id);
-		// session.setAttribute("result",result)
-		return VIEWPATH + "temp/checkid.jsp";
-	}
 }
