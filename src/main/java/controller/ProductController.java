@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -26,7 +27,11 @@ public class ProductController {
 
 	@RequestMapping("/product_category_list.do")
 	public String category_list(String page, String p_category, Model model) {
-		Map<String, Object> p_map = p_service.p_category_service(p_category, page);
+		int nowpage =1;
+		if(page != null && !page.isEmpty()) {
+			nowpage = Integer.parseInt(page);
+		}
+		Map<String, Object> p_map = p_service.p_category_service(p_category, nowpage);
 		model.addAttribute("list", p_map.get("list"));
 		model.addAttribute("page", p_map.get("page_menu"));
 		return VIEW_PATH + "product_category.jsp";
@@ -46,6 +51,18 @@ public class ProductController {
 		int price = p_vo.getP_price();
 		int totalprice = price*quantity;
 		return String.valueOf(totalprice);
+	}
+	
+	@RequestMapping("/product_search_list.do")
+	public String product_search_list(String keyword,String page,Model model) {
+		int nowpage =1;
+		if(page != null && !page.isEmpty()) {
+			nowpage = Integer.parseInt(page);
+		}
+		Map<String, Object> p_map= p_service.p_search_list(keyword, nowpage);
+		model.addAttribute("list", p_map.get("list"));
+		model.addAttribute("page_menu", p_map.get("page_menu"));
+		return VIEW_PATH + "product_category.jsp";
 	}
 
 }

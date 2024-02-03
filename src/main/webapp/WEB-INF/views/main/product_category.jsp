@@ -9,7 +9,7 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
+<jsp:include page="index.jsp"/>
 	<!-- 컨테이너: 콘텐츠를 중앙에 위치시키기 위한 래퍼 -->
     <div class="container mt-4">
         <!-- 행: 컬럼을 가로로 배치하기 위한 컨테이너 -->

@@ -102,4 +102,81 @@ public class ProductPaging {
 
 		return sb.toString();
 	}
+	
+	public static String getSearchPaging(String pageURL, int nowPage, int rowTotal, int blockList, int blockPage,
+			String keyword) {
+		int totalPage, startPage, endPage;
+
+		boolean isPrevPage, isNextPage;
+		StringBuffer sb; 
+
+		isPrevPage = isNextPage = false;
+		totalPage = (int) (rowTotal / blockList);
+		if (rowTotal % blockList != 0)
+			totalPage++;
+
+		if (nowPage > totalPage)
+			nowPage = totalPage;
+
+
+		if (nowPage < 7) {
+			startPage = Math.max(nowPage - 9, 1);
+			endPage = Math.min(startPage + 9, totalPage);
+		} else {
+			startPage = nowPage - 5;
+			endPage = Math.min(nowPage + 4, totalPage);
+			if (endPage - startPage != 9) {
+				startPage = Math.max(endPage - 9, 1); 
+			}
+		}
+		if (endPage > totalPage) {
+			endPage = totalPage;
+		}
+
+		if (endPage < totalPage)
+			isNextPage = true;
+		if (startPage > 1)
+			isPrevPage = true;
+
+		sb = new StringBuffer();
+		if (isPrevPage) {
+			sb.append("<a href ='" + pageURL + "?page=");
+			sb.append(startPage - 1);
+			sb.append("&keyword=");
+			sb.append(keyword);
+			sb.append("'><img src='/pro/resources/img/btn_prev.gif'></a>");
+		} else
+			sb.append("<img src='/pro/resources/img/btn_prev.gif'>");
+
+		for (int i = startPage; i <= endPage; i++) {
+			if (i > totalPage)
+				break;
+			if (i == nowPage) { 
+				sb.append("&nbsp;<b><font color='blue'>");
+				sb.append(i);
+				sb.append("</font></b>");
+			} else {
+				sb.append("&nbsp;<a href='" + pageURL + "?page=");
+				sb.append(i);
+				sb.append("&keyword=");
+				sb.append(keyword);
+				sb.append("'><font color='gray'>");
+				sb.append(i);
+				sb.append("</a></font>");
+			}
+		} 
+
+		sb.append("&nbsp;");
+
+		if (isNextPage) {
+			sb.append("<a href='" + pageURL + "?page=");
+			sb.append(endPage + 1);
+			sb.append("&keyword=");
+			sb.append(keyword);
+			sb.append("'><img src='/pro/resources/img/btn_next.gif'></a>");
+		} else
+			sb.append("<img src='/pro/resources/img/btn_next.gif'>");
+
+		return sb.toString();
+	}
 }

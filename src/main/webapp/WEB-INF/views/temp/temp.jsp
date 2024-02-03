@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ÀÓ½ÃÆäÀÌÁö</title>
+<title>ìž„ì‹œíŽ˜ì´ì§€</title>
 <style type="text/css">
 .menu_bar {
 	width: 100%;
@@ -29,23 +29,23 @@ th, td {
 </head>
 <body>
 	<div id="wrap">
-		<!-- Çì´õ -->
+		<!-- í—¤ë” -->
 		<div id="header">
 			<jsp:include page="../temp/top.jsp" flush="false" />
 		</div>
-		<!-- ÄÁÅÙÃ÷ -->
+		<!-- ì»¨í…ì¸  -->
 		<div id="container col">
 			<div class="menu_bar">
 				<jsp:include page="../main/index.jsp" flush="false" />
 			</div>
 			<hr>
-			<h1 align="center">ÀÓ½ÃÆäÀÌÁöÀÔ´Ï´Ù</h1>
+			<h1 align="center">ìž„ì‹œíŽ˜ì´ì§€ìž…ë‹ˆë‹¤</h1>
 			<hr>
 			<div class="row">
 				<div class="col" style="width: 20px"></div>
 				<div class="col">
 					<table class="table">
-						<caption>ÄÄÆ÷³ÍÆ®·Î ÀÌµ¿</caption>
+						<caption>ì»´í¬ë„ŒíŠ¸ë¡œ ì´ë™</caption>
 						<tr>
 							<td><a href="top.do">top</a></td>
 							<td><a href="menubar.do">menubar</a></td>
@@ -75,12 +75,12 @@ th, td {
 					</table>
 					<br> <br> <br>
 					<table class="table">
-						<caption>ÆäÀÌÁö·Î ÀÌµ¿</caption>
+						<caption>íŽ˜ì´ì§€ë¡œ ì´ë™</caption>
 						<tr>
-							<th><a href="login.do">·Î±×ÀÎÆäÀÌÁö</a></th>
-							<th><a href="regist.do">È¸¿ø°¡ÀÔÆäÀÌÁö</a></th>
-							<th><a href="main.do">¸ÞÀÎÆäÀÌÁö</a></th>
-							<th><a href="mypage.do">¸¶ÀÌÆäÀÌÁö</a></th>
+							<th><a href="login.do">ë¡œê·¸ì¸íŽ˜ì´ì§€</a></th>
+							<th><a href="regist.do">íšŒì›ê°€ìž…íŽ˜ì´ì§€</a></th>
+							<th><a href="main.do">ë©”ì¸íŽ˜ì´ì§€</a></th>
+							<th><a href="mypage.do">ë§ˆì´íŽ˜ì´ì§€</a></th>
 						</tr>
 						<tr>
 							<th><a href="#">====</a></th>
@@ -112,7 +112,7 @@ th, td {
 			</div>
 		</div>
 	</div>
-	<!-- ÇªÅÍ -->
+	<!-- í‘¸í„° -->
 	<div>
 		<jsp:include page="../temp/footer.jsp" flush="false" />
 	</div>
