@@ -43,5 +43,9 @@ public class ProductController {
 	@ResponseBody
 	public String product_update_price(int p_idx, int quantity) {
 		ProductVO p_vo = p_service.p_product_view(p_idx);
+		int price = p_vo.getP_price();
+		int totalprice = price*quantity;
+		return String.valueOf(totalprice);
+	}
 
 }
