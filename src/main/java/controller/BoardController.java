@@ -17,7 +17,7 @@ import vo.BoardVO;
 public class BoardController {
 
 	BoardService board_service;
-	
+
 	@Autowired
 	HttpServletRequest request;
 
@@ -25,12 +25,12 @@ public class BoardController {
 		this.board_service = board_service;
 	}
 
-	@RequestMapping(value = { "/", "/board_list.do" })
+	@RequestMapping(value = { "/board_list.do" })
 	public String board_list(Model model) {
 
-		 List<BoardVO> list = board_service.board_list();
-		  
-		 model.addAttribute("list", list);
+		List<BoardVO> list = board_service.board_list();
+
+		model.addAttribute("list", list);
 
 		return Common.Board.VIEW_PATH + "board_list.jsp";
 	}
@@ -39,56 +39,28 @@ public class BoardController {
 	public String board_write() {
 		return Common.Board.VIEW_PATH + "board_write.jsp";
 	}
-	
+
 	@RequestMapping("/board_upload.do")
-	//@ResponseBody
+	// @ResponseBody
 	public String board_upload(BoardVO vo) {
 		String ip = request.getRemoteAddr();
-		
+
 		vo.setIp(ip);
-		
-		//foreign key
+
+		// foreign key
 		vo.setM_idx(1);
-		
-		//int res = board_service.board_upload(vo);
-		
-		//String result = "Fail";
-		
+
+		// int res = board_service.board_upload(vo);
+
+		// String result = "Fail";
+
 //		if(res != 0) {
 //			result = "Success";
 //		}
-		
-		//Ajax 안됨
+
+		// Ajax 안됨
 		return "redirect:board_list.do";
-		
+
 	}
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
