@@ -64,3 +64,29 @@ VALUES(
 		1
 		);
 ====================================
+--게시판 Table
+CREATE SEQUENCE seq_board_idx;
+
+CREATE TABLE board (
+	b_idx NUMBER(10) primary key,
+	m_idx NUMBER(5), --작성자 일련번호 (foreign key)
+	subject VARCHAR2(100) NOT NULL, --제목
+	content CLOB NOT NULL, --내용
+	ip VARCHAR2(20),
+	regdate DATE, --작성일
+	recommend NUMBER(5), --추천수 (따봉수)
+	readhit NUMBER(10) --조회수
+);
+
+--Sample Data
+INSERT INTO board VALUES (
+	seq_board_idx.nextVal,
+	1,
+	'립 추천합니다!',
+	'페리페라',
+	'192.1.1.1',
+	sysdate,
+	0,
+	0
+);
+====================================
