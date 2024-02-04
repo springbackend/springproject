@@ -9,6 +9,9 @@ public class Common {
 		public final static int BLOCKPAGE = 5;
 	}
 
+	public static class Board{
+		public static final String VIEW_PATH = "/WEB-INF/views/board/";
+	}
 }
 
 
