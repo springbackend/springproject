@@ -9,7 +9,6 @@ public class MainController {
 
 	@RequestMapping(value = "/main.do")
 	public String main1() {
-		System.out.println("main페이지 호출");
 		return VIEW_PATH + "/main.jsp";
 	}
 

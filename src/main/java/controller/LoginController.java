@@ -28,54 +28,52 @@ public class LoginController {
 		return VIEWPATH + "/login/login.jsp";
 	}
 
-	@RequestMapping(value = "/login.do", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String loginreq(HttpServletRequest request, String id, String pwd, String yuji) {
 		HttpSession session = request.getSession();
-//		로그인 유지하기 시 세션 무한으로 설정했으나 세션은 브라우저 종료시 날라감, jwt를 사용한 쿠키를 적용해야 유지가능 
 
 		if (yuji.equalsIgnoreCase(yuji)) {
 			session.setMaxInactiveInterval(-1);
 		}
 		/*
-		 * 세션 무한존재 session.setMaxInactiveInterval(-1); 세션값 삭제 session.removeAttribute();
-		 * 세션 전체제거 session.invalidate();
 		 */
-		String result = "로그인 실패";
-		String good = "로그인 성공";
+		String result = "濡쒓렇�씤 �떎�뙣";
+		String good = "濡쒓렇�씤 �꽦怨�";
 		if (id.equalsIgnoreCase("1111") && pwd.equalsIgnoreCase("1111")) {
 			result = good;
 			session.setAttribute("status", "succes");
-			session.setAttribute("nickname", "임시아이디");
+			session.setAttribute("nickname", "�엫�떆�븘�씠�뵒");
 			System.out.println(session.getAttribute("nickname"));
 			// session.getAttribute("status");
 		} else {
-			// 로그인 기능구현
+			// 濡쒓렇�씤 湲곕뒫援ы쁽
 			Optional<UserVO> option = Optional.ofNullable(dao.ismember(id));
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			if (option.isEmpty()) {
 				return result;
-//				로그인 실패
+//				濡쒓렇�씤 �떎�뙣
 			} else {
 				UserVO vo = option.get();
 				if (!passwordEncoder.matches(pwd, vo.getPwd())) {
 					return result;
-//				로그인 실패
+//				濡쒓렇�씤 �떎�뙣
 				}
 			}
 			result = good;
 			UserVO vo = option.get();
-			// 세션 구현
+			// �꽭�뀡 援ы쁽
 			session.setAttribute("status", "succes");
 			session.setAttribute("nickname", vo.getName());
 		}
 		return result;
 	}
 
-	@RequestMapping(value = "/logout.do", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		return VIEWPATH + "/main/main.jsp";
 	}
+
 }

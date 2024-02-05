@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,21 +77,27 @@ th, td {
 					<table class="table">
 						<caption>페이지로 이동</caption>
 						<tr>
-							<th><a href="login.do">로그인페이지</a></th>
-							<th><a href="regist.do">회원가입페이지</a></th>
-							<th><a href="main.do">메인페이지</a></th>
-							<th><a href="mypage.do">마이페이지</a></th>
+							<th><a href="login.do">login</a></th>
+							<th><a href="regist.do">regist</a></th>
+							<th><a href="main.do">main</a></th>
+							<th><a href="mypage.do">mypage</a></th>
 						</tr>
 						<tr>
-							<th><a href="#">====</a></th>
-							<th><a href="#">====</a></th>
+							<th><a href="findid.do">findid</a></th>
+							<th><a href="findpwd.do">findpwd</a></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th><a href="board_list.do">board_list</a></th>
+							<th><a href="board_write.do">board_write===</a></th>
 							<th><a href="#">====</a></th>
 							<th><a href="#">====</a></th>
 						</tr>
 						<tr>
-							<th><a href="#">====</a></th>
-							<th><a href="#">====</a></th>
-							<th><a href="#">====</a></th>
+							<th><a href="product_category_list.do">product_category_list</a></th>
+							<th><a href="product_view.do">product_view</a></th>
+							<th><a href="product_search_list.do">product_search_list</a></th>
 							<th><a href="#">====</a></th>
 						</tr>
 						<tr>
