@@ -11,11 +11,13 @@
 	<typeAliases>
 		<typeAlias type="vo.UserVO" alias="user"/>
 		<typeAlias type="vo.ProductVO" alias="product"/>
+		<typeAlias type="vo.BoardVO" alias="board"/>
 	</typeAliases>
 	
 	<mappers>
 		<!-- <mapper resource="config/mybatis/mapper/visit.xml" /> -->
 		<mapper resource="config/mybatis/mapper/user.xml" />
 		<mapper resource="config/mybatis/mapper/product.xml" />
+		<mapper resource="config/mybatis/mapper/board.xml"/>
 	</mappers>
 </configuration>

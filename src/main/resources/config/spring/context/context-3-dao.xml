@@ -29,6 +29,12 @@
 		<constructor-arg ref="product_daoBean"/>
 	</bean>
 	
+	<bean id="board_daoBean" class="dao.BoardDAO">
+		<constructor-arg ref="sqlSessionBean" />
+	</bean>
 	
+	<bean id="board_serviceBean" class="service.BoardService">
+		<constructor-arg ref="board_daoBean"/>
+	</bean>
 	
 </beans>

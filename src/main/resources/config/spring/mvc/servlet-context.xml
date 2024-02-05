@@ -55,6 +55,10 @@
 	<beans:bean class="controller.ProductController">
 		<beans:constructor-arg ref="product_serviceBean" />
 	</beans:bean>
+	
+	<beans:bean class="controller.BoardController">
+		<beans:constructor-arg ref="board_serviceBean"/>
+	</beans:bean>
 </beans:beans>
 
 
