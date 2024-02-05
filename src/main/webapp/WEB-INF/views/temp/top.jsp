@@ -18,11 +18,10 @@
 			style="height: 60px;">
 			<div class="col" style="width: 200px;" align="left">
 				<div>
-					<a href="temp.do">temp페이지</a> <a href="main.do">메인</a>
+					<a href="temp.do"> <img style="width: 40px;"
+						src="resources/images/logo.png" alt="..."></a> <a href="main.do">메인</a>
 				</div>
 			</div>
-			<%-- 			<div style="background-color: red; width: 50px;">${sessionScope.status}</div> --%>
-
 			<c:choose>
 				<c:when test="${sessionScope.status eq 'succes'}">
 					<div class="col" style="width: 200px;" align="right">
@@ -33,7 +32,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="col" style="width: 200px;" align="right">
-						<a href="login.do">로그인</a> <a>/</a> <a href="#">회원가입</a>
+						<a href="login.do">로그인</a> <a>/</a> <a href="regist.do">회원가입</a>
 					</div>
 				</c:otherwise>
 			</c:choose>

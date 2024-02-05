@@ -39,49 +39,55 @@
 	<!-- 로고이미지 위치 -->
 	<jsp:include page="../temp/top.jsp"></jsp:include>
 	<form action="" method="post">
-		<table align="center">
-			<tr>
-				<td><div class="input-group">
-						<span class="input-group-text" style="width: 100px;">아이디</span> <input
-							class="form-control" id="id" type="text">
-					</div></td>
-				<td rowspan="2"><button type="button" height="200px"
-						class="btn btn-primary" onclick="send(this.form);">로그인하기</button></td>
-			</tr>
-			<tr>
-				<td>
-					<div class="input-group">
-						<span class="input-group-text" style="width: 100px;">패스워드</span> <input
-							class="form-control" id="pwd" type="text">
-					</div>
-				</td>
-			</tr>
-			<tr>
+		<div align="center">
+			<img src="resources/images/logo.png" class="rounded" width="200px"
+				alt="로고">
+		</div>
+		<div class="d-flex justify-content-center">
+			<div align="center" class="border"
+				style="width: 500px; border-color: aqua; border-radius: 40px; padding: 20px; margin-top: 50px;">
+				<table>
+					<tr>
+						<td><div class="input-group">
+								<span class="input-group-text" style="width: 100px;">아이디</span>
+								<input class="form-control" id="id" type="text">
+							</div></td>
+						<td rowspan="2"><button type="button" style="height: 80px;"
+								class="btn btn-primary" onclick="send(this.form);">로그인하기</button></td>
+					</tr>
+					<tr>
+						<td>
+							<div class="input-group">
+								<span class="input-group-text" style="width: 100px;">패스워드</span>
+								<input class="form-control" id="pwd" type="text">
+							</div>
+						</td>
+					</tr>
+					<tr>
 
-				<td align="left">
-					<div class="form-check form-switch">
-						<input class="form-check-input" type="checkbox" role="switch"
-							id="yuji"> <label for="flexSwitchCheckDefault">로그인
-							상태 유지</label>
-					</div>
+						<td align="left">
+							<div style="margin-top: 20px;"></div>
+							<div class="form-check form-switch">
+								<input class="form-check-input" type="checkbox" role="switch"
+									id="yuji"> <label for="flexSwitchCheckDefault">로그인
+									상태 유지</label>
+							</div>
 
-				</td>
+						</td>
 
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input class="btn btn-primary"
-					type="button" value="회원가입하기" onclick="location.href='regist.do'"></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input class="btn btn-primary"
-					type="button" value="아이디 찾기" onclick="location.href='findid.do'">
-					<input class="btn btn-primary" type="button" value="비밀번호 찾기"
-					onclick="location.href='findpwd.do'"></td>
-			</tr>
-
-		</table>
+					</tr>
+				</table>
+				<div style="margin-top: 20px;"></div>
+				<input class="btn btn-primary" type="button" value="회원가입하기"
+					onclick="location.href='regist.do'"> <input
+					class="btn btn-primary" type="button" value="아이디 찾기"
+					onclick="location.href='findid.do'"> <input
+					class="btn btn-primary" type="button" value="비밀번호 찾기"
+					onclick="location.href='findpwd.do'">
+			</div>
+		</div>
 	</form>
-	<hr>
+	<hr style="margin-top: 30px;">
 	<table align="center">
 		<tr>
 			<td><a href="#">미니로고</a></td>

@@ -113,60 +113,84 @@
 </script>
 </head>
 <body>
-	<form name="joinForm">
-		<table border="1" align="center">
-			<caption>회원가입페이지</caption>
-			<tr>
-				<th>아이디</th>
-				<td><input type="text" id="id"></td>
-				<td><button type="button" id="idDuplication" onclick="check();">중복확인</button>
-					<label></label></td>
-			</tr>
-			<tr>
-				<td colspan="3"><a>특수문자,공백 제외 </a></td>
-			</tr>
-			<tr>
-				<th>닉네임</th>
-				<td><input id="name"></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" id="pwd"></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th>비밀번호 확인</th>
-				<td><input type="password" id="rePwd"></td>
-				<td></td>
-			</tr>
+	<jsp:include page="../temp/top.jsp"></jsp:include>
+	<h1 align="center">회원가입</h1>
+	<form name="joinForm" class="nav justify-content-center">
 
-			<tr>
-				<th>전화번호</th>
-				<td><input id="pnum"></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td><input id="email"></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th>성별</th>
-				<td><input type="radio" name="gender" id="gen1" value="남성">남성
-					<input type="radio" name="gender" id="gen2" value="여성">여성</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td colspan="3"><input type="button" value="가입하기"
-					onclick="join(this.form);"> <input type="button" value="취소"
-					onclick='history.go(-1);'></td>
-			</tr>
-			<!-- reCAPTCHA 추가 -->
-		</table>
+		<div
+			style="width: 400px; border-color: aqua; border-radius: 40px; padding: 20px;"
+			class="nav-item border">
+			<div class="col">
+				<div class="col">
+					<label for="id">아이디</label> <input class="form-control" type="text"
+						id="id">
+					<div style="margin-top: 10px;"></div>
+					<button class="btn btn-primary" type="button" id="idDuplication"
+						onclick="check();">중복확인</button>
+					<div style="margin-bottom: 10px;"></div>
+				</div>
+				<div class="col">
+					<label for="name">닉네임</label>
+					<div>
+						<input class="form-control" type="text" id="name">
+					</div>
+				</div>
+				<div class="col">
+					<label for="pwd">비밀번호</label>
+					<div>
+						<input class="form-control" type="password" id="pwd">
+					</div>
+				</div>
+
+				<div class="col">
+					<label for="repwd">비밀번호 확인</label>
+					<div>
+						<input class="form-control" type="password" id="rePwd">
+					</div>
+				</div>
+				<div class="col">
+					<label for="pnum">전화번호</label>
+					<div>
+						<input class="form-control" id="pnum" type="text">
+					</div>
+				</div>
+				<div class="col">
+					<label for="email">이메일</label>
+					<div>
+						<input class="form-control" id="email">
+					</div>
+				</div>
+				<div class="col">
+					<div style="margin-top: 10px; margin-bottom: 10px;">성별</div>
+					<div class="row" style="margin-left: 10px;">
+						<div>
+							<input type="radio" name="gender" id="gen1" value="남성"><label
+								for="gen1">남성</label>
+						</div>
+						<div style="width: 100px"></div>
+						<div>
+							<input type="radio" name="gender" id="gen2" value="여성"><label
+								for="gen2">여성</label>
+						</div>
+					</div>
+					<div class="col" style="margin: 10px;">
+						<div class="mb-4">
+							<input class="btn btn-primary btn-lg btn-block" type="button"
+								value="가입하기" onclick="join(this.form);">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- 간편한 로그인을 위해 주소,전화번호는 나중에 결제페이지에서 추가적으로 넣는게 어떤가 싶음-->
 	</form>
-
 	<jsp:include page="../temp/footer.jsp" flush="false" />
 </body>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>
