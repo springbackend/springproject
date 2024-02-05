@@ -55,6 +55,19 @@ public class ProductService {
 		return p_map;
 	}
 	
+	public int p_buy(int p_idx,int quantity) {
+		Map<String, Integer> p_map = new HashMap<String, Integer>();
+		p_map.put("p_idx", p_idx);
+		p_map.put("quantity", quantity);
+		int res = p_dao.p_buy(p_map);
+		return res;
+	}
+	
+	public ProductVO p_buy_view(int p_idx) {
+		ProductVO p_vo = p_dao.p_buy_view(p_idx);
+		return p_vo;
+	}
+	
 	
 	
 

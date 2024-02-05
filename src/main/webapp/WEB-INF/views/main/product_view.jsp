@@ -30,7 +30,10 @@
 		updateprice();
 	}
 	
-	
+	function buyproduct() {
+		let quantity = document.getElementById('quantity').value;
+		location.href="buyproduct_form.do?p_idx="+${p_vo.p_idx}+"&quantity="+quantity;
+	}
 </script>
 </head>
 <body>
@@ -53,7 +56,7 @@
       <!-- 버튼들을 수평으로 배열 -->
       <div class="product-actions">
         <button type="button" class="btn btn-primary">장바구니에 담기</button>
-        <button type="button" class="btn btn-success">구매하기</button>
+        <button type="button" class="btn btn-success" onclick="buyproduct()">구매하기</button>
         <button type="button" class="btn btn-warning">찜하기</button>
       </div>
     </div>

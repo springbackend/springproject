@@ -39,5 +39,15 @@ public class ProductDAO {
 		int count  = sqlSession.selectOne("p.search_count", keyword);
 		return count;
 	}
+	
+	public int p_buy(Map<String, Integer> p_map) {
+		int res = sqlSession.update("p.buy_product",p_map);
+		return res;
+	}
+	
+	public ProductVO p_buy_view(int p_idx) {
+		ProductVO p_vo = sqlSession.selectOne("p.buy_product_view",p_idx);
+		return p_vo;
+	}
 
 }

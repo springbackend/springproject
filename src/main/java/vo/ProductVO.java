@@ -2,7 +2,7 @@ package vo;
 
 public class ProductVO {
 	
-	private int p_idx,p_price,p_hit,p_sold;
+	private int p_idx,p_price,p_hit,p_sold,p_totalprice,quantity;
 	private String p_name,p_content,p_regidate,p_category,p_image,
 	p_color;
 	public int getP_idx() {
@@ -64,6 +64,18 @@ public class ProductVO {
 	}
 	public void setP_color(String p_color) {
 		this.p_color = p_color;
+	}
+	public int getP_totalprice() {
+		return p_totalprice;
+	}
+	public void setP_totalprice(int p_totalprice) {
+		this.p_totalprice = p_totalprice;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 	
