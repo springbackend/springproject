@@ -44,13 +44,13 @@ public class ProductController {
 		return VIEW_PATH + "product_view.jsp";
 	}
 
-	@RequestMapping(value = "/update_price.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/update_price.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String product_update_price(int p_idx, int quantity) {
 		ProductVO p_vo = p_service.p_product_view(p_idx);
 		int price = p_vo.getP_price();
 		int totalprice = price*quantity;
-		return String.valueOf(totalprice);
+		return String.valueOf(totalprice)+"원";
 	}
 	
 	@RequestMapping(value = "/product_search_list.do", method = RequestMethod.GET)

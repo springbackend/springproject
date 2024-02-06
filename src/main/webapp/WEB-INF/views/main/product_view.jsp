@@ -22,7 +22,7 @@
 	function resultprice() {
 		if(xhr.readyState == 4 && xhr.status ==200){
 			let data = xhr.responseText;
-			document.getElementById('totalprice').innerText = data + "원";
+			document.getElementById('totalprice').innerText = data;
 		}
 	}
 	

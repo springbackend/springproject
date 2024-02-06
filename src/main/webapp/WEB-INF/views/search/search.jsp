@@ -12,14 +12,55 @@
         width: 100%; /* 드롭다운의 넓이를 input-group의 넓이와 동일하게 설정 */
     }
 </style>
+<script src="/beauty/resources/js/httpRequest.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    let searchInput = document.getElementById('searchInput');
+
+    searchInput.addEventListener('input', function() {
+        let inputVal = this.value;
+        // 사용자 정의 함수 호출
+        searchkeyword(inputVal);
+    });
+});
+
+function searchkeyword(keyword) {
+	let url = "search_keyword.do";
+	let param = "keyword="+keyword;
+	sendRequest(url,param,resultKeyword,'post');
+}
+
+function resultKeyword() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        let data = xhr.responseText;
+        let products = JSON.parse(data); // JSON 문자열을 객체로 변환
+        // 드롭다운 메뉴를 찾고 기존 항목을 지움
+        let dropdownMenu = document.querySelector('.dropdown-menu');
+        dropdownMenu.innerHTML = ''; // 기존의 내용을 비움
+
+        // 받은 JSON 데이터(제품 목록)를 사용하여 드롭다운 항목을 생성
+        products.forEach(function(product) {
+            // 새로운 드롭다운 항목 생성
+            let dropdownItem = document.createElement('a');
+            dropdownItem.classList.add('dropdown-item');
+            dropdownItem.href = '#'; // 여기에 실제 제품 페이지나 기능을 연결가능
+            dropdownItem.textContent = product.p_name; // p_name 속성을 사용하여 텍스트 설정
+
+            // 드롭다운 메뉴에 항목을 추가합니다.
+            dropdownMenu.appendChild(dropdownItem);
+        });
+    }
+}
+</script>
 <body>
 <div class="container mt-3">
     <div class="row justify-content-center">
         <div class="col-md-6">
+            <!-- Search input group with dropdown and search button -->
             <div class="input-group">
-                <input type="text" class="form-control dropdown-toggle" data-toggle="dropdown" placeholder="Search">
+                <input type="text" class="form-control dropdown-toggle" data-toggle="dropdown" placeholder="Search" id="searchInput">
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">검색어</a>
+                    <a class="dropdown-item" href="#"></a>
                 </div>
                 <div class="input-group-append">
                     <button class="btn btn-outline-primary" type="button" id="button-search">Search</button>
