@@ -1,95 +1,126 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>ÀÓ½ÃÆäÀÌÁö</title>
+<meta charset="UTF-8">
+<title>ì„ì‹œí˜ì´ì§€</title>
 <style type="text/css">
-th {
+.menu_bar {
+	width: 100%;
+}
+
+table, th, td {
+	border: 1px solid black;
+	width: 600px;
+}
+
+th, td {
+	text-align: center;
 	height: 40px;
-	display: table-cell;
-}
-
-input {
-	width: 100% 100%;
-}
-
-table {
-	margin: auto;
-	padding: auto;
+	width: 100px;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<jsp:include page="../temp/top.jsp" flush="false" />
-	<h1 align="center">ÀÓ½ÃÆäÀÌÁöÀÔ´Ï´Ù</h1>
-	<hr>
+	<div id="wrap">
+		<!-- í—¤ë” -->
+		<div id="header">
+			<jsp:include page="../temp/top.jsp" flush="false" />
+		</div>
+		<!-- ì»¨í…ì¸  -->
+		<div id="container col">
+			<div class="menu_bar">
+				<jsp:include page="../main/index.jsp" flush="false" />
+			</div>
+			<hr>
+			<h1 align="center">ì„ì‹œí˜ì´ì§€ì…ë‹ˆë‹¤</h1>
+			<hr>
+			<div class="row">
+				<div class="col" style="width: 20px"></div>
+				<div class="col">
+					<table class="table">
+						<caption>ì»´í¬ë„ŒíŠ¸ë¡œ ì´ë™</caption>
+						<tr>
+							<td><a href="top.do">top</a></td>
+							<td><a href="menubar.do">menubar</a></td>
+							<td><a href="footer.do">footer</a></td>
+							<td><a href="index.do">index</a></td>
+						</tr>
+						<tr>
+							<th><a href="header.do">header</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
 
-	<table border="1">
-		<caption>ÄÄÆ÷³ÍÆ®·Î ÀÌµ¿</caption>
-		<tr>
-			<th><a href="top">ÃÖ»ó´Ü ÄÄÆ÷³ÍÆ®(ÀÓ½Ã¿Ï·á)</th>
-			<th><a href="#">¸Ş´º¹Ù</a></th>
-			<th><a href="#">footer</a></th>
-			<th><a href="#">temp</a></th>
-		</tr>
-		<tr>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-		</tr>
+						<tr>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
+						<tr>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
 
-		<tr>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-		</tr>
-		<tr>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-		</tr>
-
-	</table>
-	<br>
-	<hr>
-	<table border="1">
-		<caption>ÆäÀÌÁö·Î ÀÌµ¿</caption>
-		<tr>
-			<th><a href="login">·Î±×ÀÎÆäÀÌÁö</a></th>
-			<th><a href="#">¸ŞÀÎÆäÀÌÁö</a></th>
-			<th><a href="#">¸¶ÀÌÆäÀÌÁö</a></th>
-			<th><a href="#">±âÅ¸µîµî</a></th>
-		</tr>
-		<tr>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-		</tr>
-		<tr>
-			<td><a href="#">temp</a></td>
-			<td><a href="#">temp</a></td>
-			<td><a href="#">temp</a></td>
-			<td><a href="#">temp</a></td>
-		</tr>
-		<tr>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-			<th><a href="#">temp</a></th>
-		</tr>
-		<tr>
-			<td><a href="#">temp</a></td>
-			<td><a href="#">temp</a></td>
-			<td><a href="#">temp</a></td>
-			<td><a href="#">temp</a></td>
-		</tr>
-	</table>
-
+					</table>
+					<br> <br> <br>
+					<table class="table">
+						<caption>í˜ì´ì§€ë¡œ ì´ë™</caption>
+						<tr>
+							<th><a href="login.do">login</a></th>
+							<th><a href="regist.do">regist</a></th>
+							<th><a href="main.do">main</a></th>
+							<th><a href="mypage.do">mypage</a></th>
+						</tr>
+						<tr>
+							<th><a href="findid.do">findid</a></th>
+							<th><a href="findpwd.do">findpwd</a></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th><a href="board_list.do">board_list</a></th>
+							<th><a href="board_write.do">board_write===</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
+						<tr>
+							<th><a href="product_category_list.do">product_category_list</a></th>
+							<th><a href="product_view.do">product_view</a></th>
+							<th><a href="product_search_list.do">product_search_list</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
+						<tr>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
+						<tr>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+							<th><a href="#">====</a></th>
+						</tr>
+					</table>
+				</div>
+				<div class="col" style="width: 20px"></div>
+			</div>
+		</div>
+	</div>
+	<!-- í‘¸í„° -->
+	<div>
+		<jsp:include page="../temp/footer.jsp" flush="false" />
+	</div>
 </body>
 </html>

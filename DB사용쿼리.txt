@@ -7,19 +7,86 @@
 //
 // 
 
-
-CREATE SEQUENCE SEQ_MEMBER_IDX;
-
-CREATE table MEMBER
-(
-	m_idx NUMBER(10) NOT null,
-	m_id varchar(10) NOT null,
-	m_pw varchar(20) NOT null,
-	m_name varchar(10) NOT null,
-	m_email varchar(10) NOT null,
-	m_birth DATE,
-	m_addr varchar(100)
-);
+PK지정=======================================================
 ALTER TABLE MEMBER ADD CONSTRAINT m_pk PRIMARY KEY (m_id);
+===================================================
+시퀀스=======================
+CREATE SEQUENCE SEQ_MEMBER_IDX;
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 999999999999
+NOCYCLE
+NOCACHE
+NOORDER;
 
---시퀀스 생성, 테이블생성. 나중에 시퀀스 적용여부 결정할예정
+CREATE SEQUENCE user_seq
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 999999999999
+NOCYCLE
+NOCACHE
+NOORDER;
+=================================
+
+테이블==============================
+CREATE TABLE USER1
+(
+	u_idx NUMBER(10) NOT NULL PRIMARY KEY,
+	u_id varchar(10) NOT NULL,
+	u_name varchar(10) NOT NULL,
+	u_pwd varchar(20) NOT NULL,
+	u_pnum varchar(20) NOT NULL,
+	u_email varchar(20) NOT NULL,
+	u_gender varchar(10) NOT NULL,
+	u_regidate varchar(50) NOT NULL,
+	u_regiip varchar(20) NOT NULL,
+	u_addr varchar(100),
+	u_birth varchar(10)
+);
+
+테스트용============================
+INSERT
+	INTO
+	USER1
+VALUES(
+		user_seq.nextVal,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1
+		);
+====================================
+--게시판 Table
+CREATE SEQUENCE seq_board_idx;
+
+CREATE TABLE board (
+	b_idx NUMBER(10) primary key,
+	m_idx NUMBER(5), --작성자 일련번호 (foreign key)
+	subject VARCHAR2(100) NOT NULL, --제목
+	content CLOB NOT NULL, --내용
+	ip VARCHAR2(20),
+	regdate DATE, --작성일
+	recommend NUMBER(5), --추천수 (따봉수)
+	readhit NUMBER(10) --조회수
+);
+
+--Sample Data
+INSERT INTO board VALUES (
+	seq_board_idx.nextVal,
+	1,
+	'립 추천합니다!',
+	'페리페라',
+	'192.1.1.1',
+	sysdate,
+	0,
+	0
+);
+====================================

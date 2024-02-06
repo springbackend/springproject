@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b">
+	<select id="board_list" resultType="board">
+		SELECT * FROM board
+		ORDER BY b_idx DESC
+	</select>
+	
+	<insert id="board_write" parameterType="board">
+		INSERT INTO board VALUES(
+			seq_board_idx.nextVal,
+			#{m_idx},
+			#{subject},
+			#{content},
+			#{ip},
+			sysdate,
+			0,
+			0
+		)
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

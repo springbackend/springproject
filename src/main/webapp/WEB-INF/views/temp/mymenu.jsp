@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="index.jsp"/>
-	카테고리 링크로 들어오면 해당카테고리 상품들 나옴
-	<!-- footer -->
+	<div>계정</div>
+	<div>내상품</div>
+	<div>페이지 설정</div>
+	<div></div>
+	<div></div>
+
 </body>
 </html>

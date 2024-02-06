@@ -9,6 +9,10 @@ create table product(
 	p_image varchar2(100), -- 상품사진(작은이미지 큰이미지 나눌지는 상의해야할것같습니다.)
 	p_color varchar2(100), --상품색(퍼스널컬러 연결해서 사용하면 좋을것같습니다.)
 	p_price number(10), --상품가격
-	p_hit number(10), --상품조회수(할수있으면 하루마다 조회수 초기화 )
+	p_hit number(10), --상품조회수
 	p_sold number(10) -- 판매된 상품갯수(조회수랑 겹쳐서 애매하면 삭제)
 );
+
+insert into product values(seq_product_idx.nextval,'립스틱','입술에바름',sysdate,'woman','nofile','red',30000,0,0);
+
+update product set p_image = 'test_file.jpg' where p_idx = 1;

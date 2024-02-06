@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p">
+	<select id="select_category" resultType="product" parameterType="java.util.Map">
+		select * from (select rank() over(order by p_idx desc) no,
+			p.* from product p where p.p_category = #{p_category}) where no between #{start} and #{end}
+	</select>
+	
+	<select id="select_category_count" resultType="int" parameterType="String">
+		select count(*) from product where p_category = #{p_category}
+	</select>
+	<select id="select_product_view" resultType="product" parameterType="int">
+		select * from product where p_idx = #{p_idx}
+	</select>
+	
+	<select id="select_search_list" resultType="product" parameterType="java.util.Map">
+		select * from (select rank() over(order by p_idx desc) no, p.* from product p where p.p_name like '%' || #{keyword} || '%') 
+		where no between #{start} and #{end}
+	</select>
+	
+	<select id="search_count" resultType="int" parameterType="String">
+		select count(*) from product where p_name like '%' || #{keyword} || '%'
+	</select>
+	
+	<update id="buy_product" parameterType="java.util.Map">
+		update product set p_sold = p_sold + #{quantity} where p_idx = #{p_idx}
+	</update>
+	
+	<select id="buy_product_view" resultType="product" parameterType="int">
+		select * from product where p_idx = #{p_idx}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

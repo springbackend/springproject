@@ -11,21 +11,22 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
-<body>
 
+<body>
+<!--  -->
 <div class="container">
   <!-- 로그인과 회원가입 링크 -->
-   <div align="right">
-      	<%--  <c:if test="${empty mem}">  <!-- 로그인 세션이 null이면 로그인 회원가입 --> --%>
+		<%-- <div align="right">
+      	 <c:if test="${empty mem}">  <!-- 로그인 세션이 null이면 로그인 회원가입 -->
         <a href="#">로그인</a> /
         <a href="#">회원가입</a>
-       <%-- </c:if> --%>
-       <%-- <c:if test="${!empty mem }"> <!-- 로그인 세션이 null이 아니면 마이페이지,장바구니 -->
+       </c:if>
+       <c:if test="${!empty mem }"> <!-- 로그인 세션이 null이 아니면 마이페이지,장바구니 -->
        <a href="#">마이페이지</a>
        <a href="#">장바구니</a>
-       </c:if> --%>
-    </div>
-  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+       </c:if>
+    </div> --%>
+		<nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- 내비게이션 링크 -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
@@ -52,8 +53,8 @@
       </ul>
 
       <!-- 검색폼 -->
-      <form class="form-inline ml-auto">
-         <input class="form-control mr-sm-2" type="text" placeholder="검색"><!-- 세션으로 검색기록뜨게 하거나 힘들면 테이블로 만들고싶음(세션이나 쿠키로아마 가능할듯싶습니다.)  -->
+      <form class="form-inline ml-auto" action="product_search_list.do" method="get">
+         <input class="form-control mr-sm-2" type="text" placeholder="검색" name="keyword"><!-- 세션으로 검색기록뜨게 하거나 힘들면 테이블로 만들고싶음(세션이나 쿠키로아마 가능할듯싶습니다.)  -->
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
       </form>
     </div>
