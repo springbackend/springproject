@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>임시페이지</title>
+<title>임시</title>
 <style type="text/css">
 .menu_bar {
 	width: 100%;
@@ -39,7 +39,7 @@ th, td {
 				<jsp:include page="../main/index.jsp" flush="false" />
 			</div>
 			<hr>
-			<h1 align="center">임시페이지입니다</h1>
+			<h1 align="center">임시페이지</h1>
 			<hr>
 			<div class="row">
 				<div class="col" style="width: 20px"></div>
@@ -84,7 +84,7 @@ th, td {
 						</tr>
 						<tr>
 							<th><a href="findid.do">findid</a></th>
-							<th><a href="findpwd.do">findpwd</a></th>
+							<th><a href="findpw.do">findpw</a></th>
 							<th></th>
 							<th></th>
 						</tr>

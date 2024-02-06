@@ -17,9 +17,9 @@
 		let joinForm = document.joinForm;
 		let id = joinForm.id.value;
 		let button = document.getElementById("idDuplication");
-		//정규식
+		//아이디정규식
 		let regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
-		//유효성 검증후에 controller로 보내서 중복아이디 있는지 확인시킴
+
 		if (id.length == 0 || id == "") {
 			alert("아이디를 입력해주세요.");
 			joinForm.id.focus();
@@ -31,11 +31,16 @@
 			alert("특수문자는 입력할 수 없습니다.");
 			return;
 		} else {
-			window.open("${contextPath}/dbCheckid.do?user_id=" + id, "",
-					"width=500,height=300");
 			document.getElementById("id").readOnly = true;
-			button.disabled = true;
+			window.open("/beauty/checkid.do?user_id=" + id, "",
+					"width=500,height=300");
+			//sendRequest("","","","POST");
+			if (id = "id") {
+				document.getElementById("id").readOnly = false;
+				button.disabled = true;
+			}
 		}
+		/* ${contextPath} */
 	}
 	function join(f) {
 		let joinForm = document.joinForm;
@@ -45,11 +50,15 @@
 		let rePwd = joinForm.rePwd.value;
 		let pnum = joinForm.pnum.value;
 		let email = joinForm.email.value;
+		//아직 미완성
+		let button_state = document.getElementById("idDuplication").value;
 		let idCheck = true;
 		let selectedGenderElement = document
 				.querySelector('input[name="gender"]:checked');
+		//비밀번호 정규식
 		let regpwd = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
-		let regemail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+		//이메일 정규식
+		let regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 		//유효성 검증로직
 		if (document.getElementById("id").readOnly != true) {
 			alert("아이디 중복체크를 해주세요.");
@@ -79,9 +88,8 @@
 			alert("이메일을 입력해주세요");
 			joinForm.email.focus();
 			return;
-		} else if (regemail.test(email)) {
-			alert("이메일을 제대로 입력해주세요.");
-			return;
+		} else if (regex.test(email)) {
+			alert("이메일을 제대로 입력해주세요");
 		} else if (selectedGenderElement == null) {
 			alert("성별을 선택하세요.");
 			return;

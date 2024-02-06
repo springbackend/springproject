@@ -4,20 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>비로그인 문의</title>
 </head>
 <body>
 
+	<div>아이디를 찾을수없어요</div>
+	<div>비밀번호를 찾을수 없어요</div>
+	<div>관리자 연락처</div>
 
-
-
-	<div>계정</div>
-	<div>내상품</div>
-	<div>페이지 설정</div>
-	<div></div>
-	<div></div>
-	
-	
-	
 </body>
 </html>

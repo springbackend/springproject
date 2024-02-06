@@ -3,12 +3,6 @@ package controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/* html 而댄룷�꼳�듃�� �럹�씠吏��벑�쓣 諛붾줈媛덉닔�엳�룄濡� 留뚮뱺 �엫�떆 �럹�씠吏�
- * 
- * 
- * 
- * 
-*/
 @Controller
 public class TempController {
 
@@ -44,11 +38,5 @@ public class TempController {
 	public String gofooter() {
 		return VIEWPATH + "/temp/footer.jsp";
 	}
-	
-	
-	
-	
-	
-	
 
 }
