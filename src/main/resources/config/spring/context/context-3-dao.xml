@@ -37,4 +37,11 @@
 		<constructor-arg ref="board_daoBean"/>
 	</bean>
 	
+	<bean id="search_daoBean" class="dao.SearchDAO">
+		<constructor-arg ref="sqlSessionBean"/>
+	</bean>
+	
+	<bean id="search_serviceBean" class="service.SearchService">
+		<constructor-arg ref="search_daoBean"/>
+	</bean>
 </beans>

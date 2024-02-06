@@ -46,7 +46,7 @@ public class ProductController {
 		return VIEW_PATH + "product_view.jsp";
 	}
 
-	@RequestMapping(value = "/update_price.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/update_price.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String product_update_price(int p_idx, int quantity) {
 		ProductVO p_vo = p_service.p_product_view(p_idx);
