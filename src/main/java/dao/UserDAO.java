@@ -3,14 +3,6 @@ package dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Service;
-
-import com.google.common.base.Optional;
-
-import lombok.Getter;
-import lombok.Setter;
 import vo.UserVO;
 
 public class UserDAO {
