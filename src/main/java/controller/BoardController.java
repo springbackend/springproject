@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.BoardService;
 import util.Common;
@@ -40,8 +41,8 @@ public class BoardController {
 		return Common.Board.VIEW_PATH + "board_write.jsp";
 	}
 
+	@ResponseBody
 	@RequestMapping("/board_upload.do")
-	// @ResponseBody
 	public String board_upload(BoardVO vo) {
 		String ip = request.getRemoteAddr();
 

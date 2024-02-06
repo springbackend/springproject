@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.UserDAO;
+import lombok.extern.slf4j.Slf4j;
 import vo.UserVO;
 
 @Controller
@@ -24,6 +25,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String login() {
+
 		System.out.println("login page");
 		return VIEWPATH + "/login/login.jsp";
 	}
@@ -57,7 +59,6 @@ public class LoginController {
 				UserVO vo = option.get();
 				if (!passwordEncoder.matches(pwd, vo.getPwd())) {
 					return result;
-//				濡쒓렇�씤 �떎�뙣
 				}
 			}
 			result = good;

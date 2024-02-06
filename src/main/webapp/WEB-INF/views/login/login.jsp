@@ -88,7 +88,7 @@
 		</div>
 	</form>
 	<hr style="margin-top: 30px;">
-	<table align="center">
+	<table style="text-align: center;">
 		<tr>
 			<td><a href="#">미니로고</a></td>
 			<td><a href="#">문의하기</a></td>

@@ -1,5 +1,5 @@
 package beauty;
 
-public class Test1 {
 
+public class Test1 {
 }
