@@ -33,8 +33,6 @@ public class SearchController {
 		        jsonString = mapper.writeValueAsString(list);
 		    } catch (Exception e) {
 		        e.printStackTrace();
-		        // 오류 처리, 필요한 경우 오류 메시지를 JSON으로 변환하여 반환
-		        jsonString = "{\"error\":\"Error converting list to JSON\"}";
 		    }
 		    return jsonString;
 	}
