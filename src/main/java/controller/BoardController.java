@@ -39,7 +39,7 @@ public class BoardController {
 	}
 
 	//게시글 리스트
-	@RequestMapping(value = { "/", "/board_list.do" })
+	@RequestMapping(value = { "/board_list.do" })
 	public String board_list(Model model, Integer page) {
 
 		int nowPage = 1;

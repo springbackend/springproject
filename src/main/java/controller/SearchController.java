@@ -26,7 +26,9 @@ public class SearchController {
 	@RequestMapping(value= "search_keyword.do",method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String search_keyword(String keyword) {
-		List<ProductVO> list = s_service.search_keyword(keyword);
+//		List<ProductVO> list = s_service.search_keyword(keyword);
+		List<String> list = s_service.search_result(keyword);
+		System.out.println(list);
 		 ObjectMapper mapper = new ObjectMapper();
 		    String jsonString = "";
 		    try {

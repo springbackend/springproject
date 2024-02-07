@@ -1,5 +1,6 @@
 package util;
 
+
 public class HangulSearcher {
 	// 초성 리스트
     private static final char[] CHO_SUNG = {
@@ -22,8 +23,22 @@ public class HangulSearcher {
     	String[] result = new String[2];
     	result[0] = characters[num];
     	result[1] = characters[num+1];
-//    	System.out.println("0:"+result[0] + ",1:"+result[1] );
     	return result;
     }
-   
+    public static String extractChosung(String s) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (ch >= '가' && ch <= '힣') {
+                int chosungIndex = (ch - '가') / (21 * 28);
+                sb.append(CHO_SUNG[chosungIndex]);
+            } else {
+                sb.append(ch);
+            }
+        }
+
+        return sb.toString();
+    }
+
 }

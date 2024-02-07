@@ -31,25 +31,26 @@ function searchkeyword(keyword) {
 }
 
 function resultKeyword() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        let data = xhr.responseText;
-        let products = JSON.parse(data); // JSON 문자열을 객체로 변환
-        // 드롭다운 메뉴를 찾고 기존 항목을 지움
-        let dropdownMenu = document.querySelector('.dropdown-menu');
-        dropdownMenu.innerHTML = ''; // 기존의 내용을 비움
+	 if (xhr.readyState == 4 && xhr.status == 200) {
+	        let data = xhr.responseText;
+	        let productNames = JSON.parse(data); // JSON 문자열을 문자열 배열로 변환
 
-        // 받은 JSON 데이터(제품 목록)를 사용하여 드롭다운 항목을 생성
-        products.forEach(function(product) {
-            // 새로운 드롭다운 항목 생성
-            let dropdownItem = document.createElement('a');
-            dropdownItem.classList.add('dropdown-item');
-            dropdownItem.href = '#'; // 여기에 실제 제품 페이지나 기능을 연결가능
-            dropdownItem.textContent = product.p_name; // p_name 속성을 사용하여 텍스트 설정
+	        // 드롭다운 메뉴를 찾고 기존 항목을 지움
+	        let dropdownMenu = document.querySelector('.dropdown-menu');
+	        dropdownMenu.innerHTML = '';
 
-            // 드롭다운 메뉴에 항목을 추가합니다.
-            dropdownMenu.appendChild(dropdownItem);
-        });
-    }
+	        // 받은 JSON 데이터(제품 이름 목록)를 사용하여 드롭다운 항목을 생성
+	        productNames.forEach(function(productName) {
+	            // 새로운 드롭다운 항목 생성
+	            let dropdownItem = document.createElement('a');
+	            dropdownItem.classList.add('dropdown-item');
+	            dropdownItem.href = '#'; // 여기에 실제 제품 페이지나 기능을 연결 가능
+	            dropdownItem.textContent = productName; // 직접 문자열을 사용
+
+	            // 드롭다운 메뉴에 항목을 추가
+	            dropdownMenu.appendChild(dropdownItem);
+	        });
+	    }
 }
 </script>
 <body>
