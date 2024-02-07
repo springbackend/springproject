@@ -63,6 +63,9 @@
 	<beans:bean class="controller.SearchController">
 		<beans:constructor-arg ref="search_serviceBean"/>
 	</beans:bean>
+	
+	<beans:bean class="controller.OpenCVController">
+	</beans:bean>
 </beans:beans>
 
 
