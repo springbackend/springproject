@@ -14,5 +14,10 @@ create table product(
 );
 
 insert into product values(seq_product_idx.nextval,'립스틱','입술에바름',sysdate,'woman','nofile','red',30000,0,0);
+insert into product values(seq_product_idx.nextval,'마스카라','눈',sysdate,'woman','nofile','black',25000,0,0);
+insert into product values(seq_product_idx.nextval,'선크림','얼굴',sysdate,'allgender','nofile','white',25000,0,0);
+insert into product values(seq_product_idx.nextval,'립밤','입술',sysdate,'woman','nofile','pink',15000,0,0);
+insert into product values(seq_product_idx.nextval,'라디오','test',sysdate,'woman','nofile','pink',15000,0,0);
+
 
 update product set p_image = 'test_file.jpg' where p_idx = 1;
