@@ -25,7 +25,7 @@ public class HangulSearcher {
     	result[1] = characters[num+1];
     	return result;
     }
-    public static String extractChosung(String s) {
+    public static String resultChosung(String s) {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < s.length(); i++) {
