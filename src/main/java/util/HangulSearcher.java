@@ -31,6 +31,7 @@ public class HangulSearcher {
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             if (ch >= '가' && ch <= '힣') {
+            	//ch-'가':ch에서 '가'까지의거리계산  (21*28):중성*종성 나눠서 '가'부터시작하는 초성목록 몇번째인지 확인
                 int chosungIndex = (ch - '가') / (21 * 28);
                 sb.append(CHO_SUNG[chosungIndex]);
             } else {
