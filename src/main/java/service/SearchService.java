@@ -31,7 +31,7 @@ public class SearchService {
 		List<String> resultList = new ArrayList<String>();
 		String str = "";
 		for(int i=0; i<list.size(); i++) {
-			str = HangulSearcher.extractChosung(list.get(i));
+			str = HangulSearcher.resultChosung(list.get(i));
 			if(str.charAt(0) == keyword.charAt(0)) {
 			int num =0;
 			if(keyword.length() <= str.length()) {
