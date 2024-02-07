@@ -1,5 +1,6 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,8 +22,33 @@ public class BoardService {
 		return list; 
 	}
 	
+	public List<BoardVO> board_list(HashMap<String, Integer> map){ 
+		List<BoardVO> list = board_dao.selectList(map); 
+		return list; 
+	}
+	
 	public int board_upload(BoardVO vo) {
 		int res = board_dao.board_upload(vo);
+		return res;
+	}
+	
+	public BoardVO board_one(int b_idx) {
+		BoardVO vo = board_dao.board_one(b_idx);
+		return vo;
+	}
+	
+	public int increase_thumb(int b_idx) {
+		int res = board_dao.increase_thumb(b_idx);
+		return res;
+	}
+	
+	public int decrease_thumb(int b_idx) {
+		int res = board_dao.decrease_thumb(b_idx);
+		return res;
+	}
+	
+	public int getRowTotal() {
+		int res = board_dao.getRowTotal();
 		return res;
 	}
 

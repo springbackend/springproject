@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="c">
+	<select id="comment_list" resultType="comment" parameterType="int">
+		SELECT * FROM comment_table
+		WHERE b_idx = #{b_idx}
+	</select>
+
+	<insert id="comment_write" parameterType="comment">
+		INSERT INTO comment_table VALUES(
+			seq_comment_idx.nextVal,
+			#{b_idx},
+			#{m_idx},
+			#{content},
+			#{ip},
+			sysdate
+		)
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

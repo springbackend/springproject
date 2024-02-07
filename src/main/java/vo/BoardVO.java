@@ -2,9 +2,34 @@ package vo;
 
 public class BoardVO {
 
-	private int b_idx, m_idx, recommend, readhit;
-	private String subject, content, ip, regdate;
+	private int b_idx, m_idx, recommend, readhit, t_idx, p_idx;
+	private String subject, content, ip, regdate, t_name, p_name;
 	
+	
+	public String getT_name() {
+		return t_name;
+	}
+	public void setT_name(String t_name) {
+		this.t_name = t_name;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public int getT_idx() {
+		return t_idx;
+	}
+	public void setT_idx(int t_idx) {
+		this.t_idx = t_idx;
+	}
+	public int getP_idx() {
+		return p_idx;
+	}
+	public void setP_idx(int p_idx) {
+		this.p_idx = p_idx;
+	}
 	public int getB_idx() {
 		return b_idx;
 	}

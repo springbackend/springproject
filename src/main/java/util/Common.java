@@ -11,6 +11,14 @@ public class Common {
 
 	public static class Board{
 		public static final String VIEW_PATH = "/WEB-INF/views/board/";
+		
+		public final static int BLOCKLIST = 5;
+				
+		public final static int BLOCKPAGE = 5;
+	}
+	
+	public static class Comment{
+		public static final String VIEW_PATH = "/WEB-INF/views/comment/";
 	}
 }
 

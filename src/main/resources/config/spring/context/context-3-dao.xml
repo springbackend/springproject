@@ -37,6 +37,22 @@
 		<constructor-arg ref="board_daoBean"/>
 	</bean>
 	
+	<bean id="tone_daoBean" class="dao.ToneDAO">
+		<constructor-arg ref="sqlSessionBean" />
+	</bean>
+	
+	<bean id="tone_serviceBean" class="service.ToneService">
+		<constructor-arg ref="tone_daoBean"/>
+	</bean>
+	
+	<bean id="comment_daoBean" class="dao.CommentDAO">
+		<constructor-arg ref="sqlSessionBean" />
+	</bean>
+	
+	<bean id="comment_serviceBean" class="service.CommentService">
+		<constructor-arg ref="comment_daoBean"/>
+	</bean>
+	
 	<bean id="search_daoBean" class="dao.SearchDAO">
 		<constructor-arg ref="sqlSessionBean"/>
 	</bean>
