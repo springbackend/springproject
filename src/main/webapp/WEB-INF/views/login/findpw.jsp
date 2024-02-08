@@ -31,7 +31,7 @@
 	}
 </script>
 <body>
-	<jsp:include page="../temp/top.jsp" flush="false" />
+	<jsp:include page="../comp/top.jsp" flush="false" />
 	<div class="container">
 		<div class="">비밀번호 찾기</div>
 		<div class="">비밀번호를 찾고자하는 아이디를 입력해주세요</div>

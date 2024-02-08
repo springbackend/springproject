@@ -3,16 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="u">
-	<select id="select_list" resultType="user">
-		SELECT * FROM USER1
-	</select>
-	
-	<select id="ismember" resultType="user" parameterType="String">
-		SELECT *
-		FROM USER1
-		WHERE u_id = '${value}'
-	</select>
-	<!-- u_idx = user_seq.nextVal, -->
+	<!-- create -->
 	<insert id="insert_user" parameterType="user">
 		INSERT INTO USER1
 		VALUES(
@@ -29,6 +20,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{birth}
 		)
 	</insert>
+	<!-- read -->
+	<!-- read user all -->
+	<select id="select_list" resultType="user">
+		SELECT * FROM USER1
+	</select>
+	<!-- read user one -->
+	<select id="ismember" resultType="user" parameterType="String">
+		SELECT *
+		FROM USER1
+		WHERE u_id = '${value}'
+	</select>
+	<!-- update -->
+	<!-- update pwd -->
+	<update id="insert" parameterType="user">
+		UPDATE USER1
+		set
+		pwd=#{pwd},
+		WHERE id=#{id}
+	</update>
+	<!-- delete -->
+	<delete id="delete" parameterType="String">
+		DELETE FROM USER1 WHERE id =
+		#{id}
+	</delete>
 </mapper>
 
 

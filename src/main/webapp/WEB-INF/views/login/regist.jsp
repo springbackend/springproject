@@ -121,7 +121,7 @@
 </script>
 </head>
 <body>
-	<jsp:include page="../temp/top.jsp"></jsp:include>
+	<jsp:include page="../comp/top.jsp"></jsp:include>
 	<h1 align="center">회원가입</h1>
 	<form name="joinForm" class="nav justify-content-center">
 
@@ -192,7 +192,7 @@
 		</div>
 		<!-- 간편한 로그인을 위해 주소,전화번호는 나중에 결제페이지에서 추가적으로 넣는게 어떤가 싶음-->
 	</form>
-	<jsp:include page="../temp/footer.jsp" flush="false" />
+	<jsp:include page="../comp/footer.jsp" flush="false" />
 </body>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

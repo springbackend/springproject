@@ -23,7 +23,7 @@
 	}
 </script>
 <body>
-	<jsp:include page="../temp/top.jsp" flush="false" />
+	<jsp:include page="../comp/top.jsp" flush="false" />
 	<div class="container">
 		<div class="">
 			<div>아이디 찾기</div>

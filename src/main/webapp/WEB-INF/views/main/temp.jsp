@@ -31,7 +31,7 @@ th, td {
 	<div id="wrap">
 		<!-- 헤더 -->
 		<div id="header">
-			<jsp:include page="../temp/top.jsp" flush="false" />
+			<jsp:include page="../comp/top.jsp" flush="false" />
 		</div>
 		<!-- 컨텐츠 -->
 		<div id="container col">
@@ -120,7 +120,7 @@ th, td {
 	</div>
 	<!-- 푸터 -->
 	<div>
-		<jsp:include page="../temp/footer.jsp" flush="false" />
+		<jsp:include page="../comp/footer.jsp" flush="false" />
 	</div>
 </body>
 </html>

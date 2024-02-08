@@ -74,7 +74,7 @@ public class RegistController {
 		vo.setRegidate(regidate);
 		vo.setRegiip(request.getRemoteAddr());
 		// 회원가입 수행
-		int res = userdao.insert(vo);
+		int res = userdao.save(vo);
 		if (res > 0) {
 			System.out.println("regist controller : regist 성공");
 			result = "성공";

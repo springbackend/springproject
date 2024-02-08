@@ -9,7 +9,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../temp/top.jsp" flush="false" />
+	<jsp:include page="../comp/top.jsp" flush="false" />
 	
 </body>
 </html>

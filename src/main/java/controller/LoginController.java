@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import vo.UserVO;
 
 @Controller
+@RequestMapping(value = "/user")
 public class LoginController {
 	static final String VIEWPATH = "/WEB-INF/views";
 
@@ -25,7 +26,6 @@ public class LoginController {
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String login() {
-
 		System.out.println("login page");
 		return VIEWPATH + "/login/login.jsp";
 	}
@@ -34,21 +34,20 @@ public class LoginController {
 	@ResponseBody
 	public String loginreq(HttpServletRequest request, String id, String pwd, String yuji) {
 		HttpSession session = request.getSession();
-
 		if (yuji.equalsIgnoreCase(yuji)) {
 			session.setMaxInactiveInterval(-1);
 		}
 		/*
 		 */
-		String result = "濡쒓렇�씤 �떎�뙣";
-		String good = "濡쒓렇�씤 �꽦怨�";
+		String result = "bad";
+		String good = "good";
 		if (id.equalsIgnoreCase("1111") && pwd.equalsIgnoreCase("1111")) {
 			result = good;
 			session.setAttribute("status", "succes");
-			session.setAttribute("nickname", "�엫�떆�븘�씠�뵒");
+			session.setAttribute("nickname", "temp");
 			System.out.println(session.getAttribute("nickname"));
 		} else {
-			Optional<UserVO> option = Optional.ofNullable(dao.ismember(id));
+			Optional<UserVO> option = Optional.ofNullable(dao.findById(id));
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			if (option.isEmpty()) {
 				return result;
@@ -60,7 +59,6 @@ public class LoginController {
 			}
 			result = good;
 			UserVO vo = option.get();
-			// �꽭�뀡 援ы쁽
 			session.setAttribute("status", "succes");
 			session.setAttribute("nickname", vo.getName());
 		}
@@ -88,9 +86,9 @@ public class LoginController {
 
 	@RequestMapping(value = "/checkid.do")
 	public String checkid(String user_id) {
-		//user_id 있는지확인
-		//없을시에 response로 cancreate 요청을 함께 전달
-		
+		// user_id 있는지확인
+		// 없을시에 response로 cancreate 요청을 함께 전달
+
 		return VIEWPATH + "/login/checkid.jsp";
 	}
 
@@ -117,7 +115,7 @@ public class LoginController {
 
 		// 아이디로 이메일 조회
 
-		// 해당 이메일로 재설정 URL 보내기(동적 링크...)
+		// 해당 이메일로 재설정 URL 보내기()
 
 		// 이메일의 뒤 2글자에 **표시 붙여서 return함
 

@@ -37,7 +37,7 @@
 <body>
 
 	<!-- 로고이미지 위치 -->
-	<jsp:include page="../temp/top.jsp"></jsp:include>
+	<jsp:include page="../comp/top.jsp"></jsp:include>
 	<form action="" method="post">
 		<div align="center">
 			<img src="resources/images/logo.png" class="rounded" width="200px"

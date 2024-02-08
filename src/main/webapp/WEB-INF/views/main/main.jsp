@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="../temp/top.jsp"></jsp:include>
+	<jsp:include page="../comp/top.jsp"></jsp:include>
 	<!-- 홈페이지 기본 내비게이션바-->
 	<jsp:include page="index.jsp" />
 
@@ -41,7 +41,7 @@
 		</button>
 	</div>
 
-	<jsp:include page="../temp/footer.jsp"></jsp:include>
+	<jsp:include page="../comp/footer.jsp"></jsp:include>
 </body>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
