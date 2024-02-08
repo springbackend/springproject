@@ -11,11 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dao.ProductDAO;
-import dao.ToneDAO;
 import service.BoardService;
 import service.CommentService;
-import service.ProductService;
 import service.ToneService;
 import util.Common;
 import util.BoardPaging;

@@ -205,42 +205,44 @@ option {
 	<h1 align="center">New Post</h1>
 	<form>
 		<div class="outer">
-			<table class="table" align="center">
-				<tr>
-					<th>제목</th>
-					<td><input name="subject"></td>
-				</tr>
-				<tr>
-					<td colspan="2"><textarea name="content" rows="10" cols="100"></textarea></td>
-				</tr>
+			<div style="text-align: center;">
+				<table class="table">
+					<tr>
+						<th>제목</th>
+						<td><input name="subject"></td>
+					</tr>
+					<tr>
+						<td colspan="2"><textarea name="content" rows="10" cols="100"></textarea></td>
+					</tr>
 
-				<tr>
-					<td colspan="2">
-						<div class="dropdown">
-							<select name="t_idx">
-								<option disabled selected>Choose tone</option>
-								<option value="1">봄 웜</option>
-								<option value="2">여름 쿨</option>
-								<option value="3">가을 웜</option>
-								<option value="4">겨울 쿨</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<div class="dropdown">
-							<select name="p_idx">
-								<option disabled selected>Choose product</option>
-								<option value="1">립</option>
-								<option value="2">아이셰도우</option>
-								<option value="3">블러셔</option>
-								<option value="4">파운데이션</option>
-							</select>
-						</div>
-					</td>
-				</tr>
-			</table>
+					<tr>
+						<td colspan="2">
+							<div class="dropdown">
+								<select name="t_idx">
+									<option disabled selected>Choose tone</option>
+									<option value="1">봄 웜</option>
+									<option value="2">여름 쿨</option>
+									<option value="3">가을 웜</option>
+									<option value="4">겨울 쿨</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<div class="dropdown">
+								<select name="p_idx">
+									<option disabled selected>Choose product</option>
+									<option value="1">립</option>
+									<option value="2">아이셰도우</option>
+									<option value="3">블러셔</option>
+									<option value="4">파운데이션</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
 			<hr>
 
 			<div align="right">

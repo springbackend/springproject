@@ -33,7 +33,8 @@ public class UserDAO {
 		List<UserVO> list = sqlSession.selectList("u.select_list");
 		return list;
 	}
-	// read one	
+
+	// read one
 	public UserVO findById(String id) {
 		UserVO vo = sqlSession.selectOne("u.ismember", id);
 		return vo;

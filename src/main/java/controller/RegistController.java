@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.UserDAO;
+import lombok.RequiredArgsConstructor;
 import vo.UserVO;
 
+@RequiredArgsConstructor
 @Controller
 public class RegistController {
 //memo 

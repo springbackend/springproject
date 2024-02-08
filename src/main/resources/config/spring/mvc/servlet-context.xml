@@ -19,7 +19,7 @@
 	<context:annotation-config />
 
 	<!-- 컴포넌트 스캔을 사용하기위한 설정 -->
-	<!-- <context:component-scan base-package="com.mega.db" /> -->
+	<!-- <context:component-scan base-package="com.shop.beauty" /> -->
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
@@ -41,6 +41,10 @@
 	<!-- <beans:bean class="com.mega.db.SawonController"> <beans:property name="sawonDao" 
 		ref="sawon_daoBean"/> </beans:bean> -->
 
+	<beans:bean class="controller.MyPageController">
+	</beans:bean>
+	<beans:bean class="controller.TempController">
+	</beans:bean>
 	<beans:bean class="controller.LoginController">
 	</beans:bean>
 	<beans:bean class="controller.MainController">
@@ -49,21 +53,18 @@
 		<beans:constructor-arg ref="user_userBean" />
 	</beans:bean>
 
-	<beans:bean class="controller.TempController">
-	</beans:bean>
-
 	<beans:bean class="controller.ProductController">
 		<beans:constructor-arg ref="product_serviceBean" />
 	</beans:bean>
-	
+
 	<beans:bean class="controller.BoardController">
-		<beans:constructor-arg ref="board_serviceBean"/>
-		<beans:constructor-arg ref="tone_serviceBean"/> 
-		<beans:constructor-arg ref="comment_serviceBean"/> 
+		<beans:constructor-arg ref="board_serviceBean" />
+		<beans:constructor-arg ref="tone_serviceBean" />
+		<beans:constructor-arg ref="comment_serviceBean" />
 	</beans:bean>
-	
+
 	<beans:bean class="controller.SearchController">
-		<beans:constructor-arg ref="search_serviceBean"/>
+		<beans:constructor-arg ref="search_serviceBean" />
 	</beans:bean>
 </beans:beans>
 

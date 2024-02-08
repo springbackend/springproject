@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.UserDAO;
-import lombok.extern.slf4j.Slf4j;
 import vo.UserVO;
 
 @Controller
