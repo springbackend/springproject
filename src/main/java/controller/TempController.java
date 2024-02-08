@@ -15,18 +15,17 @@ public class TempController {
 
 	@RequestMapping(value = { "/temp.do" })
 	public String temp() {
-		return VIEWPATH + "/temp/temp.jsp";
+		return VIEWPATH + "/main/temp.jsp";
 	}
 
-	// 而댄룷�꼳�듃 吏��뿭
 	@RequestMapping(value = "/top.do")
 	public String temptop() {
-		return VIEWPATH + "/temp/top.jsp";
+		return VIEWPATH + "/comp/top.jsp";
 	}
 
 	@RequestMapping(value = "/header.do")
 	public String temphead() {
-		return VIEWPATH + "/temp/header.jsp";
+		return VIEWPATH + "/comp/header.jsp";
 	}
 
 	@RequestMapping(value = "/index.do")
@@ -36,7 +35,7 @@ public class TempController {
 
 	@RequestMapping(value = "/footer.do")
 	public String gofooter() {
-		return VIEWPATH + "/temp/footer.jsp";
+		return VIEWPATH + "/comp/footer.jsp";
 	}
 
 }
