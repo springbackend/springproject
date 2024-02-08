@@ -24,5 +24,12 @@ public class SearchDAO {
 		List<ProductVO> list = sqlSession.selectList("s.search_p_namet",keyword);
 		return list;
 	}
+	
+	public List<String> search_ressult(){
+		List<String> list = sqlSession.selectList("s.search_result");
+		return list;
+	}
+	
+
 
 }

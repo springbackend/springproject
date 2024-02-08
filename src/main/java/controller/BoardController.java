@@ -38,7 +38,7 @@ public class BoardController {
 		this.comment_service = comment_service;
 	}
 
-	// 게시글 리스트
+	//게시글 리스트
 	@RequestMapping(value = { "/board_list.do" })
 	public String board_list(Model model, Integer page) {
 
