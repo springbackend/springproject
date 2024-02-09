@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="search_p_name" resultType="product" parameterType="java.util.Map">
 			SELECT * FROM product WHERE p_name BETWEEN #{one} AND #{two}
 	</select>
-	<select id="search_p_namet" resultType="product" parameterType="String">
-			SELECT * FROM product WHERE p_name like '%' || #{keyword} || '%'
+	<select id="search_p_namet" resultType="String" parameterType="String">
+			SELECT p_name FROM product WHERE p_name like '%' || #{keyword} || '%'
 	</select>
 	
 	<select id="search_result" resultType="String">

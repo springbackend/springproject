@@ -14,7 +14,6 @@ public class HangulSearcher {
     public static String[] search_filter(String keyword) {
     	int num = 0;
     	for(int i = 0; i<CHO_SUNG.length; i++) {
-    		
     		if(keyword.equals(String.valueOf(CHO_SUNG[i]))) {
     			num = i;
     			break;
@@ -25,6 +24,8 @@ public class HangulSearcher {
     	result[1] = characters[num+1];
     	return result;
     }
+    
+    
     public static String resultChosung(String s) {
         StringBuilder sb = new StringBuilder();
 
@@ -41,5 +42,16 @@ public class HangulSearcher {
 
         return sb.toString();
     }
+    
+    public static boolean checkChosung(char s) {
+    	for(int i = 0; i<CHO_SUNG.length; i++) {
+    		if(s == CHO_SUNG[i]) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+    
+   
 
 }
