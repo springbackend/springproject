@@ -25,6 +25,15 @@ public class SearchDAO {
 		return list;
 	}
 	
+	public List<ProductVO> s_search_list(Map<String, Object> p_map){
+		List<ProductVO> list = sqlSession.selectList("s.select_search_list", p_map);
+		return list;
+	}
+	
+	public int s_search_count(String keyword) {
+		int count  = sqlSession.selectOne("s.search_count", keyword);
+		return count;
+	}
 
 
 }

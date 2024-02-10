@@ -9,7 +9,7 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="index.jsp"/>
+<jsp:include page="../main/index.jsp" flush="false" />
 	<!-- 컨테이너: 콘텐츠를 중앙에 위치시키기 위한 래퍼 -->
     <div class="container mt-4">
         <!-- 행: 컬럼을 가로로 배치하기 위한 컨테이너 -->
@@ -38,7 +38,7 @@
 
         <!-- 페이지네이션 또는 추가 정보를 중앙 정렬하여 표시 -->
         <div class="text-center">
-            ${page }
+            ${page_menu }
         </div>
     </div>
     <!-- 부트스트랩 JS: 부트스트랩의 동적 기능을 사용하기 위한 자바스크립트 파일 -->

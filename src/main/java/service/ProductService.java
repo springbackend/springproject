@@ -40,21 +40,6 @@ public class ProductService {
 		return p_vo;
 	}
 	
-	public Map<String , Object> p_search_list(String keyword,int nowpage){
-		int start = (nowpage-1) * Common.Product.BLOCKLIST +1;
-		int end = start + Common.Product.BLOCKLIST-1;
-		Map<String, Object> p_map = new HashMap<String, Object>();
-		p_map.put("keyword", keyword);
-		p_map.put("start", start);
-		p_map.put("end", end);
-		List<ProductVO> list = p_dao.p_search_list(p_map);
-		int rowtotal = p_dao.p_search_count(keyword);
-		p_map.put("list", list);
-		String page_menu = ProductPaging.getSearchPaging("product_search_list.do", nowpage, rowtotal, Common.Product.BLOCKLIST, Common.Product.BLOCKPAGE, keyword);
-		p_map.put("page_menu", page_menu);
-		return p_map;
-	}
-	
 	public int p_buy(int p_idx,int quantity) {
 		Map<String, Integer> p_map = new HashMap<String, Integer>();
 		p_map.put("p_idx", p_idx);

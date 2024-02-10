@@ -53,7 +53,7 @@
       </ul>
 
       <!-- 검색폼 -->
-      <form class="form-inline ml-auto" action="product_search_list.do" method="get">
+      <form class="form-inline ml-auto" action="search_list.do" method="get">
          <input class="form-control mr-sm-2" type="text" placeholder="검색" name="keyword"><!-- 세션으로 검색기록뜨게 하거나 힘들면 테이블로 만들고싶음(세션이나 쿠키로아마 가능할듯싶습니다.)  -->
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
       </form>

@@ -30,15 +30,7 @@ public class ProductDAO {
 		return p_vo;
 	}
 	
-	public List<ProductVO> p_search_list(Map<String, Object> p_map){
-		List<ProductVO> list = sqlSession.selectList("p.select_search_list", p_map);
-		return list;
-	}
 	
-	public int p_search_count(String keyword) {
-		int count  = sqlSession.selectOne("p.search_count", keyword);
-		return count;
-	}
 	
 	public int p_buy(Map<String, Integer> p_map) {
 		int res = sqlSession.update("p.buy_product",p_map);

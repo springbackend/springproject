@@ -1,9 +1,11 @@
 package controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,5 +51,17 @@ public class SearchController {
 			e.printStackTrace();
 		}
 		return jsonString;
+	}
+	
+	@RequestMapping(value = "/search_list.do", method = RequestMethod.GET)
+	public String product_search_list(String keyword,String page,Model model) {
+		int nowpage =1;
+		if(page != null && !page.isEmpty()) {
+			nowpage = Integer.parseInt(page);
+		}
+		Map<String, Object> p_map= s_service.s_search_list(keyword, nowpage);
+		model.addAttribute("list", p_map.get("list"));
+		model.addAttribute("page_menu", p_map.get("page_menu"));
+		return VIEW_PATH + "product_search.jsp";
 	}
 }

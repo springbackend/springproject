@@ -53,17 +53,6 @@ public class ProductController {
 		return String.valueOf(totalprice)+"원";
 	}
 	
-	@RequestMapping(value = "/product_search_list.do", method = RequestMethod.GET)
-	public String product_search_list(String keyword,String page,Model model) {
-		int nowpage =1;
-		if(page != null && !page.isEmpty()) {
-			nowpage = Integer.parseInt(page);
-		}
-		Map<String, Object> p_map= p_service.p_search_list(keyword, nowpage);
-		model.addAttribute("list", p_map.get("list"));
-		model.addAttribute("page_menu", p_map.get("page_menu"));
-		return VIEW_PATH + "product_search.jsp";
-	}
 	
 	@RequestMapping(value = "/buyproduct_form.do", method = RequestMethod.GET)
 	public String prdocut_buy(int p_idx,int quantity,Model model) {
