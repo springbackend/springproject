@@ -62,5 +62,10 @@ public class ProductController {
 		model.addAttribute("p_vo", p_vo);
 		return VIEW_PATH+"product_buy_form.jsp";
 	}
+	
+	@RequestMapping("/top_form.do")
+	public String top_form() {
+		return VIEW_PATH+ "top.jsp";
+	}
 
 }
