@@ -48,11 +48,11 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                <table>
             <tr>
-               <td><a class="dropdown-item" href="#" style="font-weight: bold;">woman</a></td>
-				<td><a class="dropdown-item" href="#" style="font-weight: bold;">man</a></td>
+               <td><a class="dropdown-item" href="product_category_list.do?p_category_b=woman" style="font-weight: bold;">woman</a></td>
+				<td><a class="dropdown-item" href="product_category_list.do?p_category_b=man" style="font-weight: bold;">man</a></td>
 			</tr>
 			<tr>
-				<td><a class="dropdown-item" href="#">여성향수</a></td>
+				<td><a class="dropdown-item" href="product_category_s_list.do?p_category_s=Lips">입술화장</a></td>
 				<td><a class="dropdown-item" href="#">남성향수</a></td>
 			</tr>
 			</table>

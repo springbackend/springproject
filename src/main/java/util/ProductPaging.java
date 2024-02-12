@@ -59,7 +59,7 @@ public class ProductPaging {
 		if (isPrevPage) {
 			sb.append("<a href ='" + pageURL + "?page=");
 			sb.append(startPage - 1);
-			sb.append("&p_category=");
+			sb.append("&p_category_b=");
 			sb.append(p_category);
 			sb.append("'><img src='/pro/resources/img/btn_prev.gif'></a>");
 		} else
@@ -78,7 +78,7 @@ public class ProductPaging {
 			} else {// 현재 페이지가 아니면
 				sb.append("&nbsp;<a href='" + pageURL + "?page=");
 				sb.append(i);
-				sb.append("&p_category=");
+				sb.append("&p_category_b=");
 				sb.append(p_category);
 				// 색상변경은 font태그에서 ↓↓
 				sb.append("'><font color='gray'>");
@@ -93,7 +93,7 @@ public class ProductPaging {
 		if (isNextPage) {
 			sb.append("<a href='" + pageURL + "?page=");
 			sb.append(endPage + 1);
-			sb.append("&p_category=");
+			sb.append("&p_category_b=");
 			sb.append(p_category);
 			sb.append("'><img src='/pro/resources/img/btn_next.gif'></a>");
 		} else

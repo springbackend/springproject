@@ -5,11 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="p">
 	<select id="select_category" resultType="product" parameterType="java.util.Map">
 		select * from (select rank() over(order by p_idx desc) no,
-			p.* from product p where p.p_category = #{p_category}) where no between #{start} and #{end}
+			p.* from product p where p.p_category_b = #{p_category_b}) where no between #{start} and #{end}
 	</select>
 	
 	<select id="select_category_count" resultType="int" parameterType="String">
-		select count(*) from product where p_category = #{p_category}
+		select count(*) from product where p_category_b = #{p_category_b}
 	</select>
 	<select id="select_product_view" resultType="product" parameterType="int">
 		select * from product where p_idx = #{p_idx}
@@ -22,6 +22,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="buy_product_view" resultType="product" parameterType="int">
 		select * from product where p_idx = #{p_idx}
+	</select>
+	
+	<select id="select_category_s" resultType="product" parameterType="java.util.Map">
+		select * from (select rank() over(order by p_idx desc) no,
+			p.* from product p where p.p_category_s = #{p_category_s}) where no between #{start} and #{end}
+	</select>
+	
+	<select id="select_category_s_count" resultType="int" parameterType="String">
+		select count(*) from product where p_category_s = #{p_category_s}
 	</select>
 </mapper>
 
