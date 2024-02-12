@@ -53,6 +53,14 @@
 		<constructor-arg ref="comment_daoBean"/>
 	</bean>
 	
+	<bean id="likes_daoBean" class="dao.LikesDAO">
+		<constructor-arg ref="sqlSessionBean" />
+	</bean>
+	
+	<bean id="likes_serviceBean" class="service.LikesService">
+		<constructor-arg ref="likes_daoBean"/>
+	</bean>
+	
 	<bean id="search_daoBean" class="dao.SearchDAO">
 		<constructor-arg ref="sqlSessionBean"/>
 	</bean>

@@ -50,33 +50,37 @@
 				   border:2px solid black;
 				   border-radius:30px;
 			       margin:auto;
-				   width:80%;
-				   height:220px;
+				   width:60%;
 				   padding:15px;
 				   background-color:white;}
 			
 			.outer{cursor:pointer;}
 			
-			.top{height:30px;
-				 border:1px solid green;
+			.top{height:50px;
 				 position:relative;
 				 margin-bottom:5px;}
 				       
 			.name{position:absolute;
-				   left:5px;}
+				  left:60px;
+				  top:15px;
+				  font-size:18px;}
+			
+			.avatar{width:50px;
+					height:50px;
+					position:absolute;}
 				   
 			.date{position:absolute; 
-				  right:5px; }
+				  right:5px;
+				  top:15px;}
 				   
 			.subject{height:90px;
-				     /* border:1px solid red; */
+				     font-size:18px;
 				     padding:3px;
 				     margin-bottom:5px;}
 			
 			.content{height:50px;
-					 border:1px solid blue;
-					 margin:5px 3px 3px 20px;
-					 padding:3px;} 
+					 margin-left:10px;
+					 padding:10px;} 
 			
 			.tag-box{height:30px;}
 			
@@ -85,44 +89,51 @@
 				 border-radius:10px;
 				 background-color:#EAEAEB;
 				 padding:5px;}
+			
+			.bottom{position:relative}
 				 
-			.comment, #thumb{z-index:1;
-							 cursor:pointer;
-							 position:relative;}
+			.comment, #thumb{cursor:pointer;
+							 left:15px;}
+			
+			.readhit{position:absolute;
+					 right:20px;
+					 padding:3px;}
 			
 			img{border:none;
 				height:25px;
-				width:25px;}
+				width:25px;
+				cursor:pointer;}
 		</style>
 		
+		<script src="/beauty/resources/js/httpRequest.js"></script>
 		<script>
-			let thumb_click = false;
-		
+			
 			function view(b_idx){
 				location.href = "board_view.do?b_idx=" + b_idx +"&page=${empty param.page ? 1 : param.page}";
 			}
 			
-			function click(b_idx){
-				alert("in click function");
-				thumb_click = !thumb_click;
+			function like(b_idx){
+				//user table 만들어서 thumb_nail true/false
 				
-				if(thumb_click){
-					document.getElementById("thumb").innerHTML = 
-						"<img src='/board/resources/icons/thumbs_up_click.png' onclick='click(${vo.b_idx});'>";
-				}else{
-					document.getElementById("thumb").innerHTML = 
-						"<img src='/board/resources/icons/thumbs_up.png' onclick='click(${vo.b_idx});'>";
-				}
-				
-				url = "click.do";
-				param = "b_idx=" + b_idx + "&thumb_click=" + thumb_click;
-				
-				sendRequest(url, param, click_result, "POST");
+				url = "like.do";
+				param = "b_idx=" + b_idx;
+				sendRequest(url, param, like_result, "POST");
 			}
 			
-			function click_result(){
+			function like_result(){
 				if(xhr.readyState == 4 && xhr.status == 200){
-					alert("in click_result");
+					let data = xhr.responseText;
+					alert(data);
+					//like 수 증가 refresh가 맨 위 게시글 밖에 안됨
+					document.getElementById("like_num").innerHTML = data;
+					/* if(data == "like"){
+						document.getElementById("thumb").innerHTML = 
+							"<img src='/board/resources/icons/thumbs_up_click.png' onclick='click(${vo.b_idx});'>";
+					}else if(data == "dislike"){
+						 document.getElementById("thumb").innerHTML = 
+							"<img src='/board/resources/icons/thumbs_up.png' onclick='click(${vo.b_idx});'>";
+					} */
+					
 				}
 			}
 		</script>
@@ -138,11 +149,12 @@
 			<div class="board">
 				<div class="outer" onclick="view(${vo.b_idx});">
 					<div class="top">
-						<b class="name">name</b>
-						<b class="date">date</b>
+						<b><img class="avatar" src="/beauty/resources/icons/profile_picture.png"></b>
+						<b class="name">홍길동</b>
+						<b class="date">${fn:split(vo.regdate, ' ')[0]}</b>
 					</div>
 					<div class="subject">
-						${vo.subject}
+						<strong>${vo.subject}</strong>
 						<div class="content">${vo.content}</div>
 					</div>
 					<div class="tag-box">
@@ -152,12 +164,15 @@
 				</div>
 				<!-- 구분선 -->
 				<hr>
-				<div class="button">
+				<div id="bottom">
 					<!-- 이미지로 바꾸기 
 					     따봉이 눌리면 색이 바뀌고 숫자를 증가시킴
 					     댓글을 누르면 댓글창으로 이동시켜 줌-->
-					<b id="thumb" onclick="click(${vo.b_idx});"><img src="/beauty/resources/icons/thumbs_up.png"></b> <b>${vo.recommend}</b>
-					<img class="comment" onclick="click(${vo.b_idx});" src="/beauty/resources/icons/comment.png"> <b>0</b>
+					<b id="thumb" onclick="like(${vo.b_idx}, ${vo.recommend});"><img src="/beauty/resources/icons/thumbs_up.png"></b>
+						<b id="like_num">${vo.recommend}</b>
+					<img class="comment" onclick="view(${vo.b_idx});" src="/beauty/resources/icons/comment.png">
+						<b>${vo.comment_count}</b>
+					<b class="readhit"><img src="/beauty/resources/icons/view.webp">${vo.readhit}</b>
 				</div>
 			</div>
 			<br>

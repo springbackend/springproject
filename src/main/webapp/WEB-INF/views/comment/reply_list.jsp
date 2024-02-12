@@ -10,7 +10,7 @@
 		<style>
 			.user_profile{font-size:18px;}
 			.user_info{font-size:16px;
-					   margin-left:60px;
+					   margin-left:83px;
 					   color:gray;}
 			pre{font-size:16px;
 				margin-left:60px;}
@@ -26,12 +26,12 @@
 	<body>
 		<c:forEach var="vo" items="${list}">
 			<div class="user_profile">
+				ㄴ
 				<img class="avatar" src="/beauty/resources/icons/profile_picture.png">
 				<strong>김길동</strong>
 			</div>
 			<div class="user_info">22세/여자/여름 쿨톤</div>
 			<pre>${vo.content}</pre>
-			<img class="reply" onclick="location.href='reply_form.do?c_idx=${vo.c_idx}'" src="/beauty/resources/icons/comment.png">
 			<hr>
 			<br>
 		</c:forEach>
