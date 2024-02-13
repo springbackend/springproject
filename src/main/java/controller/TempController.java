@@ -75,7 +75,7 @@ public class TempController {
 		    Imgcodecs.imwrite(outputPath, image);
 		    System.out.println(outputPath);
 		    // 처리된 이미지의 경로나 파일명을 모델에 추가
-		    model.addAttribute("processedImagePath", "/resources/processed_images/processed_temp.png");
+		    model.addAttribute("processedImagePath", "processed_temp.png");
 		}
 		
 		// Mat data = new Mat(14, 14, CvType.CV_8UC3);

@@ -11,7 +11,7 @@
 <body>
 	 <h2>Processed Image</h2>
     <c:if test="${not empty processedImagePath}">
-        <img src="${processedImagePath}" alt="Processed Image"/>
+        <img src="${pageContext.request.contextPath }/processed_images/${processedImagePath}" alt="Processed Image"/>
     </c:if>
 
 </body>
