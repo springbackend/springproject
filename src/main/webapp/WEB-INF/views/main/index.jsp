@@ -40,17 +40,17 @@ function resultKeyword() {
 	            productNames.forEach(function(productName) {
 	            	 let dropdownItem = document.createElement('a');
 	                 dropdownItem.classList.add('dropdown-item');
-	                 dropdownItem.href = '#'; // 여기에 실제 제품 페이지나 기능을 연결 가능
+	                 dropdownItem.href = 'search_list.do?keyword='+productName; // 여기에 실제 제품 페이지나 기능을 연결 가능
 	                 dropdownItem.textContent = productName; // 직접 문자열을 사용
 
 	                // 드롭다운 메뉴에 항목을 추가
 	                dropdownMenu.appendChild(dropdownItem);
 	            });
 
-	            // 드롭다운 메뉴를 보이게 합니다.
+	            // 드롭다운 메뉴를 보이도록
 	            $(dropdownMenu).addClass('show');
 	        } else {
-	            // 검색 결과가 없을 경우 드롭다운 메뉴를 숨깁니다.
+	            // 검색 결과가 없을 경우 드롭다운 메뉴를 숨김
 	            $(dropdownMenu).removeClass('show');
 	        }
 	    }
