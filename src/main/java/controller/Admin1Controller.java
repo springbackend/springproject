@@ -55,7 +55,7 @@ public class Admin1Controller {
         dto.setAdmin_pass(admin_pass);
         
         //로그인 체크를 하기위한 메소드, 로그인 체크후 결과를 result 변수에 넣는다.
-        boolean result = adminservice.loginCheck(dto, session);
+        boolean result = adminServiceImpl.loginCheck(dto, session);
         ModelAndView mav = new ModelAndView();
         
         
@@ -97,7 +97,7 @@ public class Admin1Controller {
         dto.setUser_id(user_id);
         
         //회원탈퇴 체크를 하기위한 메소드, 탈퇴 시키려는 회원의 아이디가 있는지 검사한후에 result 변수에 저장한다.
-        adminservice.admin_member_forced_evictionCheck(dto);
+        adminServiceImpl.admin_member_forced_evictionCheck(dto);
         
  
         ModelAndView mav = new ModelAndView();
