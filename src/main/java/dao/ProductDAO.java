@@ -20,8 +20,8 @@ public class ProductDAO {
 		return list;
 	}
 	
-	public int p_category_count(String p_category) {
-		int count = sqlSession.selectOne("p.select_category_count", p_category);
+	public int p_category_count(String p_category_b) {
+		int count = sqlSession.selectOne("p.select_category_count", p_category_b);
 		return count;
 	}
 	
@@ -30,15 +30,7 @@ public class ProductDAO {
 		return p_vo;
 	}
 	
-	public List<ProductVO> p_search_list(Map<String, Object> p_map){
-		List<ProductVO> list = sqlSession.selectList("p.select_search_list", p_map);
-		return list;
-	}
 	
-	public int p_search_count(String keyword) {
-		int count  = sqlSession.selectOne("p.search_count", keyword);
-		return count;
-	}
 	
 	public int p_buy(Map<String, Integer> p_map) {
 		int res = sqlSession.update("p.buy_product",p_map);
@@ -48,6 +40,16 @@ public class ProductDAO {
 	public ProductVO p_buy_view(int p_idx) {
 		ProductVO p_vo = sqlSession.selectOne("p.buy_product_view",p_idx);
 		return p_vo;
+	}
+	
+	public List<ProductVO> p_category_s_select(Map<String, Object> p_map){
+		List<ProductVO> list = sqlSession.selectList("p.select_category_s", p_map);
+		return list;
+	}
+	
+	public int p_category_s_count(String p_category_s) {
+		int count = sqlSession.selectOne("p.select_category_s_count", p_category_s);
+		return count;
 	}
 
 }

@@ -35,13 +35,33 @@ public class BoardDAO {
 		 return res;
 	 }
 	 
-	 public int increase_thumb(int b_idx) {
-		 int res = sqlSession.update("b.increase_thumb", b_idx);
+	 public int board_update(BoardVO vo) {
+		 int res = sqlSession.update("b.board_update", vo);
 		 return res;
 	 }
 	 
-	 public int decrease_thumb(int b_idx) {
-		 int res = sqlSession.update("b.decrease_thumb", b_idx);
+	 public int board_delete(int b_idx) {
+		 int res = sqlSession.delete("b.board_delete", b_idx);
+		 return res;
+	 }
+	 
+	 public int update_comment(int b_idx) {
+		 int res = sqlSession.update("b.update_comment", b_idx);
+		 return res;
+	 }
+	 
+	 public int update_readhit(int b_idx) {
+		 int res = sqlSession.update("b.update_readhit", b_idx);
+		 return res;
+	 }
+	 
+	 public int like_increase(int b_idx) {
+		 int res = sqlSession.update("b.like_increase", b_idx);
+		 return res;
+	 }
+	 
+	 public int like_decrease(int b_idx) {
+		 int res = sqlSession.update("b.like_decrease", b_idx);
 		 return res;
 	 }
 	 

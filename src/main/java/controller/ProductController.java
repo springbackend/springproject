@@ -26,12 +26,12 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/product_category_list.do", method = RequestMethod.GET)
-	public String category_list(String page, String p_category, Model model) {
+	public String category_list(String page, String p_category_b, Model model) {
 		int nowpage =1;
 		if(page != null && !page.isEmpty()) {
 			nowpage = Integer.parseInt(page);
 		}
-		Map<String, Object> p_map = p_service.p_category_service(p_category, nowpage);
+		Map<String, Object> p_map = p_service.p_category_service(p_category_b, nowpage);
 		model.addAttribute("list", p_map.get("list"));
 		model.addAttribute("page", p_map.get("page_menu"));
 		return VIEW_PATH + "product_category.jsp";
@@ -53,17 +53,6 @@ public class ProductController {
 		return String.valueOf(totalprice)+"원";
 	}
 	
-	@RequestMapping(value = "/product_search_list.do", method = RequestMethod.GET)
-	public String product_search_list(String keyword,String page,Model model) {
-		int nowpage =1;
-		if(page != null && !page.isEmpty()) {
-			nowpage = Integer.parseInt(page);
-		}
-		Map<String, Object> p_map= p_service.p_search_list(keyword, nowpage);
-		model.addAttribute("list", p_map.get("list"));
-		model.addAttribute("page_menu", p_map.get("page_menu"));
-		return VIEW_PATH + "product_search.jsp";
-	}
 	
 	@RequestMapping(value = "/buyproduct_form.do", method = RequestMethod.GET)
 	public String prdocut_buy(int p_idx,int quantity,Model model) {
@@ -72,6 +61,23 @@ public class ProductController {
 		p_vo.setP_totalprice(p_vo.getP_price()*quantity);
 		model.addAttribute("p_vo", p_vo);
 		return VIEW_PATH+"product_buy_form.jsp";
+	}
+	
+	@RequestMapping("/top_form.do")
+	public String top_form() {
+		return VIEW_PATH+ "top.jsp";
+	}
+	
+	@RequestMapping(value = "/product_category_s_list.do", method = RequestMethod.GET)
+	public String category_s_list(String page, String p_category_s, Model model) {
+		int nowpage =1;
+		if(page != null && !page.isEmpty()) {
+			nowpage = Integer.parseInt(page);
+		}
+		Map<String, Object> p_map = p_service.p_category_s_service(p_category_s, nowpage);
+		model.addAttribute("list", p_map.get("list"));
+		model.addAttribute("page", p_map.get("page_menu"));
+		return VIEW_PATH + "product_category_s.jsp";
 	}
 
 }

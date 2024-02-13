@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import dao.SearchDAO;
+import util.Common;
 import util.HangulSearcher;
+import util.ProductPaging;
 import vo.ProductVO;
 
 public class SearchService {
@@ -17,17 +19,8 @@ public class SearchService {
 		this.s_dao = s_dao;
 	}
 	
-//	public List<ProductVO> search_keyword(String keyword){
-//		Map<String, String> s_map = new HashMap<String, String>();
-//		String[] result = HangulSearcher.search_filter(keyword);
-//		s_map.put("one", result[0]);
-//		s_map.put("two", result[1]);
-//		List<ProductVO> list = s_dao.search_keyword(s_map);
-//		return list;
-//	}
-	
 	public List<String> search_result(String keyword){
-		List<String> list = s_dao.search_ressult();
+		List<String> list = s_dao.search_result();
 		List<String> resultList = new ArrayList<String>();
 		String str = "";
 		for(int i=0; i<list.size(); i++) {
@@ -57,6 +50,24 @@ public class SearchService {
 		System.out.println(resultList);
 		return resultList;
 	}
+	public List<String> search_keyword(String keyword){
+		List<String> list = s_dao.search_keyword(keyword);
+		return list;
+	}
 	
+	public Map<String , Object> s_search_list(String keyword,int nowpage){
+		int start = (nowpage-1) * Common.Product.BLOCKLIST +1;
+		int end = start + Common.Product.BLOCKLIST-1;
+		Map<String, Object> p_map = new HashMap<String, Object>();
+		p_map.put("keyword", keyword);
+		p_map.put("start", start);
+		p_map.put("end", end);
+		List<ProductVO> list = s_dao.s_search_list(p_map);
+		int rowtotal = s_dao.s_search_count(keyword);
+		p_map.put("list", list);
+		String page_menu = ProductPaging.getSearchPaging("product_search_list.do", nowpage, rowtotal, Common.Product.BLOCKLIST, Common.Product.BLOCKPAGE, keyword);
+		p_map.put("page_menu", page_menu);
+		return p_map;
+	}
 
 }

@@ -2,9 +2,15 @@ package vo;
 
 public class BoardVO {
 
-	private int b_idx, m_idx, recommend, readhit, t_idx, p_idx;
+	private int b_idx, m_idx, recommend, readhit, t_idx, p_idx, comment_count;
 	private String subject, content, ip, regdate, t_name, p_name;
-
+	
+	public int getComment_count() {
+		return comment_count;
+	}
+	public void setComment_count(int comment_count) {
+		this.comment_count = comment_count;
+	}
 	public String getT_name() {
 		return t_name;
 	}

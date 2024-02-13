@@ -58,9 +58,10 @@
 	</beans:bean>
 
 	<beans:bean class="controller.BoardController">
-		<beans:constructor-arg ref="board_serviceBean" />
-		<beans:constructor-arg ref="tone_serviceBean" />
-		<beans:constructor-arg ref="comment_serviceBean" />
+		<beans:constructor-arg ref="board_serviceBean"/>
+		<beans:constructor-arg ref="tone_serviceBean"/> 
+		<beans:constructor-arg ref="comment_serviceBean"/>
+		<beans:constructor-arg ref="likes_serviceBean"/>  
 	</beans:bean>
 
 	<beans:bean class="controller.SearchController">

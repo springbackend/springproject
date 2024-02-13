@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="l">
+	<select id="likes_select_one" resultType="likes" parameterType="int">
+		SELECT * FROM likes
+		WHERE b_idx = #{b_idx}
+	</select>
+	
+	<insert id="insert" parameterType="likes">
+		INSERT INTO likes VALUES(
+			#{b_idx},
+			#{m_idx},
+			sysdate
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="likes">
+		DELETE FROM likes
+		WHERE b_idx = #{b_idx} AND m_idx = #{m_idx}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

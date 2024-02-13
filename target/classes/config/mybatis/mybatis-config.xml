@@ -13,6 +13,7 @@
 		<typeAlias type="vo.ProductVO" alias="product"/>
 		<typeAlias type="vo.BoardVO" alias="board"/>
 		<typeAlias type="vo.CommentVO" alias="comment"/>
+		<typeAlias type="vo.LikesVO" alias="likes"/>
 	</typeAliases>
 	
 	<mappers>
@@ -22,6 +23,7 @@
 		<mapper resource="config/mybatis/mapper/board.xml"/>
 		<mapper resource="config/mybatis/mapper/comment.xml"/>
 		<mapper resource="config/mybatis/mapper/tone.xml"/>
+		<mapper resource="config/mybatis/mapper/likes.xml"/>
 		<mapper resource="config/mybatis/mapper/search.xml"/>
 	</mappers>
 </configuration>

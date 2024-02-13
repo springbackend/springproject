@@ -19,8 +19,35 @@ public class CommentDAO {
 		return list;
 	}
 	
+	public List<CommentVO> reply_list(int c_idx){
+		List<CommentVO> list = sqlSession.selectList("c.reply_list", c_idx);
+		return list;
+	}
+	
+	public CommentVO selectOne(int c_idx) {
+		CommentVO vo = sqlSession.selectOne("c.select_comment", c_idx);
+		return vo;
+	}
+	
+	public int reply(CommentVO vo) {
+		int res = sqlSession.insert("c.reply", vo);
+		return res;
+	}
+	
 	public int comment_write(CommentVO vo) {
 		int res = sqlSession.insert("c.comment_write", vo);
+		return res;
+	}
+	
+	public int board_comment_delete(int b_idx) {
+		int res = sqlSession.delete("c.board_comment_delete", b_idx);
+		return res;
+	}
+	
+	public int update_step(CommentVO vo) {
+		System.out.println(vo.getStep());
+		System.out.println(vo.getRef());
+		int res = sqlSession.update("c.update_step", vo);
 		return res;
 	}
 	

@@ -15,21 +15,25 @@ public class SearchDAO {
 		this.sqlSession = sqlSession;
 	}
 	
-	public List<ProductVO> search_keyword(Map<String, String> s_map) {
-		List<ProductVO> list = sqlSession.selectList("s.search_p_name",s_map);
+	public List<String> search_keyword(String keyword) {
+		List<String> list = sqlSession.selectList("s.search_p_namet",keyword);
 		return list;
 	}
 	
-	public List<ProductVO> search_keyword2(String keyword) {
-		List<ProductVO> list = sqlSession.selectList("s.search_p_namet",keyword);
-		return list;
-	}
-	
-	public List<String> search_ressult(){
+	public List<String> search_result(){
 		List<String> list = sqlSession.selectList("s.search_result");
 		return list;
 	}
 	
+	public List<ProductVO> s_search_list(Map<String, Object> p_map){
+		List<ProductVO> list = sqlSession.selectList("s.select_search_list", p_map);
+		return list;
+	}
+	
+	public int s_search_count(String keyword) {
+		int count  = sqlSession.selectOne("s.search_count", keyword);
+		return count;
+	}
 
 
 }
