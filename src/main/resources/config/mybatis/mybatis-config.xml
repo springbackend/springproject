@@ -14,6 +14,7 @@
 		<typeAlias type="vo.BoardVO" alias="board"/>
 		<typeAlias type="vo.CommentVO" alias="comment"/>
 		<typeAlias type="vo.LikesVO" alias="likes"/>
+		<typeAlias type="dao.AdminDTO" alias="admin" />
 	</typeAliases>
 	
 	<mappers>
