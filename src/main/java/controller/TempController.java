@@ -1,12 +1,16 @@
 package controller;
 
+import javax.servlet.ServletContext;
+
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +20,9 @@ import lombok.extern.slf4j.Slf4j;
 public class TempController {
 
 	static final String VIEWPATH = "/WEB-INF/views";
+	
+	@Autowired
+	ServletContext servletContext;
 
 	@RequestMapping(value = "/")
 	public String main() {
@@ -51,10 +58,15 @@ public class TempController {
 	public String test() {
 		nu.pattern.OpenCV.loadShared();
 		System.loadLibrary(org.opencv.core.Core.NATIVE_LIBRARY_NAME);
-		String imageLocation = "/resources/images/temp.png";
+		String imageLocation = servletContext.getRealPath("/resources/images/logo.png");
+		
 		Mat imageRead = Imgcodecs.imread(imageLocation, Imgcodecs.CV_LOAD_IMAGE_UNCHANGED);
 		Mat image = new Mat();
-		Imgproc.resize(imageRead, image, new Size(28, 28));
+		if(imageRead.empty()) {
+		    System.out.println("이미지 로드 실패: " + imageLocation);
+		} else {
+		    Imgproc.resize(imageRead, image, new Size(28, 28));
+		}
 		// Mat data = new Mat(14, 14, CvType.CV_8UC3);
 		//System.out.println(image.row(14));
 		//System.out.println(image.col(14));
