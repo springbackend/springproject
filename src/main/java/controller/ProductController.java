@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -24,7 +25,7 @@ public class ProductController {
 	public ProductController(ProductService p_service) {
 		this.p_service = p_service;
 	}
-
+	
 	@RequestMapping(value = "/product_category_list.do", method = RequestMethod.GET)
 	public String category_list(String page, String p_category_b, Model model) {
 		int nowpage =1;
@@ -78,6 +79,13 @@ public class ProductController {
 		model.addAttribute("list", p_map.get("list"));
 		model.addAttribute("page", p_map.get("page_menu"));
 		return VIEW_PATH + "product_category_s.jsp";
+	}
+	
+	@RequestMapping(value = "/product_best_list.do",method = RequestMethod.GET)
+	public String prduct_best(Model model) {
+		List<ProductVO> list = p_service.p_best_product();
+		model.addAttribute("list", list);
+		return VIEW_PATH+"product_best.jsp";
 	}
 
 }
