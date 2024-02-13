@@ -7,24 +7,6 @@ public class HangulSearcher {
         'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
     };
     
-    private static final String[] characters = {
-    		"가","까","나","다","따","라","마","바","빠","사","싸","아","자","짜","차","카","타","파","하","힣"
-    };
-    
-    public static String[] search_filter(String keyword) {
-    	int num = 0;
-    	for(int i = 0; i<CHO_SUNG.length; i++) {
-    		if(keyword.equals(String.valueOf(CHO_SUNG[i]))) {
-    			num = i;
-    			break;
-    		}
-    	}
-    	String[] result = new String[2];
-    	result[0] = characters[num];
-    	result[1] = characters[num+1];
-    	return result;
-    }
-    
     
     public static String resultChosung(String s) {
         StringBuilder sb = new StringBuilder();
@@ -51,7 +33,42 @@ public class HangulSearcher {
     	}
     	return true;
     }
-    
-   
+    public static int[] getChosungJungsung(String s) {
+        char ch = s.charAt(s.length()-1); // 첫 글자를 추출
+        int[] result = new int[2]; // 초성, 중성 인덱스를 저장할 배열
 
+        if (ch >= '가' && ch <= '힣') {
+            int hanIndex = ch - '가';
+            int chosungIndex = hanIndex / (21 * 28);
+            int jungsungIndex = (hanIndex % (21 * 28)) / 28;
+
+            result[0] = chosungIndex;
+            result[1] = jungsungIndex;
+        } else {
+            // 한글이 아닌 경우
+            result[0] = -1;
+            result[1] = -1;
+        }
+
+        return result;
+   }
+   
+    public static String composeHangul(String first) {
+        StringBuilder newfirst = new StringBuilder();
+
+        for (char ch : first.toCharArray()) {
+            if (ch >= '가' && ch <= '힣') { // 한글 범위 확인
+            	 int hanIndex = ch - '가';
+                 int chosungIndex = hanIndex / (21 * 28);
+                 int jungsungIndex = (hanIndex % (21 * 28)) / 28;
+
+                int newUniVal = '가' + chosungIndex * (21 * 28) + jungsungIndex * 28;
+                newfirst.append((char) newUniVal);
+            } else {
+            	newfirst.append(ch);
+            }
+        }
+
+        return newfirst.toString();
+    }
 }

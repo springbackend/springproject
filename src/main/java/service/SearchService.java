@@ -47,6 +47,7 @@ public class SearchService {
 			}
 			}
 		}//i
+		
 		System.out.println(resultList);
 		return resultList;
 	}
@@ -65,9 +66,21 @@ public class SearchService {
 		List<ProductVO> list = s_dao.s_search_list(p_map);
 		int rowtotal = s_dao.s_search_count(keyword);
 		p_map.put("list", list);
-		String page_menu = ProductPaging.getSearchPaging("product_search_list.do", nowpage, rowtotal, Common.Product.BLOCKLIST, Common.Product.BLOCKPAGE, keyword);
+		String page_menu = ProductPaging.getSearchPaging("search_list.do", nowpage, rowtotal, Common.Product.BLOCKLIST, Common.Product.BLOCKPAGE, keyword);
 		p_map.put("page_menu", page_menu);
 		return p_map;
+	}
+	
+	public List<String> first_search_list(char k){
+		List<String> list = s_dao.search_result();
+		List<String> firstlist = new ArrayList<String>();
+		
+		for(int i= 0 ; i<list.size(); i++) {
+			if(HangulSearcher.composeHangul(list.get(i)).charAt(0) == k) {
+				firstlist.add(list.get(i));
+			}
+		}
+		return firstlist;
 	}
 
 }

@@ -25,7 +25,7 @@ public class MyPageController {
 		return VIEW_PATH + "mypage.jsp";
 	}
 
-	@RequestMapping
+	@RequestMapping("/ddddd")//RequestMapping이 비어있어서 자꾸오류떠서 아무값이나 넣음
 	@ResponseBody
 	public String deleteAccount(String id) {
 		String result = "fail";

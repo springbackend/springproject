@@ -33,15 +33,38 @@ public class SearchController {
 	@ResponseBody
 	public String search_keyword(String keyword) {
 		List<String> list = null;
+		List<String> keyList = null;
+		int[] che = null;
+		String key = "";
 		if (keyword != null && !keyword.isEmpty()) {
 			if (!HangulSearcher.checkChosung(keyword.charAt(0))) {
 				list = s_service.search_result(keyword);
 			} else {
 				list = s_service.search_keyword(keyword);
-				
+				if (list.size() == 0) {
+					if(keyword.length() >1) {
+					for (int i = 0; i < keyword.length()-1; i++) {
+						key += keyword.charAt(i);
+						if(key.length() == keyword.length()-1) {
+						keyList = s_service.search_keyword(key);
+						}
+					}
+					}else {
+						char k = keyword.charAt(0);
+						list = s_service.first_search_list(k);
+					}
+				}
 			}
 		}
-		
+		if (keyList != null) {
+			che = HangulSearcher.getChosungJungsung(keyword);
+			for (String keyCheck : keyList) {
+				int[] keyListChosung = HangulSearcher.getChosungJungsung(keyCheck);
+				if (che[0] == keyListChosung[0] && che[1] == keyListChosung[1]) {
+					list.add(keyCheck);
+				}
+			}
+		}
 		System.out.println(list);
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonString = "";
@@ -52,16 +75,16 @@ public class SearchController {
 		}
 		return jsonString;
 	}
-	
+
 	@RequestMapping(value = "/search_list.do", method = RequestMethod.GET)
-	public String product_search_list(String keyword,String page,Model model) {
-		int nowpage =1;
-		if(page != null && !page.isEmpty()) {
+	public String product_search_list(String keyword, String page, Model model) {
+		int nowpage = 1;
+		if (page != null && !page.isEmpty()) {
 			nowpage = Integer.parseInt(page);
 		}
-		Map<String, Object> p_map= s_service.s_search_list(keyword, nowpage);
+		Map<String, Object> p_map = s_service.s_search_list(keyword, nowpage);
 		model.addAttribute("list", p_map.get("list"));
 		model.addAttribute("page_menu", p_map.get("page_menu"));
 		return VIEW_PATH + "product_search.jsp";
 	}
-}
+	}

@@ -41,6 +41,8 @@ create table product(
 
 insert into product values(seq_product_idx.nextval,'립스틱','입술에바름',sysdate,'woman','Lips','test_file.jpg','red',30000,0,0);
 insert into product values(seq_product_idx.nextval,'마스카라','눈',sysdate,'woman','eye','nofile','black',25000,0,2);
+insert into product values(seq_product_idx.nextval,'립밤','입술에바름',sysdate,'woman','Lips','test_file.jpg','red',30000,0,0);
+insert into product values(seq_product_idx.nextval,'로션','얼굴',sysdate,'gender','face','no_file','white',30000,0,0);
 
 
 
