@@ -49,6 +49,7 @@ public class TempController {
 
 	@RequestMapping(value = "/test.do")
 	public String test() {
+		//에러 추측 : 빌드패스 설정누락? 아마도.. 근데 하는법을 잘모르겠어요ㅠ
 		nu.pattern.OpenCV.loadShared();
 		System.loadLibrary(org.opencv.core.Core.NATIVE_LIBRARY_NAME);
 		String imageLocation = "/resources/images/temp.png";
