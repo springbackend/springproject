@@ -32,11 +32,29 @@ create table product(
 	p_regidate date,--상품등록날짜
 	p_category_b varchar2(50),--큰분류상품카테고리
 	p_category_s varchar2(50),--작은분류상품카테고리
-	p_image varchar2(100), -- 상품사진(작은이미지 큰이미지 나눌지는 상의해야할것같습니다.)
-	p_color varchar2(100), --상품색(퍼스널컬러 연결해서 사용하면 좋을것같습니다.)
+	p_image varchar2(100), -- 상품사진
+	p_color varchar2(100), --상품색
 	p_price number(10), --상품가격
 	p_hit number(10), --상품조회수
-	p_sold number(10) -- 판매된 상품갯수(조회수랑 겹쳐서 애매하면 삭제)
+	p_sold number(10) -- 판매된 상품갯수
 );
 
 insert into product values(seq_product_idx.nextval,'립스틱','입술에바름',sysdate,'woman','Lips','test_file.jpg','red',30000,0,0);
+insert into product values(seq_product_idx.nextval,'마스카라','눈',sysdate,'woman','eye','nofile','black',25000,0,2);
+
+
+
+update product set p_sold = p_sold +1;
+
+
+
+
+
+
+
+
+
+
+
+
+

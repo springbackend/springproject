@@ -51,5 +51,10 @@ public class ProductDAO {
 		int count = sqlSession.selectOne("p.select_category_s_count", p_category_s);
 		return count;
 	}
+	
+	public List<ProductVO> p_best_product(){
+		List<ProductVO> list = sqlSession.selectList("p.select_best");
+		return list;
+	}
 
 }

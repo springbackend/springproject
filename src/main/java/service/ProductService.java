@@ -71,5 +71,10 @@ public class ProductService {
 		return p_map;
 	}
 	
+	public List<ProductVO> p_best_product(){
+		List<ProductVO> list = p_dao.p_best_product();
+		return list;
+	}
+	
 
 }
