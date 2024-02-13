@@ -59,7 +59,7 @@ public class TempController {
 		//에러 추측 : 빌드패스 설정누락? 아마도.. 근데 하는법을 잘모르겠어요ㅠ
 		nu.pattern.OpenCV.loadShared();
 		System.loadLibrary(org.opencv.core.Core.NATIVE_LIBRARY_NAME);
-		String imageLocation = servletContext.getRealPath("/resources/images/logo.png");
+		String imageLocation = servletContext.getRealPath("/resources/images/temp.png");
 		
 		Mat imageRead = Imgcodecs.imread(imageLocation, Imgcodecs.CV_LOAD_IMAGE_UNCHANGED);
 		Mat image = new Mat();
