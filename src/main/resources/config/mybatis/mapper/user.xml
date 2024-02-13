@@ -41,8 +41,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- delete -->
 	<delete id="delete" parameterType="String">
-		DELETE FROM USER1 WHERE id =
-		#{id}
+		delete 
+		FROM USER1
+		 WHERE u_id = #{id}
 	</delete>
 </mapper>
 

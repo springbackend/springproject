@@ -7,6 +7,7 @@
 <title>마이페이지</title>
 <style>
 </style>
+<script type="text/javascript" src="/beauty/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 	function delete(){
 		if(){

@@ -52,21 +52,22 @@
 	<beans:bean class="controller.RegistController">
 		<beans:constructor-arg ref="user_userBean" />
 	</beans:bean>
-
 	<beans:bean class="controller.ProductController">
 		<beans:constructor-arg ref="product_serviceBean" />
 	</beans:bean>
-
 	<beans:bean class="controller.BoardController">
-		<beans:constructor-arg ref="board_serviceBean"/>
-		<beans:constructor-arg ref="tone_serviceBean"/> 
-		<beans:constructor-arg ref="comment_serviceBean"/>
-		<beans:constructor-arg ref="likes_serviceBean"/>  
+		<beans:constructor-arg ref="board_serviceBean" />
+		<beans:constructor-arg ref="tone_serviceBean" />
+		<beans:constructor-arg ref="comment_serviceBean" />
+		<beans:constructor-arg ref="likes_serviceBean" />
 	</beans:bean>
-
 	<beans:bean class="controller.SearchController">
 		<beans:constructor-arg ref="search_serviceBean" />
 	</beans:bean>
+
+	<beans:bean class="controller.ColorController">
+	</beans:bean>
+
 </beans:beans>
 
 
