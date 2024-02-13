@@ -68,6 +68,7 @@ public class TempController {
 		} else {
 		    Imgproc.resize(imageRead, image, new Size(28, 28));
 		}
+		
 		// Mat data = new Mat(14, 14, CvType.CV_8UC3);
 		//System.out.println(image.row(14));
 		//System.out.println(image.col(14));
