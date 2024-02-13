@@ -54,7 +54,7 @@ th, td {
 						</tr>
 						<tr>
 							<th><a href="header.do">header</a></th>
-							<th><a href="#">====</a></th>
+							<th><a href="admin/admin_login_view.do">adm1n</a></th>
 							<th><a href="#">====</a></th>
 							<th><a href="#">====</a></th>
 						</tr>

@@ -68,4 +68,12 @@
 	<bean id="search_serviceBean" class="service.SearchService">
 		<constructor-arg ref="search_daoBean"/>
 	</bean>
+	
+	<bean id ="admin_adminBean" class="dao.AdminDAOImpl">
+				<constructor-arg ref="sqlSessionBean"/>
+	</bean>  
+	
+	<bean id="admin_servicBean" class="service.AdminServiceImpl">
+		<constructor-arg ref="admin_adminBean"/>
+	</bean>
 </beans>
