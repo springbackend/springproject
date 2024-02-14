@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="ismember" resultType="user" parameterType="String">
 		SELECT *
 		FROM USER1
-		WHERE u_id = '${value}'
+		WHERE u_id = #{id}
 	</select>
 	<!-- update -->
 	<!-- update pwd -->

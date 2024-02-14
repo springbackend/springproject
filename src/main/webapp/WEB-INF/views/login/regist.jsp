@@ -31,16 +31,32 @@
 			alert("특수문자는 입력할 수 없습니다.");
 			return;
 		} else {
+			let url = "checkid.do";
+			let param = "id=" + id;
+			sendRequest(url, param, resultCheck, "POST");
 			document.getElementById("id").readOnly = true;
-			window.open("/beauty/checkid.do?user_id=" + id, "",
-					"width=500,height=300");
-			//sendRequest("","","","POST");
-			if (id = "id") {
-				document.getElementById("id").readOnly = false;
+			button.disabled = true;
+			/* window.open("/beauty/checkid.do?id=" + id, "",
+					"width=500,height=300"); 
+			${contextPath}
+			 */
+
+		}
+	}
+	function resultCheck() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			let result = decodeURI(decodeURIComponent(xhr.responseText));
+			if (result == "can") {
+				alert("사용하실수 있는 아이디입니다");
 				button.disabled = true;
 			}
+			if (result == "cant") {
+				alert("중복된 아이디 입니다");
+				document.getElementById("id").readOnly = false;
+				button.disabled = false;
+			}
 		}
-		/* ${contextPath} */
+
 	}
 	function join(f) {
 		let joinForm = document.joinForm;

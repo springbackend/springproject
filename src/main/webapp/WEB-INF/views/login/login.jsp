@@ -10,7 +10,6 @@
 <script type="text/javascript" src="/beauty/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 	function send(f) {
-
 		let id = document.getElementById("id").value;
 		let pwd = document.getElementById("pwd").value;
 		let yuji = document.querySelector('#yuji').checked;
@@ -28,7 +27,13 @@
 	}
 	function resultFn() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			alert(xhr.responseText);
+			let data = xhr.responseText;
+			if (data == "bad") {
+				alert("로그인 실패");
+			} else {
+				alert("로그인 성공");
+
+			}
 			location.href = "/beauty/main.do";
 		}
 	}

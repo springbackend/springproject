@@ -2,6 +2,7 @@ package controller;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.UserDAO;
@@ -19,8 +21,6 @@ import vo.UserVO;
 @RequiredArgsConstructor
 @Controller
 public class RegistController {
-//memo 
-//vo 싱글톤
 
 	@Autowired
 	HttpServletRequest request;
@@ -47,10 +47,6 @@ public class RegistController {
 	@RequestMapping(value = "/joinuser.do", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String joinuser(String id, String name, String pwd, String email, String gender, String pnum) {
-//		String id, String name, String pwd, String email, String gender, String pnum
-		// 넘어오는값 id name pwd pnum email gender pnum
-		// uservo id name pwd pnum email gender pnum, idx,regidate, regiip, addr, birth
-		// id name pwd pnum email gender pnum 매핑
 		UserVO vo = new UserVO();
 		String result = "실패";
 		// 암호화
@@ -85,4 +81,18 @@ public class RegistController {
 		}
 		return String.valueOf(result);
 	}
+
+	@RequestMapping(value = "/checkid.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String checkid(String id) {
+		Optional<UserVO> option = Optional.ofNullable(userdao.findById(id));
+		if (option.isEmpty()) {
+			return "can";
+		} else {
+			UserVO vo = option.get();
+			System.out.println(vo.toString());
+			return "cant";
+		}
+	}
+
 }
