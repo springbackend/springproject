@@ -7,7 +7,7 @@ public class HangulSearcher {
         'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
     };
     
-    
+    //초성검색
     public static String resultChosung(String s) {
         StringBuilder sb = new StringBuilder();
 
@@ -24,7 +24,7 @@ public class HangulSearcher {
 
         return sb.toString();
     }
-    
+    //초성인지 아닌지 구분
     public static boolean checkChosung(char s) {
     	for(int i = 0; i<CHO_SUNG.length; i++) {
     		if(s == CHO_SUNG[i]) {
@@ -33,6 +33,7 @@ public class HangulSearcher {
     	}
     	return true;
     }
+    //리스트가 null이면 마지막글자의 초성,중성이랑 같은글자 찾는 메소드
     public static int[] getChosungJungsung(String s) {
         char ch = s.charAt(s.length()-1); // 첫 글자를 추출
         int[] result = new int[2]; // 초성, 중성 인덱스를 저장할 배열
@@ -52,7 +53,8 @@ public class HangulSearcher {
 
         return result;
    }
-   
+    
+    //첫글자검색했을때 값이null이면 초성중성 같은거 출력
     public static String composeHangul(String first) {
         StringBuilder newfirst = new StringBuilder();
 

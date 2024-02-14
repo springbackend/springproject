@@ -7,8 +7,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT * FROM product WHERE p_name BETWEEN #{one} AND #{two}
 	</select>
 	<select id="search_p_namet" resultType="String" parameterType="String">
-			SELECT p_name FROM product WHERE p_name like '%' || #{keyword} || '%'
-	</select>
+    SELECT p_name
+    FROM (
+        SELECT p_name, p_sold, p_idx,
+            CASE
+                WHEN p_name LIKE #{keyword} || '%' THEN 0
+                ELSE 1
+            END AS order_criteria
+        FROM product
+        WHERE p_name LIKE '%' || #{keyword} || '%' 
+        ORDER BY order_criteria, p_sold DESC, p_idx
+    )
+    WHERE ROWNUM BETWEEN 1 AND 5
+</select>
 	
 	<select id="search_result" resultType="String">
 		select p_name from product
