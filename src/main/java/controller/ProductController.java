@@ -25,7 +25,7 @@ public class ProductController {
 	public ProductController(ProductService p_service) {
 		this.p_service = p_service;
 	}
-	
+	//카테고리 리스트
 	@RequestMapping(value = "/product_category_list.do", method = RequestMethod.GET)
 	public String category_list(String page, String p_category_b, Model model) {
 		int nowpage =1;
@@ -37,14 +37,16 @@ public class ProductController {
 		model.addAttribute("page", p_map.get("page_menu"));
 		return VIEW_PATH + "product_category.jsp";
 	}
-
+	
+	//상품자세히보기
 	@RequestMapping(value ="/product_view.do", method = RequestMethod.GET)
 	public String product_view(int p_idx, Model model) {
 		ProductVO p_vo = p_service.p_product_view(p_idx);
 		model.addAttribute("p_vo", p_vo);
 		return VIEW_PATH + "product_view.jsp";
 	}
-
+	
+	//총가격
 	@RequestMapping(value = "/update_price.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String product_update_price(int p_idx, int quantity) {
@@ -54,7 +56,7 @@ public class ProductController {
 		return String.valueOf(totalprice)+"원";
 	}
 	
-	
+	//상품구매창
 	@RequestMapping(value = "/buyproduct_form.do", method = RequestMethod.GET)
 	public String prdocut_buy(int p_idx,int quantity,Model model) {
 		ProductVO p_vo = p_service.p_buy_view(p_idx);
@@ -69,6 +71,7 @@ public class ProductController {
 		return VIEW_PATH+ "top.jsp";
 	}
 	
+	//카테고리_s 보기
 	@RequestMapping(value = "/product_category_s_list.do", method = RequestMethod.GET)
 	public String category_s_list(String page, String p_category_s, Model model) {
 		int nowpage =1;
@@ -81,6 +84,8 @@ public class ProductController {
 		return VIEW_PATH + "product_category_s.jsp";
 	}
 	
+	
+	//베스트상품
 	@RequestMapping(value = "/product_best_list.do",method = RequestMethod.GET)
 	public String prduct_best(Model model) {
 		List<ProductVO> list = p_service.p_best_product();

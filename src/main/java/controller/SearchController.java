@@ -41,6 +41,7 @@ public class SearchController {
 				list = s_service.search_result(keyword);
 			} else {
 				list = s_service.search_keyword(keyword);
+				//키워드에맞는 검색어가없을경우 마지막글자를 빼고 검색을하고, keyList에 담는다
 				if (list.size() == 0) {
 					if(keyword.length() >1) {
 					for (int i = 0; i < keyword.length()-1; i++) {
@@ -56,6 +57,7 @@ public class SearchController {
 				}
 			}
 		}
+		//keyList에담긴값들의 마지막글자를 검사해서 keyword마지막글자의 초성,중성이 맞으면  list에 다시담는다.
 		if (keyList != null) {
 			che = HangulSearcher.getChosungJungsung(keyword);
 			for (String keyCheck : keyList) {
