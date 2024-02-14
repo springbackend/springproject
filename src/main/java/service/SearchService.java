@@ -47,8 +47,6 @@ public class SearchService {
 			}
 			}
 		}//i
-		
-		System.out.println(resultList);
 		return resultList;
 	}
 	public List<String> search_keyword(String keyword){

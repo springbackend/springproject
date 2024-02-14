@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="select_best" resultType="product">
-		select * from (select rank() over(order by p_idx desc) no,
+		select * from (select rank() over(order by p_sold desc,p_idx) no,
 			p.* from product p order by p.p_sold desc) where no between 1 and 20
 	</select>
 	

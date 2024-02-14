@@ -36,17 +36,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{t_idx},
 			#{p_idx},
 			#{t_name},
-			#{p_name}
+			#{p_name},
+			0
 		)
 	</insert>
 	
-	<update id="increase_thumb" parameterType="int">
+	<delete id="board_delete" parameterType="int">
+		DELETE FROM board
+		WHERE b_idx = #{b_idx}
+	</delete>
+	
+	<update id="board_update" parameterType="board">
+		UPDATE board SET
+			subject = #{subject},
+			content = #{content},
+			ip = #{ip},
+			regdate = sysdate,
+			t_idx = #{t_idx},
+			p_idx = #{p_idx},
+			t_name = #{t_name},
+			p_name = #{p_name}
+		WHERE b_idx = #{b_idx}
+	</update>
+	
+	<update id="update_comment" parameterType="int">
+		UPDATE board SET comment_count = comment_count + 1
+		WHERE b_idx = #{b_idx}
+	</update>
+	
+	<update id="like_increase" parameterType="int">
 		UPDATE board SET recommend = recommend + 1
 		WHERE b_idx = #{b_idx}
 	</update>
 	
-	<update id="decrease_thumb" parameterType="int">
+	<update id="like_decrease" parameterType="int">
 		UPDATE board SET recommend = recommend - 1
+		WHERE b_idx = #{b_idx}
+	</update>
+	
+	<update id="update_readhit" parameterType="int">
+		UPDATE board SET readhit = readhit + 1
 		WHERE b_idx = #{b_idx}
 	</update>
 </mapper>

@@ -86,13 +86,13 @@ function resultKeyword() {
 	 
 	    </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">홈</a>
+          <a class="nav-link" href="temp.do">홈</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">추천</a><!-- 로그인시에는 회원의 어울리는 퍼스널컬러 상품,비로그인시에는 무난?한 상품 -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">베스트</a><!-- 잘팔린 상품 -->
+          <a class="nav-link" href="product_best_list.do">베스트</a><!-- 잘팔린 상품 -->
         </li>
       </ul>
 

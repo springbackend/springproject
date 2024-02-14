@@ -65,7 +65,6 @@ public class SearchController {
 				}
 			}
 		}
-		System.out.println(list);
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonString = "";
 		try {
