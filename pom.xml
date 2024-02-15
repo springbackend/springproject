@@ -10,7 +10,6 @@
 	<properties>
 		<java-version>1.6</java-version>
 		<org.springframework-version>4.0.0.RELEASE</org.springframework-version>
-		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
@@ -67,9 +66,10 @@
 
 		<!-- AspectJ -->
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>${org.aspectj-version}</version>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.22.0</version>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- Logging -->
@@ -241,6 +241,7 @@
 			<artifactId>opencv</artifactId>
 			<version>3.4.2-1</version>
 		</dependency>
+
 
 	</dependencies>
 	<build>

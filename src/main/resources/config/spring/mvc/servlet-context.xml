@@ -23,6 +23,7 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
+	<!-- resources 파일 접근 권한 -->
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- 파일이름에 .jsp로 자동 매핑하기위한 prefix 설정 -->

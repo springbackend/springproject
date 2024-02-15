@@ -1,6 +1,6 @@
 package member;
 
-public interface Member {
+public class Member {
 	
 //	일련번호		
 //	아이디		PK	
