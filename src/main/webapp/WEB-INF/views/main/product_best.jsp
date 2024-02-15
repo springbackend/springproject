@@ -13,6 +13,7 @@
     <div class="container mt-4">
         <div class="row">
             <c:forEach var="product" items="${list }">
+            <p>${product.no }</p>
                 <div class="col-md-2 mb-3">
                     <div class="card">
                         <img src="resources/productimages/${product.p_image }" class="card-img-top" alt="상품 이미지">
