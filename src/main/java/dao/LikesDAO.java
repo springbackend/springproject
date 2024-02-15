@@ -10,10 +10,9 @@ public class LikesDAO {
 		this.sqlSession = sqlSession;
 	}
 	
-	public LikesVO selectOne(int b_idx) {
-		System.out.println(b_idx);
-		LikesVO vo = sqlSession.selectOne("l.likes_select_one", b_idx);
-		return vo;
+	public LikesVO check_like(LikesVO vo) {
+		LikesVO resultVO = sqlSession.selectOne("l.check_like", vo);
+		return resultVO;
 	}
 	
 	public int insert(LikesVO vo) {
@@ -25,4 +24,41 @@ public class LikesDAO {
 		int res = sqlSession.delete("l.delete", vo);
 		return res;
 	}
+	
+	public int count_like(int b_idx) {
+		int res = sqlSession.selectOne("l.count_like", b_idx);
+		return res;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

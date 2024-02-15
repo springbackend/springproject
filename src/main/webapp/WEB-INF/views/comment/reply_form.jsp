@@ -8,8 +8,6 @@
 		<title>대댓글</title>
 		
 		<style>
-			body{background-color:#FFC567;}
-			h1{color:#00A56B;}
 			.board{border:2px solid black;
 				   border-radius:30px;
 			       margin:auto;
@@ -95,7 +93,7 @@
 				cursor:pointer;}
 		</style>
 		
-		<script src="/beauty/resources/js/httpRequest.js"></script>
+		<script src="/board/resources/js/httpRequest.js"></script>
 		<script>
 			window.onload = function(){
 				reply_list();
@@ -150,7 +148,7 @@
 		<h1 align="center">댓글</h1>
 		<div class="board">
 			<div class="top">
-				<b><img class="avatar" src="/beauty/resources/icons/profile_picture.png"></b>
+				<b><img class="avatar" src="/board/resources/icons/profile_picture.png"></b>
 				<b class="name">홍길동</b>
 				<b class="date">${fn:split(vo.regdate, ' ')[0]}</b>
 			</div>

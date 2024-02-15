@@ -1,9 +1,15 @@
 package vo;
 
 public class CommentVO {
-	private int c_idx, b_idx, m_idx, ref, step, depth;
+	private int c_idx, b_idx, m_idx, ref, step, depth, reply_count;
 	private String content, ip, regdate;
 	
+	public int getReply_count() {
+		return reply_count;
+	}
+	public void setReply_count(int reply_count) {
+		this.reply_count = reply_count;
+	}
 	public int getRef() {
 		return ref;
 	}

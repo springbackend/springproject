@@ -48,5 +48,9 @@ public class CommentService {
 		return res;
 	}
 	
+	public int update_reply(int c_idx) {
+		int res = comment_dao.update_reply(c_idx);
+		return res;
+	}
 	
 }

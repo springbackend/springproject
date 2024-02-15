@@ -7,9 +7,6 @@
 		<title>새글 쓰기</title>
 		
 		<style>
-			body{background-color:#FFC567;}
-			h1{color:#00A56B;}
-			
 			.outer{border:3px solid black;
 				   border-radius:30px;
 			       margin:auto;
@@ -94,7 +91,7 @@
 			.btn_back:hover .back:after {opacity: 1; left: 0;}
 		</style>
 		
-		<script src="/beauty/resources/js/httpRequest.js"></script>
+		<script src="/board/resources/js/httpRequest.js"></script>
 		<script>
 			function board_update(){
 				let f = document.f;

@@ -27,7 +27,7 @@
 		<c:forEach var="vo" items="${list}">
 			<div class="user_profile">
 				ㄴ
-				<img class="avatar" src="/beauty/resources/icons/profile_picture.png">
+				<img class="avatar" src="/board/resources/icons/profile_picture.png">
 				<strong>김길동</strong>
 			</div>
 			<div class="user_info">22세/여자/여름 쿨톤</div>

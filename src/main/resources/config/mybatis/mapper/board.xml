@@ -65,12 +65,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="like_increase" parameterType="int">
-		UPDATE board SET recommend = recommend + 1
+		UPDATE board SET likes_count = likes_count + 1
 		WHERE b_idx = #{b_idx}
 	</update>
 	
 	<update id="like_decrease" parameterType="int">
-		UPDATE board SET recommend = recommend - 1
+		UPDATE board SET likes_count = likes_count - 1
 		WHERE b_idx = #{b_idx}
 	</update>
 	

@@ -6,13 +6,10 @@
 		<meta charset="UTF-8">
 		<title>새글 쓰기</title>
 		
-		<script src="/beauty/resources/js/httpRequest.js"></script>
+		<script src="/board/resources/js/httpRequest.js"></script>
 		<!-- <script src="/resources/js/httpRequest.js"></script> -->
 		
 		<style>
-			body{background-color:#FFC567;}
-			h1{color:#00A56B;}
-			
 			.outer{border:3px solid black;
 				   border-radius:30px;
 			       margin:auto;
@@ -221,6 +218,8 @@
 		
 	</head>
 	<body> 
+		<!-- 로그인 여부 확인 -->
+		<!-- 회원이 아닌 경우 < jsp:include page=”login_page.jsp”> -->
 		<h1 align="center">New Post</h1>
 		<form>
 			<div class="outer">

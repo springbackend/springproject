@@ -11,9 +11,9 @@ public class LikesService {
 		this.likes_dao = likes_dao;
 	}
 	
-	public LikesVO selectOne(int b_idx) {
-		LikesVO vo = likes_dao.selectOne(b_idx);
-		return vo;
+	public LikesVO check_like(LikesVO vo) {
+		LikesVO resultVO = likes_dao.check_like(vo);
+		return resultVO;
 	}
 	
 	public int insert(LikesVO vo) {
@@ -25,4 +25,44 @@ public class LikesService {
 		int res = likes_dao.delete(vo);
 		return res;
 	}
+	
+	public int count_like(int b_idx) {
+		int res = likes_dao.count_like(b_idx);
+		return res;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

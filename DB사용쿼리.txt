@@ -74,19 +74,82 @@ CREATE TABLE board (
 	content CLOB NOT NULL, --내용
 	ip VARCHAR2(20),
 	regdate DATE, --작성일
-	recommend NUMBER(5), --추천수 (따봉수)
-	readhit NUMBER(10) --조회수
-);
-
---Sample Data
-INSERT INTO board VALUES (
-	seq_board_idx.nextVal,
-	1,
-	'립 추천합니다!',
-	'페리페라',
-	'192.1.1.1',
-	sysdate,
-	0,
-	0
+	likes_count NUMBER(5), --추천수 (따봉수)
+	readhit NUMBER(10), --조회수
+	t_idx NUMBER(5),
+	p_idx NUMBER(5),
+	t_name VARCHAR2(50),
+	p_name VARCHAR2(50),
+	comment_count NUMBER(10) --댓글수
 );
 ====================================
+--게시판 댓글
+CREATE SEQUENCE seq_comment_idx;
+
+CREATE TABLE comment_table (
+	c_idx NUMBER(10) primary key,
+	b_idx NUMBER(10),
+	m_idx NUMBER(5),
+	content CLOB,
+	ip VARCHAR2(20),
+	regdate DATE,
+	ref NUMBER(10),
+	step NUMBER(5),
+	depth NUMBER(3),
+	reply_count NUMBER(10)
+);
+
+====================================
+--게시판 좋아요
+CREATE TABLE likes (
+	b_idx NUMBER(10),
+	m_idx NUMBER(10),
+	like_date DATE
+);
+====================================
+--게시판 톤
+CREATE SEQUENCE seq_tone_idx;
+
+CREATE TABLE tone (
+	t_idx NUMBER(2),
+	t_name VARCHAR2(50)
+);
+
+--데이터
+INSERT INTO tone VALUES(
+	seq_tone_idx.nextVal,
+	'봄 웜'
+);
+
+INSERT INTO tone VALUES(
+	seq_tone_idx.nextVal,
+	'여름 쿨'
+);
+
+INSERT INTO tone VALUES(
+	seq_tone_idx.nextVal,
+	'가을 웜'
+);
+
+INSERT INTO tone VALUES(
+	seq_tone_idx.nextVal,
+	'겨울 쿨'
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

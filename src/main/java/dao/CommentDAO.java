@@ -45,9 +45,12 @@ public class CommentDAO {
 	}
 	
 	public int update_step(CommentVO vo) {
-		System.out.println(vo.getStep());
-		System.out.println(vo.getRef());
 		int res = sqlSession.update("c.update_step", vo);
+		return res;
+	}
+	
+	public int update_reply(int c_idx) {
+		int res = sqlSession.update("c.update_reply", c_idx);
 		return res;
 	}
 	
