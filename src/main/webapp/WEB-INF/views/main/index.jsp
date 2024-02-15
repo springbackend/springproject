@@ -13,15 +13,25 @@
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
 	$('.dropdown-toggle').dropdown('update');
-    let searchInput = document.getElementById('searchInput');
+    updateSearchDropdown();
 
+    let searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', function() {
-        let inputVal = this.value;
-        // 사용자 정의 함수 호출
-        searchkeyword(inputVal);
+        updateSearchDropdown();
     });
 });
 
+function updateSearchDropdown() {
+    let inputVal = document.getElementById('searchInput').value;
+    
+
+    if (inputVal === '') {
+    	searchrecord();
+    } else {
+        // 검색어가 입력되었을 때는 기존의 searchkeyword 함수 호출로 연관 검색어 표시
+        searchkeyword(inputVal);
+    }
+}
 function searchkeyword(keyword) {
 	let url = "search_keyword.do";
 	let param = "keyword="+keyword;
@@ -55,6 +65,53 @@ function resultKeyword() {
 	        }
 	    }
 }
+
+	function searchrecord() {
+		let url = "searchrecord.do";
+		sendRequest(url,null,recordResult,'post');
+	}
+	
+	function recordResult() {
+	    if (xhr.readyState == 4 && xhr.status == 200) {
+	        let data = xhr.responseText;
+	        let recentSearches = JSON.parse(data);
+	        
+	        let dropdownMenu = document.querySelector('#searchResultsDropdown');
+	        dropdownMenu.innerHTML = ''; // 기존 목록 초기화
+	        if (recentSearches.length > 0) {
+	            recentSearches.forEach(function(search) {
+	                let listItem = document.createElement('a');
+	                listItem.classList.add('dropdown-item');
+	                listItem.href = 'search_list.do?keyword=' + search;
+	                listItem.textContent = search;
+	                dropdownMenu.appendChild(listItem);
+	            });
+	            // 최근 검색어 삭제 링크 추가
+	            let deleteLink = document.createElement('a');
+	            deleteLink.classList.add('dropdown-item', 'text-danger');
+	            deleteLink.textContent = '최근 검색어 삭제';
+	            // 삭제 링크 클릭 이벤트
+	            deleteLink.onclick = function() {
+	            	let url = "seachrecordel.do";
+	            	sendRequest(url,null,delRecord,'post');
+	            };
+	            dropdownMenu.appendChild(deleteLink);
+	            $(dropdownMenu).addClass('show'); // 드롭다운 메뉴 보이기
+	        } else {
+	            $(dropdownMenu).removeClass('show'); // 드롭다운 메뉴 숨기기
+	        }
+	    }
+	}
+	
+	function delRecord() {
+		if(xhr.readyState == 4 && xhr.status == 200){
+			let data = xhr.responseText;
+			if(data == 'su'){
+				alert('삭제성공');
+				return;
+			}
+		}
+	}
 </script>
 <body>
 <!--  -->
@@ -101,6 +158,7 @@ function resultKeyword() {
     <div class="dropdown">
         <input type="text" class="form-control dropdown-toggle" placeholder="Search" id="searchInput" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="keyword">
         <div class="dropdown-menu" id="searchResultsDropdown" aria-labelledby="searchInput">
+        
         </div>
     </div>
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>

@@ -1,9 +1,19 @@
 package controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,12 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.SearchService;
 import util.HangulSearcher;
-import vo.ProductVO;
 
 @Controller
 public class SearchController {
 
 	SearchService s_service;
+	
 	static final String VIEW_PATH = "/WEB-INF/views/search/";
 
 	public SearchController(SearchService s_service) {
@@ -31,7 +41,7 @@ public class SearchController {
 
 	@RequestMapping(value = "search_keyword.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String search_keyword(String keyword) {
+	public String search_keyword(String keyword,HttpServletRequest request) throws UnsupportedEncodingException {
 		List<String> list = null;
 		List<String> keyList = null;
 		int[] che = null;
@@ -78,14 +88,44 @@ public class SearchController {
 	}
 
 	@RequestMapping(value = "/search_list.do", method = RequestMethod.GET)
-	public String product_search_list(String keyword, String page, Model model) {
+	public String product_search_list(String keyword, String page, Model model,HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
 		int nowpage = 1;
 		if (page != null && !page.isEmpty()) {
 			nowpage = Integer.parseInt(page);
 		}
+		// 최근 검색어 추가
+	    if (keyword != null && !keyword.isEmpty()) {
+	        s_service.addRecentSearch(keyword, request, response);
+	    }
 		Map<String, Object> p_map = s_service.s_search_list(keyword, nowpage);
 		model.addAttribute("list", p_map.get("list"));
 		model.addAttribute("page_menu", p_map.get("page_menu"));
 		return VIEW_PATH + "product_search.jsp";
 	}
+	
+	@RequestMapping(value= "/searchrecord.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String search_record(HttpServletRequest request) throws UnsupportedEncodingException {
+		List<String> list = s_service.getRecentSearches(request);
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonString = "";
+		try {
+			jsonString = mapper.writeValueAsString(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return jsonString;
 	}
+	
+	@RequestMapping(value="/seachrecordel.do",method = RequestMethod.POST)
+	@ResponseBody
+	public String search_record_del(HttpServletResponse response) {
+		s_service.deleteSearch(response);
+		 return "su";
+	}
+	
+	
+	
+	
+	
+}
