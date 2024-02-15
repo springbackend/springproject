@@ -5,7 +5,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="c">
 	<select id="comment_list" resultType="comment" parameterType="int">
 		SELECT * FROM comment_table
-		WHERE b_idx = #{b_idx}
+		WHERE b_idx = #{b_idx} AND depth = 0
+		ORDER BY c_idx DESC
+	</select>
+	
+	<select id="reply_list" resultType="comment" parameterType="int">
+		SELECT * FROM comment_table
+		WHERE ref = #{c_idx} AND depth = 1
+		ORDER BY c_idx DESC
+	</select>
+	
+	<select id="select_comment" resultType="comment" parameterType="int">
+		SELECT * FROM comment_table
+		WHERE c_idx = #{c_idx}
 	</select>
 
 	<insert id="comment_write" parameterType="comment">
@@ -15,9 +27,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{m_idx},
 			#{content},
 			#{ip},
-			sysdate
+			sysdate,
+			seq_comment_idx.currVal,
+			0,
+			0
 		)
 	</insert>
+	
+	<insert id="reply" parameterType="comment">
+		INSERT INTO comment_table VALUES (
+			seq_comment_idx.nextVal,
+			#{b_idx},
+			#{m_idx},
+			#{content},
+			#{ip},
+			sysdate,
+			#{ref},
+			#{step},
+			#{depth}
+		)
+	</insert>
+	
+	<delete id="board_comment_delete" parameterType="int">
+		DELETE FROM comment_table
+		WHERE b_idx = #{b_idx}
+	</delete>
+	
+	<update id="update_step" parameterType="comment">
+		UPDATE comment_table SET step = step + 1
+		WHERE ref = #{ref} AND step > #{step}
+	</update>
 </mapper>
 
 

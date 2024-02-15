@@ -3,27 +3,48 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="u">
+	<!-- create -->
+	<insert id="insert_user" parameterType="user">
+		INSERT INTO USER1
+		VALUES(
+		USER_SEQ.nextVal,
+		#{id},
+		#{name},
+		#{pwd},
+		#{pnum},
+		#{email},
+		#{gender},
+		#{regidate},
+		#{regiip},
+		#{addr},
+		#{birth}
+		)
+	</insert>
+	<!-- read -->
+	<!-- read user all -->
 	<select id="select_list" resultType="user">
 		SELECT * FROM USER1
 	</select>
-	<select id="select_one" resultType="user" parameterType="String">
+	<!-- read user one -->
+	<select id="ismember" resultType="user" parameterType="String">
 		SELECT *
 		FROM USER1
-		WHERE u_id = '${value}'
+		WHERE u_id = #{id}
 	</select>
-	<insert id="insert_user" parameterType="user">
-		INSERT INTO MEMBER VALUES(
-			u_idx = user_seq.nextVal,
-			u_id = id,
-			u_pwd = pwd,
-			u_name = name,
-			u_pnum = pnum,
-			u_regidate = regidate,
-			u_regiip = regiip,
-			u_gender = gender,
-			u_email = email
-		)
-	</insert>
+	<!-- update -->
+	<!-- update pwd -->
+	<update id="insert" parameterType="user">
+		UPDATE USER1
+		set
+		pwd=#{pwd},
+		WHERE id=#{id}
+	</update>
+	<!-- delete -->
+	<delete id="delete" parameterType="String">
+		delete 
+		FROM USER1
+		 WHERE u_id = #{id}
+	</delete>
 </mapper>
 
 

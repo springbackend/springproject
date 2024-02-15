@@ -19,10 +19,11 @@
 	<context:annotation-config />
 
 	<!-- 컴포넌트 스캔을 사용하기위한 설정 -->
-	<!-- <context:component-scan base-package="com.mega.db" /> -->
+	<!-- <context:component-scan base-package="com.shop.beauty" /> -->
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
+	<!-- resources 파일 접근 권한 -->
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- 파일이름에 .jsp로 자동 매핑하기위한 prefix 설정 -->
@@ -40,7 +41,15 @@
 	<!-- Setter 주입 -->
 	<!-- <beans:bean class="com.mega.db.SawonController"> <beans:property name="sawonDao" 
 		ref="sawon_daoBean"/> </beans:bean> -->
+		
+	<beans:bean class="controller.Admin1Controller">
+		<beans:constructor-arg ref="admin_servicBean" />
+	</beans:bean>
 
+	<beans:bean class="controller.MyPageController">
+	</beans:bean>
+	<beans:bean class="controller.TempController">
+	</beans:bean>
 	<beans:bean class="controller.LoginController">
 	</beans:bean>
 	<beans:bean class="controller.MainController">
@@ -48,23 +57,19 @@
 	<beans:bean class="controller.RegistController">
 		<beans:constructor-arg ref="user_userBean" />
 	</beans:bean>
-
-	<beans:bean class="controller.TempController">
-	</beans:bean>
-
 	<beans:bean class="controller.ProductController">
 		<beans:constructor-arg ref="product_serviceBean" />
 	</beans:bean>
-	
 	<beans:bean class="controller.BoardController">
-		<beans:constructor-arg ref="board_serviceBean"/>
-		<beans:constructor-arg ref="tone_serviceBean"/> 
-		<beans:constructor-arg ref="comment_serviceBean"/>
-		<beans:constructor-arg ref="likes_serviceBean"/>  
+		<beans:constructor-arg ref="board_serviceBean" />
+		<beans:constructor-arg ref="tone_serviceBean" />
+		<beans:constructor-arg ref="comment_serviceBean" />
+		<beans:constructor-arg ref="likes_serviceBean" />
 	</beans:bean>
-	
 	<beans:bean class="controller.SearchController">
-		<beans:constructor-arg ref="search_serviceBean"/>
+		<beans:constructor-arg ref="search_serviceBean" />
+	</beans:bean>
+	<beans:bean class="controller.ColorController">
 	</beans:bean>
 </beans:beans>
 
