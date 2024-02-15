@@ -7,9 +7,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+        .no-results {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: .25rem;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="../main/index.jsp" flush="false" />
+	<c:if test="${!empty list }">
 	<!-- 컨테이너: 콘텐츠를 중앙에 위치시키기 위한 래퍼 -->
     <div class="container mt-4">
         <!-- 행: 컬럼을 가로로 배치하기 위한 컨테이너 -->
@@ -41,8 +51,16 @@
             ${page_menu }
         </div>
     </div>
+    </c:if>
+    <c:if test="${empty list }">
+        <div class="container text-center">
+            <div class="no-results">
+                <h5>검색 결과가 없습니다.</h5>
+                <p>다른 검색어로 시도해보세요.</p>
+            </div>
+        </div>
+    </c:if>
     <!-- 부트스트랩 JS: 부트스트랩의 동적 기능을 사용하기 위한 자바스크립트 파일 -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	
 </body>
 </html>

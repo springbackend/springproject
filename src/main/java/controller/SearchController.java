@@ -94,15 +94,19 @@ public class SearchController {
 			nowpage = Integer.parseInt(page);
 		}
 		// 최근 검색어 추가
-	    if (keyword != null && !keyword.isEmpty()) {
-	        s_service.addRecentSearch(keyword, request, response);
-	    }
+//	    if (keyword != null && !keyword.isEmpty()) {
+//	        s_service.addRecentSearch(keyword, request, response);
+//	    }
+		if(keyword == null || keyword.isEmpty()) {
+			return VIEW_PATH + "search_no.jsp";
+		}
 		Map<String, Object> p_map = s_service.s_search_list(keyword, nowpage);
 		model.addAttribute("list", p_map.get("list"));
 		model.addAttribute("page_menu", p_map.get("page_menu"));
 		return VIEW_PATH + "product_search.jsp";
 	}
 	
+	//최근 검색어
 	@RequestMapping(value= "/searchrecord.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String search_record(HttpServletRequest request) throws UnsupportedEncodingException {
@@ -117,10 +121,11 @@ public class SearchController {
 		return jsonString;
 	}
 	
+	//최근검색어삭제
 	@RequestMapping(value="/seachrecordel.do",method = RequestMethod.POST)
 	@ResponseBody
-	public String search_record_del(HttpServletResponse response) {
-		s_service.deleteSearch(response);
+	public String search_record_del(HttpServletRequest request, HttpServletResponse response) {
+		s_service.deleteSearch(request,response);
 		 return "su";
 	}
 	

@@ -108,6 +108,7 @@ public class SearchService {
 		return firstlist;
 	}
 	
+	//검색어 쿠키에서저장
 	public void addRecentSearch(String keyword,HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
 	    String delimiter = "|";
 	    // 쿠키에서 기존의 최근 검색어 목록을 가져옴
@@ -150,7 +151,7 @@ public class SearchService {
 	    cookie.setMaxAge(60 * 60 * 24 * 7); // 쿠키 유효 기간 설정
 	    response.addCookie(cookie);
 	}
-	
+	//쿠키리스트로 반환
 	public List<String> getRecentSearches(HttpServletRequest request) throws UnsupportedEncodingException {
 	    List<String> recentSearches = new ArrayList<String>();
 	    Cookie[] cookies = request.getCookies();
@@ -165,12 +166,23 @@ public class SearchService {
 	    }
 	    return recentSearches;
 	}
-	
-	public void deleteSearch(HttpServletResponse response) {
-		Cookie cookie = new Cookie("recentSearches", null);
-	    cookie.setMaxAge(0); // 쿠키를 삭제
-	    cookie.setPath("/"); // 쿠키 경로 설정이 필요할 수 있음
-	    response.addCookie(cookie); // 수정된 쿠키를 응답에 추가
+	//쿠키삭제
+	public void deleteSearch(HttpServletRequest request, HttpServletResponse response) {
+		// "recentSearches" 쿠키 찾기
+	    Cookie[] cookies = request.getCookies();
+	    if (cookies != null) {
+	        for (Cookie cookie : cookies) {
+	            if ("recentSearches".equals(cookie.getName())) {
+	                // 쿠키의 maxAge를 0으로 설정하여 삭제
+	                cookie.setMaxAge(0);
+	                // 쿠키 경로 설정이 필요할 경우 여기서 설정
+	                cookie.setPath("/");
+	                // 변경된 쿠키를 응답에 추가하여 클라이언트에게 보냄
+	                response.addCookie(cookie);
+	                break;
+	            }
+	        }
+	    }
 	}
 
 }

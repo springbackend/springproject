@@ -61,9 +61,9 @@ public class ProductPaging {
 			sb.append(startPage - 1);
 			sb.append("&p_category_b=");
 			sb.append(p_category);
-			sb.append("'><img src='/pro/resources/img/btn_prev.gif'></a>");
+			sb.append("'>◀</a>");
 		} else
-			sb.append("<img src='/pro/resources/img/btn_prev.gif'>");
+			sb.append("◀");
 
 //------페이지 목록 출력 -------------------------------------------------------------------------------------------------
 		// sb.append("|");
@@ -95,9 +95,9 @@ public class ProductPaging {
 			sb.append(endPage + 1);
 			sb.append("&p_category_b=");
 			sb.append(p_category);
-			sb.append("'><img src='/pro/resources/img/btn_next.gif'></a>");
+			sb.append("'>▶</a>");
 		} else
-			sb.append("<img src='/pro/resources/img/btn_next.gif'>");
+			sb.append("▶");
 //---------------------------------------------------------------------------------------------------------------------	    
 
 		return sb.toString();
@@ -144,9 +144,9 @@ public class ProductPaging {
 			sb.append(startPage - 1);
 			sb.append("&keyword=");
 			sb.append(keyword);
-			sb.append("'><img src='/pro/resources/img/btn_prev.gif'></a>");
+			sb.append("'>◀</a>");
 		} else
-			sb.append("<img src='/pro/resources/img/btn_prev.gif'>");
+			sb.append("◀");
 
 		for (int i = startPage; i <= endPage; i++) {
 			if (i > totalPage)
@@ -173,9 +173,9 @@ public class ProductPaging {
 			sb.append(endPage + 1);
 			sb.append("&keyword=");
 			sb.append(keyword);
-			sb.append("'><img src='/pro/resources/img/btn_next.gif'></a>");
+			sb.append("'>▶</a>");
 		} else
-			sb.append("<img src='/pro/resources/img/btn_next.gif'>");
+			sb.append("▶");
 
 		return sb.toString();
 	}
