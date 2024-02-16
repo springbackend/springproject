@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import service.ProductService;
 import vo.ProductVO;
 
@@ -25,6 +27,7 @@ public class ProductController {
 	public ProductController(ProductService p_service) {
 		this.p_service = p_service;
 	}
+	
 	//카테고리 리스트
 	@RequestMapping(value = "/product_category_list.do", method = RequestMethod.GET)
 	public String category_list(String page, String p_category_b, Model model) {

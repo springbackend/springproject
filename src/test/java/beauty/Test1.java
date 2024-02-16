@@ -1,12 +1,9 @@
 package beauty;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+
 import org.junit.Test;
-import org.opencv.core.CvType;
-import org.opencv.core.Mat;
-import org.opencv.core.Size;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +24,9 @@ public class Test1 {
 	@Test
 	public void exam() {
 		String a = "a";
-		Assertions.assertThat(a).isEqualTo("a");
+		assertThat(a).isEqualTo("a");
+//		assertThatIllegalArgumentException().isThrownBy((e) -> {
+//        
+//        }
 	}
 }

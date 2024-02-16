@@ -1,10 +1,13 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import lombok.extern.slf4j.Slf4j;
+import vo.BoardVO;
 import vo.UserVO;
 
 @Slf4j
@@ -53,5 +56,16 @@ public class UserDAO {
 			log.info("계정삭제 완료", id);
 		}
 		return res;
+	}
+
+	//select comment,list
+	public List<BoardVO> findMyComment(String id) {
+		List<BoardVO> list = sqlSession.selectList("fm.comment", id);
+		return list;
+	}
+
+	public List<BoardVO> findMyList(String id) {
+		List<BoardVO> list = sqlSession.selectList("fm.list", id);
+		return list;
 	}
 }
