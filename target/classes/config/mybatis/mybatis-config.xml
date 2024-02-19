@@ -15,6 +15,7 @@
 		<typeAlias type="vo.CommentVO" alias="comment"/>
 		<typeAlias type="vo.LikesVO" alias="likes"/>
 		<typeAlias type="dao.AdminDTO" alias="admin" />
+		<typeAlias type="vo.ProductCommnetVO" alias="productcomment"/>
 	</typeAliases>
 	
 	<mappers>
@@ -26,5 +27,6 @@
 		<mapper resource="config/mybatis/mapper/tone.xml"/>
 		<mapper resource="config/mybatis/mapper/likes.xml"/>
 		<mapper resource="config/mybatis/mapper/search.xml"/>
+		<mapper resource="config/mybatis/mapper/productComment.xml"/>
 	</mappers>
 </configuration>
