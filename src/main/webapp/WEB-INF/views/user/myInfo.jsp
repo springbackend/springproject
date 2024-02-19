@@ -17,62 +17,101 @@
 		//버튼 조회||닫기
 		let btnElement = document.getElementById('btn_ViewMyPosts');
 		if(btnElement.innerText == '닫기'){
-			btnElement.innerText = '내글 조회하기';
+			btnElement.innerText = '내글보기';
 		}else{
 			btnElement.innerText = '닫기';
 			let url = "viewMyPosts.do"
-			let param= "";
+			let param="";
 			sendRequest(url,param,resultViewMyPosts,"POST");
 		}
 	}
 	function resultViewMyPosts(){
 		if(xhr.status ==4 && xhr.readyState==200){
 			let myPostView= document.getElementById('result');
+			myPostView=
 			//Text.
 			//var obj = JSON.parse();
 			document.getElementById("result").innerHTML = "#";
-		}else{
-			alert("내글보기 실패");
 		}
+	}
+	function printresult(tags){
+		
+		
+		
 	}
 	//내가 작성한 댓글보기
 	function viewMyComments(){
+		let btnElement = document.getElementById('btn_ViewMyComments');
+		if(btnElement.innerText == '닫기'){
+			btnElement.innerText = '내가 작성한 댓글보기';
+		}else{
+			btnElement.innerText = '닫기';
+			let url = "viewMyComments.do";
+				let param="";
+			sendRequest(url,param,resultViewMyComments,"POST");
+		}
 		
-		sendRequest(url,param,resultViewMyComments,"POST");
 	}
 	function resultViewMyComments(){
 		if(xhr.status ==4 && xhr.readyState==200){
 		//document.querySelector().append(temp);
-		}else{
-			alert("내댓글보기 실패");
 		}
 	}
 	//비밀번호 변경하기
 	function changeMyPwd(){
-		
+		let input_previous_ChangeMyPwd = document.getElementById("input_previous_ChangeMyPwd").value;
+		let input_new_ChangeMyPwd = document.getElementById("input_new_ChangeMyPwd").value;
+		let input_new_ChangeMyPwd2 = document.getElementById("input_new_ChangeMyPwd2").value;
+		if(input_new_ChangeMyPwd != input_new_ChangeMyPwd2){
+			alert("새 비밀번호가 다릅니다.");
+			return;	
+		}
+		if(input_previous_ChangeMyPwd){
+			
+			
+		}
+		let url = "changeMyPwd.do";
+		let param="prepwd=" +input_previous_ChangeMyPwd +"&newpwd="+input_new_ChangeMyPwd;
 		sendRequest(url,param,resultchangeMyPwd,"POST");
 		
 	}
 	function resultchangeMyPwd(){
-		
 		if(xhr.status ==4 && xhr.readyState==200){
-		}else{
-			alert("비밀번호 변경 실패");
+			let result = decodeURI(decodeURIComponent(xhr.responseText));
+			if(result == "error100"){
+				alert("기본 비밀번호를 틀렸습니다.");
+				return;	
+			}
+			if(result == "error101"){
+				alert("비밀번호 재설정오류\n다시 시도해 주시길 바랍니다.");
+				return;
+			}
+			if(result == "success"){
+				alert("비밀번호 변경에 성공했습니다.\n다시 로그인해 주시길 바랍니다.");
+				return;
+			}
+			location.href="logout.do";
 		}
 	}
 	//계정삭제하기
 	function deleteAccount(){
-		let pw = document.getElementById("pw").value;
-		let url = "accountdelete";
-		let param = "pw="+pw;
+		let pwd = document.getElementById("input_DeleteAccount").value;
+		let url = "deleteAccount.do";
+		let param = "pwd="+pwd;
 		sendRequest(url,param,resultDeleteAccount,"POST");
 	}	
 	function resultDeleteAccount(){
 		if(xhr.status ==4 && xhr.readyState==200){
-			alert("계정 정상삭제");
-		}else{
-			
-			alert("계장삭제 실패");
+			let result = decodeURI(decodeURIComponent(xhr.responseText));
+			if(result =="error102"){
+				alert("탈퇴에에 실패했습니다.\n다시시도해주시길바랍니다.");
+				return;
+			}
+			if(result =="success"){
+				alert("탈퇴에 성공했습니다.\n이용해주셔서 감사합니다");
+				location.href="logout.do";
+				return;
+			}
 		}
 	}
 </script>
@@ -100,14 +139,43 @@
 					작성한 댓글보기</button>
 			</div>
 			<div class="col align-self-center">
+				<input type="password" id="input_previous_ChangeMyPwd"
+					placeholder="이전 비밀번호"> <input type="password"
+					id="input_new_ChangeMyPwd" placeholder="새 비밀번호"> <input
+					type="password" id="input_new_ChangeMyPwd2" placeholder="새 비밀번호 확인">
 				<button onclick="changeMyPwd();" id="btn_ChangeMyPwd">비밀번호
 					변경하기</button>
 			</div>
 			<div class="col align-self-center">
+				<input type="password" id="input_DeleteAccount"
+					placeholder="비밀번호 입력">
 				<button onclick="deleteAccount();" id="btn_DeleteAccount">계정삭제하기</button>
 			</div>
 		</section>
-		<section id="result"></section>
+		<section class="row">
+			<div id="result">
+				<!-- 게시판 테이블구상 폼 -->
+				<table>
+					<tr>
+						<td id="idx">인덱스 번호</td>
+						<td id="#"><a href="#">게시글 제목</a></td>
+						<td id="#">게시글 내용</td>
+						<td id="#">작성날짜</td>
+						<!-- <td id="#"><button type="button" onclick="">삭제버튼</button></td> -->
+					</tr>
+				</table>
+				<!-- 댓글테이블구상 폼 -->
+				<table id>
+					<tr>
+						<td id="idx">인덱스 번호</td>
+						<td id="#"><a href="#">댓글내용</a></td>
+						<td id="#">작성날짜</td>
+						<!-- <td id="#"><button type="button" onclick="">삭제버튼</button></td> -->
+
+					</tr>
+				</table>
+			</div>
+		</section>
 
 	</main>
 </body>

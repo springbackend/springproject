@@ -45,8 +45,7 @@
 	<beans:bean class="controller.Admin1Controller">
 		<beans:constructor-arg ref="admin_servicBean" />
 	</beans:bean>
-
-	<beans:bean class="controller.MyPageController">
+	<beans:bean class="controller.MyInfoController">
 		<beans:constructor-arg ref="user_userBean" />
 		<beans:constructor-arg
 			ref="userBoard_userBoardBean" />

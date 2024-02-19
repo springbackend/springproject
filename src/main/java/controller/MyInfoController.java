@@ -16,12 +16,12 @@ import vo.UserVO;
 
 @Slf4j
 @Controller
-public class MyPageController {
+public class MyInfoController {
 
 	UserDAO userdao;
 	UserBoardDAO userBoardDAO;
 
-	public MyPageController(UserDAO userdao, UserBoardDAO userBoardDAO) {
+	public MyInfoController(UserDAO userdao, UserBoardDAO userBoardDAO) {
 		this.userdao = userdao;
 		this.userBoardDAO = userBoardDAO;
 	}
@@ -30,7 +30,7 @@ public class MyPageController {
 
 	@RequestMapping(value = "/myInfo.do")
 	public String myInfo() {
-		return VIEW_PATH + "/user/myInfo.jsp";
+		return VIEW_PATH + "myInfo.jsp";
 	}
 
 	// 내글보기
