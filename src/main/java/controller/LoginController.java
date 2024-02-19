@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 
 import dao.UserDAO;
 import jdk.internal.org.jline.utils.Log;
@@ -61,14 +62,16 @@ public class LoginController {
 			UserVO vo = option.get();
 			session.setAttribute("status", "succes");
 			session.setAttribute("nickname", vo.getName());
+			session.setAttribute("id", vo.getId());
 		}
 		return result;
 	}
 
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	public String logout(HttpServletRequest request) throws Exception {
+	public String logout(HttpServletRequest request, SessionStatus status) throws Exception {
 		HttpSession session = request.getSession();
 		session.invalidate();
+		status.setComplete();
 		return VIEWPATH + "/main/main.jsp";
 	}
 

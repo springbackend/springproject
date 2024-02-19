@@ -33,17 +33,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- update -->
 	<!-- update pwd -->
-	<update id="insert" parameterType="user">
+	<update id="changeMyPwd" parameterType="user">
 		UPDATE USER1
 		set
 		pwd=#{pwd},
 		WHERE id=#{id}
 	</update>
 	<!-- delete -->
-	<delete id="delete" parameterType="String">
-		delete 
+	<delete id="deleteAccount" parameterType="String">
+		delete
 		FROM USER1
-		 WHERE u_id = #{id}
+		WHERE
+		u_id = #{id}
 	</delete>
 </mapper>
 

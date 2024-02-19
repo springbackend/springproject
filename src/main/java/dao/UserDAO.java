@@ -58,14 +58,14 @@ public class UserDAO {
 		return res;
 	}
 
-	//select comment,list
-	public List<BoardVO> findMyComment(String id) {
-		List<BoardVO> list = sqlSession.selectList("fm.comment", id);
-		return list;
+	public int changeMyPwd(UserVO uservo) {
+		int res = sqlSession.update("u.changeMyPwd", uservo);
+		return res;
 	}
 
-	public List<BoardVO> findMyList(String id) {
-		List<BoardVO> list = sqlSession.selectList("fm.list", id);
-		return list;
+	public int deleteAccount(String id) {
+		int res = sqlSession.delete("u.deleteAccount", id);
+		return res;
 	}
+
 }

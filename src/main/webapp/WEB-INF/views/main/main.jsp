@@ -13,36 +13,10 @@
 	<main>
 		여기에 아직 어떤 카테고리 띄울지는 모르지만, 상품들 띄울예정(보여질것들:사진,가격,상품이름) 예)베스트 상품 5개, 할인중인
 		상품 5개, 추천 상품 5개 (카테고리는 상관없이)
-		<!--  -->
-		<!--  -->
-		<!--  -->
-		<!-- 	<div id="carouselExampleAutoplaying" class="carousel slide"
-		data-bs-ride="carousel">
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="resources/images/logo.png" alt="...">
-			</div>
-			<div class="carousel-item">
-				<img src="resources/images/logotemp.png" alt="...">
-			</div>
-			<div class="carousel-item">
-				<img src="resources/images/temp.png" alt="...">
-			</div>
-		</div>
-		<button class="carousel-control-prev" type="button"
-			data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button"
-			data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Next</span>
-		</button>
-	</div>
- -->
 		<section>
-			<div id="carouselExampleControls" class="carousel slide"
+
+
+			<!-- 	<div id="carouselExampleControls" class="carousel slide"
 				data-bs-ride="carousel">
 				<ul class="carousel-indicators">
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -70,7 +44,7 @@
 					<span class="carousel-control-next-icon" aria-hidden="true"></span>
 					<span class="visually-hidden">Next</span>
 				</button>
-			</div>
+			</div> -->
 		</section>
 	</main>
 	<%-- <jsp:include page="../comp/footer.jsp"></jsp:include> --%>

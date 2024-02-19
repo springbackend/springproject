@@ -101,7 +101,7 @@ th, td {
 							<th><a href="#">====</a></th>
 						</tr>
 						<tr>
-							<th><a href="#">====</a></th>
+							<th><a href="myinfo.do">myinfo</a></th>
 							<th><a href="#">====</a></th>
 							<th><a href="#">====</a></th>
 							<th><a href="#">====</a></th>
