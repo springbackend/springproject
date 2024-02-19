@@ -39,7 +39,6 @@ public class RegistController {
 	// 회원가입페이지 매핑
 	@RequestMapping(value = "/regist.do")
 	public String regist() {
-		System.out.println("regist page");
 		return VIEWPATH + "/login/regist.jsp";
 	}
 

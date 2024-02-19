@@ -4,12 +4,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ub">
 
-	<select id="viewMyPosts">
+	<select id="viewMyPosts" parameterType="board">
 		select * from Board
+		where
+		u_id=#{u_id}
 
 	</select>
-	<select id="viewMyComments">
-		select * from Board
+	<select id="viewMyComments" parameterType="board">
+		select * from
+		comment_table
+		where u_id= #{u_id}
 	</select>
 
 </mapper>

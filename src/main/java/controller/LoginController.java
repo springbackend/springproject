@@ -29,7 +29,6 @@ public class LoginController {
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String login() throws Exception {
-		System.out.println("login page");
 		return VIEWPATH + "/login/login.jsp";
 	}
 
@@ -45,8 +44,8 @@ public class LoginController {
 		if (id.equalsIgnoreCase("1111") && pwd.equalsIgnoreCase("1111")) {
 			result = good;
 			session.setAttribute("status", "succes");
-			session.setAttribute("nickname", "temp");
-			System.out.println(session.getAttribute("nickname"));
+			session.setAttribute("nickname", "t_nickname");
+			session.setAttribute("id", "t_id");
 		} else {
 			Optional<UserVO> option = Optional.ofNullable(dao.findById(id));
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
