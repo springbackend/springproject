@@ -15,7 +15,7 @@
 		<typeAlias type="vo.CommentVO" alias="comment"/>
 		<typeAlias type="vo.LikesVO" alias="likes"/>
 		<typeAlias type="dao.AdminDTO" alias="admin" />
-		<typeAlias type="vo.ProductCommnetVO" alias="productcomment"/>
+		<typeAlias type="vo.ProductCommentVO" alias="productcomment"/>
 	</typeAliases>
 	
 	<mappers>
