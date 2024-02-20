@@ -30,6 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sysdate,
 			seq_comment_idx.currVal,
 			0,
+			0,
 			0
 		)
 	</insert>
@@ -44,7 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sysdate,
 			#{ref},
 			#{step},
-			#{depth}
+			#{depth},
+			0
 		)
 	</insert>
 	
@@ -56,6 +58,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update_step" parameterType="comment">
 		UPDATE comment_table SET step = step + 1
 		WHERE ref = #{ref} AND step > #{step}
+	</update>
+	
+	<update id="update_reply" parameterType="int">
+		UPDATE comment_table SET reply_count = reply_count + 1
+		WHERE c_idx = #{c_idx}
 	</update>
 </mapper>
 

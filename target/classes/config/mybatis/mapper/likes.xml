@@ -3,8 +3,13 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="l">
-	<select id="likes_select_one" resultType="likes" parameterType="int">
+	<select id="check_like" resultType="likes" parameterType="likes">
 		SELECT * FROM likes
+		WHERE b_idx = #{b_idx} AND m_idx = #{m_idx}
+	</select>
+	
+	<select id="count_like" resultType="int" parameterType="int">
+		SELECT COUNT(*) FROM likes
 		WHERE b_idx = #{b_idx}
 	</select>
 	
@@ -16,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
-	<delete id="delete" parameterType="likes">
+	<delete id="delete" parameterType="int">
 		DELETE FROM likes
 		WHERE b_idx = #{b_idx} AND m_idx = #{m_idx}
 	</delete>
