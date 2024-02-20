@@ -74,7 +74,7 @@
 		//비밀번호 정규식
 		let regpwd = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
 		//이메일 정규식
-		let regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+		//let regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 		//유효성 검증로직
 		if (document.getElementById("id").readOnly != true) {
 			alert("아이디 중복체크를 해주세요.");
@@ -104,9 +104,10 @@
 			alert("이메일을 입력해주세요");
 			joinForm.email.focus();
 			return;
-		} else if (regex.test(email)) {
-			alert("이메일을 제대로 입력해주세요");
-		} else if (selectedGenderElement == null) {
+		} 
+	/* else if (regex.test(email)) {
+				alert("이메일을 제대로 입력해주세요");
+			}  */else if (selectedGenderElement == null) {
 			alert("성별을 선택하세요.");
 			return;
 		} else {

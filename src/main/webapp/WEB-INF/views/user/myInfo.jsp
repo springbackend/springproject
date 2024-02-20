@@ -9,8 +9,22 @@
 </style>
 <script type="text/javascript" src="/beauty/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
-	//프로필 사진 변경하기
-	//프로필 상태메시지 변경
+	//프로필사진 변경하기
+	function changeMyProfilePicture(){
+		
+	}
+	//프로필상태메시지 변경
+	function changeMyStatusPost(){
+		
+	}
+	//내주문 보기
+	function viewingMyOrders(){
+		
+	}
+	//내찜상품 보기
+	function myWishlist(){
+	
+	}
 	
 	//내글보기
 	function viewMyPosts(){
@@ -34,9 +48,8 @@
 			document.getElementById("result").innerHTML = "#";
 		}
 	}
-	function printresult(tags){
-		
-		
+	function printResult(let text){
+		let result = decodeURI(decodeURIComponent(xhr.responseText));
 		
 	}
 	//내가 작성한 댓글보기
@@ -123,13 +136,18 @@
 	<main class="container">
 		<section class="row">
 			<div class="col align-self-center">
-				<button onclick="#" id="#">프로필사진 변경하기</button>
+				<button onclick="#();" id="btn_ChangeMyProfilePicture">프로필사진
+					변경하기</button>
 			</div>
 			<div class="col align-self-center">
-				<button onclick="#" id="#">프로필상태메시지 변경하기</button>
+				<button onclick="#();" id="btn_ChangeMyStatusPost">프로필상태메시지
+					변경하기</button>
 			</div>
 			<div class="col align-self-center">
-				<button onclick="#" id="#">내상태글 변경하기</button>
+				<button onclick="#();" id="btn_ViewingMyOrders">내주문 보기</button>
+			</div>
+			<div class="col align-self-center">
+				<button onclick="#();" id="btn_MyWishlist">내찜상품 보기</button>
 			</div>
 			<div class="col align-self-center">
 				<button onclick="viewMyPosts();" id="btn_ViewMyPosts">내글보기</button>
