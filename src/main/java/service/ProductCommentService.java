@@ -18,7 +18,9 @@ public class ProductCommentService {
 		return list;
 	}
 	
-	public int productComment_write(ProductCommentVO pc_vo) {
+	public int productComment_write(ProductCommentVO pc_vo,String id) {
+		int u_idx = pc_dao.user_select(id);
+		pc_vo.setU_idx(u_idx);
 		int res = pc_dao.productComment_write(pc_vo);
 		return res;
 	}
