@@ -24,9 +24,9 @@ public class UserDAO {
 	public int save(UserVO vo) {
 		int res = sqlSession.insert("u.insert_user", vo);
 		if (res > 0) {
-			log.info("회원가입 성공 id : {}", vo.getId());
+			log.info("회원가입 성공 id : {}", vo.getU_id());
 		} else {
-			log.info("회원가입 실패 id : {}", vo.getId());
+			log.info("회원가입 실패 id : {}", vo.getU_id());
 		}
 		return res;
 	}
@@ -39,7 +39,9 @@ public class UserDAO {
 
 	// read one
 	public UserVO findById(String id) {
+		System.out.println(id);
 		UserVO vo = sqlSession.selectOne("u.ismember", id);
+		System.out.println("vo:"+vo);
 //		log.warn("{}", vo.getId());
 		return vo;
 	}

@@ -50,26 +50,26 @@ public class RegistController {
 		String result = "실패";
 		// 암호화
 		if (id != null && pwd != null && name != null && gender != null && pnum != null) {
-			vo.setId(id);
-			vo.setPwd(pwd);
-			vo.setName(name);
-			vo.setGender(gender);
-			vo.setPnum(pnum);
-			vo.setEmail(email);
+			vo.setU_id(id);
+			vo.setU_pwd(pwd);
+			vo.setU_name(name);
+			vo.setU_gender(gender);
+			vo.setU_pnum(pnum);
+			vo.setU_email(email);
 			System.out.println("set성공");
 		} else {
 			System.out.println("set실패");
 			return String.valueOf(result);
 		}
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		vo.setPwd(passwordEncoder.encode(vo.getPwd()));
-		vo.setBirth("asd");
-		vo.setAddr("asd");
+		vo.setU_pwd(passwordEncoder.encode(vo.getU_pwd()));
+		vo.setU_birth("asd");
+		vo.setU_addr("asd");
 		SimpleDateFormat rigidaytime = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 		Date date = new Date(System.currentTimeMillis());
 		String regidate = rigidaytime.format(date);
-		vo.setRegidate(regidate);
-		vo.setRegiip(request.getRemoteAddr());
+		vo.setU_regidate(regidate);
+		vo.setU_regiip(request.getRemoteAddr());
 		// 회원가입 수행
 		int res = userdao.save(vo);
 		if (res > 0) {

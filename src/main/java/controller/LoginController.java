@@ -57,13 +57,13 @@ public class LoginController {
 				return login_result;
 			}
 			UserVO vo = option.get();
-			if (!passwordEncoder.matches(pwd, vo.getPwd())) {
+			if (!passwordEncoder.matches(pwd, vo.getU_pwd())) {
 				return login_result;
 			}
 			login_result = good;
 			session.setAttribute("status", "succes");
-			session.setAttribute("nickname", vo.getName());
-			session.setAttribute("id", vo.getId());
+			session.setAttribute("nickname", vo.getU_name());
+			session.setAttribute("id", vo.getU_id());
 		}
 
 		return login_result;
