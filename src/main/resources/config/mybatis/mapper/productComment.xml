@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="product_comment_write" parameterType="productcomment">
-		INSERT INTO product_comment VALUES(pc_seq_idx.nextval,#{pc_content},#{pc_image},#{pc_good},#{p_idx},#{u_idx},#{pc_star},sysdate)
+		INSERT INTO product_comment VALUES(pc_seq_idx.nextval,#{pc_content},#{pc_image},#{pc_good},1,2,#{pc_star},sysdate)
 	</insert>
 </mapper>
 

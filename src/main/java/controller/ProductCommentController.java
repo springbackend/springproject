@@ -28,5 +28,11 @@ public class ProductCommentController {
 	public String productComment_write() {
 		return VIEW_PATH+"productcomment_write.jsp";
 	}
+	
+	@RequestMapping("product_comment_write.do")
+	public String productComment_write(ProductCommentVO pc_vo) {
+		pc_Service.productComment_write(pc_vo);
+		return "redirect:product_comment.do";
+	}
 
 }

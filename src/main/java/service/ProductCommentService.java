@@ -17,5 +17,10 @@ public class ProductCommentService {
 		List<ProductCommentVO> list = pc_dao.productComment_list(p_idx);
 		return list;
 	}
+	
+	public int productComment_write(ProductCommentVO pc_vo) {
+		int res = pc_dao.productComment_write(pc_vo);
+		return res;
+	}
 
 }
