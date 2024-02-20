@@ -36,7 +36,7 @@ CREATE TABLE USER1
 	u_idx NUMBER(10) NOT NULL PRIMARY KEY,
 	u_id varchar(10) NOT NULL,
 	u_name varchar(10) NOT NULL,
-	u_pwd varchar(20) NOT NULL,
+	u_pwd varchar(100) NOT NULL,
 	u_pnum varchar(20) NOT NULL,
 	u_email varchar(20) NOT NULL,
 	u_gender varchar(10) NOT NULL,

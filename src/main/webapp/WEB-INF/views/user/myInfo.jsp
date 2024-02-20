@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,8 +51,7 @@
 		}
 	}
 	function printResult(let text){
-		let result = decodeURI(decodeURIComponent(xhr.responseText));
-		
+		let json = JSON.parse(text);
 	}
 	//내가 작성한 댓글보기
 	function viewMyComments(){
@@ -171,28 +172,8 @@
 			</div>
 		</section>
 		<section class="row">
-			<div id="result">
-				<!-- 게시판 테이블구상 폼 -->
-				<table>
-					<tr>
-						<td id="idx">인덱스 번호</td>
-						<td id="#"><a href="#">게시글 제목</a></td>
-						<td id="#">게시글 내용</td>
-						<td id="#">작성날짜</td>
-						<!-- <td id="#"><button type="button" onclick="">삭제버튼</button></td> -->
-					</tr>
-				</table>
-				<!-- 댓글테이블구상 폼 -->
-				<table id>
-					<tr>
-						<td id="idx">인덱스 번호</td>
-						<td id="#"><a href="#">댓글내용</a></td>
-						<td id="#">작성날짜</td>
-						<!-- <td id="#"><button type="button" onclick="">삭제버튼</button></td> -->
-
-					</tr>
-				</table>
-			</div>
+			<div id="tabl1"></div>
+			<div id="tabl2"></div>
 		</section>
 
 	</main>

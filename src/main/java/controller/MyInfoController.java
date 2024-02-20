@@ -34,14 +34,17 @@ public class MyInfoController {
 	}
 
 	// 내글보기
-	@ResponseBody
 	@RequestMapping(value = "/viewMyPosts.do")
 	public List<BoardVO> viewMyPosts(HttpSession session) {
 		String id = session.getId();
 		// 내글조회
 		List<BoardVO> list = userBoardDAO.viewMyPosts(id);
+		
 		return list;
 	}
+	
+	
+	
 
 	// 내가 작성한 댓글보기
 	@ResponseBody
