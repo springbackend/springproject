@@ -77,4 +77,12 @@
 	<bean id="admin_servicBean" class="service.AdminServiceImpl">
 		<constructor-arg ref="admin_adminBean" />
 	</bean>
+	
+	<bean id="productcomment_daoBean" class="dao.ProductCommentDAO">
+		<constructor-arg ref="sqlSessionBean"/>
+	</bean>
+	
+	<bean id="productcomment_serviceBean" class="service.ProductCommentService">
+		<constructor-arg ref="productcomment_daoBean"/>
+	</bean>
 </beans>
