@@ -40,6 +40,7 @@ public class UserDAO {
 	// read one
 	public UserVO findById(String id) {
 		UserVO vo = sqlSession.selectOne("u.ismember", id);
+//		log.warn("{}", vo.getId());
 		return vo;
 	}
 

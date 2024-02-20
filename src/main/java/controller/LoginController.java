@@ -18,8 +18,10 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import dao.UserDAO;
 import jdk.internal.org.jline.utils.Log;
+import lombok.extern.slf4j.Slf4j;
 import vo.UserVO;
 
+@Slf4j
 @Controller
 public class LoginController {
 	static final String VIEWPATH = "/WEB-INF/views";
@@ -39,10 +41,11 @@ public class LoginController {
 		if (yuji.equalsIgnoreCase(yuji)) {
 			session.setMaxInactiveInterval(-1);
 		}
-		String result = "bad";
+		String login_result = "bad";
 		String good = "good";
+
 		if (id.equalsIgnoreCase("1111") && pwd.equalsIgnoreCase("1111")) {
-			result = good;
+			login_result = good;
 			session.setAttribute("status", "succes");
 			session.setAttribute("nickname", "t_nickname");
 			session.setAttribute("id", "t_id");
@@ -50,20 +53,20 @@ public class LoginController {
 			Optional<UserVO> option = Optional.ofNullable(dao.findById(id));
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			if (option.isEmpty()) {
-				return result;
-			} else {
-				UserVO vo = option.get();
-				if (!passwordEncoder.matches(pwd, vo.getPwd())) {
-					return result;
-				}
+				log.warn("null input = {}", option);
+				return login_result;
 			}
-			result = good;
 			UserVO vo = option.get();
+			if (!passwordEncoder.matches(pwd, vo.getPwd())) {
+				return login_result;
+			}
+			login_result = good;
 			session.setAttribute("status", "succes");
 			session.setAttribute("nickname", vo.getName());
 			session.setAttribute("id", vo.getId());
 		}
-		return result;
+
+		return login_result;
 	}
 
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")

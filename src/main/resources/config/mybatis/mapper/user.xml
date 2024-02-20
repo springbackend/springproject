@@ -26,10 +26,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM USER1
 	</select>
 	<!-- read user one -->
-	<select id="ismember" resultType="user" parameterType="String">
+	<select id="ismember" parameterType="String" resultType="user">
 		SELECT *
 		FROM USER1
-		WHERE u_id = #{id}
+		WHERE U_ID = '${value}'
 	</select>
 	<!-- update -->
 	<!-- update pwd -->

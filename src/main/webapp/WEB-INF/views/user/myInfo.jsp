@@ -151,10 +151,10 @@
 				<button onclick="#();" id="btn_MyWishlist">내찜상품 보기</button>
 			</div>
 			<div class="col align-self-center">
-				<button onclick="viewMyPosts();" id="btn_ViewMyPosts">내글보기</button>
+				<button onclick="view-my-posts.do;" id="btn_ViewMyPosts">내글보기</button>
 			</div>
 			<div class="col align-self-center">
-				<button onclick="viewMyComments();" id="btn_ViewMyComments">내가
+				<button onclick="view-my-comments.do;" id="btn_ViewMyComments">내가
 					작성한 댓글보기</button>
 			</div>
 			<div class="col align-self-center">

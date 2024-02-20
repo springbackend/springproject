@@ -47,7 +47,6 @@ public class MyInfoController {
 	
 
 	// 내가 작성한 댓글보기
-	@ResponseBody
 	@RequestMapping(value = "/viewMyComments.do")
 	public List<BoardVO> viewMyComments(HttpSession session) {
 		String id = session.getId();
