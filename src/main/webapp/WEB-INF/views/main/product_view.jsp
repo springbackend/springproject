@@ -49,6 +49,21 @@
 			document.getElementById("product_comment_list").innerHTML = data;
 		}
 	}
+	
+	function send(button) {
+	    // 'i' 태그를 찾습니다.
+	    let icon = button.getElementsByTagName('i')[0]; // getElementsByTagName을 사용하여 'i' 태그를 직접 찾습니다.
+
+	    // 클래스 리스트에서 'far'와 'fas'를 토글합니다.
+	    if (icon.classList.contains('far')) {
+	        icon.classList.remove('far');
+	        icon.classList.add('fas');
+	    } else if (icon.classList.contains('fas')) {
+	        icon.classList.remove('fas');
+	        icon.classList.add('far');
+	    }
+	    let url = "";
+	}
 </script>
 </head>
 <body>
