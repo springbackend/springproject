@@ -28,15 +28,31 @@
 	
 	window.onload = function() {
 		updateprice();
+		comment_list();
 	}
 	
 	function buyproduct() {
 		let quantity = document.getElementById('quantity').value;
 		location.href="buyproduct_form.do?p_idx="+${p_vo.p_idx}+"&quantity="+quantity;
 	}
+	
+	function comment_list() {
+		let url = "product_comment.do";
+		let param = "p_idx="+${p_vo.p_idx};
+		sendRequest(url,param,respclist, 'post');
+	}
+	
+	function respclist() {
+		if(xhr.readyState == 4 && xhr.status == 200){
+			let data = xhr.responseText;
+			
+			document.getElementById("product_comment_list").innerHTML = data;
+		}
+	}
 </script>
 </head>
 <body>
+<jsp:include page="index.jsp"/>
 <div class="container mt-3">
   <div class="row align-items-center">
     <!-- 상품 이미지 영역 -->
@@ -52,7 +68,7 @@
         <label for="quantity">수량:</label>
         <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control" style="width: auto;" onchange="updateprice()">
       </div>
-      <p id="totalprice">가격:</p><!-- 수량에 맞게 가격 변동으로 바뀜 -->
+      <p id="totalprice">가격:${p_vo.p_price }</p><!-- 수량에 맞게 가격 변동으로 바뀜 -->
       <!-- 버튼들을 수평으로 배열 -->
       <div class="product-actions">
         <button type="button" class="btn btn-primary">장바구니에 담기</button>
@@ -62,6 +78,10 @@
     </div>
   </div>
 </div>
+<div id="product_comment_list">
+
+</div>
+
 <!-- 부트스트랩 JS, Popper.js, 그리고 jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

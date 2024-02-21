@@ -69,7 +69,7 @@
 							<p class="card-text">${pc.pc_content }</p>
 							
 							<button class="btn btn-light">
-								<i class="far fa-thumbs-up"></i> 좋아요${pc.pc_good }
+								<i class="far fa-thumbs-up"></i> 좋아요
 							</button>
 						</div>
 					</div>

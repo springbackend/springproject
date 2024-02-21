@@ -56,7 +56,7 @@ public class ProductController {
 		ProductVO p_vo = p_service.p_product_view(p_idx);
 		int price = p_vo.getP_price();
 		int totalprice = price*quantity;
-		return String.valueOf(totalprice)+"원";
+		return "가격:"+String.valueOf(totalprice)+"원";
 	}
 	
 	//상품구매창

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import service.ProductCommentService;
 import vo.ProductCommentVO;
@@ -23,7 +24,7 @@ public class ProductCommentController {
 		this.pc_Service = pc_Service;
 	}
 	
-	@RequestMapping("/product_comment.do")
+	@RequestMapping(value = "/product_comment.do",method = RequestMethod.POST, produces = "text/plain;charset=UTF-8" )
 	public String productComment_list(int p_idx,Model model) {
 		List<ProductCommentVO> list = pc_Service.productComment_list(p_idx);
 		model.addAttribute("list",list);

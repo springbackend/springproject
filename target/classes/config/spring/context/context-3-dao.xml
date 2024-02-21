@@ -85,4 +85,13 @@
 	<bean id="productcomment_serviceBean" class="service.ProductCommentService">
 		<constructor-arg ref="productcomment_daoBean"/>
 	</bean>
+	
+	<bean id="pcgood_daoBean" class="dao.PcGoodDAO">
+		<constructor-arg ref="sqlSessionBean"/>
+	</bean>
+	
+	
+	<bean id="pcgood_serviceBean" class="service.PcGoodService">
+		<constructor-arg ref="pcgood_daoBean"/>
+	</bean>
 </beans>
