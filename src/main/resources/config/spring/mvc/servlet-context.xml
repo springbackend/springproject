@@ -76,9 +76,6 @@
 	
 	<beans:bean class="controller.ProductCommentController">
 		<beans:constructor-arg ref="productcomment_serviceBean"/>
-	</beans:bean>
-	
-	<beans:bean class="controller.PcGoodController">
 		<beans:constructor-arg ref="pcgood_serviceBean"/>
 	</beans:bean>
 </beans:beans>

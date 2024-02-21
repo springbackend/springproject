@@ -24,5 +24,10 @@ public class ProductCommentService {
 		int res = pc_dao.productComment_write(pc_vo);
 		return res;
 	}
+	
+	public int productComment_good_count(int pc_idx) {
+		int count = pc_dao.pc_good_update(pc_idx);
+		return count;
+	}
 
 }

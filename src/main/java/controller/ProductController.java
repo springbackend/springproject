@@ -35,6 +35,10 @@ public class ProductController {
 		if(page != null && !page.isEmpty()) {
 			nowpage = Integer.parseInt(page);
 		}
+		if(p_category_b == null || p_category_b.isEmpty()) {
+			p_category_b = "woman";
+		}
+		
 		Map<String, Object> p_map = p_service.p_category_service(p_category_b, nowpage);
 		model.addAttribute("list", p_map.get("list"));
 		model.addAttribute("page", p_map.get("page_menu"));

@@ -3,6 +3,11 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pcg">
+	
+	<insert id="pc_good" parameterType="pcgood">
+		insert into pcgood values(pcg_seq_idx.nextval,#{pc_idx},#{u_idx})
+	</insert>
+
 </mapper>
 
 
