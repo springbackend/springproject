@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -219,7 +220,10 @@
 	</head>
 	<body> 
 		<!-- 로그인 여부 확인 -->
-		<!-- 회원이 아닌 경우 < jsp:include page=”login_page.jsp”> -->
+		<%-- <c:if test=${login eq 0}>
+			<jsp:include page="/WEB-INF/views/login/login.jsp">
+		</c:if> --%>
+		
 		<h1 align="center">New Post</h1>
 		<form>
 			<div class="outer">

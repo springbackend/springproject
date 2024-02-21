@@ -132,6 +132,13 @@
 				if(xhr.readyState == 4 && xhr.status == 200){
 					let data = xhr.responseText
 					
+					if(data == "unknown"){
+						if(confirm("로그인 회원이 아닌 경우 좋아요를 누를 수 없습니다.\n로그인 창으로 이동하시겠습니까?")){
+							location.href = "login.do";
+						}
+						return;
+					}
+					
 					if(data == 0){
 						alert("댓글 작성 실패");
 						return; 

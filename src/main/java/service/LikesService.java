@@ -11,9 +11,9 @@ public class LikesService {
 		this.likes_dao = likes_dao;
 	}
 	
-	public LikesVO check_like(LikesVO vo) {
-		LikesVO resultVO = likes_dao.check_like(vo);
-		return resultVO;
+	public int check_like(LikesVO vo) {
+		int likes = likes_dao.check_like(vo);
+		return likes;
 	}
 	
 	public int insert(LikesVO vo) {
