@@ -10,8 +10,8 @@
 		<title>게시판</title>
 		
 		<style>
-			/* body{background-color:#FFC567;} */❤
-			h1{color:#00A56B;}❤
+			/* body{background-color:#FFC567;} */
+			h1{color:#00A56B;}
 			
 			/* Like icon */
 			#like_btn{font-size:30px;}

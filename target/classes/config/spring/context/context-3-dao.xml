@@ -21,6 +21,10 @@
 	<bean id="userBoard_userBoardBean" class="dao.UserBoardDAO">
 		<constructor-arg ref="sqlSessionBean" />
 	</bean>
+	
+	<bean id="user_serviceBean" class="service.UserService">
+		<constructor-arg ref="user_userBean" />
+	</bean>
 
 	<bean id="product_daoBean" class="dao.ProductDAO">
 		<constructor-arg ref="sqlSessionBean" />

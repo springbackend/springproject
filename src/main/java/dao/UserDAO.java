@@ -65,6 +65,12 @@ public class UserDAO {
 		int res = sqlSession.update("u.changeMyPwd", uservo);
 		return res;
 	}
+	
+	//get idx
+	public int select_idx(String id) {
+		int idx = sqlSession.selectOne("u.select_idx", id);
+		return idx;
+	}
 
 	public int deleteAccount(String id) {
 		int res = sqlSession.delete("u.deleteAccount", id);

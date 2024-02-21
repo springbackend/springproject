@@ -76,5 +76,9 @@ public class ProductService {
 		return list;
 	}
 	
+	public String select_product_name(int p_idx) {
+		String p_name = p_dao.select_product_name(p_idx);
+		return p_name;
+	}
 
 }
