@@ -23,6 +23,7 @@
 
 		let url = "login.do";
 		let param = "id=" + id + "&pwd=" + pwd + "&yuji=" + yuji;
+		setTimeout(function(){}, 1000);//클라이언트단 지연
 		sendRequest(url, param, resultFn, "POST");
 	}
 	function resultFn() {
