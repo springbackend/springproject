@@ -76,31 +76,35 @@
 		let input_previous_ChangeMyPwd = document.getElementById("input_previous_ChangeMyPwd").value;
 		let input_new_ChangeMyPwd = document.getElementById("input_new_ChangeMyPwd").value;
 		let input_new_ChangeMyPwd2 = document.getElementById("input_new_ChangeMyPwd2").value;
-
+		if(input_new_ChangeMyPwd != input_new_ChangeMyPwd2){
+			alert("비밀번호가 같지않음");
+			return;
+		}
 		let url = "changeMyPwd.do";
 		let param="prepwd=" +input_previous_ChangeMyPwd +"&newpwd="+input_new_ChangeMyPwd;
-		location.href="/beauty/changeMyPwd.do?"+param;
-		//sendRequest(url,param,resultchangeMyPwd,"POST");
+		//location.href="/beauty/changeMyPwd.do?"+param;
+		sendRequest(url,param,resultchangeMyPwd,"POST");
+		
 		
 	}
-	/* function resultchangeMyPwd(){
-		if(xhr.status ==4 && xhr.readyState==200){
+	function resultchangeMyPwd(){
+		if(xhr.status ==200 && xhr.readyState ==4){
 			let result = decodeURI(decodeURIComponent(xhr.responseText));
-			if(result == "error100"){
+			if(result === "Failed to find Account"){
 				alert("기본 비밀번호를 틀렸습니다.");
 				return;	
 			}
-			if(result == "error101"){
+			if(result === "Failed to check password"){
 				alert("비밀번호 재설정오류\n다시 시도해 주시길 바랍니다.");
 				return;
 			}
-			if(result == "success"){
+			if(result === "Password changed successfully"){
 				alert("비밀번호 변경에 성공했습니다.\n다시 로그인해 주시길 바랍니다.");
+				location.href="login.do";
 				return;
 			}
-			location.href="logout.do";
 		}
-	} */
+	}
 	//계정삭제하기
 	function deleteAccount(){
 		let pwd = document.getElementById("input_DeleteAccount").value;

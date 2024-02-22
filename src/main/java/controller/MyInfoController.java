@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.UserBoardDAO;
@@ -69,7 +70,8 @@ public class MyInfoController {
 	}
 
 	// 비밀번호 변경하기
-	@RequestMapping(value = "/changeMyPwd.do")
+	@ResponseBody
+	@RequestMapping(value = "/changeMyPwd.do", method = RequestMethod.POST)
 	public String changeMyPwd(HttpSession session, String prepwd, String newpwd, Model model) {
 		String id = (String) session.getAttribute("id");
 		Optional<UserVO> option = Optional.ofNullable(userdao.findById(id));
@@ -77,7 +79,7 @@ public class MyInfoController {
 		if (option.isEmpty()) {
 			log.warn("계정조회에 실패했습니다 : {}", option);
 			model.addAttribute("message", "Failed to find Account");
-			return VIEW_PATH + "changepwdresult.jsp";
+			return "Failed to find Account";
 		}
 		UserVO vo = option.get();
 		log.warn("input_previous_ChangeMyPwd = {}", prepwd);
@@ -85,7 +87,7 @@ public class MyInfoController {
 		if (!passwordEncoder.matches(prepwd, vo.getU_pwd())) {
 			log.warn("기존 비밀번호가 맞지않습니다 : {} , {}", prepwd, vo.getU_pwd());
 			model.addAttribute("message", "Failed to check password. Please try again.");
-			return VIEW_PATH + "changepwdresult.jsp";
+			return "Failed to check password";
 		}
 		vo.setU_pwd(passwordEncoder.encode(newpwd));
 		int count = userdao.changeMyPwd(vo);
@@ -93,8 +95,16 @@ public class MyInfoController {
 			log.warn("변경성공");
 			model.addAttribute("message", "Password changed successfully.");
 		}
-		return VIEW_PATH + "changepwdresult.jsp";
+		//세션 초기화
+		session.invalidate();
+		return "Password changed successfully";
 	}
+
+	/*
+	 * @RequestMapping(value = "/changeMyPwd.do", method = RequestMethod.GET) public
+	 * String changeMyPwdResult(Model model) { return VIEW_PATH +
+	 * "changepwdresult.jsp"; }
+	 */
 
 	// 계정삭제
 	@ResponseBody
