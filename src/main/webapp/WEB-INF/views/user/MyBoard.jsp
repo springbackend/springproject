@@ -20,15 +20,22 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${boardList}" var="board">
+			<c:when test="${empty boardList}">
 				<tr>
-					<td>${board.b_idx}</td>
-					<td>${board.subject}</td>
-					<td>${board.content}</td>
-					<td>${board.readhit}</td>
-					<td>${board.regdate}</td>
+					<td>작성한 글이 없습니다.</td>
 				</tr>
-			</c:forEach>
+			</c:when>
+			<c:when test="${not empty boardList}">
+				<c:forEach items="${boardList}" var="board">
+					<tr>
+						<td>${board.b_idx}</td>
+						<td>${board.subject}</td>
+						<td>${board.content}</td>
+						<td>${board.readhit}</td>
+						<td>${board.regdate}</td>
+					</tr>
+				</c:forEach>
+			</c:when>
 		</tbody>
 	</table>
 
