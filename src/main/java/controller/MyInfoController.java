@@ -1,9 +1,13 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +26,7 @@ public class MyInfoController {
 	UserDAO userdao;
 	UserBoardDAO userBoardDAO;
 
+	@Autowired
 	public MyInfoController(UserDAO userdao, UserBoardDAO userBoardDAO) {
 		this.userdao = userdao;
 		this.userBoardDAO = userBoardDAO;
@@ -64,20 +69,31 @@ public class MyInfoController {
 	}
 
 	// 비밀번호 변경하기
-	@ResponseBody
 	@RequestMapping(value = "/changeMyPwd.do")
-	public String changeMyPwd(HttpSession session, String pwd) {
-		String result = "fail";
-		String id = session.getId();
-		UserVO uservo = new UserVO();
-		uservo.setU_id(id);
-		uservo.setU_pwd(pwd);
-		// 비밀번호 변경
-		int res = userdao.changeMyPwd(uservo);
-		if (res > 0) {
-			result = "success";
+	public String changeMyPwd(HttpSession session, String prepwd, String newpwd, Model model) {
+		String id = (String) session.getAttribute("id");
+		Optional<UserVO> option = Optional.ofNullable(userdao.findById(id));
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		if (option.isEmpty()) {
+			log.warn("계정조회에 실패했습니다 : {}", option);
+			model.addAttribute("message", "Failed to find Account");
+			return VIEW_PATH + "changepwdresult.jsp";
 		}
-		return result;
+		UserVO vo = option.get();
+		log.warn("input_previous_ChangeMyPwd = {}", prepwd);
+		log.warn("vo.getU_pwd() = {}", vo.getU_pwd());
+		if (!passwordEncoder.matches(prepwd, vo.getU_pwd())) {
+			log.warn("기존 비밀번호가 맞지않습니다 : {} , {}", prepwd, vo.getU_pwd());
+			model.addAttribute("message", "Failed to check password. Please try again.");
+			return VIEW_PATH + "changepwdresult.jsp";
+		}
+		vo.setU_pwd(passwordEncoder.encode(newpwd));
+		int count = userdao.changeMyPwd(vo);
+		if (count == 1) {
+			log.warn("변경성공");
+			model.addAttribute("message", "Password changed successfully.");
+		}
+		return VIEW_PATH + "changepwdresult.jsp";
 	}
 
 	// 계정삭제
@@ -86,12 +102,10 @@ public class MyInfoController {
 	public String deleteAccount(HttpSession session) {
 		String result = "fail";
 		String id = session.getId();
-		// 비밀번호 변경
 		int res = userdao.deleteAccount(id);
 		if (res > 0) {
 			result = "success";
 		}
 		return result;
 	}
-
 }

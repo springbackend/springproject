@@ -41,8 +41,6 @@ public class UserDAO {
 	public UserVO findById(String id) {
 		System.out.println(id);
 		UserVO vo = sqlSession.selectOne("u.ismember", id);
-		System.out.println("vo:"+vo);
-//		log.warn("{}", vo.getId());
 		return vo;
 	}
 
@@ -65,8 +63,8 @@ public class UserDAO {
 		int res = sqlSession.update("u.changeMyPwd", uservo);
 		return res;
 	}
-	
-	//get idx
+
+	// get idx
 	public int select_idx(String id) {
 		int idx = sqlSession.selectOne("u.select_idx", id);
 		return idx;

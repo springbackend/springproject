@@ -32,12 +32,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE U_ID = #{id}
 	</select>
 	<!-- update -->
+	<select id="CheckMyAccountBeforeChangeMyPwd" parameterType="String" resultType="java.lang.Integer">
+		SELECT u_pwd FROM USER1 WHERE u_id = #{id}
+	</select>
 	<!-- update pwd -->
 	<update id="changeMyPwd" parameterType="user">
-		UPDATE USER1
-		set
-		pwd=#{pwd},
-		WHERE id=#{id}
+		UPDATE USER1 SET u_pwd = #{u_pwd} WHERE u_id = #{u_id}
 	</update>
 	<!-- delete -->
 	<delete id="deleteAccount" parameterType="String">

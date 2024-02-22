@@ -44,15 +44,15 @@
 	function resultViewMyPosts(){
 		if(xhr.status ==4 && xhr.readyState==200){
 			let myPostView= document.getElementById('result');
-			myPostView=
+			//myPostView=
 			//Text.
 			//var obj = JSON.parse();
 			document.getElementById("result").innerHTML = "#";
 		}
 	}
-	function printResult(let text){
+	/* function printResult(let text){
 		let json = JSON.parse(text);
-	}
+	} */
 	//내가 작성한 댓글보기
 	function viewMyComments(){
 		let btnElement = document.getElementById('btn_ViewMyComments');
@@ -76,20 +76,14 @@
 		let input_previous_ChangeMyPwd = document.getElementById("input_previous_ChangeMyPwd").value;
 		let input_new_ChangeMyPwd = document.getElementById("input_new_ChangeMyPwd").value;
 		let input_new_ChangeMyPwd2 = document.getElementById("input_new_ChangeMyPwd2").value;
-		if(input_new_ChangeMyPwd != input_new_ChangeMyPwd2){
-			alert("새 비밀번호가 다릅니다.");
-			return;	
-		}
-		if(input_previous_ChangeMyPwd){
-			
-			
-		}
+
 		let url = "changeMyPwd.do";
 		let param="prepwd=" +input_previous_ChangeMyPwd +"&newpwd="+input_new_ChangeMyPwd;
-		sendRequest(url,param,resultchangeMyPwd,"POST");
+		location.href="/beauty/changeMyPwd.do?"+param;
+		//sendRequest(url,param,resultchangeMyPwd,"POST");
 		
 	}
-	function resultchangeMyPwd(){
+	/* function resultchangeMyPwd(){
 		if(xhr.status ==4 && xhr.readyState==200){
 			let result = decodeURI(decodeURIComponent(xhr.responseText));
 			if(result == "error100"){
@@ -106,7 +100,7 @@
 			}
 			location.href="logout.do";
 		}
-	}
+	} */
 	//계정삭제하기
 	function deleteAccount(){
 		let pwd = document.getElementById("input_DeleteAccount").value;
