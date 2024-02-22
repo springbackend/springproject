@@ -47,18 +47,19 @@
 			
 			#like_btn, .readhit_icon{display: inline-block;
 								 	  border-radius:30%;
-								 	  background-color:white;
 								 	  text-align: center;
 								 	  padding:2px;
 									  height:35px;
-								 	  margin: 2px;}
-			
+								 	  margin:2px;}
+
 			#like_btn{cursor: pointer;
 					  transition: all 0.5s;
 					  font-size:15px;
 					  padding-left:6px;
 					  padding-right:6px;
-					  border:2px solid black;}
+					  border:2px solid black;
+					  background-color:white;
+					  margin-left:250px;}
 				 	  
 			.like_icon{cursor: pointer;
 				 	   display: inline-block;
@@ -126,7 +127,8 @@
 					 	  right:10px;
 					 	  padding:3px;
 					 	  font-size:20px;
-					 	  border:none;}
+					 	  border:none;
+					 	  background-color:white;}
 			
 			img{border:none;
 				height:25px;
@@ -138,7 +140,6 @@
 		<script>
 			window.onload = function(){
 				comment_list();
-				//like_check();
 			}
 			
 			function comment_list(){
@@ -153,7 +154,7 @@
 					// data = comment_list.jsp body에 포함된 내용
 					let data = xhr.responseText;
 					document.getElementById("comment").innerHTML = data;
-					document.getElementById("comment_count").innerHTML = "${vo.getComment_count()}";
+					//document.getElementById("comment_count").innerHTML = "${vo.getComment_count()}";
 				}
 			}
 			
@@ -170,6 +171,13 @@
 			function comment_send_result(){
 				if(xhr.readyState == 4 && xhr.status == 200){
 					let data = xhr.responseText
+					
+					if(data == "unknown"){
+						if(confirm("로그인 회원이 아닌 경우 좋아요를 누를 수 없습니다.\n로그인 창으로 이동하시겠습니까?")){
+							location.href = "login.do";
+						}
+						return;
+					}
 					
 					//댓글박스 비우기
 					document.getElementById("c_content").innerHTML = "";
@@ -198,23 +206,31 @@
 				if(xhr.readyState == 4 && xhr.status == 200){
 					let data = xhr.responseText;
 					
+					if(data == "unknown"){
+						if(confirm("로그인 회원이 아닌 경우 좋아요를 누를 수 없습니다.\n로그인 창으로 이동하시겠습니까?")){
+							location.href = "login.do";
+						}
+						return;
+					}
+					
+					alert("like_num: " + ${vo.likes_count});
 					//like 수 증가 refresh가 맨 위 게시글 밖에 안됨
-					if(data > ${vo.likes_count}){
+					if(data == 0){
+						//좋아요 수가 0일 경우 화면에 좋아요 수 안띄움
+						document.getElementById("like_btn").style.backgroundColor = "white";
+						document.getElementById("like_btn").innerHTML = '<span class="like_icon">🤍</span>';
+					}
+					else if(data >= ${vo.likes_count}){
 						//아이콘 스타일 변경
 						alert("like");
 						document.getElementById("like_btn").style.backgroundColor = "#FF2279";
 						document.getElementById("like_btn").style.color = "white";
 						document.getElementById("like_btn").innerHTML = '<span class="like_icon">🤍&nbsp;' + data + '</span>';
 						
-					}else if(data <= ${vo.likes_count}){
+					}else if(data < ${vo.likes_count}){
 						alert("dislike");
 						document.getElementById("like_btn").style.backgroundColor = "white";
-						if(data == 0){
-							//좋아요 수가 0일 경우 화면에 좋아요 수 안띄움
-							document.getElementById("like_btn").innerHTML = '<span class="like_icon">🤍</span>';
-						}else{
-							document.getElementById("like_btn").innerHTML = '<span class="like_icon">🤍&nbsp;' + data + '</span>';
-						}
+						document.getElementById("like_btn").innerHTML = '<span class="like_icon">🤍&nbsp;' + data + '</span>';
 						
 					}
 					
@@ -259,16 +275,24 @@
 			<!-- 구분선 -->
 			<hr>
 			<div class="bottom">
+				<span class="comment_icon">💬&nbsp;${vo.comment_count}</span>
+				
 				<c:if test="${vo.likes_count eq 0}">
 					<button id="like_btn" onclick="like_click();">
 						<span class="like_icon">🤍</span></button>
 				</c:if>
+				
 				<c:if test="${vo.likes_count ne 0}">
-					<button id="like_btn" onclick="like_click();">
-						<span class="like_icon">🤍&nbsp;${vo.likes_count}</span></button>
+					<c:if test="${check_like eq 0}">
+						<button id="like_btn" onclick="like_click();">
+							<span class="like_icon">🤍&nbsp;${vo.likes_count}</span></button>
+					</c:if>
+					<c:if test="${check_like eq 1}">
+						<button id="like_btn" onclick="like_click();" style="background-color:#FF2279; color:white;">
+							<span class="like_icon">🤍&nbsp;${vo.likes_count}</span></button>
+					</c:if>
 				</c:if>
 				
-				<span class="comment_icon">💬&nbsp;${vo.comment_count}</span>
 				<span class="readhit_icon">👁‍🗨&nbsp;${vo.readhit}</span>
 				<%-- <b class="readhit"><img src="/board/resources/icons/view.webp">${vo.readhit}</b> --%>
 			</div>

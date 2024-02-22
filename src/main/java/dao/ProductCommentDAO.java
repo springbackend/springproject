@@ -23,6 +23,14 @@ public class ProductCommentDAO {
 		int res = sqlSession.insert("pc.product_comment_write", pc_vo);
 		return res;
 	}
+	public int user_select(String id) {
+		int res = sqlSession.selectOne("pc.user_select", id);
+		return res;
+	}
 	
+	public int pc_good_update(int pc_idx) {
+		int res= sqlSession.update("pc.pc_good_count", pc_idx);
+		return res;
+	}
 
 }

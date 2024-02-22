@@ -35,6 +35,10 @@ public class ProductController {
 		if(page != null && !page.isEmpty()) {
 			nowpage = Integer.parseInt(page);
 		}
+		if(p_category_b == null || p_category_b.isEmpty()) {
+			p_category_b = "woman";
+		}
+		
 		Map<String, Object> p_map = p_service.p_category_service(p_category_b, nowpage);
 		model.addAttribute("list", p_map.get("list"));
 		model.addAttribute("page", p_map.get("page_menu"));
@@ -56,7 +60,7 @@ public class ProductController {
 		ProductVO p_vo = p_service.p_product_view(p_idx);
 		int price = p_vo.getP_price();
 		int totalprice = price*quantity;
-		return String.valueOf(totalprice)+"원";
+		return "가격:"+String.valueOf(totalprice)+"원";
 	}
 	
 	//상품구매창

@@ -5,15 +5,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="pc">
 	<select id="product_comment" resultType="productcomment"
 		parameterType="int">
-		SELECT pc.pc_content, pc.pc_image, pc.pc_good, u.u_id,pc_star,pc_regidate
+		SELECT pc.pc_content, pc.pc_image,u.u_id,pc_star,pc_regidate,pc_good
 		FROM product_comment pc
 		JOIN user1 u ON pc.u_idx = u.u_idx
-		WHERE pc.p_idx = 1
+		WHERE pc.p_idx = #{p_idx}
 	</select>
 	
 	<insert id="product_comment_write" parameterType="productcomment">
-		INSERT INTO product_comment VALUES(pc_seq_idx.nextval,#{pc_content},#{pc_image},#{pc_good},1,2,#{pc_star},sysdate)
+		INSERT INTO product_comment VALUES(pc_seq_idx.nextval,#{pc_content},#{pc_image},0,1,#{u_idx},#{pc_star},sysdate)
 	</insert>
+	
+	<select id="user_select" resultType="int" parameterType="String">
+		select u_idx from user1 where u_id = #{u_id}
+	</select>
+	
+	<update id="pc_good_count" parameterType="int">
+		update product_comment set pc_good = pc_good+1 where pc_idx = #{pc_idx}
+	</update>
 </mapper>
 
 

@@ -66,8 +66,8 @@ public class MyInfoController {
 		String result = "fail";
 		String id = session.getId();
 		UserVO uservo = new UserVO();
-		uservo.setId(id);
-		uservo.setPwd(pwd);
+		uservo.setU_id(id);
+		uservo.setU_pwd(pwd);
 		// 비밀번호 변경
 		int res = userdao.changeMyPwd(uservo);
 		if (res > 0) {

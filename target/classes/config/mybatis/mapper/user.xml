@@ -8,16 +8,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO USER1
 		VALUES(
 		USER_SEQ.nextVal,
-		#{id},
-		#{name},
-		#{pwd},
-		#{pnum},
-		#{email},
-		#{gender},
-		#{regidate},
-		#{regiip},
-		#{addr},
-		#{birth}
+		#{u_id},
+		#{u_name},
+		#{u_pwd},
+		#{u_pnum},
+		#{u_email},
+		#{u_gender},
+		#{u_regidate},
+		#{u_regiip},
+		#{u_addr},
+		#{u_birth}
 		)
 	</insert>
 	<!-- read -->
@@ -26,10 +26,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM USER1
 	</select>
 	<!-- read user one -->
-	<select id="ismember" resultType="user" parameterType="String">
+	<select id="ismember" parameterType="String" resultType="user">
 		SELECT *
 		FROM USER1
-		WHERE u_id = #{id}
+		WHERE U_ID = #{id}
 	</select>
 	<!-- update -->
 	<!-- update pwd -->

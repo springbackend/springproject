@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import service.BoardService;
 import service.CommentService;
 import service.LikesService;
+import service.ProductService;
 import service.ToneService;
+import service.UserService;
 import util.Common;
 import util.BoardPaging;
 import vo.BoardVO;
@@ -29,8 +31,10 @@ public class BoardController {
 
 	BoardService board_service;
 	ToneService tone_service;
+	ProductService product_service;
 	CommentService comment_service;
 	LikesService likes_service;
+	UserService user_service;
 	
 	@Autowired
 	HttpServletRequest request;
@@ -38,16 +42,18 @@ public class BoardController {
 	@Autowired
 	HttpSession session;
 	
-	public BoardController(BoardService board_service, ToneService tone_service, CommentService comment_service, LikesService likes_service) {
+	public BoardController(BoardService board_service, ToneService tone_service, ProductService product_service, CommentService comment_service, LikesService likes_service, UserService user_service) {
 		this.board_service = board_service;
+		this.product_service = product_service;
 		this.tone_service = tone_service;
 		this.comment_service = comment_service;
 		this.likes_service = likes_service;
+		this.user_service = user_service;
 	}
 
 	//게시글 리스트 (게시판 첫 화면)
-	@RequestMapping("/board_list.do")
-	public String board_list(Model model, Integer page) {
+	@RequestMapping(value = { "/board_list.do" })
+	public String board_list(Model model, Integer page) throws Exception {
 		
 		//--- 페이징 처리 ---
 		int nowPage = 1;
@@ -69,7 +75,7 @@ public class BoardController {
 		
 		//하단에 들어가는 페이징 메뉴 생성
 		String pageMenu = BoardPaging.getPaging("board_list.do", nowPage, row_total, 
-				Common.Board.BLOCKLIST, Common.Board.BLOCKPAGE);
+							Common.Board.BLOCKLIST, Common.Board.BLOCKPAGE);
 		
 		//--- 전체 게시글 가져오기 ---
 		List<BoardVO> list = board_service.board_list(map);
@@ -83,24 +89,31 @@ public class BoardController {
 
 	//새 게시글 작성 폼으로 이동
 	@RequestMapping("/board_write.do")
-	public String board_write() {
+	public String board_write(Model model) throws Exception{
+		//======= 현재 사용자 로그인 여부 확인 ======
+//		int login = 1;
+//		if(session.getId() == null)	{
+//			login = 0;
+//		}
+//		model.addAttribute("login", login);
 		return Common.Board.VIEW_PATH + "board_write.jsp"; 
 	}
 	
 	//새 게시글 업로드
 	@RequestMapping("/board_upload.do")
 	//@ResponseBody
-	public String board_upload(BoardVO vo) {
+	public String board_upload(BoardVO vo) throws Exception{
 		
 		String ip = request.getRemoteAddr();
 		
 		vo.setIp(ip);
 		
 		//foreign key
-		vo.setM_idx(1);
+		//로그인 된 사용자의 정보 가져오기
+		vo.setU_idx(1);
 		
 		//vo.getT_idx & vo.getP_idx를 통해 톤 이름, 제품 이름 가져오기
-		String p_name = "립"; //샘플 데이터
+		String p_name = product_service.select_product_name(vo.getP_idx());
 		String t_name = tone_service.select_tone(vo.getT_idx());
 		
 		vo.setT_name(t_name);
@@ -119,9 +132,33 @@ public class BoardController {
 	
 	//게시글 상세보기
 	@RequestMapping("/board_view.do")
-	public String board_view(Model model, Integer b_idx, String page, HttpServletResponse response) { // parameter
+	public String board_view(Model model, Integer b_idx, String page, HttpServletResponse response) throws Exception{ // parameter
 		
-		int m_idx = 1; //SAMPLE DATA
+		// ====== 로그인 여부 확인 ======
+//		String u_id = "unknown_user";
+//		int check_like = 0;
+//		
+//		if(session.getId() != null) {
+//			u_id = session.getId();
+//			
+//			//--- 현재 user의 정보를 가져와 이 게시물에 좋아요를 눌렀는지 여부 판단하기 ---
+//			int u_idx = user_service.select_idx(u_id);
+//			
+//			LikesVO likes_vo = new LikesVO();
+//			likes_vo.setB_idx(b_idx);
+//			likes_vo.setU_idx(u_idx); //현재 유저 idx
+//			
+//			check_like = likes_service.check_like(likes_vo);
+//			//이미 좋아요를 눌렀는지 여부 확인
+//		}
+		
+		// ====== SAMPLE DATA ======
+		int u_idx = 1;
+		LikesVO likes_vo = new LikesVO();
+		likes_vo.setB_idx(b_idx);
+		likes_vo.setU_idx(u_idx); //현재 유저 idx
+		
+		int check_like = likes_service.check_like(likes_vo);
 		
 		//--- Cookie 사용해서 조회수 중복 증가 차단 ---
 		Cookie old_cookie = null;
@@ -131,7 +168,7 @@ public class BoardController {
 		//각 쿠키들의 key값을 확인하여 ""가 존재하면 old_cookie에 넣어줌
 		if(cookies != null) {
 			for(Cookie cookie : cookies) {
-				if(cookie.getName().equals("view_board")) {
+				if(cookie.getName().equals("board_view")) {
 					old_cookie = cookie;
 				}
 			}
@@ -140,14 +177,14 @@ public class BoardController {
 		//old_cookie의 null 여부 확인
 		if(old_cookie != null) {
 			//old_cookie가 null이 아닌 경우
-			if(!old_cookie.getValue().contains("[" + m_idx + "]")) {
+			if(!old_cookie.getValue().contains("[[" + b_idx + "]_[" + u_idx + "]]")) {
 				//만약 old_cookie 속 value중 현재 회원과 일치하는 m_idx가 없다면
 				
 				//조회수 증가
 				board_service.update_readhit(b_idx);
 				
 				//old_cookie에 현재 회원 value 추가
-				old_cookie.setValue(old_cookie.getValue() + "_[" + m_idx + "]");
+				old_cookie.setValue(old_cookie.getValue() + "_[[" + b_idx + "]_[" + u_idx + "]]");
 				old_cookie.setPath("/");
 				old_cookie.setMaxAge(60 * 60 * 5); //5시간 동안 유효
 				response.addCookie(old_cookie);
@@ -159,7 +196,7 @@ public class BoardController {
 			board_service.update_readhit(b_idx);
 			
 			//새 쿠키를 생성하여 response에 추가
-			Cookie new_cookie = new Cookie("view_board", "[" + m_idx + "]");
+			Cookie new_cookie = new Cookie("board_view", "[[" + b_idx + "]_[" + u_idx + "]]");
 			new_cookie.setPath("/");
 			new_cookie.setMaxAge(60 * 60 * 5); //5시간 유효
 			response.addCookie(new_cookie);
@@ -167,7 +204,8 @@ public class BoardController {
 		
 		//--- 현재 게시글 정보 가져오기 ---
 		BoardVO vo = board_service.board_one(b_idx);
-
+		
+		model.addAttribute("check_like", check_like);
 		model.addAttribute("vo", vo);
 		
 		return Common.Board.VIEW_PATH + "board_view.jsp";
@@ -176,17 +214,18 @@ public class BoardController {
 	//게시물 수정
 	@RequestMapping("/board_update.do")
 	//@ResponseBody
-	public String board_update(BoardVO vo) {
+	public String board_update(BoardVO vo) throws Exception{
+		//마이페이지에서만 실행됨
 		
 		String ip = request.getRemoteAddr();
 		
 		vo.setIp(ip);
 		
 		//foreign key
-		vo.setM_idx(1);
+		vo.setU_idx(1);
 		
 		//vo.getT_idx & vo.getP_idx를 통해 톤 이름, 제품 이름 가져오기
-		String p_name = "립";//샘플 데이터
+		String p_name = product_service.select_product_name(vo.getP_idx());
 		String t_name = tone_service.select_tone(vo.getT_idx());
 		
 		vo.setT_name(t_name);
@@ -205,7 +244,9 @@ public class BoardController {
 	
 	//게시글 수정 페이지 이동
 	@RequestMapping("/board_update_form.do")
-	public String board_update_form(Model model, int b_idx) {
+	public String board_update_form(Model model, int b_idx) throws Exception{
+		//마이페이지에서만 실행됨
+		
 		BoardVO vo = board_service.board_one(b_idx);
 		model.addAttribute("vo", vo);
 		return Common.Board.VIEW_PATH + "board_update_form.jsp";
@@ -214,7 +255,9 @@ public class BoardController {
 	//게시물 지우기
 	@RequestMapping("/board_delete.do")
 	@ResponseBody
-	public String board_delete(int b_idx) {
+	public String board_delete(int b_idx) throws Exception{
+		//마이페이지에서만 실행됨
+		
 		//게시글 지우기
 		int res = board_service.board_delete(b_idx);
 		
@@ -225,7 +268,7 @@ public class BoardController {
 	
 	//댓글 리스트
 	@RequestMapping("/comment_list.do")
-	public String comment_list(Model model, int b_idx) {
+	public String comment_list(Model model, int b_idx) throws Exception{
 		List<CommentVO> list = comment_service.comment_list(b_idx);
 		model.addAttribute("list", list);
 		return Common.Comment.VIEW_PATH + "comment_list.jsp";
@@ -234,11 +277,22 @@ public class BoardController {
 	//댓글 작성
 	@RequestMapping("/comment_write.do")
 	@ResponseBody
-	public String comment_write(CommentVO vo) {
-		String ip = request.getRemoteAddr();
+	public String comment_write(CommentVO vo) throws Exception{
+		// ====== 로그인 여부 확인 ======
+//		String u_id = session.getId();
+//		
+//		if(u_id == null) {
+//			return "unknown";
+//		}
+//		//현재 로그인 된 사용자 정보 가져오기
+//		int u_idx = user_service.select_idx(u_id);
+//		vo.setU_idx(u_idx);
 		
+		//====== SAMPLE DATA ======
+		vo.setU_idx(1);
+		
+		String ip = request.getRemoteAddr();
 		vo.setIp(ip);
-		vo.setM_idx(1);
 		
 		int res = comment_service.comment_write(vo);
 		
@@ -251,7 +305,7 @@ public class BoardController {
 	
 	//대댓글 리스트
 	@RequestMapping("/reply_list.do")
-	public String reply_list(Model model, int c_idx) {
+	public String reply_list(Model model, int c_idx) throws Exception{
 		List<CommentVO> list = comment_service.reply_list(c_idx);
 		model.addAttribute("list", list);
 		return Common.Comment.VIEW_PATH + "reply_list.jsp";
@@ -260,7 +314,17 @@ public class BoardController {
 	//댓글&대댓글 보기
 	@RequestMapping("/reply.do")
 	@ResponseBody
-	public String reply(int c_idx, int b_idx, String content) {
+	public String reply(int c_idx, int b_idx, String content) throws Exception{
+		// ====== 로그인 여부 확인 ======
+//		String u_id = session.getId();
+//		
+//		if(u_id == null) {
+//			return "unknown";
+//		}
+//		
+//		//현재 로그인 된 사용자 정보 가져오기
+//		int u_idx = user_service.select_idx(u_id);
+		
 		String ip = request.getRemoteAddr();
 		
 		CommentVO baseVO = comment_service.selectOne(c_idx);
@@ -278,9 +342,9 @@ public class BoardController {
 		vo.setStep(baseVO.getStep()+1);
 		vo.setDepth(1);
 		vo.setContent(content);//sample?
-		vo.setM_idx(1); //sample
+		vo.setU_idx(1); //sample
 		
-		int res = comment_service.reply(vo);
+		int res = comment_service.reply(vo); 
 		
 		//대댓글 수 증가
 		if(res > 0) {
@@ -292,7 +356,9 @@ public class BoardController {
 	
 	//대댓글 작성
 	@RequestMapping("/reply_form.do")
-	public String replay_form(Model model, int c_idx) {
+	public String replay_form(Model model, int c_idx) throws Exception{
+		//로그인 여부 + 현재 사용자 정보
+		
 		CommentVO vo = comment_service.selectOne(c_idx);
 		
 		model.addAttribute("vo", vo);
@@ -300,51 +366,44 @@ public class BoardController {
 		return Common.Comment.VIEW_PATH + "reply_form.jsp?c_idx=" + c_idx;
 	}
 	
-	//추천 버튼
+	//좋아요 버튼
 	@RequestMapping("/board_like.do")
 	@ResponseBody
-	public String like_click(int b_idx) {
-		//Sample data
-		int m_idx = 1;
+	public String like_click(int b_idx) throws Exception{
+		// ====== 로그인 여부 확인 ======
+//		String u_id = session.getId();
+//		
+//		if(u_id == null) {
+//			return "unknown";
+//		}
+//		
+//		//현재 로그인 된 사용자 정보 가져오기
+//		int u_idx = user_service.select_idx(u_id);
+		
+		//====== SAMPLE DATA ======
 		
 		LikesVO vo = new LikesVO();
 		vo.setB_idx(b_idx);
-		vo.setM_idx(m_idx);
+		vo.setU_idx(1); //SAMPLE
 		
 		//이미 좋아요를 눌렀는지 여부 확인
-		if(likes_service.check_like(vo) == null) {
-			//좋아요를 안누른 상태면 좋아요 추가
+		if(likes_service.check_like(vo) == 0) {
+			//좋아요를 안누른 상태면 좋아요 테이블에 좋아요 추가
 			likes_service.insert(vo);
-			//좋아요 수 증가
+			//게시물 좋아요 수 증가
 			board_service.like_increase(b_idx);
-			//return "like";
 		}else {
-			//좋아요를 누른 상태면 좋아요 삭제
+			//좋아요를 누른 상태면 좋아요 테이블에서 좋아요 삭제
 			likes_service.delete(vo);
-			//좋아요 수 감소
+			//게시물 좋아요 수 감소
 			board_service.like_decrease(b_idx);
-			//return "dislike";
 		}
 		
 		int count = likes_service.count_like(b_idx);
 		return String.valueOf(count);
 	}
 	
-	@RequestMapping("/board_like_check")
-	@ResponseBody
-	public String like_check(int b_idx) {
-		int m_idx = 1; //Sample data
-		
-		LikesVO vo = new LikesVO();
-		vo.setB_idx(b_idx);
-		vo.setM_idx(m_idx);
-		
-		if(likes_service.check_like(vo) == null) {
-			return "dislike";
-		}
-		
-		return "like";
-	}
+	
 }
 
 
