@@ -6,13 +6,14 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Main</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
 	</head>
-	
+
 	<style>
 		/* Header Style */
 		.header .brand{font-size:35px;
@@ -22,7 +23,7 @@
 		.navbar-navbar-inverse{background-color:white;
 								color:black;
 								margin-left:60px;}
-		.form-group{width:500px;}
+		#frg{width:500px;}
 		.form-control{border-radius:50px;
 					  width:85% !important} 
 		#search_btn{cursor:pointer;
@@ -32,45 +33,71 @@
 		
 		li{color:black;}
 		/* .container-fluid{position:relative;} */	
+		.search-dropdown .dropdown-menu {
+    		width: 84.5%; /* 드롭다운 메뉴의 너비를 부모 요소의 100%로 설정 */
+    		margin-top: 0.5rem; /* 드롭다운 메뉴와 검색창 사이의 간격 조정 */
+		}
 	</style>
-	
 	<script src="/beauty/resources/js/httpRequest.js"></script>
-	<script type="text/javascript">
-		document.addEventListener('DOMContentLoaded', function() {
-			$('.dropdown-toggle').dropdown('update');
-		    let searchInput = document.getElementById('searchInput');
-		
-		    searchInput.addEventListener('input', function() {
-		        let inputVal = this.value;
-		        // 사용자 정의 함수 호출
-		        searchkeyword(inputVal);
-		    });
-		});
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        let searchInput = document.getElementById('searchInput');
+        let dropdownMenu = document.getElementById('searchResultsDropdown');
+
+        // 검색창에 포커스가 있을 때 드롭다운 메뉴를 표시
+        searchInput.addEventListener('focus', function() {
+            if (this.value.trim().length > 0) {
+                $(dropdownMenu).addClass('show');
+            }
+        });
+
+        // 검색창에서 포커스를 잃었을 때 드롭다운 메뉴를 숨김
+        // setTimeout을 사용하여 드롭다운 메뉴의 클릭 이벤트가 먼저 처리될 수 있도록 함
+        searchInput.addEventListener('blur', function() {
+            setTimeout(function() {
+                $(dropdownMenu).removeClass('show');
+            }, 100);
+        });
+
+        // 검색창에 입력이 있을 때만 검색 함수 호출
+        searchInput.addEventListener('input', function() {
+            let inputVal = this.value.trim();
+            
+            // 입력값이 비어있는 경우, 드롭다운 목록을 비우고 숨김
+            if (inputVal === '') {
+                dropdownMenu.innerHTML = '';
+                $(dropdownMenu).removeClass('show');
+            } else {
+                // 입력값이 있는 경우, 검색 키워드 함수를 호출
+                searchkeyword(inputVal);
+            }
+        });
+    });
 		
 		function searchkeyword(keyword) {
-			
-			let url = "search_keyword.do";
-			let param = "keyword="+keyword;
-			sendRequest(url,param,resultKeyword,'post');
+		        // 키워드가 있을 때만 검색을 수행
+		        let url = "search_keyword.do";
+		        let param = "keyword=" + keyword;
+		        sendRequest(url, param, resultKeyword, 'post');
 		}
+		
 		
 		function resultKeyword() {
 			 if (xhr.readyState == 4 && xhr.status == 200) {
 			        let data = xhr.responseText;
 			        let productNames = JSON.parse(data); // JSON 문자열을 문자열 배열로 변환
-		
 			        // 드롭다운 메뉴를 찾고 기존 항목을 지움
 			        let dropdownMenu = document.querySelector('#searchResultsDropdown');
 			        dropdownMenu.innerHTML = '';
 			        if (productNames.length > 0) {
 			            productNames.forEach(function(productName) {
-			            	 let dropdownItem = document.createElement('a');
-			                 dropdownItem.classList.add('dropdown-item');
-			                 dropdownItem.href = 'search_list.do?keyword='+productName; // 여기에 실제 제품 페이지나 기능을 연결 가능
-			                 dropdownItem.textContent = productName; // 직접 문자열을 사용
-		
-			                // 드롭다운 메뉴에 항목을 추가
-			                dropdownMenu.appendChild(dropdownItem);
+			            	let listItem = document.createElement('li'); // li 요소 생성
+			                let dropdownItem = document.createElement('a');
+			                dropdownItem.classList.add('dropdown-item');
+			                dropdownItem.href = 'search_list.do?keyword=' + productName;
+			                dropdownItem.textContent = productName;
+			                listItem.appendChild(dropdownItem); // li 요소 안에 a 요소 추가
+			                dropdownMenu.appendChild(listItem); // 드롭다운 메뉴에 li 요소 추가
 			            });
 		
 			            // 드롭다운 메뉴를 보이도록
@@ -100,13 +127,14 @@
 		  <div class="container-fluid">
 		    <ul class="nav navbar-nav">
 		      <!-- <li class="active"><a href="#">Home</a></li> -->
-		      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">카테고리별 <span class="caret"></span></a>
+		      <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown"  id="navbardrop" href="#">카테고리별 <span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-		          <li><a href="#">립스틱</a></li>
-		          <li><a href="#">파운데이션</a></li>
-		          <li><a href="#">아이셰도우</a></li>
+		          <li><a class="dropdown-item" href="#">립스틱</a></li>
+		          <li><a class="dropdown-item" href="#">파운데이션</a></li>
+		          <li><a class="dropdown-item" href="#">아이셰도우</a></li>
 		        </ul>
 		      </li>
+		      
 		      <li><a href="#">랭킹</a></li> 
 		      <li><a href="#">세일</a></li>
 		      <li><a href="#">신상품</a></li>
@@ -117,10 +145,9 @@
 		    
 		    <!-- 검색 -->
 		    <form class="navbar-form navbar-left" action="search_list.do" method="get">
-		      <div class="form-group">
-		        <input type="text" class="form-control" placeholder="Search" id="searchInput" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="keyword">
-		      	<!-- 검색 드롭다운 -->
-		      	<div class="dropdown-menu" id="searchResultsDropdown" aria-labelledby="searchInput">
+		     <div class="dropdown search-dropdown" id="frg">
+		        <input type="text" class="form-control dropdown-toggle" placeholder="Search" id="searchInput" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="keyword">
+		        <div class="dropdown-menu" id="searchResultsDropdown" aria-labelledby="searchInput">
 		        
 		        </div>
 		        <i class="bi bi-search" id="search_btn" onclick="search_list(this.form)"></i >
@@ -134,6 +161,7 @@
 		  </div>
 		</nav>
 		
+   
 	</body>
 </html>
 

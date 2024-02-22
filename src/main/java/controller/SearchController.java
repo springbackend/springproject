@@ -34,6 +34,7 @@ public class SearchController {
 		this.s_service = s_service;
 	}
 
+	
 	@RequestMapping(value = "search_form.do", method = RequestMethod.GET)
 	public String search_form() {
 		return VIEW_PATH + "search.jsp";
@@ -46,7 +47,7 @@ public class SearchController {
 		List<String> keyList = null;
 		int[] che = null;
 		String key = "";
-		if (keyword != null && !keyword.isEmpty()) {
+		if (keyword != null) {
 			if (!HangulSearcher.checkChosung(keyword.charAt(0))) {
 				list = s_service.search_result(keyword);
 			} else {
@@ -77,6 +78,8 @@ public class SearchController {
 				}
 			}
 		}
+		System.out.println(list);
+		System.out.println("키워드");
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonString = "";
 		try {

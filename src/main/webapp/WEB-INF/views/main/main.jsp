@@ -12,6 +12,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 	<%-- <jsp:include page="../comp/top.jsp"></jsp:include> --%>
 	<!-- 홈페이지 기본 내비게이션바-->
 	<jsp:include page="index.jsp" />
@@ -26,7 +27,7 @@
 			    <li data-target="#myCarousel" data-slide-to="1"></li>
 			    <li data-target="#myCarousel" data-slide-to="2"></li>
 			  </ol>
-			
+			</div>
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner">
 			    <div class="item active">
