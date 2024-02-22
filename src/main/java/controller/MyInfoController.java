@@ -30,7 +30,11 @@ public class MyInfoController {
 	static final String VIEW_PATH = "/WEB-INF/views/user/";
 
 	@RequestMapping(value = "/myInfo.do")
-	public String myInfo() {
+	public String myInfo(HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		if (id == null || id.isEmpty()) {
+			return VIEW_PATH + "loginFirst.jsp";
+		}
 		return VIEW_PATH + "myInfo.jsp";
 	}
 
@@ -39,7 +43,7 @@ public class MyInfoController {
 	public String viewMyPosts(HttpSession session, Model model) {
 		String id = (String) session.getAttribute("id");
 		// 테스트용 임시 세션아이디
-		//id = "asd123";
+		// id = "asd123";
 
 		if (id == null || id.isEmpty()) {
 			throw new RuntimeException("세션에 사용자 아이디가 없습니다.");
