@@ -40,7 +40,6 @@
   height: auto;
 }
 </style>
-
 </head>
 <body>
 	<div class="container mt-3">

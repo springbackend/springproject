@@ -7,7 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="pc_good" parameterType="pcgood">
 		insert into pcgood values(pcg_seq_idx.nextval,#{pc_idx},#{u_idx})
 	</insert>
-
+	
+	<select id="pc_u_id" resultType="int" parameterType="String">
+		select u_idx from user1 where u_id = #{u_id}
+	</select>
+	
 </mapper>
 
 

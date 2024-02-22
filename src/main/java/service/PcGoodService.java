@@ -17,5 +17,10 @@ public class PcGoodService {
 		int res = pcg_dao.good_Click(pcg_vo);
 		return res;
 	}
+	
+	public int pcg_u_idx(String u_id) {
+		int u_idx =pcg_dao.good_user(u_id);
+		return u_idx;
+	}
 
 }

@@ -61,6 +61,7 @@ public class ProductCommentController {
 	public String productComment_good(PcGoodVO pcg_vo) {
 		String u_id = (String) session.getAttribute("id");
 		if (u_id != null) {
+			pcg_vo.setU_idx(pcg_Service.pcg_u_idx(u_id));
 			pc_Service.productComment_good_count(pcg_vo.getPc_idx());
 			pcg_Service.pcg_click(pcg_vo);
 			return "yes";

@@ -17,5 +17,10 @@ public class PcGoodDAO {
 		return res;
 	}
 	
+	public int good_user(String u_id) {
+		int u_idx = sqlSession.selectOne("pcg.pc_u_id",u_id);
+		return u_idx;
+	}
+	
 
 }
