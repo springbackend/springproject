@@ -34,6 +34,7 @@ public class SearchController {
 		this.s_service = s_service;
 	}
 
+	
 	@RequestMapping(value = "search_form.do", method = RequestMethod.GET)
 	public String search_form() {
 		return VIEW_PATH + "search.jsp";

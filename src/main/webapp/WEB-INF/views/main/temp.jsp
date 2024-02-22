@@ -10,6 +10,7 @@
 	width: 100%;
 }
 
+
 table, th, td {
 	border: 1px solid black;
 	width: 600px;

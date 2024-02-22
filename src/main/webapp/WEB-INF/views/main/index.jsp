@@ -81,6 +81,7 @@
 		        sendRequest(url, param, resultKeyword, 'post');
 		}
 		
+		
 		function resultKeyword() {
 			 if (xhr.readyState == 4 && xhr.status == 200) {
 			        let data = xhr.responseText;

@@ -12,6 +12,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 	<%-- <jsp:include page="../comp/top.jsp"></jsp:include> --%>
 	<!-- 홈페이지 기본 내비게이션바-->
 	<jsp:include page="index.jsp" />
