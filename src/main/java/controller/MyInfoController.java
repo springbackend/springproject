@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,16 +36,19 @@ public class MyInfoController {
 
 	// 내글보기
 	@RequestMapping(value = "/viewMyPosts.do")
-	public List<BoardVO> viewMyPosts(HttpSession session) {
-		String id = session.getId();
+	public String viewMyPosts(HttpSession session, Model model) {
+		String id = (String) session.getAttribute("id");
+		// 테스트용 임시 세션아이디
+		//id = "asd123";
+
+		if (id == null || id.isEmpty()) {
+			throw new RuntimeException("세션에 사용자 아이디가 없습니다.");
+		}
 		// 내글조회
-		List<BoardVO> list = userBoardDAO.viewMyPosts(id);
-		
-		return list;
+		List<BoardVO> boardList = userBoardDAO.viewMyPosts(id);
+		model.addAttribute("boardList", boardList);
+		return VIEW_PATH + "MyBoard.jsp";
 	}
-	
-	
-	
 
 	// 내가 작성한 댓글보기
 	@RequestMapping(value = "/viewMyComments.do")
