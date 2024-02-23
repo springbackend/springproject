@@ -1,40 +1,76 @@
 //DB에서 쿼리를 사용하였을때 모두를 위해서 해당 쿼리를 무조건 이 텍스트 안에 적어주시길 바랍니다.
-//ex)
-//insert into member values(?,?,?,?);
-//create member ~~~~;
-//alter asdasd ~~~~~;
-//insert into member values(?????);
 //
 // 
-
-PK지정=======================================================
-ALTER TABLE MEMBER ADD CONSTRAINT m_pk PRIMARY KEY (m_id);
-===================================================
-시퀀스=======================
-CREATE SEQUENCE SEQ_MEMBER_IDX;
+-----------------시퀀스 생성-----------------
+--멤버
+CREATE SEQUENCE seq_member_idx 
 INCREMENT BY 1
 START WITH 1
 MINVALUE 1
 MAXVALUE 999999999999
 NOCYCLE
-NOCACHE
 NOORDER;
-
-CREATE SEQUENCE user_seq
+--유저
+CREATE SEQUENCE seq_user1_idx 
 INCREMENT BY 1
 START WITH 1
 MINVALUE 1
 MAXVALUE 999999999999
 NOCYCLE
-NOCACHE
 NOORDER;
-=================================
+--게시판
+CREATE SEQUENCE seq_board_idx
+INCREMENT BY 1
+START WITH
+1
+MINVALUE 1
+MAXVALUE 999999999999
+NOCYCLE
+NOORDER;
 
-테이블==============================
+--게시판 댓글
+CREATE SEQUENCE seq_comment_idx
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 999999999999
+NOCYCLE
+NOORDER;
+
+--게시판 톤
+CREATE SEQUENCE seq_tone_idx
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 999999999999
+NOCYCLE
+NOORDER;
+
+--상품 댓글
+create sequence pc_seq_idx
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 999999999999
+NOCYCLE
+NOORDER;
+ 
+--상품 리뷰
+create sequence pcg_seq_idx
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 999999999999
+NOCYCLE
+NOORDER;
+
+
+-----------------테이블 생성-----------------
+--유저
 CREATE TABLE USER1
 (
 	u_idx NUMBER(10) NOT NULL PRIMARY KEY,
-	u_id varchar(10) NOT NULL,
+	u_id varchar(10) UNIQUE NOT NULL,
 	u_name varchar(10) NOT NULL,
 	u_pwd varchar(100) NOT NULL,
 	u_pnum varchar(20) NOT NULL,
@@ -45,28 +81,7 @@ CREATE TABLE USER1
 	u_addr varchar(100),
 	u_birth varchar(10)
 );
-
-테스트용============================
-INSERT
-	INTO
-	USER1
-VALUES(
-		user_seq.nextVal,
-		1,
-		1,
-		1,
-		1,
-		1,
-		1,
-		1,
-		1,
-		1,
-		1
-		);
-====================================
---게시판 Table
-CREATE SEQUENCE seq_board_idx;
-
+--게시판
 CREATE TABLE board (
 	b_idx NUMBER(10) primary key,
 	m_idx NUMBER(5), --작성자 일련번호 (foreign key)
@@ -82,10 +97,7 @@ CREATE TABLE board (
 	p_name VARCHAR2(50),
 	comment_count NUMBER(10) --댓글수
 );
-====================================
 --게시판 댓글
-CREATE SEQUENCE seq_comment_idx;
-
 CREATE TABLE comment_table (
 	c_idx NUMBER(10) primary key,
 	b_idx NUMBER(10),
@@ -99,23 +111,78 @@ CREATE TABLE comment_table (
 	reply_count NUMBER(10)
 );
 
-====================================
 --게시판 좋아요
 CREATE TABLE likes (
 	b_idx NUMBER(10),
 	m_idx NUMBER(10),
 	like_date DATE
 );
-====================================
---게시판 톤
-CREATE SEQUENCE seq_tone_idx;
-
+--톤
 CREATE TABLE tone (
-	t_idx NUMBER(2),
+	t_idx NUMBER(5),
 	t_name VARCHAR2(50)
 );
 
---데이터
+--상품 댓글
+create table product_comment(
+pc_idx number(10) primary key, -- 리뷰번호
+pc_content clob,-- 리뷰내용
+pc_image varchar(50),--상품사진
+pc_good number(10),--좋아요갯수
+p_idx number(10),-- 상품번호
+u_idx number(10),-- 유저번호
+pc_star number(5),
+pc_regidate date
+);
+
+--상품 리뷰
+create table pcgood(
+pcg_idx number(10) primary key,--좋아요번호
+pc_idx number(10),--상품리뷰번호
+u_idx number(10)--좋아요누른 회원번호
+);
+
+
+COMMIT;
+-----------------키 지정-----------------
+ALTER TABLE MEMBER ADD CONSTRAINT m_pk PRIMARY KEY (m_id);
+ALTER TABLE tone ADD CONSTRAINT tone_pk PRIMARY KEY (t_idx);
+
+-----------------외래키 지정-----------------
+
+ALTER TABLE board
+ADD CONSTRAINT fk_board_user FOREIGN KEY (m_idx)
+REFERENCES USER1(u_idx);
+
+ALTER TABLE COMMENT_TABLE
+ADD CONSTRAINT fk_comment_user FOREIGN KEY (m_idx)
+REFERENCES USER1(u_idx);
+
+ALTER TABLE likes
+ADD CONSTRAINT fk_likes_user FOREIGN KEY (m_idx)
+REFERENCES USER1(u_idx);
+
+ALTER TABLE PRODUCT_COMMENT
+ADD CONSTRAINT fk_pc_user FOREIGN KEY (u_idx)
+REFERENCES USER1(u_idx);
+
+ALTER TABLE PCGOOD
+ADD CONSTRAINT fk_pcg_user FOREIGN KEY (u_idx)
+REFERENCES USER1(u_idx);
+
+/*에러
+ALTER TABLE BOARD
+ADD CONSTRAINT fk_board_tone FOREIGN KEY (T_IDX)
+REFERENCES TONE(T_IDX);
+
+ALTER TABLE PRODUCT_COMMENT
+ADD CONSTRAINT fk_pc_pcg FOREIGN KEY (pc_idx)
+REFERENCES PCGOOD(pc_idx);
+
+*/
+-----------------데이터-----------------
+
+--톤
 INSERT INTO tone VALUES(
 	seq_tone_idx.nextVal,
 	'봄 웜'
@@ -135,21 +202,38 @@ INSERT INTO tone VALUES(
 	seq_tone_idx.nextVal,
 	'겨울 쿨'
 );
+--유저 더미
+INSERT INTO USER1 (u_idx, u_id, u_name, u_pwd, u_pnum, u_email, u_gender, u_regidate, u_regiip, u_addr, u_birth)
+SELECT
+    seq_user1_idx.nextval,
+    'user' || level,
+    'User' || level,
+    'password' || level,
+    '010-1234-567' || level,
+    'user' || level || '@example.com',
+    CASE WHEN mod(level, 2) = 0 THEN 'Male' ELSE 'Female' END,
+    to_char(sysdate, 'YYYY-MM-DD'),
+    '192.168.0.' || level,
+    'Address' || level,
+    '1990-01-0' || level
+FROM dual
+CONNECT BY level <= 9;
 
+--게시판 더미
+INSERT INTO board (b_idx, m_idx, subject, content, ip, regdate, likes_count, readhit, t_idx, p_idx, t_name, p_name, comment_count)
+VALUES (seq_board_idx.nextval, 1, '제목1', '내용1', '192.168.0.1', SYSDATE, 10, 100, 1, 1, '카테고리1', '작성자1', 5);
 
+INSERT INTO board (b_idx, m_idx, subject, content, ip, regdate, likes_count, readhit, t_idx, p_idx, t_name, p_name, comment_count)
+VALUES (seq_board_idx.nextval, 2, '제목2', '내용2', '192.168.0.2', SYSDATE, 8, 80, 2, 1, '카테고리2', '작성자2', 3);
 
+INSERT INTO board (b_idx, m_idx, subject, content, ip, regdate, likes_count, readhit, t_idx, p_idx, t_name, p_name, comment_count)
+VALUES (seq_board_idx.nextval, 3, '제목3', '내용3', '192.168.0.3', SYSDATE, 12, 120, 3, 2, '카테고리3', '작성자3', 7);
 
+INSERT INTO board (b_idx, m_idx, subject, content, ip, regdate, likes_count, readhit, t_idx, p_idx, t_name, p_name, comment_count)
+VALUES (seq_board_idx.nextval, 3, '제목4', '내용4', '192.168.0.3', SYSDATE, 12, 120, 4, 2, '카테고리3', '작성자3', 7);
 
+--상품 더미
 
-
-
-
-
-
-
-
-
-
-
+--상품 댓글 더미
 
 
