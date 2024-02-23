@@ -45,29 +45,39 @@
 	function respclist() {
 		if(xhr.readyState == 4 && xhr.status == 200){
 			let data = xhr.responseText;
-			
 			document.getElementById("product_comment_list").innerHTML = data;
 		}
 	}
 	
-	function send(button) {
-	    // 'i' 태그를 찾습니다.
-	    let icon = button.getElementsByTagName('i')[0]; // getElementsByTagName을 사용하여 'i' 태그를 직접 찾습니다.
-
-	    // 클래스 리스트에서 'far'와 'fas'를 토글합니다.
-	    if (icon.classList.contains('far')) {
-	        icon.classList.remove('far');
-	        icon.classList.add('fas');
-	    } else if (icon.classList.contains('fas')) {
-	        icon.classList.remove('fas');
-	        icon.classList.add('far');
-	    }
-	    let url = "";
+	 function send(pc_idx) {
+		/* let pc_idx = document.getElementById('pc_idx').value; */
+		/* alert(pc_idx); */
+	    let url = "product_comment_good.do";
+	    let param = "pc_idx="+pc_idx;
+	    sendRequest(url,param,pc_good_count,'post');
 	}
+
+	function pc_good_count() {
+		if(xhr.readyState == 4 && xhr.status == 200){
+			let data = xhr.responseText;
+			if(data == 'yes'){
+			   /*  alert('좋아요'); */
+			    location.href = 'product_view.do?p_idx='+${p_vo.p_idx}
+			    return;
+			}else if(data == 'minus'){
+				/* alert('좋아요취소'); */
+			    location.href = 'product_view.do?p_idx='+${p_vo.p_idx}
+			    return;
+			}else{
+				alert('로그인후 사용해주세요');
+				return;
+			}
+		}
+	}     
 </script>
 </head>
 <body>
-<jsp:include page="index.jsp"/>
+<%-- <jsp:include page="index.jsp"/> --%>
 <div class="container mt-3">
   <div class="row align-items-center">
     <!-- 상품 이미지 영역 -->

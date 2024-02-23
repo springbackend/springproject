@@ -32,5 +32,14 @@ public class ProductCommentDAO {
 		int res= sqlSession.update("pc.pc_good_count", pc_idx);
 		return res;
 	}
+	public int pc_good_minus(int pc_idx) {
+		int res= sqlSession.update("pc.pc_good_count_minus", pc_idx);
+		return res;
+	}
+	
+	public List<ProductCommentVO> productComment_good_list(int u_idx){
+		List<ProductCommentVO> list = sqlSession.selectList("pc.product_good_user",u_idx);
+		return list;
+	}
 
 }

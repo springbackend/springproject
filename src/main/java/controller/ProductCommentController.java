@@ -33,6 +33,22 @@ public class ProductCommentController {
 	@RequestMapping(value = "/product_comment.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String productComment_list(int p_idx, Model model) {
 		List<ProductCommentVO> list = pc_Service.productComment_list(p_idx);
+
+		String u_id = (String) session.getAttribute("id");
+		if (u_id != null) {
+			int u_idx = pcg_Service.pcg_u_idx(u_id);
+			List<PcGoodVO> pcg_list = pcg_Service.pcg_list(u_idx);
+			if(pcg_list != null) {
+			for (int i = 0; i < list.size(); i++) {
+				for (int j = 0; j < pcg_list.size(); j++) {
+					if (list.get(i).getPc_idx() == pcg_list.get(j).getPc_idx()) {
+						list.get(i).setCheck(true);
+						break;
+					}
+				}
+			}
+			}
+		}
 		model.addAttribute("list", list);
 		return VIEW_PATH + "productcomment.jsp";
 	}
@@ -45,7 +61,7 @@ public class ProductCommentController {
 		return VIEW_PATH + "productcomment_write.jsp";
 	}
 
-	@RequestMapping(value = "product_comment_write.do",method = RequestMethod.POST,produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "product_comment_write.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String productComment_write(ProductCommentVO pc_vo) {
 		String u_id = (String) session.getAttribute("id");
 		if (u_id != null) {
@@ -53,18 +69,28 @@ public class ProductCommentController {
 		} else {
 			return "redirect:temp.do";
 		}
-		return "redirect:product_view.do?p_idx="+1;
+		return "redirect:product_view.do?p_idx=" + 1;
 	}
 
-	@RequestMapping(value = "product_comment_good.do",method = RequestMethod.POST,produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "product_comment_good.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String productComment_good(PcGoodVO pcg_vo) {
+	public String productComment_good(int pc_idx) {
 		String u_id = (String) session.getAttribute("id");
+
 		if (u_id != null) {
-			pc_Service.productComment_good_count(pcg_vo.getPc_idx());
-			pcg_Service.pcg_click(pcg_vo);
-			return "yes";
-		}else {
+			PcGoodVO pcg_vo = new PcGoodVO();
+			pcg_vo.setU_idx(pcg_Service.pcg_u_idx(u_id));
+			pcg_vo.setPc_idx(pc_idx);
+			boolean check = pcg_Service.userId_Check(pcg_vo.getU_idx(), pc_idx);
+			if (check) {
+				pc_Service.productComment_good_count(pc_idx);
+				pcg_Service.pcg_click(pcg_vo);
+				return "yes";
+			} else {
+				pc_Service.productComment_good_minus(pc_idx);
+				return "minus";
+			}
+		} else {
 			return "no";
 		}
 	}

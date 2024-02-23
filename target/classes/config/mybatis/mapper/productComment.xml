@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="pc">
 	<select id="product_comment" resultType="productcomment"
 		parameterType="int">
-		SELECT pc.pc_content, pc.pc_image,u.u_id,pc_star,pc_regidate,pc_good
+		SELECT pc.pc_content, pc.pc_image,u.u_id,pc_star,pc_regidate,pc_good,pc.pc_idx
 		FROM product_comment pc
 		JOIN user1 u ON pc.u_idx = u.u_idx
 		WHERE pc.p_idx = #{p_idx}
@@ -22,6 +22,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="pc_good_count" parameterType="int">
 		update product_comment set pc_good = pc_good+1 where pc_idx = #{pc_idx}
 	</update>
+	
+	<update id="pc_good_count_minus" parameterType="int">
+		update product_comment set pc_good = pc_good-1 where pc_idx = #{pc_idx}
+	</update>
+	<select id="product_good_user" resultType="productcomment" parameterType="int">
+	SELECT pc.* FROM product_comment pc JOIN pcgood pcg ON pc.pc_idx = pcg.pc_idx WHERE pcg.u_idx = #{u_idx}
+	</select>
 </mapper>
 
 

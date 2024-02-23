@@ -32,7 +32,7 @@ public class TempController {
 
 	@RequestMapping(value = { "/temp.do" })
 	public String temp() {
-		return VIEWPATH + "/main/temp.jsp";
+		return VIEWPATH + "/main/index.jsp";
 	}
 
 	@RequestMapping(value = "/top.do")
