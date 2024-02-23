@@ -88,6 +88,7 @@ public class ProductCommentController {
 				return "yes";
 			} else {
 				pc_Service.productComment_good_minus(pc_idx);
+				pcg_Service.pcg_delete(pcg_vo.getU_idx(), pc_idx);
 				return "minus";
 			}
 		} else {

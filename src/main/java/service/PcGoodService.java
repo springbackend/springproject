@@ -46,8 +46,6 @@ public class PcGoodService {
 		System.out.println(pcg_vo);
 		if(pcg_vo == null) {
 			check =true;
-		}else {
-			pcg_dao.delete_pcg(map);
 		}
 		return check;
 	}
@@ -55,6 +53,14 @@ public class PcGoodService {
 	public List<PcGoodVO> pcg_list(int u_idx){
 		List<PcGoodVO> list = pcg_dao.pcg_list(u_idx);
 		return list;
+	}
+	
+	public int pcg_delete(int u_idx,int pc_idx) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("u_idx", u_idx);
+		map.put("pc_idx", pc_idx);
+		int del = pcg_dao.delete_pcg(map);
+		return del;
 	}
 
 }
