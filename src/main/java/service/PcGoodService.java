@@ -1,6 +1,7 @@
 package service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -46,9 +47,14 @@ public class PcGoodService {
 		if(pcg_vo == null) {
 			check =true;
 		}else {
-			pcg_dao.delete_pcg(u_idx);
+			pcg_dao.delete_pcg(map);
 		}
 		return check;
+	}
+	
+	public List<PcGoodVO> pcg_list(int u_idx){
+		List<PcGoodVO> list = pcg_dao.pcg_list(u_idx);
+		return list;
 	}
 
 }

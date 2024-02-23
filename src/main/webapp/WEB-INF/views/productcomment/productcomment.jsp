@@ -68,7 +68,12 @@
 							<p class="card-text">${pc.pc_content }</p>
 							
 							<button class="btn btn-light" onclick="send(${pc.pc_idx})">
+							<c:if test="${pc.check eq false }">
 								<i class="far fa-thumbs-up" ></i> 좋아요${pc.pc_good }
+							</c:if>
+							<c:if test="${pc.check eq true }">
+								<i class="fas fa-thumbs-up" ></i> 좋아요${pc.pc_good }
+							</c:if>
 							</button>
 						</div>
 					</div>

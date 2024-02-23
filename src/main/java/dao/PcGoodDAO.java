@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -36,9 +37,14 @@ public class PcGoodDAO {
 		return pcg_vo;
 	}
 	
-	public int delete_pcg(int u_idx) {
-		int del = sqlSession.delete("pcg.pcg_delete",u_idx);
+	public int delete_pcg(Map<String, Integer> map) {
+		int del = sqlSession.delete("pcg.pcg_delete",map);
 		return del;
+	}
+	
+	public List<PcGoodVO> pcg_list(int u_idx){
+		List<PcGoodVO> list = sqlSession.selectList("pcg.pcg_list", u_idx);
+		return list;
 	}
 	
 

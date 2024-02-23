@@ -17,6 +17,8 @@ u_idx number(10)--좋아요누른 회원번호
 );
 
 create sequence pcg_seq_idx;
-
+drop table pcgood;
+drop sequence pcg_seq_idx;
+update product_comment set pc_good = 0;
 
 

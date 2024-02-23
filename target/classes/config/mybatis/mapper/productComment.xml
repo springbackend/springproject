@@ -26,6 +26,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="pc_good_count_minus" parameterType="int">
 		update product_comment set pc_good = pc_good-1 where pc_idx = #{pc_idx}
 	</update>
+	<select id="product_good_user" resultType="productcomment" parameterType="int">
+	SELECT pc.* FROM product_comment pc JOIN pcgood pcg ON pc.pc_idx = pcg.pc_idx WHERE pcg.u_idx = #{u_idx}
+	</select>
 </mapper>
 
 

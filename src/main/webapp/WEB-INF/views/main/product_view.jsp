@@ -51,7 +51,7 @@
 	
 	 function send(pc_idx) {
 		/* let pc_idx = document.getElementById('pc_idx').value; */
-		alert(pc_idx);
+		/* alert(pc_idx); */
 	    let url = "product_comment_good.do";
 	    let param = "pc_idx="+pc_idx;
 	    sendRequest(url,param,pc_good_count,'post');
@@ -61,20 +61,11 @@
 		if(xhr.readyState == 4 && xhr.status == 200){
 			let data = xhr.responseText;
 			if(data == 'yes'){
-				 /* let icon = button.getElementsByTagName('i')[0];
-
-			    if (icon.classList.contains('far')) {
-			        icon.classList.remove('far');
-			        icon.classList.add('fas');
-			    } else if (icon.classList.contains('fas')) {
-			        icon.classList.remove('fas');
-			        icon.classList.add('far');
-			    }  */
-			    alert('좋아요');
+			   /*  alert('좋아요'); */
 			    location.href = 'product_view.do?p_idx='+${p_vo.p_idx}
 			    return;
 			}else if(data == 'minus'){
-				alert('좋아요취소');
+				/* alert('좋아요취소'); */
 			    location.href = 'product_view.do?p_idx='+${p_vo.p_idx}
 			    return;
 			}else{
@@ -83,19 +74,6 @@
 			}
 		}
 	}     
-	
-	/* function send(button) {
-	    let icon = button.getElementsByTagName('i')[0];
-
-	    if (icon.classList.contains('far')) {
-	        icon.classList.remove('far');
-	        icon.classList.add('fas');
-	    } else if (icon.classList.contains('fas')) {
-	        icon.classList.remove('fas');
-	        icon.classList.add('far');
-	    }
-	    let url = "";
-	} */
 </script>
 </head>
 <body>
