@@ -73,6 +73,10 @@
 			    alert('좋아요');
 			    location.href = 'product_view.do?p_idx='+${p_vo.p_idx}
 			    return;
+			}else if(data == 'minus'){
+				alert('좋아요취소');
+			    location.href = 'product_view.do?p_idx='+${p_vo.p_idx}
+			    return;
 			}else{
 				alert('로그인후 사용해주세요');
 				return;

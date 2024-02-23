@@ -22,6 +22,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="pc_good_count" parameterType="int">
 		update product_comment set pc_good = pc_good+1 where pc_idx = #{pc_idx}
 	</update>
+	
+	<update id="pc_good_count_minus" parameterType="int">
+		update product_comment set pc_good = pc_good-1 where pc_idx = #{pc_idx}
+	</update>
 </mapper>
 
 

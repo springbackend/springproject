@@ -29,5 +29,10 @@ public class ProductCommentService {
 		int count = pc_dao.pc_good_update(pc_idx);
 		return count;
 	}
+	
+	public int productComment_good_minus(int pc_idx) {
+		int minus = pc_dao.pc_good_minus(pc_idx);
+		return minus;
+	}
 
 }

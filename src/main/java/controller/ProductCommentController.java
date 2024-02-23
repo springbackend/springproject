@@ -60,13 +60,20 @@ public class ProductCommentController {
 	@ResponseBody
 	public String productComment_good(int pc_idx) {
 		String u_id = (String) session.getAttribute("id");
+		
 		if (u_id != null) {
 			PcGoodVO pcg_vo = new PcGoodVO();
 			pcg_vo.setU_idx(pcg_Service.pcg_u_idx(u_id));
 			pcg_vo.setPc_idx(pc_idx);
+			boolean check = pcg_Service.userId_Check(pcg_vo.getU_idx(),pc_idx);
+			if(check) {
 			pc_Service.productComment_good_count(pc_idx);
 			pcg_Service.pcg_click(pcg_vo);
 			return "yes";
+			}else {
+				pc_Service.productComment_good_minus(pc_idx);
+				return "minus";
+			}
 		}else {
 			return "no";
 		}

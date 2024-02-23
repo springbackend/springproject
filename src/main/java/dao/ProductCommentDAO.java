@@ -32,5 +32,9 @@ public class ProductCommentDAO {
 		int res= sqlSession.update("pc.pc_good_count", pc_idx);
 		return res;
 	}
+	public int pc_good_minus(int pc_idx) {
+		int res= sqlSession.update("pc.pc_good_count_minus", pc_idx);
+		return res;
+	}
 
 }
