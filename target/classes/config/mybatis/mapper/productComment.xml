@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="pc">
 	<select id="product_comment" resultType="productcomment"
 		parameterType="int">
-		SELECT pc.pc_content, pc.pc_image,u.u_id,pc_star,pc_regidate,pc_good
+		SELECT pc.pc_content, pc.pc_image,u.u_id,pc_star,pc_regidate,pc_good,pc.pc_idx
 		FROM product_comment pc
 		JOIN user1 u ON pc.u_idx = u.u_idx
 		WHERE pc.p_idx = #{p_idx}

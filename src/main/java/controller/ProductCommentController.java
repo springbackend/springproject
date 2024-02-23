@@ -58,11 +58,13 @@ public class ProductCommentController {
 
 	@RequestMapping(value = "product_comment_good.do",method = RequestMethod.POST,produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String productComment_good(PcGoodVO pcg_vo) {
+	public String productComment_good(int pc_idx) {
 		String u_id = (String) session.getAttribute("id");
 		if (u_id != null) {
+			PcGoodVO pcg_vo = new PcGoodVO();
 			pcg_vo.setU_idx(pcg_Service.pcg_u_idx(u_id));
-			pc_Service.productComment_good_count(pcg_vo.getPc_idx());
+			pcg_vo.setPc_idx(pc_idx);
+			pc_Service.productComment_good_count(pc_idx);
 			pcg_Service.pcg_click(pcg_vo);
 			return "yes";
 		}else {

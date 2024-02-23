@@ -49,9 +49,11 @@
 		}
 	}
 	
-	/* function send() {
+	 function send(pc_idx) {
+		/* let pc_idx = document.getElementById('pc_idx').value; */
+		alert(pc_idx);
 	    let url = "product_comment_good.do";
-	    let param = "pc_idx="+${list.pc_idx};
+	    let param = "pc_idx="+pc_idx;
 	    sendRequest(url,param,pc_good_count,'post');
 	}
 
@@ -59,7 +61,7 @@
 		if(xhr.readyState == 4 && xhr.status == 200){
 			let data = xhr.responseText;
 			if(data == 'yes'){
-				 let icon = button.getElementsByTagName('i')[0];
+				 /* let icon = button.getElementsByTagName('i')[0];
 
 			    if (icon.classList.contains('far')) {
 			        icon.classList.remove('far');
@@ -67,21 +69,20 @@
 			    } else if (icon.classList.contains('fas')) {
 			        icon.classList.remove('fas');
 			        icon.classList.add('far');
-			    } 
+			    }  */
 			    alert('좋아요');
+			    location.href = 'product_view.do?p_idx='+${p_vo.p_idx}
 			    return;
 			}else{
 				alert('로그인후 사용해주세요');
 				return;
 			}
 		}
-	}     */
+	}     
 	
-	function send(button) {
-	    // 'i' 태그를 찾습니다.
-	    let icon = button.getElementsByTagName('i')[0]; // getElementsByTagName을 사용하여 'i' 태그를 직접 찾습니다.
+	/* function send(button) {
+	    let icon = button.getElementsByTagName('i')[0];
 
-	    // 클래스 리스트에서 'far'와 'fas'를 토글합니다.
 	    if (icon.classList.contains('far')) {
 	        icon.classList.remove('far');
 	        icon.classList.add('fas');
@@ -90,7 +91,7 @@
 	        icon.classList.add('far');
 	    }
 	    let url = "";
-	}
+	} */
 </script>
 </head>
 <body>

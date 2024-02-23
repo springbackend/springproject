@@ -67,7 +67,7 @@
 							
 							<p class="card-text">${pc.pc_content }</p>
 							
-							<button class="btn btn-light" onclick="send(this)">
+							<button class="btn btn-light" onclick="send(${pc.pc_idx})">
 								<i class="far fa-thumbs-up" ></i> 좋아요${pc.pc_good }
 							</button>
 						</div>
