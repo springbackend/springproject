@@ -95,5 +95,14 @@ public class ProductCommentController {
 			return "no";
 		}
 	}
+	
+	@RequestMapping(value = "product_comment_delete.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String productComment_delete(int pc_idx) {
+		String u_id = (String) session.getAttribute("id");
+		if(u_id != null) {
+			pc_Service.productComment_delete(u_id, pc_idx);
+		}
+		return null;
+	}
 
 }

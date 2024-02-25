@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -40,6 +41,11 @@ public class ProductCommentDAO {
 	public List<ProductCommentVO> productComment_good_list(int u_idx){
 		List<ProductCommentVO> list = sqlSession.selectList("pc.product_good_user",u_idx);
 		return list;
+	}
+	
+	public int productComment_delete(Map<String, Integer> map) {
+		int res = sqlSession.delete("pc.delete_product_comment",map);
+		return res;
 	}
 
 }

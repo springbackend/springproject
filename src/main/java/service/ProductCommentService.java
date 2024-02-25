@@ -1,6 +1,8 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dao.ProductCommentDAO;
 import vo.ProductCommentVO;
@@ -33,6 +35,15 @@ public class ProductCommentService {
 	public int productComment_good_minus(int pc_idx) {
 		int minus = pc_dao.pc_good_minus(pc_idx);
 		return minus;
+	}
+	
+	public int productComment_delete(String u_id,int pc_idx) {
+		int u_idx = pc_dao.user_select(u_id);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("u_idx", u_idx);
+		map.put("pc_idx", pc_idx);
+		int res = pc_dao.productComment_delete(map);
+		return res;
 	}
 
 }
