@@ -19,12 +19,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from pcgood where pc_idx = #{pc_idx} and u_idx = #{u_idx}
 	</select>
 	
-	<delete id="pcg_delete" parameterType="int">
-		delete from pcgood where u_idx = #{u_idx}
+	<delete id="pcg_delete" parameterType="java.util.Map">
+		delete from pcgood where pc_idx = #{pc_idx} and u_idx = #{u_idx}
 	</delete>
 	
-	<select id="pcg_list" resultType="pcgood" parameterType="java.util.Map">
-		select * from pcgood where pc_idx = #{pc_idx} and u_idx = #{u_idx}
+	<select id="pcg_list" resultType="pcgood" parameterType="int">
+		select * from pcgood where u_idx = #{u_idx}
 	</select>
 </mapper>
 
