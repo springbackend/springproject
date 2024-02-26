@@ -236,4 +236,45 @@ VALUES (seq_board_idx.nextval, 3, '제목4', '내용4', '192.168.0.3', SYSDATE, 
 
 --상품 댓글 더미
 
+Mysql=============================================================================================================
+--유저테이블
+
+CREATE TABLE `user1` (
+	`u_idx` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`u_id` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`u_name` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`u_pwd` VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`u_email` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`u_gender` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`u_regidate` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`u_regiip` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`u_addr` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`u_birth` VARCHAR(10) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	PRIMARY KEY (`u_idx`) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
