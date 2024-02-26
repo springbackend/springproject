@@ -256,7 +256,63 @@ COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 
+--Board Table
+CREATE TABLE `board` (
+	`b_idx` INT(10) NOT NULL AUTO_INCREMENT,
+	`m_idx` INT(10) NOT NULL,
+	`subject` VARCHAR(150) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`content` LONGTEXT NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ip` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`regdate` DATE NOT NULL,
+	`likes_count` INT(10) NULL DEFAULT NULL,
+	`readhit` INT(10) NULL DEFAULT NULL,
+	`t_idx` INT(10) NULL DEFAULT NULL,
+	`p_idx` INT(10) NULL DEFAULT NULL,
+	`t_name` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`p_name` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`comment_count` INT(10) NULL DEFAULT NULL,
+	PRIMARY KEY (`b_idx`) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
 
+--Tone Table
+CREATE TABLE `tone` (
+	`t_idx` INT(10) NULL DEFAULT NULL,
+	`t_name` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci'
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
+
+--Like Table
+CREATE TABLE `like` (
+	`b_idx` INT(10) NOT NULL,
+	`m_idx` INT(10) NOT NULL,
+	`like_date` DATE NOT NULL
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
+
+--Comment Table
+CREATE TABLE `comment_table` (
+	`c_idx` INT(10) NOT NULL AUTO_INCREMENT,
+	`b_idx` INT(10) NOT NULL,
+	`m_idx` INT(10) NOT NULL,
+	`content` LONGTEXT NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`ip` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`regdate` DATE NOT NULL,
+	`ref` INT(10) NOT NULL,
+	`step` INT(10) NOT NULL,
+	`depth` INT(10) NOT NULL,
+	`reply_count` INT(10) NULL DEFAULT NULL,
+	PRIMARY KEY (`c_idx`) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
 
 
 
