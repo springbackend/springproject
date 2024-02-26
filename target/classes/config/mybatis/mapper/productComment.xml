@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	JOIN user1 u ON pc.u_idx = u.u_idx
 	WHERE pc.p_idx = #{p_idx}
 	) subquery
-	WHERE rnk BETWEEN #{start} AND #{end};
+	WHERE rnk BETWEEN #{start} AND #{end}
 	</select>
 	<select id="select_pc_count" resultType="int" parameterType="int">
 		select count(*) from product_comment where p_idx=#{p_idx}
