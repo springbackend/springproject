@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT pc.* FROM product_comment pc JOIN pcgood pcg ON pc.pc_idx = pcg.pc_idx WHERE pcg.u_idx = #{u_idx}
 	</select>
 	
-	<delete id="delete_product_comment" parameterMap="java.util.Map">
+	<delete id="delete_product_comment" parameterType="java.util.Map">
 		delete from product_comment where u_idx=#{u_idx} and pc_idx=#{pc_idx}
 	</delete>
 </mapper>
