@@ -15,9 +15,19 @@ public class ProductCommentDAO {
 		this.sqlSession =sqlSession;
 	}
 	
-	public List<ProductCommentVO> productComment_list(int p_idx){
-		List<ProductCommentVO> list = sqlSession.selectList("pc.product_comment",p_idx);
+//	public List<ProductCommentVO> productComment_list(int p_idx){
+//		List<ProductCommentVO> list = sqlSession.selectList("pc.product_comment",p_idx);
+//		return list;
+//	}
+	
+	public List<ProductCommentVO> productComment_list(Map<String, Integer> map){
+		List<ProductCommentVO> list = sqlSession.selectList("pc.product_comment",map);
 		return list;
+	}
+	
+	public int productComment_list_count(int p_idx) {
+		int count = sqlSession.selectOne("pc.select_pc_count", p_idx);
+		return count;
 	}
 	
 	public int productComment_write(ProductCommentVO pc_vo) {
@@ -46,6 +56,11 @@ public class ProductCommentDAO {
 	public int productComment_delete(Map<String, Integer> map) {
 		int res = sqlSession.delete("pc.delete_product_comment",map);
 		return res;
+	}
+	
+	public int productbuy_check(Map<String, Integer> map) {
+		int count = sqlSession.selectOne("pc.product_buy_check",map);
+		return count;
 	}
 
 }

@@ -21,4 +21,14 @@ drop table pcgood;
 drop sequence pcg_seq_idx;
 update product_comment set pc_good = 0;
 
+create table buy_product(
+bp_idx number(10) primary key, 
+p_idx number(10),
+u_idx number(10),
+p_count number(10),
+totalprice number(20)
+);
+create sequence bp_seq_idx;
+insert into buy_product values(bp_seq_idx.nextval,1,1,3,90000);
+
 

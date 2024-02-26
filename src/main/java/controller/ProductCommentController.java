@@ -1,6 +1,8 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.PcGoodService;
 import service.ProductCommentService;
+import util.Common;
+import util.ProductPaging;
 import vo.PcGoodVO;
 import vo.ProductCommentVO;
 
@@ -30,10 +34,41 @@ public class ProductCommentController {
 		this.pcg_Service = pcg_Service;
 	}
 
+//	@RequestMapping(value = "/product_comment.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+//	public String productComment_list(int p_idx, Model model) {
+//		List<ProductCommentVO> list = pc_Service.productComment_list(p_idx);
+//		String u_id = (String) session.getAttribute("id");
+//		if (u_id != null) {
+//			int u_idx = pcg_Service.pcg_u_idx(u_id);
+//			List<PcGoodVO> pcg_list = pcg_Service.pcg_list(u_idx);
+//			if(pcg_list != null) {
+//			for (int i = 0; i < list.size(); i++) {
+//				for (int j = 0; j < pcg_list.size(); j++) {
+//					if (list.get(i).getPc_idx() == pcg_list.get(j).getPc_idx()) {
+//						list.get(i).setCheck(true);
+//						break;
+//					}
+//				}
+//			}
+//			}
+//		}
+//		model.addAttribute("list", list);
+//		return VIEW_PATH + "productcomment.jsp";
+//	}
 	@RequestMapping(value = "/product_comment.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public String productComment_list(int p_idx, Model model) {
-		List<ProductCommentVO> list = pc_Service.productComment_list(p_idx);
-
+	public String productComment_list(int p_idx, Model model,String page) {
+		int nowpage =1;
+		if(page != null && !page.isEmpty()) {
+			nowpage = Integer.parseInt(page);
+		}
+		int start = (nowpage-1) * Common.Product.BLOCKLIST + 1;
+		int end = start+Common.Product.BLOCKLIST-1;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("p_idx", p_idx);
+		List<ProductCommentVO> list= pc_Service.productComment_list(map);
+		
 		String u_id = (String) session.getAttribute("id");
 		if (u_id != null) {
 			int u_idx = pcg_Service.pcg_u_idx(u_id);
@@ -49,9 +84,14 @@ public class ProductCommentController {
 			}
 			}
 		}
+		int rowtotal = pc_Service.productComment_list_count(p_idx);
+		String page_menu = ProductPaging.getPcPaging("product_comment.do", nowpage, rowtotal,Common.Product.BLOCKLIST,
+				Common.Product.BLOCKPAGE);
 		model.addAttribute("list", list);
+		model.addAttribute("page",page_menu);
 		return VIEW_PATH + "productcomment.jsp";
 	}
+	
 
 	@RequestMapping("product_comment_write_form.do")
 	public String productComment_write() {
