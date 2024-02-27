@@ -77,7 +77,7 @@
 </script>
 </head>
 <body>
-<%-- <jsp:include page="index.jsp"/> --%>
+<jsp:include page="index.jsp"/>
 <div class="container mt-3">
   <div class="row align-items-center">
     <!-- 상품 이미지 영역 -->
@@ -107,9 +107,6 @@
 
 </div>
 
-<!-- 부트스트랩 JS, Popper.js, 그리고 jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </body>
 </html>
