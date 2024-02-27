@@ -44,7 +44,7 @@
 <body>
 	<div class="container mt-5">
 		<h2>상품 리뷰 작성하기</h2>
-		<form action="product_comment_write.do" method="post">
+		<form action="product_comment_write.do" method="post" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="reviewContent">리뷰 내용</label>
 				<textarea class="form-control" rows="5" name="pc_content"
@@ -52,7 +52,7 @@
 			</div>
 			<div class="form-group">
 				<label for="reviewImage">상품 사진</label> <input type="file"
-					class="form-control-file" name="pc_image">
+					class="form-control-file" name="photo">
 			</div>
 			<div class="form-group star-rating">
 				<label for="reviewRating">별점 평가</label> <br />

@@ -7,12 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 보기</title>
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 .review-card {
 	margin-bottom: 20px;
@@ -35,15 +33,15 @@
 .rating i {
 	margin-right: 4px; /* 별 사이의 간격 */
 }
-.img-responsive {
-  width: 20%;
+.img-responsive2 {
+  width: 10%;
   height: auto;
 }
 </style>
 </head>
 <body>
 	<div class="container mt-3">
-		<h2>리뷰 목록</h2>
+		<h2 align="center">리뷰 목록</h2>
 		<c:if test="${!empty list }">
 		<c:forEach var="pc" items="${list }">
 			<div class="row">
@@ -62,8 +60,7 @@
 								<span style="color: black;">${fn:split( pc.pc_regidate, ' ' )[0] }</span>
 					</div>
 					
-						<img src="resources/productimages/${pc.pc_image }" class="img-responsive"
-							alt="리뷰 이미지">
+						<img src="resources/productcomment/${pc.pc_image}" class="img-responsive2" alt="리뷰 이미지">
 						<div class="card-body">
 							
 							<p class="card-text">${pc.pc_content }</p>
@@ -89,10 +86,5 @@
         	<h1 align="center">리뷰가 없습니다.</h1>
         </c:if>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	</body>
 	</html>
