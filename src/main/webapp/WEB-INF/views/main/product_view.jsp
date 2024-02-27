@@ -5,13 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 부트스트랩 CSS 연결 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- css정렬 -->
-<!-- <link rel="stylesheet" href="/beauty/resources/css/product_view.css"> -->
+<link rel="stylesheet" href="/beauty/resources/css/product_view.css">
 <script src="/beauty/resources/js/httpRequest.js"></script>
 <style>
 .img-responsive {
