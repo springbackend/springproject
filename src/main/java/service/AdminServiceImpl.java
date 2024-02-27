@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
  
 import dao.AdminDAO;
 import dao.AdminDTO;
-import dao.BoardDAO;
 import dao.MemberDTO;
  
 @Service    //서비스 빈으로 설정함

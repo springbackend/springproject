@@ -1,9 +1,6 @@
 package dao;
  
-import org.apache.ibatis.session.SqlSession;
 
-import dao.AdminDTO;
-import dao.MemberDTO;
  
 public interface AdminDAO {
 	
@@ -13,5 +10,5 @@ public interface AdminDAO {
  
  
     void admin_member_forced_evictionCheck(MemberDTO dto) throws Exception;    //회원 강제탈퇴 관련 메소드
- 
+ //
 }

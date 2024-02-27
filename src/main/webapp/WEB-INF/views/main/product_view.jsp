@@ -4,13 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
-<!-- 부트스트랩 CSS 연결 -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <!-- css정렬 -->
 <link rel="stylesheet" href="/beauty/resources/css/product_view.css">
 <script src="/beauty/resources/js/httpRequest.js"></script>
+<style>
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+</style>
 <script type="text/javascript">
 	function updateprice() {
 		let quantity = document.getElementById('quantity').value;
@@ -81,20 +86,18 @@
 <div class="container mt-3">
   <div class="row align-items-center">
     <!-- 상품 이미지 영역 -->
-    <div class="col-md-6">
-    <!-- img-fluid:이미지가 반응형으로 동작 -->
-      <img src="resources/productimages/${p_vo.p_image }" alt="상품 이미지" class="img-fluid">
-    </div>
-    <!-- 상품 정보 영역(이미지하고 정보부분 왼쪽오른쪽으로나눔) -->
     <div class="col-md-6 product-info">
+      <img src="resources/productimages/${p_vo.p_image }" alt="상품 이미지" class="img-responsive center-block" style="max-width: 100%; height: auto;">
+    </div>
+    <!-- 상품 정보 영역 -->
+    <div class="col-md-6">
       <h2>${p_vo.p_name }</h2>
       <p>${p_vo.p_content }</p>
-      <div class="mb-3">
+      <div class="form-group">
         <label for="quantity">수량:</label>
         <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control" style="width: auto;" onchange="updateprice()">
       </div>
-      <p id="totalprice">가격:${p_vo.p_price }</p><!-- 수량에 맞게 가격 변동으로 바뀜 -->
-      <!-- 버튼들을 수평으로 배열 -->
+      <p id="totalprice">가격:${p_vo.p_price }</p>
       <div class="product-actions">
         <button type="button" class="btn btn-primary">장바구니에 담기</button>
         <button type="button" class="btn btn-success" onclick="buyproduct()">구매하기</button>
@@ -104,9 +107,7 @@
   </div>
 </div>
 <div id="product_comment_list">
-
+  <!-- 댓글 목록 -->
 </div>
-
-
 </body>
 </html>

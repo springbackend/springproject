@@ -233,8 +233,28 @@ INSERT INTO board (b_idx, m_idx, subject, content, ip, regdate, likes_count, rea
 VALUES (seq_board_idx.nextval, 3, '제목4', '내용4', '192.168.0.3', SYSDATE, 12, 120, 4, 2, '카테고리3', '작성자3', 7);
 
 --상품 더미
+INSERT INTO product_comment (pc_idx, pc_content, pc_image, pc_good, p_idx, u_idx, pc_star, pc_regidate) 
+VALUES (1001, '이 상품 정말 좋네요!', 'product1.jpg', 10, 1, 2001, 5, TO_DATE('2024-02-27', 'YYYY-MM-DD'));
 
+INSERT INTO product_comment (pc_idx, pc_content, pc_image, pc_good, p_idx, u_idx, pc_star, pc_regidate) 
+VALUES (1002, '디자인이 예쁘고 가격도 저렴합니다.', 'product2.jpg', 15, 2, 2002, 4, TO_DATE('2024-02-27', 'YYYY-MM-DD'));
+
+INSERT INTO product_comment (pc_idx, pc_content, pc_image, pc_good, p_idx, u_idx, pc_star, pc_regidate) 
+VALUES (1003, '사용해보니 성능이 괜찮네요.', 'product3.jpg', 20, 3, 2003, 4, TO_DATE('2024-02-26', 'YYYY-MM-DD'));
+
+INSERT INTO product_comment (pc_idx, pc_content, pc_image, pc_good, p_idx, u_idx, pc_star, pc_regidate) 
+VALUES (1004, '배송도 빠르고 상품도 만족스럽습니다.', 'product4.jpg', 12, 4, 2004, 5, TO_DATE('2024-02-26', 'YYYY-MM-DD'));
+
+INSERT INTO product_comment (pc_idx, pc_content, pc_image, pc_good, p_idx, u_idx, pc_star, pc_regidate) 
+VALUES (1005, '제품 품질이 아주 좋아요!', 'product5.jpg', 18, 5, 2005, 5, TO_DATE('2024-02-25', 'YYYY-MM-DD'));
 --상품 댓글 더미
+INSERT INTO pcgood (pcg_idx, pc_idx, u_idx) VALUES (1, 1001, 2001);
+INSERT INTO pcgood (pcg_idx, pc_idx, u_idx) VALUES (2, 1002, 2002);
+INSERT INTO pcgood (pcg_idx, pc_idx, u_idx) VALUES (3, 1003, 2003);
+INSERT INTO pcgood (pcg_idx, pc_idx, u_idx) VALUES (4, 1004, 2004);
+INSERT INTO pcgood (pcg_idx, pc_idx, u_idx) VALUES (5, 1005, 2005);
+
+
 
 Mysql=============================================================================================================
 --유저테이블
