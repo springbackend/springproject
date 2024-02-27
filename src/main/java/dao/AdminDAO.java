@@ -1,9 +1,6 @@
 package dao;
  
-import org.apache.ibatis.session.SqlSession;
 
-import dao.AdminDTO;
-import dao.MemberDTO;
  
 public interface AdminDAO {
 	

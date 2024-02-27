@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import dao.ProductCommentDAO;
-import util.Common;
-import util.ProductPaging;
 import vo.ProductCommentVO;
 
 public class ProductCommentService {

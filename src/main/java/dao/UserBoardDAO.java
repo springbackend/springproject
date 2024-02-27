@@ -28,5 +28,4 @@ public class UserBoardDAO {
 		List<BoardVO> boardList = sqlSession.selectList("ub.viewMyPosts", userId);
 		return Optional.ofNullable(boardList).orElseThrow(() -> new RuntimeException("내가 작성한 댓글이 존재하지 않습니다."));
 	}
-
 }

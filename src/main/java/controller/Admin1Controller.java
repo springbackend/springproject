@@ -3,8 +3,6 @@ package controller;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
  
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +13,6 @@ import service.AdminServiceImpl;
 
  
  
-
 @Controller //관리자 관련 컨트롤러 빈 선언
 public class Admin1Controller {
     
@@ -25,16 +22,12 @@ public class Admin1Controller {
     public Admin1Controller(AdminServiceImpl adminServiceImpl) {
 		this.adminServiceImpl = adminServiceImpl;
 	}
-    
-        private static final Logger logger= 
-        LoggerFactory.getLogger(MemberController.class);  //로깅을 위한 변수
-        
+
         
     //메뉴 페이지에서 관리자 로그인 버튼을 클릭하면 맵핑되는 메소드
     //관리자 로그인 페이지로 이동시킨다.
     @RequestMapping("/admin/admin_login_view.do")
     public String admin_login_view() {
-        
         return "/WEB-INF/views/admin/admin_login.jsp";
     }
     
