@@ -35,9 +35,9 @@ public class UserDAO {
 	}
 
 	// read one
-	public UserVO findById(String id) {
-		System.out.println(id);
-		UserVO vo = sqlSession.selectOne("u.ismember", id);
+	public UserVO findByEmail(String email) {
+		System.out.println(email);
+		UserVO vo = sqlSession.selectOne("u.ismember", email);
 		return vo;
 	}
 

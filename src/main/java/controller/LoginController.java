@@ -15,6 +15,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import dao.UserDAO;
 import lombok.extern.slf4j.Slf4j;
+import sun.jvm.hotspot.gc.parallel.PSYoungGen;
+import sun.util.logging.resources.logging;
 import vo.UserVO;
 
 @Slf4j
@@ -32,7 +34,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String loginreq(HttpServletRequest request, String id, String pwd, String yuji) throws Exception {
+	public String loginreq(HttpServletRequest request, String email, String pwd, String yuji) throws Exception {
 		HttpSession session = request.getSession();
 		if (yuji.equalsIgnoreCase(yuji)) {
 			session.setMaxInactiveInterval(-1);
@@ -40,13 +42,13 @@ public class LoginController {
 		String login_result = "bad";
 		String good = "good";
 
-		if (id.equalsIgnoreCase("1111") && pwd.equalsIgnoreCase("1111")) {
+		if (email.equalsIgnoreCase("1111@1111") && pwd.equalsIgnoreCase("1111")) {
 			login_result = good;
 			session.setAttribute("status", "succes");
 			session.setAttribute("nickname", "t_nickname");
 			session.setAttribute("id", "t_id");
 		} else {
-			Optional<UserVO> option = Optional.ofNullable(dao.findById(id));
+			Optional<UserVO> option = Optional.ofNullable(dao.findByEmail(email));
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			if (option.isEmpty()) {
 				log.warn("null input = {}", option);

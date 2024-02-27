@@ -84,7 +84,7 @@ public class RegistController {
 	@RequestMapping(value = "/checkid.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String checkid(String id) {
-		Optional<UserVO> option = Optional.ofNullable(userdao.findById(id));
+		Optional<UserVO> option = Optional.ofNullable(userdao.findByEmail(id));
 		if (option.isEmpty()) {
 			return "can";
 		} else {

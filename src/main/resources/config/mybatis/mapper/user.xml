@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="ismember" parameterType="String" resultType="user">
 		SELECT *
 		FROM USER1
-		WHERE U_ID = #{id}
+		WHERE u_email = #{email}
 	</select>
 	<!-- update -->
 	<select id="CheckMyAccountBeforeChangeMyPwd" parameterType="String" resultType="java.lang.Integer">

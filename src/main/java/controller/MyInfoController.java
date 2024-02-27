@@ -73,7 +73,7 @@ public class MyInfoController {
 	@RequestMapping(value = "/changeMyPwd.do", method = RequestMethod.POST)
 	public String changeMyPwd(HttpSession session, String prepwd, String newpwd, Model model) {
 		String id = (String) session.getAttribute("id");
-		Optional<UserVO> option = Optional.ofNullable(userdao.findById(id));
+		Optional<UserVO> option = Optional.ofNullable(userdao.findByEmail(id));
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		if (option.isEmpty()) {
 			log.warn("계정조회에 실패했습니다 : {}", option);
