@@ -138,23 +138,24 @@ input:focus {
 
 		let url = "login.do";
 		let param = "id=" + id + "&pwd=" + pwd + "&yuji=" + yuji;
-		setTimeout(function(){}, 1000);//클라이언트단 지연
+		setTimeout(function() {
+		}, 1000);//클라이언트단 지연
 		sendRequest(url, param, resultFn, "POST");
 	}
-	
-			function resultFn() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					let data = xhr.responseText;
-					if (data == "bad") {
-						alert("로그인 실패");
-					} else {
-						alert("로그인 성공");
-		
-					}
-					location.href = "/beauty/main.do";
-				}
+
+	function resultFn() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			let data = xhr.responseText;
+			if (data == "bad") {
+				alert("로그인 실패");
+			} else {
+				alert("로그인 성공");
+
 			}
-		</script>
+			location.href = "/beauty/main.do";
+		}
+	}
+</script>
 </head>
 <body>
 
@@ -195,8 +196,7 @@ input:focus {
 					<div>더 다양한 서비스를 만나보세요!</div>
 				</div>
 				<div>
-					<button class="join-btn" onclick="location.href='regist.do'">
-						회원가입</button>
+					<a href="regist.do" class="join-btn"> 회원가입</a>
 				</div>
 			</div>
 		</div>

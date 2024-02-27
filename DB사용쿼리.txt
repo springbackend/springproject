@@ -205,7 +205,7 @@ INSERT INTO tone VALUES(
 --유저 더미
 INSERT INTO USER1 (u_idx, u_id, u_name, u_pwd, u_pnum, u_email, u_gender, u_regidate, u_regiip, u_addr, u_birth)
 SELECT
-    seq_user1_idx.nextval,
+    USER_SEQ.nextval,
     'user' || level,
     'User' || level,
     'password' || level,
