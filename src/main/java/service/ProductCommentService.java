@@ -30,8 +30,8 @@ public class ProductCommentService {
 		return rowtotal;
 	}
 	
-	public int productComment_write(ProductCommentVO pc_vo,String id) {
-		int u_idx = pc_dao.user_select(id);
+	public int productComment_write(ProductCommentVO pc_vo,String email) {
+		int u_idx = pc_dao.user_select(email);
 		pc_vo.setU_idx(u_idx);
 		int res = pc_dao.productComment_write(pc_vo);
 		return res;
@@ -47,8 +47,8 @@ public class ProductCommentService {
 		return minus;
 	}
 	
-	public int productComment_delete(String u_id,int pc_idx) {
-		int u_idx = pc_dao.user_select(u_id);
+	public int productComment_delete(String email,int pc_idx) {
+		int u_idx = pc_dao.user_select(email);
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("u_idx", u_idx);
 		map.put("pc_idx", pc_idx);
@@ -56,8 +56,8 @@ public class ProductCommentService {
 		return res;
 	}
 	
-	public int productbuy_check(String u_id,int p_idx) {
-		int u_idx= pc_dao.user_select(u_id);
+	public int productbuy_check(String email,int p_idx) {
+		int u_idx= pc_dao.user_select(email);
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("u_idx", u_idx);
 		map.put("p_idx", p_idx);

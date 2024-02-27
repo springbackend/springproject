@@ -21,8 +21,8 @@ public class PcGoodService {
 		return res;
 	}
 	
-	public int pcg_u_idx(String u_id) {
-		int u_idx =pcg_dao.good_user(u_id);
+	public int pcg_u_idx(String email) {
+		int u_idx =pcg_dao.good_user(email);
 		return u_idx;
 	}
 //	public boolean userId_Check(String u_id) {
