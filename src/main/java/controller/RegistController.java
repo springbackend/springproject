@@ -43,18 +43,15 @@ public class RegistController {
 	}
 
 	// 회원가입 수행
-	@RequestMapping(value = "/joinuser.do", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/join.do", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String joinuser(String id, String name, String pwd, String email, String gender, String pnum) {
+	public String joinuser(String email, String name, String pwd) {
 		UserVO vo = new UserVO();
 		String result = "실패";
 		// 암호화
-		if (id != null && pwd != null && name != null && gender != null && pnum != null) {
-			vo.setU_id(id);
+		if (email != null && pwd != null && name != null) {
 			vo.setU_pwd(pwd);
 			vo.setU_name(name);
-			vo.setU_gender(gender);
-			vo.setU_pnum(pnum);
 			vo.setU_email(email);
 			System.out.println("set성공");
 		} else {
@@ -63,15 +60,13 @@ public class RegistController {
 		}
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		vo.setU_pwd(passwordEncoder.encode(vo.getU_pwd()));
-		vo.setU_birth("asd");
-		vo.setU_addr("asd");
 		SimpleDateFormat rigidaytime = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 		Date date = new Date(System.currentTimeMillis());
 		String regidate = rigidaytime.format(date);
 		vo.setU_regidate(regidate);
 		vo.setU_regiip(request.getRemoteAddr());
 		// 회원가입 수행
-		int res = userdao.save(vo);
+		int res = userdao.join(vo);
 		if (res > 0) {
 			System.out.println("regist controller : regist 성공");
 			result = "성공";
@@ -84,7 +79,7 @@ public class RegistController {
 	@RequestMapping(value = "/checkid.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String checkid(String id) {
-		Optional<UserVO> option = Optional.ofNullable(userdao.findByEmail(id));
+		Optional<UserVO> option = Optional.ofNullable(userdao.login(id));
 		if (option.isEmpty()) {
 			return "can";
 		} else {

@@ -15,13 +15,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		user1 u ON b.m_idx =
 		u.u_idx
 		WHERE
-		u.u_id = #{userId}
+		u.u_email = #{u_email}
 	</select>
 	<select id="viewMyComments" parameterType="String"
 		resultType="board">
 		select * from
 		comment_table
-		where u_id= #{u_id}
+		where u_email= #{u_email}
 	</select>
 </mapper>
 

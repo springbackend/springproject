@@ -72,8 +72,8 @@ public class MyInfoController {
 	@ResponseBody
 	@RequestMapping(value = "/changeMyPwd.do", method = RequestMethod.POST)
 	public String changeMyPwd(HttpSession session, String prepwd, String newpwd, Model model) {
-		String id = (String) session.getAttribute("id");
-		Optional<UserVO> option = Optional.ofNullable(userdao.findByEmail(id));
+		String email = (String) session.getAttribute("email");
+		Optional<UserVO> option = Optional.ofNullable(userdao.login(email));
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		if (option.isEmpty()) {
 			log.warn("계정조회에 실패했습니다 : {}", option);
@@ -94,7 +94,7 @@ public class MyInfoController {
 			log.warn("변경성공");
 			model.addAttribute("message", "Password changed successfully.");
 		}
-		//세션 초기화
+		// 세션 초기화
 		session.invalidate();
 		return "Password changed successfully";
 	}
@@ -110,8 +110,8 @@ public class MyInfoController {
 	@RequestMapping(value = "/deleteAccount.do")
 	public String deleteAccount(HttpSession session) {
 		String result = "fail";
-		String id = session.getId();
-		int res = userdao.deleteAccount(id);
+		String email = (String) session.getAttribute("email");
+		int res = userdao.deleteAccount(email);
 		if (res > 0) {
 			result = "success";
 		}

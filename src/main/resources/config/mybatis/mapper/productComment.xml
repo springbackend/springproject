@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT RANK() OVER (ORDER BY pc.pc_idx DESC) AS rnk,
 	pc.pc_content,
 	pc.pc_image,
-	u.u_id,
+	u.u_email,
 	pc.pc_star,
 	pc.pc_regidate,
 	pc.pc_good,
@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="user_select" resultType="int" parameterType="String">
-		select u_idx from user1 where u_id = #{u_id}
+		select u_idx from user1 where u_email = #{u_email}
 	</select>
 	
 	<update id="pc_good_count" parameterType="int">

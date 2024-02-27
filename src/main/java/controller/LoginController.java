@@ -15,8 +15,6 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import dao.UserDAO;
 import lombok.extern.slf4j.Slf4j;
-import sun.jvm.hotspot.gc.parallel.PSYoungGen;
-import sun.util.logging.resources.logging;
 import vo.UserVO;
 
 @Slf4j
@@ -36,7 +34,7 @@ public class LoginController {
 	@ResponseBody
 	public String loginreq(HttpServletRequest request, String email, String pwd, String yuji) throws Exception {
 		HttpSession session = request.getSession();
-		if (yuji.equalsIgnoreCase(yuji)) {
+		if (yuji.equalsIgnoreCase("false")) {
 			session.setMaxInactiveInterval(-1);
 		}
 		String login_result = "bad";
@@ -46,9 +44,9 @@ public class LoginController {
 			login_result = good;
 			session.setAttribute("status", "succes");
 			session.setAttribute("nickname", "t_nickname");
-			session.setAttribute("id", "t_id");
+			session.setAttribute("email", "t_email");
 		} else {
-			Optional<UserVO> option = Optional.ofNullable(dao.findByEmail(email));
+			Optional<UserVO> option = Optional.ofNullable(dao.login(email));
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			if (option.isEmpty()) {
 				log.warn("null input = {}", option);
@@ -61,7 +59,7 @@ public class LoginController {
 			login_result = good;
 			session.setAttribute("status", "succes");
 			session.setAttribute("nickname", vo.getU_name());
-			session.setAttribute("id", vo.getU_id());
+			session.setAttribute("email", vo.getU_email());
 		}
 
 		return login_result;

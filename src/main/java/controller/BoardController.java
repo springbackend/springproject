@@ -135,14 +135,14 @@ public class BoardController {
 	public String board_view(Model model, Integer b_idx, String page, HttpServletResponse response) throws Exception{ // parameter
 		
 		// ====== 로그인 여부 확인 ======
-//		String u_id = "unknown_user";
+//		String u_email = "unknown_user";
 //		int check_like = 0;
 //		
 //		if(session.getId() != null) {
-//			u_id = session.getId();
+//			u_email = session.getEmail();
 //			
 //			//--- 현재 user의 정보를 가져와 이 게시물에 좋아요를 눌렀는지 여부 판단하기 ---
-//			int u_idx = user_service.select_idx(u_id);
+//			int u_idx = user_service.select_idx(u_email);
 //			
 //			LikesVO likes_vo = new LikesVO();
 //			likes_vo.setB_idx(b_idx);
@@ -279,13 +279,13 @@ public class BoardController {
 	@ResponseBody
 	public String comment_write(CommentVO vo) throws Exception{
 		// ====== 로그인 여부 확인 ======
-//		String u_id = session.getId();
+//		String u_email = session.getId();
 //		
-//		if(u_id == null) {
+//		if(u_email == null) {
 //			return "unknown";
 //		}
 //		//현재 로그인 된 사용자 정보 가져오기
-//		int u_idx = user_service.select_idx(u_id);
+//		int u_idx = user_service.select_idx(u_email);
 //		vo.setU_idx(u_idx);
 		
 		//====== SAMPLE DATA ======
@@ -316,14 +316,14 @@ public class BoardController {
 	@ResponseBody
 	public String reply(int c_idx, int b_idx, String content) throws Exception{
 		// ====== 로그인 여부 확인 ======
-//		String u_id = session.getId();
+//		String u_email = session.getId();
 //		
-//		if(u_id == null) {
+//		if(u_email == null) {
 //			return "unknown";
 //		}
 //		
 //		//현재 로그인 된 사용자 정보 가져오기
-//		int u_idx = user_service.select_idx(u_id);
+//		int u_idx = user_service.select_idx(u_email);
 		
 		String ip = request.getRemoteAddr();
 		
@@ -371,14 +371,14 @@ public class BoardController {
 	@ResponseBody
 	public String like_click(int b_idx) throws Exception{
 		// ====== 로그인 여부 확인 ======
-//		String u_id = session.getId();
+//		String u_email = session.getId();
 //		
-//		if(u_id == null) {
+//		if(u_email == null) {
 //			return "unknown";
 //		}
 //		
 //		//현재 로그인 된 사용자 정보 가져오기
-//		int u_idx = user_service.select_idx(u_id);
+//		int u_idx = user_service.select_idx(u_email);
 		
 		//====== SAMPLE DATA ======
 		

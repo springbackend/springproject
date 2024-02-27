@@ -49,10 +49,11 @@
 			let data = xhr.responseText;
 			if (data == "bad") {
 				alert("로그인 실패");
+				location.href = "/beauty/main.do";
 			} else {
 				alert("로그인 성공");
+				location.href = "/beauty/main.do";
 			}
-			location.href = "/beauty/main.do";
 		}
 	}
 </script>
@@ -115,21 +116,21 @@
 						<h3 class="text-body-highlight">Sign In</h3>
 						<p class="text-body-tertiary">Get access to your account</p>
 					</div>
-					<button class="btn btn-phoenix-secondary w-100 mb-3">
+					<!-- <button class="btn btn-phoenix-secondary w-100 mb-3">
 						<span class="fab fa-google text-danger me-2 fs-9"></span>Sign in
 						with google
 					</button>
 					<button class="btn btn-phoenix-secondary w-100">
 						<span class="fab fa-facebook text-primary me-2 fs-9"></span>Sign
 						in with facebook
-					</button>
+					</button> -->
 					<div class="position-relative">
 						<hr class="bg-body-secondary mt-5 mb-4" />
-						<div class="divider-content-center">or use email</div>
+						<div class="divider-content-center">이메일로 로그인</div>
 					</div>
 					<form>
 						<div class="mb-3 text-start">
-							<label class="form-label" for="email">Email address</label>
+							<label class="form-label" for="email">이메일 주소</label>
 							<div class="form-icon-container">
 								<input class="form-control form-icon-input" id="email"
 									type="email" placeholder="name@example.com" /><span
@@ -137,7 +138,7 @@
 							</div>
 						</div>
 						<div class="mb-3 text-start">
-							<label class="form-label" for="password">Password</label>
+							<label class="form-label" for="password">비밀번호</label>
 							<div class="form-icon-container">
 								<input class="form-control form-icon-input" id="password"
 									type="password" placeholder="Password" /><span
@@ -149,22 +150,22 @@
 								<div class="form-check mb-0">
 									<input class="form-check-input" id="basic-checkbox"
 										type="checkbox" checked="checked" /><label
-										class="form-check-label mb-0" for="basic-checkbox">Remember
-										me</label>
+										class="form-check-label mb-0" for="basic-checkbox">로그인
+										상태 유지</label>
 								</div>
 							</div>
 
 							<div class="col-auto">
 								<a class="fs-9 fw-semibold"
-									href="resources/pages/authentication/simple/forgot-password.html">Forgot
-									Password?</a>
+									href="resources/pages/authentication/simple/forgot-password.html">비밀번호
+									찾기</a>
 							</div>
 						</div>
 						<button class="btn btn-primary w-100 mb-3"
 							onclick="send(this.form);">Sign In</button>
 					</form>
 					<div class="text-center">
-						<a class="fs-9 fw-bold" href="regist.do">Create an account</a>
+						<a class="fs-9 fw-bold" href="regist.do">회원가입 하기</a>
 					</div>
 				</div>
 			</div>

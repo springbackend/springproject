@@ -19,13 +19,13 @@ public class UserBoardDAO {
 		this.sqlSession = sqlSession;
 	}
 
-	public List<BoardVO> viewMyPosts(String userId) {
-		List<BoardVO> boardList = sqlSession.selectList("ub.viewMyPosts", userId);
+	public List<BoardVO> viewMyPosts(String u_email) {
+		List<BoardVO> boardList = sqlSession.selectList("ub.viewMyPosts", u_email);
 		return Optional.ofNullable(boardList).orElseThrow(() -> new RuntimeException("내가 작성한 게시글이 존재하지 않습니다."));
 	}
 
-	public List<BoardVO> viewMyComments(String userId) {
-		List<BoardVO> boardList = sqlSession.selectList("ub.viewMyPosts", userId);
+	public List<BoardVO> viewMyComments(String u_email) {
+		List<BoardVO> boardList = sqlSession.selectList("ub.viewMyPosts", u_email);
 		return Optional.ofNullable(boardList).orElseThrow(() -> new RuntimeException("내가 작성한 댓글이 존재하지 않습니다."));
 	}
 }

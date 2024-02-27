@@ -18,12 +18,12 @@ public class UserDAO {
 
 // crud
 	// create
-	public int save(UserVO vo) {
-		int res = sqlSession.insert("u.insert_user", vo);
+	public int join(UserVO vo) {
+		int res = sqlSession.insert("u.join", vo);
 		if (res > 0) {
-			log.info("회원가입 성공 id : {}", vo.getU_id());
+			log.info("회원가입 성공 email : {}", vo.getU_email());
 		} else {
-			log.info("회원가입 실패 id : {}", vo.getU_id());
+			log.info("회원가입 실패 email : {}", vo.getU_email());
 		}
 		return res;
 	}
@@ -35,9 +35,8 @@ public class UserDAO {
 	}
 
 	// read one
-	public UserVO findByEmail(String email) {
-		System.out.println(email);
-		UserVO vo = sqlSession.selectOne("u.ismember", email);
+	public UserVO login(String u_email) {
+		UserVO vo = sqlSession.selectOne("u.login", u_email);
 		return vo;
 	}
 
@@ -48,10 +47,10 @@ public class UserDAO {
 	}
 
 	// delete
-	public int delete(String id) {
-		int res = sqlSession.delete("u.delete", id);
+	public int delete(String u_email) {
+		int res = sqlSession.delete("u.delete", u_email);
 		if (res > 0) {
-			log.info("계정삭제 완료", id);
+			log.info("계정삭제 완료", u_email);
 		}
 		return res;
 	}
@@ -62,13 +61,13 @@ public class UserDAO {
 	}
 
 	// get idx
-	public int select_idx(String id) {
-		int idx = sqlSession.selectOne("u.select_idx", id);
+	public int select_idx(String u_email) {
+		int idx = sqlSession.selectOne("u.select_idx", u_email);
 		return idx;
 	}
 
-	public int deleteAccount(String id) {
-		int res = sqlSession.delete("u.deleteAccount", id);
+	public int deleteAccount(String u_email) {
+		int res = sqlSession.delete("u.deleteAccount", u_email);
 		return res;
 	}
 
