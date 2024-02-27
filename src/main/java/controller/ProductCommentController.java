@@ -1,9 +1,11 @@
 package controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import service.PcGoodService;
 import service.ProductCommentService;
@@ -28,7 +31,8 @@ public class ProductCommentController {
 
 	@Autowired
 	HttpSession session;
-
+	@Autowired
+	ServletContext app;
 	public ProductCommentController(ProductCommentService pc_Service, PcGoodService pcg_Service) {
 		this.pc_Service = pc_Service;
 		this.pcg_Service = pcg_Service;
@@ -105,6 +109,29 @@ public class ProductCommentController {
 	public String productComment_write(ProductCommentVO pc_vo) {
 		String u_id = (String) session.getAttribute("id");
 		if (u_id != null) {
+			String webpath = "/resources/productcomment/";
+			String path = app.getRealPath(webpath);
+			System.out.println(path);
+			MultipartFile photo = pc_vo.getPhoto();
+			String filename="no_file";
+			if(photo != null && !photo.isEmpty()) {
+				filename = photo.getOriginalFilename();
+				File f = new File(path,filename);
+				if(!f.exists()) {
+					f.mkdirs();
+				}else {
+					long time= System.currentTimeMillis();
+					filename = String.format("%d_%s", time,filename);
+					f = new File(path,filename);
+				}
+				
+				try {
+					photo.transferTo(f);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+			pc_vo.setPc_image(filename);
 			pc_Service.productComment_write(pc_vo, u_id);
 		} else {
 			return "redirect:temp.do";
