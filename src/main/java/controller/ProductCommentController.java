@@ -73,9 +73,9 @@ public class ProductCommentController {
 		map.put("p_idx", p_idx);
 		List<ProductCommentVO> list= pc_Service.productComment_list(map);
 		
-		String u_id = (String) session.getAttribute("id");
-		if (u_id != null) {
-			int u_idx = pcg_Service.pcg_u_idx(u_id);
+		String email = (String) session.getAttribute("email");
+		if (email != null) {
+			int u_idx = pcg_Service.pcg_u_idx(email);
 			List<PcGoodVO> pcg_list = pcg_Service.pcg_list(u_idx);
 			if(pcg_list != null) {
 			for (int i = 0; i < list.size(); i++) {
@@ -99,7 +99,7 @@ public class ProductCommentController {
 
 	@RequestMapping("product_comment_write_form.do")
 	public String productComment_write() {
-		if (session.getAttribute("id") == null) {
+		if (session.getAttribute("email") == null) {
 			return "redirect:temp.do";
 		}
 		return VIEW_PATH + "productcomment_write.jsp";
@@ -107,8 +107,8 @@ public class ProductCommentController {
 
 	@RequestMapping(value = "product_comment_write.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String productComment_write(ProductCommentVO pc_vo) {
-		String u_id = (String) session.getAttribute("id");
-		if (u_id != null) {
+		String email = (String) session.getAttribute("email");
+		if (email != null) {
 			String webpath = "/resources/productcomment/";
 			String path = app.getRealPath(webpath);
 			System.out.println(path);
@@ -132,7 +132,7 @@ public class ProductCommentController {
 				}
 			}
 			pc_vo.setPc_image(filename);
-			pc_Service.productComment_write(pc_vo, u_id);
+			pc_Service.productComment_write(pc_vo, email);
 		} else {
 			return "redirect:temp.do";
 		}
@@ -142,11 +142,11 @@ public class ProductCommentController {
 	@RequestMapping(value = "product_comment_good.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String productComment_good(int pc_idx) {
-		String u_id = (String) session.getAttribute("id");
+		String email = (String) session.getAttribute("email");
 
-		if (u_id != null) {
+		if (email != null) {
 			PcGoodVO pcg_vo = new PcGoodVO();
-			pcg_vo.setU_idx(pcg_Service.pcg_u_idx(u_id));
+			pcg_vo.setU_idx(pcg_Service.pcg_u_idx(email));
 			pcg_vo.setPc_idx(pc_idx);
 			boolean check = pcg_Service.userId_Check(pcg_vo.getU_idx(), pc_idx);
 			if (check) {
@@ -165,9 +165,9 @@ public class ProductCommentController {
 	
 	@RequestMapping(value = "product_comment_delete.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String productComment_delete(int pc_idx) {
-		String u_id = (String) session.getAttribute("id");
-		if(u_id != null) {
-			pc_Service.productComment_delete(u_id, pc_idx);
+		String email = (String) session.getAttribute("email");
+		if(email != null) {
+			pc_Service.productComment_delete(email, pc_idx);
 		}
 		return null;
 	}
