@@ -1,7 +1,9 @@
 package controller;
 
+import java.util.Arrays;
 import java.util.Optional;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,13 +28,24 @@ public class LoginController {
 	UserDAO dao;
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String login() throws Exception {
+	public String login(HttpServletRequest request) throws Exception {
 		return VIEWPATH + "/login/login.jsp";
 	}
+	/*
+	 * //세션 메니저 public String getSession(HttpServletRequest request) { Cookie
+	 * sessionCookie = findCookie(request); if (sessionCookie == null) { return
+	 * null; } return store.get(sessionCookie.getValue()); } public Cookie
+	 * findCookie(HttpServletRequest request) {
+	 * 
+	 * if (request.getCookies() == null) { return null; }
+	 * 
+	 * }
+	 */
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String loginreq(HttpServletRequest request, String email, String pwd, String yuji) throws Exception {
+		Cookie sessionCookie = new Cookie("MYSESSIONID", "uniqueSessionID");
 		HttpSession session = request.getSession();
 		if (yuji.equalsIgnoreCase("false")) {
 			session.setMaxInactiveInterval(-1);

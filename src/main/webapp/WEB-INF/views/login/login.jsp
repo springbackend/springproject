@@ -45,12 +45,17 @@
 	}
 
 	function resultFn() {
+		alert("case1");
 		if (xhr.readyState == 4 && xhr.status == 200) {
+			alert("case2");
 			let data = xhr.responseText;
+			alert("case3");
 			if (data == "bad") {
+				alert("case4");
 				alert("로그인 실패");
 				location.href = "/beauty/main.do";
 			} else {
+				alert("case5");
 				alert("로그인 성공");
 				location.href = "/beauty/main.do";
 			}
