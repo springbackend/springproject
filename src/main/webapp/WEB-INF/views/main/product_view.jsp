@@ -78,7 +78,35 @@
 				return;
 			}
 		}
-	}     
+	}
+	
+	 function cart(p_idx,p_price) {
+		let quantity = document.getElementById("quantity").value;
+		let totalprice = quantity * p_price;
+		let url = "cart_insert.do";
+		let param = "p_idx="+p_idx +"&quantity="+quantity+"&totalprice="+totalprice;
+		sendRequest(url,param,cartResult,'post');
+	}
+	function cartResult() {
+		if(xhr.readyState == 4 && xhr.status == 200){
+			let data = xhr.responseText;
+			
+			if(data == 'nologin'){
+				alert('로그인후사용하세요');
+				location.href = "login.do";
+			}else if(data == 'false'){
+				alert('이미 담긴상품입니다.');
+				return;
+			}else{
+				alert('장바구니에담겼습니다.');
+				if(confirm('장바구니에 가시겠습니까?')){
+					location.href = "main.do";
+				}
+				return;
+			}
+		}
+	} 
+	
 </script>
 </head>
 <body>
@@ -98,8 +126,9 @@
         <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control" style="width: auto;" onchange="updateprice()">
       </div>
       <p id="totalprice">가격:${p_vo.p_price }</p>
+      <input type="hidden" id="totalprice2">
       <div class="product-actions">
-        <button type="button" class="btn btn-primary">장바구니에 담기</button>
+        <button type="button" class="btn btn-primary" onclick="cart(${p_vo.p_idx},${p_vo.p_price })">장바구니에 담기</button>
         <button type="button" class="btn btn-success" onclick="buyproduct()">구매하기</button>
         <button type="button" class="btn btn-warning">찜하기</button>
       </div>

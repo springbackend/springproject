@@ -42,6 +42,9 @@
 	<!-- <beans:bean class="com.mega.db.SawonController"> <beans:property name="sawonDao" 
 		ref="sawon_daoBean"/> </beans:bean> -->
 
+
+	<beans:bean class="controller.AdminController">
+	</beans:bean>
 	<beans:bean class="controller.Admin1Controller">
 		<beans:constructor-arg ref="admin_servicBean" />
 	</beans:bean>
@@ -79,6 +82,9 @@
 	<beans:bean class="controller.ProductCommentController">
 		<beans:constructor-arg ref="productcomment_serviceBean"/>
 		<beans:constructor-arg ref="pcgood_serviceBean"/>
+	</beans:bean>
+	<beans:bean class="controller.CartController">
+		<beans:constructor-arg ref="cart_serviceBean"/>
 	</beans:bean>
 </beans:beans>
 
