@@ -83,6 +83,9 @@
 		<beans:constructor-arg ref="productcomment_serviceBean"/>
 		<beans:constructor-arg ref="pcgood_serviceBean"/>
 	</beans:bean>
+	<beans:bean class="controller.CartController">
+		<beans:constructor-arg ref="cart_serviceBean"/>
+	</beans:bean>
 </beans:beans>
 
 

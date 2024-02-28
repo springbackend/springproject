@@ -17,6 +17,7 @@
 		<typeAlias type="dao.AdminDTO" alias="admin" />
 		<typeAlias type="vo.ProductCommentVO" alias="productcomment"/>
 		<typeAlias type="vo.PcGoodVO" alias="pcgood"/>
+		<typeAlias type="vo.CartVO" alias="cart"/>
 	</typeAliases>
 
 	<mappers>
@@ -31,5 +32,6 @@
 		<mapper resource="config/mybatis/mapper/productComment.xml"/>
 		<mapper resource="config/mybatis/mapper/userBoard.xml" />
 		<mapper resource="config/mybatis/mapper/pcGood.xml" />
+		<mapper resource="config/mybatis/mapper/cart.xml" />
 	</mappers>
 </configuration>

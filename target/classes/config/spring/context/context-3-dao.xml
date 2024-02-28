@@ -93,9 +93,15 @@
 	<bean id="pcgood_daoBean" class="dao.PcGoodDAO">
 		<constructor-arg ref="sqlSessionBean"/>
 	</bean>
-	
-	
 	<bean id="pcgood_serviceBean" class="service.PcGoodService">
 		<constructor-arg ref="pcgood_daoBean"/>
+	</bean>
+	
+	<bean id="cart_daoBean" class="dao.CartDAO">
+	 	<constructor-arg ref="sqlSessionBean"/>
+	</bean>
+	
+	<bean id="cart_serviceBean" class="service.CartService">
+		<constructor-arg ref="cart_daoBean"/>
 	</bean>
 </beans>

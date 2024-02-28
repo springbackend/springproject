@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="c">
+
+	<insert id="cart_insert" parameterType="cart">
+		insert into cart values(CART_SEQ_IDX.nextval,#{p_idx},#{u_idx},#{quantity},#{totalprice})
+	</insert>
+	
+	<select id="cart_check" parameterType="cart" resultType="int">
+		select count(*) from cart where u_idx = #{u_idx} and p_idx = #{p_idx}
+	</select>
+	
+	<select id="cart_select" resultType="cart" parameterType="int">
+		select * from cart where u_idx =#{u_idx}
+	</select>
+	
+	<select id="user_idx" resultType="int" parameterType="String">
+		select u_idx from user1 where u_email = #{u_email}
+	</select>	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
