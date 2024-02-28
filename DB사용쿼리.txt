@@ -75,6 +75,7 @@ CREATE TABLE USER1(
 	u_regidate varchar(50) NOT NULL,
 	u_regiip varchar(20) NOT NULL
 );
+-- 유저 정보(아직 미사용)
 CREATE TABLE USERINFO(
 	u_idx NUMBER(10) NOT NULL PRIMARY KEY,
 	u_gender varchar(10),

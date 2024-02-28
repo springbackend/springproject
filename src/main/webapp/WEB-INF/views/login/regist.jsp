@@ -126,23 +126,20 @@
 		url = "/beauty/join.do";
 		let param = "email=" + email + "&name=" + name + "&pwd=" + pwd;
 		sendRequest(url, param, resultFn, "post");
-		
+
 		/* } */
 	}
 	function resultFn() {
 		//회원가입 결과
+
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let result = decodeURI(decodeURIComponent(xhr.responseText));
-			// encodeURIComponent();
-			alert(result);
 			if (result == "성공") {
 				alert("가입을 환영합니다!");
-				//	회원가입에 성공했습니다. 윈도우 호출
 				location.href = "/beauty/login.do";
-				/* window.open(link); */
 			} else {
 				alert("서비스 문제로 회원가입에 실패했습니다 \n 처음부터 다시 해주시길바랍니다.");
-				location.href = "beauty/regist.do";
+				location.href = "/beauty/regist.do";
 			}
 		}
 	}
@@ -248,7 +245,7 @@
 								href="#!">이용 약관 </a>과 <a href="#!">개인정보 보호방침</a>에 동의합니다 </label>
 						</div>
 						<button class="btn btn-primary w-100 mb-3"
-							onclick="join(this.form);">로그인</button>
+							onclick="join(this.form);">회원가입</button>
 						<div class="text-center">
 							<a class="fs-9 fw-bold" href="login.do">기존 계정으로 로그인</a>
 						</div>

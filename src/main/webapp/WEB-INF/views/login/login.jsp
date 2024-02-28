@@ -162,7 +162,7 @@
 							</div>
 						</div>
 						<button class="btn btn-primary w-100 mb-3"
-							onclick="send(this.form);">Sign In</button>
+							onclick="send(this.form);">로그인</button>
 					</form>
 					<div class="text-center">
 						<a class="fs-9 fw-bold" href="regist.do">회원가입 하기</a>
