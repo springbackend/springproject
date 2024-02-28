@@ -2,6 +2,7 @@ package service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,12 @@ public class BoardService {
 	public List<BoardVO> board_list(){ 
 		List<BoardVO> list = board_dao.selectList(); 
 		return list; 
+	}
+	
+	public List<BoardVO> board_order_by(Map<String, Object> order){
+		System.out.println("In service");
+		List<BoardVO> list = board_dao.board_order_by(order);
+		return list;
 	}
 	
 	public List<BoardVO> board_list(HashMap<String, Integer> map){ 

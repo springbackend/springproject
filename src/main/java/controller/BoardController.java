@@ -2,6 +2,7 @@ package controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.BoardService;
+import service.Board_ProductService;
 import service.CommentService;
 import service.LikesService;
-import service.ProductService;
 import service.ToneService;
 import service.UserService;
 import util.Common;
@@ -31,7 +32,7 @@ public class BoardController {
 
 	BoardService board_service;
 	ToneService tone_service;
-	ProductService product_service;
+	Board_ProductService product_service;
 	CommentService comment_service;
 	LikesService likes_service;
 	UserService user_service;
@@ -42,7 +43,7 @@ public class BoardController {
 	@Autowired
 	HttpSession session;
 	
-	public BoardController(BoardService board_service, ToneService tone_service, ProductService product_service, CommentService comment_service, LikesService likes_service, UserService user_service) {
+	public BoardController(BoardService board_service, ToneService tone_service, Board_ProductService product_service, CommentService comment_service, LikesService likes_service, UserService user_service) {
 		this.board_service = board_service;
 		this.product_service = product_service;
 		this.tone_service = tone_service;
@@ -87,6 +88,36 @@ public class BoardController {
 		return Common.Board.VIEW_PATH + "board_list.jsp";
 	}
 
+	@RequestMapping("/board_order_by.do")
+	public String board_order_by(Model model, String tone, String product, String order_by) {
+		System.out.println(order_by);
+		int t_idx = Integer.parseInt(tone);
+		int p_idx = Integer.parseInt(product);
+		
+		Map<String, Object> order = new HashMap<String, Object>();
+		
+		if(t_idx == 0) {
+			order.put("t_idx", 0);
+		}else {
+			order.put("t_idx", t_idx);
+		}
+		
+		if(p_idx == 0) {
+			order.put("p_idx", 0);
+		}else {
+			order.put("p_idx", p_idx);
+		}
+		
+		List<BoardVO> list = board_service.board_order_by(order);
+		
+		//Order By
+		
+		
+		model.addAttribute("list", list);
+		
+		return Common.Board.VIEW_PATH + "board_list.jsp";
+	}
+	
 	//새 게시글 작성 폼으로 이동
 	@RequestMapping("/board_write.do")
 	public String board_write(Model model) throws Exception{
@@ -113,7 +144,9 @@ public class BoardController {
 		vo.setU_idx(1);
 		
 		//vo.getT_idx & vo.getP_idx를 통해 톤 이름, 제품 이름 가져오기
+		System.out.println("p_idx: " + vo.getP_idx());
 		String p_name = product_service.select_product_name(vo.getP_idx());
+		System.out.println("p_name" + p_name);
 		String t_name = tone_service.select_tone(vo.getT_idx());
 		
 		vo.setT_name(t_name);

@@ -24,6 +24,7 @@
 		<mapper resource="config/mybatis/mapper/user.xml" />
 		<mapper resource="config/mybatis/mapper/product.xml" />
 		<mapper resource="config/mybatis/mapper/board.xml"/>
+		<mapper resource="config/mybatis/mapper/board_product.xml"/>
 		<mapper resource="config/mybatis/mapper/comment.xml"/>
 		<mapper resource="config/mybatis/mapper/tone.xml"/>
 		<mapper resource="config/mybatis/mapper/likes.xml"/>

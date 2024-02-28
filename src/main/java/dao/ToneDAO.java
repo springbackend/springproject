@@ -10,7 +10,6 @@ public class ToneDAO {
 	}
 	
 	public String select_tone(int t_idx) {
-		System.out.println(t_idx);
 		String t_name = sqlSession.selectOne("t.select_tone", t_idx);
 		return t_name;
 	}

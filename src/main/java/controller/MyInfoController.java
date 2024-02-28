@@ -44,29 +44,29 @@ public class MyInfoController {
 	}
 
 	// 내글보기
-	@RequestMapping(value = "/viewMyPosts.do")
-	public String viewMyPosts(HttpSession session, Model model) {
-		String id = (String) session.getAttribute("id");
-		// 테스트용 임시 세션아이디
-		// id = "asd123";
-
-		if (id == null || id.isEmpty()) {
-			throw new RuntimeException("세션에 사용자 아이디가 없습니다.");
-		}
-		// 내글조회
-		List<BoardVO> boardList = userBoardDAO.viewMyPosts(id);
-		model.addAttribute("boardList", boardList);
-		return VIEW_PATH + "MyBoard.jsp";
-	}
+//	@RequestMapping(value = "/viewMyPosts.do")
+//	public String viewMyPosts(HttpSession session, Model model) {
+//		String id = (String) session.getAttribute("id");
+//		// 테스트용 임시 세션아이디
+//		// id = "asd123";
+//
+//		if (id == null || id.isEmpty()) {
+//			throw new RuntimeException("세션에 사용자 아이디가 없습니다.");
+//		}
+//		// 내글조회
+//		List<BoardVO> boardList = userBoardDAO.viewMyPosts(id);
+//		model.addAttribute("boardList", boardList);
+//		return VIEW_PATH + "MyBoard.jsp";
+//	}
 
 	// 내가 작성한 댓글보기
-	@RequestMapping(value = "/viewMyComments.do")
-	public List<BoardVO> viewMyComments(HttpSession session) {
-		String id = session.getId();
-		// 내댓글조회
-		List<BoardVO> list = userBoardDAO.viewMyComments(id);
-		return list;
-	}
+//	@RequestMapping(value = "/viewMyComments.do")
+//	public List<BoardVO> viewMyComments(HttpSession session) {
+//		String id = session.getId();
+//		// 내댓글조회
+//		List<BoardVO> list = userBoardDAO.viewMyComments(id);
+//		return list;
+//	}
 
 	// 비밀번호 변경하기
 	@ResponseBody

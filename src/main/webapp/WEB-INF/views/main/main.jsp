@@ -87,8 +87,8 @@
 	                        
 	                        	<!-- 비회원인 경우 -->
 	                        	<div style="margin-top:15px;">
-		                            <div class="px-3"> <a class="btn btn-phoenix-secondary d-flex flex-center w-100" href="#!"> <span class="me-2" data-feather="log-in"> </span>로그인</a></div>
-		                        	<div class="px-3"> <a class="btn btn-phoenix-secondary d-flex flex-center w-100" href="#!"> <span class="me-2" data-feather="log-in"> </span>회원가입</a></div>
+		                            <div class="px-3"> <a class="btn btn-phoenix-secondary d-flex flex-center w-100" href="/login.do"> <span class="me-2" data-feather="log-in"> </span>로그인</a></div>
+		                        	<div class="px-3"> <a class="btn btn-phoenix-secondary d-flex flex-center w-100" href="/regist.do"> <span class="me-2" data-feather="log-in"> </span>회원가입</a></div>
 		                            <div class="my-2 text-center fw-bold fs-10 text-body-quaternary"><a class="text-body-quaternary me-1" href="#!">Privacy policy</a>&bull;<a class="text-body-quaternary mx-1" href="#!">Terms</a>&bull;<a class="text-body-quaternary ms-1" href="#!">Cookies</a></div>
 		                        </div>
 	                        	
@@ -212,7 +212,7 @@
 	          
 	          <!-- 네비게이션 바 -->
 	          <ul class="navbar-nav justify-content-end align-items-center">
-	            <li class="nav-item" data-nav-item="data-nav-item"><a class="nav-link ps-0 active" href="resources/apps/e-commerce/landing/homepage.html">게시판</a></li>
+	            <li class="nav-item" data-nav-item="data-nav-item"><a class="nav-link ps-0 active" href="board_list.do">게시판</a></li>
 	            <li class="nav-item" data-nav-item="data-nav-item"><a class="nav-link" href="resources/apps/e-commerce/landing/favourite-stores.html">세일 상품</a></li>
 	            <li class="nav-item" data-nav-item="data-nav-item"><a class="nav-link" href="resources/apps/e-commerce/landing/products-filter.html">인기 상품</a></li>
 	            <li class="nav-item" data-nav-item="data-nav-item"><a class="nav-link" href="resources/apps/e-commerce/landing/wishlist.html">추천 상품</a></li>
@@ -281,30 +281,6 @@
                   </div><a class="btn btn-lg btn-primary rounded-pill banner-button" href="#!">Shop Now</a>
                 </div>
               </div>
-              <div class="col-12 col-xl-6">
-                <div class="gift-items-banner w-100 rounded-3 overflow-hidden">
-                  <div class="bg-holder z-n1 banner-bg" style="background-image:url(resources/assets/img/e-commerce/gift-items-banner-bg.png);"></div>
-                  <!--/.bg-holder-->
-                  <div class="banner-text text-md-center">
-                    <h2 class="text-white fw-bolder fs-xl-4">Get <span class="gradient-text">10% Off </span><br class="d-md-none"> on gift items</h2><a class="btn btn-lg btn-primary rounded-pill banner-button" href="#!">Buy Now</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-xl-6">
-                <div class="best-in-market-banner d-flex h-100 px-4 px-sm-7 py-5 px-md-11 rounded-3 overflow-hidden">
-                  <div class="bg-holder z-n1 banner-bg" style="background-image:url(resources/assets/img/e-commerce/best-in-market-bg.png);"></div>
-                  <!--/.bg-holder-->
-                  <div class="row align-items-center w-sm-100">
-                    <div class="col-8">
-                      <div class="banner-text">
-                        <h2 class="text-white fw-bolder fs-sm-4 mb-5">MI 11 Pro<br><span class="fs-7 fs-sm-6"> Best in the market</span></h2><a class="btn btn-lg btn-warning rounded-pill banner-button" href="#!">Buy Now</a>
-                      </div>
-                    </div>
-                    <div class="col-4"><img class="w-100 w-sm-75" src="resources/assets/img/e-commerce/5.png" alt=""></div>
-                  </div>
-                </div>
-              </div>
-            </div>
             
             <!-- =============================================== 오늘의 세일 상품 시작 ================================================================-->
             <div class="row g-4 mb-6">
@@ -710,7 +686,7 @@
               <div class="col-auto">
                 <div class="text-center text-lg-start">
                   <h3 class="text-body-highlight mb-2"><span class="fw-semibold">회원이 되어 </span>더 많은 <br class="d-md-none" />혜택을 누리고 싶으신가요?</h3>
-                  <h1 class="display-3 fw-semibold mb-4">지금 <span class="text-primary fw-bolder">회원가입 </span>하세요!</h1><a class="btn btn-lg btn-primary px-7" href="resources/pages/authentication/simple/sign-up.html">회원가입<span class="fas fa-chevron-right ms-2 fs-9"></span></a>
+                  <h1 class="display-3 fw-semibold mb-4">지금 <span class="text-primary fw-bolder">회원가입 </span>하세요!</h1><a class="btn btn-lg btn-primary px-7" href="/join.do">회원가입<span class="fas fa-chevron-right ms-2 fs-9"></span></a>
                 </div>
               </div>
             </div>

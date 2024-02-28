@@ -2,6 +2,7 @@ package dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -18,6 +19,28 @@ public class BoardDAO {
 	 public List<BoardVO> selectList(){ 
 		 List<BoardVO> list = sqlSession.selectList("b.board_list");
 		 return list; 
+	 }
+	 
+	 public List<BoardVO> board_order_by(Map<String, Object> order_map){
+		 System.out.println("in DAO: " + order_map.get("order_by"));
+		 Object zero = (int)0;
+		 List<BoardVO> list;
+		 if(order_map.get("t_idx") == zero && order_map.get("p_idx") == zero) {
+			 //t_idx와 p_idx 둘 다 없는 경우
+			 String order = (String)order_map.get("order_by");
+			 list = sqlSession.selectList("b.board_order_by_only", "readhit");
+		 }else if(order_map.get("t_idx") == zero && order_map.get("p_idx") != zero) {
+			 //t_idx만 없는 경우
+			 list = sqlSession.selectList("b.board_order_by_product", order_map);
+		 }else if(order_map.get("t_idx") != zero && order_map.get("p_idx") == zero) {
+			 //p_idx만 없는 경우
+			 list = sqlSession.selectList("b.board_order_by_tone", order_map);
+		 }else {
+			 //다 있는 경우
+			 list = sqlSession.selectList("b.board_order_by", order_map);
+		 }
+		 
+		 return list;
 	 }
 	 
 	 public List<BoardVO> selectList(HashMap<String, Integer> map){ 

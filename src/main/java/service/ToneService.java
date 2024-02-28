@@ -11,7 +11,6 @@ public class ToneService {
 	}
 	
 	public String select_tone(int t_idx) {
-		System.out.println("in toneService");
 		String t_name = tone_dao.select_tone(t_idx);
 		return t_name;
 	}

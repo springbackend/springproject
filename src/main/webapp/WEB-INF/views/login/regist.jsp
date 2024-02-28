@@ -2,67 +2,165 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- ===============================================-->
-<!--    Document Title-->
-<!-- ===============================================-->
-<title>Sign Up</title>
-
-<!-- ===============================================-->
-<!--    Favicons-->
-<!-- ===============================================-->
-<link rel="apple-touch-icon" sizes="180x180"
-	href="resources/assets/img/favicons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="resources/assets/img/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16"
-	href="resources/assets/img/favicons/favicon-16x16.png">
-<link rel="shortcut icon" type="image/x-icon"
-	href="resources/assets/img/favicons/favicon.ico">
-<link rel="manifest" href="resources/assets/img/favicons/manifest.json">
-<meta name="msapplication-TileImage"
-	content="resources/assets/img/favicons/mstile-150x150.png">
-<meta name="theme-color" content="#ffffff">
-<script src="resources/vendors/simplebar/simplebar.min.js"></script>
-<script src="resources/assets/js/config.js"></script>
-<script type="text/javascript" src="/beauty/resources/js/httpRequest.js"></script>
-<script type="text/javascript">
-	//termsService
-	function checkNickName() {
-		let joinForm = document.joinForm;
-		let id = joinForm.name.value;
-		let button = document.getElementById("idDuplication");
-		alert("asd");
-		//아이디정규식
-		let regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
-		if (id.length == 0 || id == "") {
-			alert("아이디를 입력해주세요.");
-			joinForm.id.focus();
-			return;
-		} else if (id.length < 5) {
-			alert("아이디는 5글자 이상이여야 합니다");
-			return;
-		} else if (regExp.test(id)) {
-			alert("특수문자는 입력할 수 없습니다.");
-			return;
-		} else {
-			let url = "checkid.do";
-			let param = "id=" + id;
-			sendRequest(url, param, resultCheck, "POST");
-			document.getElementById("name").readOnly = true;
-			button.disabled = true;
-
-		}
-	}
-	function resultCheck() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			let result = decodeURI(decodeURIComponent(xhr.responseText));
-			if (result == "can") {
-				alert("사용하실수 있는 아이디입니다");
+	<head>
+		<meta charset="UTF-8">
+		<title>회원가입 페이지</title>
+		<script type="text/javascript" src="/beauty/resources/js/httpRequest.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+		<style>
+			.outer{border:1px solid #eee;
+				   width:30%;
+				   border-color:#eee;
+				   align-items:center; 
+				   border-radius: 5px; 
+				   padding: 30px; 
+				   margin-top: 40px;
+				   box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+				   height:auto;}
+					
+			.id-div, .pwd-div, .name-div, .pnum-div, .email-div
+				 {border:1px solid #ccc;
+				  width:80%;
+		  		  padding:10px;
+		   	 	  display:flex;
+		   		  align-items:left;
+		   		  border-radius:4px;
+		   		  margin-bottom:5px;}
+		   		  
+			.id-div{display:inline-block;}
+			
+			#id-icon{margin-right:7px;}		
+			   		  
+			.pwd-div span, .name-div span, .pnum-div span, .email-div span
+				{margin-right:10px;
+				 color:#595959;}
+			input{border:none;
+				  width:80%;}
+			
+			input:focus{outline:none;}
+			
+			/* 중복확인 버튼 */
+			.duplicate-btn{border-radius:50px;
+						   font-size:15px;
+						   padding:10px;
+						   background-color:#ff66c4;
+						   color:white;
+						   border:none;}
+			
+			/* 회원가입 버튼 */
+			#join-btn{width:100%;
+					   height:10%;
+					   border-radius:4px;
+					   background-color:#ff66c4;
+					   color:white;
+					   border:none;
+					   font-size:20px;
+					   margin-bottom:5px;}
+			
+			#join-btn:hover{background-color:#1c5838;}
+			
+			.gender-check{width:80%;}
+			
+			.gender-container {
+				  /* display: block; */
+				  position: relative;
+				  padding-left: 35px;
+				  margin-bottom: 12px;
+				  margin-right:20px;
+				  margin:8px 20px 12px 0;
+				  cursor: pointer;
+				  font-size: 15px;
+				  -webkit-user-select: none;
+				  -moz-user-select: none;
+				  -ms-user-select: none;
+				  user-select: none;
+				}
+				
+				/* Hide the browser's default checkbox */
+				.gender-container input {
+				  position: absolute;
+				  opacity: 0;
+				  cursor: pointer;
+				  height: 0;
+				  width: 0;
+				}
+				
+				/* Create a custom checkbox */
+				.checkmark {
+				  position: absolute;
+				  top: 0;
+				  left: 0;
+				  height: 25px;
+				  width: 25px;
+				  background-color: #eee;
+				}
+				
+				/* On mouse-over, add a grey background color */
+				.gender-container:hover input ~ .checkmark {
+				  background-color: #ccc;
+				}
+				
+				/* When the checkbox is checked, add a blue background */
+				.gender-container input:checked ~ .checkmark {
+				  background-color: #ff66c4;
+				}
+				
+				/* Create the checkmark/indicator (hidden when not checked) */
+				.checkmark:after {
+				  content: "";
+				  position: absolute;
+				  display: none;
+				}
+				
+				/* Show the checkmark when checked */
+				.gender-container input:checked ~ .checkmark:after {
+				  display: block;
+				}
+				
+				/* Style the checkmark/indicator */
+				.gender-container .checkmark:after {
+				  left: 9px;
+				  top: 5px;
+				  width: 5px;
+				  height: 10px;
+				  border: solid white;
+				  border-width: 0 3px 3px 0;
+				  -webkit-transform: rotate(45deg);
+				  -ms-transform: rotate(45deg);
+				  transform: rotate(45deg);
+				}
+			
+		</style>
+		<script type="text/javascript">
+			function check() {
+				let joinForm = document.joinForm;
+				let id = joinForm.id.value;
+				let button = document.getElementById("idDuplication");
+				//아이디정규식
+				let regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+		
+				if (id.length == 0 || id == "") {
+					alert("아이디를 입력해주세요.");
+					joinForm.id.focus();
+					return;
+				} else if (id.length < 5) {
+					alert("아이디는 5글자 이상이여야 합니다");
+					return;
+				} else if (regExp.test(id)) {
+					alert("특수문자는 입력할 수 없습니다.");
+					return;
+				} else {
+					let url = "checkid.do";
+					let param = "id=" + id;
+					sendRequest(url, param, resultCheck, "POST");
+					document.getElementById("id").readOnly = true;
+					button.disabled = true;
+					/* window.open("/beauty/checkid.do?id=" + id, "",
+							"width=500,height=300"); 
+					${contextPath}
+					 */
+		
+				}
 			}
 			if (result == "cant") {
 				alert("중복된 아이디 입니다");
@@ -141,86 +239,105 @@
 				alert("서비스 문제로 회원가입에 실패했습니다 \n 처음부터 다시 해주시길바랍니다.");
 				location.href = "/beauty/regist.do";
 			}
-		}
-	}
-</script>
-<!-- ===============================================-->
-<!--    Stylesheets-->
-<!-- ===============================================-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link
-	href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap"
-	rel="stylesheet">
-<link href="resources/vendors/simplebar/simplebar.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-<link href="resources/assets/css/theme-rtl.min.css" type="text/css"
-	rel="stylesheet" id="style-rtl">
-<link href="resources/assets/css/theme.min.css" type="text/css"
-	rel="stylesheet" id="style-default">
-<link href="resources/assets/css/user-rtl.min.css" type="text/css"
-	rel="stylesheet" id="user-style-rtl">
-<link href="resources/assets/css/user.min.css" type="text/css"
-	rel="stylesheet" id="user-style-default">
-<script>
-	var phoenixIsRTL = window.config.config.phoenixIsRTL;
-	if (phoenixIsRTL) {
-		var linkDefault = document.getElementById('style-default');
-		var userLinkDefault = document.getElementById('user-style-default');
-		linkDefault.setAttribute('disabled', true);
-		userLinkDefault.setAttribute('disabled', true);
-		document.querySelector('html').setAttribute('dir', 'rtl');
-	} else {
-		var linkRTL = document.getElementById('style-rtl');
-		var userLinkRTL = document.getElementById('user-style-rtl');
-		linkRTL.setAttribute('disabled', true);
-		userLinkRTL.setAttribute('disabled', true);
-	}
-</script>
-</head>
-
-<body>
-	<!-- ===============================================-->
-	<!--    Main Content-->
-	<!-- ===============================================-->
-	<main class="main" id="top">
-		<div class="container">
-			<div class="row flex-center min-vh-100 py-5">
-				<div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3">
-					<a class="d-flex flex-center text-decoration-none mb-4"
-						href="resources/index.html">
-						<div
-							class="d-flex align-items-center fw-bolder fs-3 d-inline-block">
-							<img src="resources/assets/img/icons/logo.png" alt="phoenix"
-								width="58" />
-						</div>
-					</a>
-					<div class="text-center mb-7">
-						<h3 class="text-body-highlight">Sign Up</h3>
-						<p class="text-body-tertiary">당신의 계정을 오늘 만들어보세요!</p>
-					</div>
-					<!-- 
-					<button class="btn btn-phoenix-secondary w-100 mb-3">
-						<span class="fab fa-google text-danger me-2 fs-9"></span>Sign up
-						with google
-					</button>
-					<button class="btn btn-phoenix-secondary w-100">
-						<span class="fab fa-facebook text-primary me-2 fs-9"></span>Sign
-						up with facebook
-					</button> -->
-					<div class="position-relative mt-4">
-						<hr class="bg-body-secondary" />
-						<div class="divider-content-center">이메일로 가입하기</div>
-					</div>
-					<form name="joinForm">
-						<div class="mb-3 text-start">
-							<label class="form-label" for="name">닉네임</label><input
-								class="form-control" id="name" type="text" placeholder="Name" />
-
-						</div>
-						<button class="btn btn-primary w-100 mb-3" id="idDuplication"
+			function join(f) {
+				let joinForm = document.joinForm;
+				let id = joinForm.id.value;
+				let name = joinForm.name.value;
+				let pwd = joinForm.pwd.value;
+				let rePwd = joinForm.rePwd.value;
+				let pnum = joinForm.pnum.value;
+				let email = joinForm.email.value;
+				//아직 미완성
+				let button_state = document.getElementById("idDuplication").value;
+				let idCheck = true;
+				let selectedGenderElement = document
+						.querySelector('input[name="gender"]:checked');
+				//비밀번호 정규식
+				let regpwd = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
+				//이메일 정규식
+				//let regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+				//유효성 검증로직
+				if (document.getElementById("id").readOnly != true) {
+					alert("아이디 중복체크를 해주세요.");
+					return;
+				} else if (name.length == 0 || name == "") {
+					alert("닉네임을 입력해주세요");
+					joinForm.name.focus();
+					return;
+				} else if (pwd.length == 0 || pwd == "") {
+					alert("비밀번호를 입력해주세요");
+					joinForm.pwd.focus();
+					return;
+				} else if (!regpwd.test(pwd)) {
+					alert("비밀번호는 영문 숫자 조합 8자리 이상이여야 합니다");
+					return;
+				} else if (rePwd.length == 0 || rePwd == "") {
+					alert("비밀번호를 다시 입력해주세요.");
+					joinForm.rePwd.focus();
+					return;
+				} else if (pnum.length == 0 || pnum == "") {
+					alert("전화번호를 입력하세요");
+					return;
+				} else if (rePwd != pwd) {
+					alert("입력하신 비밀번호가 다릅니다.");
+					return;
+				} else if (email.length == 0 || email == "") {
+					alert("이메일을 입력해주세요");
+					joinForm.email.focus();
+					return;
+				} 
+			/* else if (regex.test(email)) {
+						alert("이메일을 제대로 입력해주세요");
+					}  */else if (selectedGenderElement == null) {
+					alert("성별을 선택하세요.");
+					return;
+				} else {
+					let gender = selectedGenderElement.value;
+					url = "/beauty/joinuser.do";
+					let param = "id=" + id + "&name=" + name + "&pwd=" + pwd
+							+ "&email=" + email + "&gender=" + gender + "&pnum=" + pnum;
+					sendRequest(url, param, resultFn, "post");
+				}
+			}
+			function resultFn() {
+				//회원가입 결과
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					let result = decodeURI(decodeURIComponent(xhr.responseText));
+					// encodeURIComponent();
+					alert(result);
+					if (result == "성공") {
+						alert("가입을 환영합니다!");
+						//	회원가입에 성공했습니다. 윈도우 호출
+						location.href = "/beauty/login.do";
+						/* window.open(link); */
+					} else {
+						alert("서비스 문제로 회원가입에 실패했습니다 \n 처음부터 다시 해주시길바랍니다.");
+						location.href = "beauty/regist.do";
+					}
+				}
+			}
+			
+			/* 체크박스 하나만 선택 가능하게 함 */
+			function onCheck(checkbox){
+			    let checkboxes = document.getElementsByName('gender');
+			    for(let i = 0; i < checkboxes.length; i++){
+			    	if(checkboxes[i].value != checkbox) {
+			    		checkboxes[i].checked = false;
+			    	}
+			    }
+			}
+		</script>
+	</head>
+	<body>
+		<%-- <jsp:include page="/WEB-INF/views/main/index.jsp" /> --%>
+		<h1 align="center">회원가입</h1>
+		<form name="joinForm" class="nav justify-content-center">
+			<div class="outer">
+				<div class="id-div">
+					<span id="id-icon" class="bi bi-person"></span>
+					<input id="id" type="text" placeholder="아이디">
+				</div> &nbsp;
+				<button class="duplicate-btn" type="button" id="idDuplication"
 							onclick="check();">중복확인</button>
 						<div class="mb-3 text-start">
 							<label class="form-label" for="email">이메일 주소</label><input
@@ -424,16 +541,16 @@
 							data-theme-control="phoenixIsRTL" />
 					</div>
 				</div>
-				<p class="mb-0 text-body-tertiary">Change text direction</p>
-			</div>
-			<div
-				class="border border-translucent rounded-3 p-4 setting-panel-item bg-body-emphasis">
-				<div class="d-flex justify-content-between align-items-center">
-					<h5 class="setting-panel-item-title mb-1">Support Chat</h5>
-					<div class="form-check form-switch mb-0">
-						<input class="form-check-input ms-auto" type="checkbox"
-							data-theme-control="phoenixSupportChat" />
-					</div>
+								
+				<div class="gender-check">
+					<label for="gen1" class="gender-container">남성
+					  <input type="checkbox" id="gen1" name="gender" value="남성" onclick="onCheck(this.value);">
+					  <span class="checkmark"></span>
+					</label>
+					<label for="gen2" class="gender-container">여성
+					  <input type="checkbox" id="gen2" name="gender" value="여성" onclick="onCheck(this.value);">
+					  <span class="checkmark"></span>
+					</label>
 				</div>
 				<p class="mb-0 text-body-tertiary">Toggle support chat</p>
 			</div>

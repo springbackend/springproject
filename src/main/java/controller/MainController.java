@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	static final String VIEW_PATH = "/WEB-INF/views/main/";
 
-	@RequestMapping(value = "/main.do")
+	@RequestMapping(value = {"/", "/main.do"})
 	public String main1() {
 		return VIEW_PATH + "/main.jsp";
 	}

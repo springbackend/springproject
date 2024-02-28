@@ -11,26 +11,30 @@
 		<!-- <script src="/resources/js/httpRequest.js"></script> -->
 		
 		<style>
-			.outer{border:3px solid black;
-				   border-radius:30px;
+			.outer{border:1px solid #eee;
+				   box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+				   /* border-right:6px solid #ff66c4;
+				   border-left:6px solid #ff66c4; */
 			       margin:auto;
-				   width:75%;
+				   width:50%;
 				   padding:15px;
 				   background-color:white;}
 			
 			input{width:50%;
 				  height:30px;
 				  font-size:16px;
-				  padding:5px;}
+				  padding:5px;
+				  border:1px solid #ccc;}
 			   
 			textarea{resize:none;
 					 width:95%;
 					 height:150px;
 					 font-size:16px;
-					 padding:10px;}
+					 padding:10px;
+					 border:1px solid #ccc;}
 			
 			/* 드롭다운 옵션 디자인 */
-			.dropdown{display:inline-block;}
+			/* .dropdown{display:inline-block;}
 						   
 			select{background-color: #00A56B;
 						    color: white;
@@ -46,7 +50,85 @@
 				   color:black;
 				   box-border:none;
 				   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-				   z-index: 1;}
+				   z-index: 1;} */
+				   
+				   
+			.check{width:80%;}
+			
+			.check div{font-size:20px;
+					   margin-bottom:10px;
+					   padding:4px;
+					   border-bottom:1px solid #ff66c4;
+					   width:70px;}
+			
+			.check-container {
+				  /* display: block; */
+				  position: relative;
+				  padding-left: 35px;
+				  margin-bottom: 12px;
+				  margin-right:20px;
+				  margin:8px 20px 12px 0;
+				  cursor: pointer;
+				  font-size: 15px;
+				  -webkit-user-select: none;
+				  -moz-user-select: none;
+				  -ms-user-select: none;
+				  user-select: none;
+				}
+				
+				/* Hide the browser's default checkbox */
+				.check-container input {
+				  position: absolute;
+				  opacity: 0;
+				  cursor: pointer;
+				  height: 0;
+				  width: 0;
+				}
+				
+				/* Create a custom checkbox */
+				.checkmark {
+				  position: absolute;
+				  top: 0;
+				  left: 0;
+				  height: 25px;
+				  width: 25px;
+				  background-color: #eee;
+				}
+				
+				/* On mouse-over, add a grey background color */
+				.check-container:hover input ~ .checkmark {
+				  background-color: #ccc;
+				}
+				
+				/* When the checkbox is checked, add a blue background */
+				.check-container input:checked ~ .checkmark {
+				  background-color: #ff66c4;
+				}
+				
+				/* Create the checkmark/indicator (hidden when not checked) */
+				.checkmark:after {
+				  content: "";
+				  position: absolute;
+				  display: none;
+				}
+				
+				/* Show the checkmark when checked */
+				.check-container input:checked ~ .checkmark:after {
+				  display: block;
+				}
+				
+				/* Style the checkmark/indicator */
+				.check-container .checkmark:after {
+				  left: 9px;
+				  top: 5px;
+				  width: 5px;
+				  height: 10px;
+				  border: solid white;
+				  border-width: 0 3px 3px 0;
+				  -webkit-transform: rotate(45deg);
+				  -ms-transform: rotate(45deg);
+				  transform: rotate(45deg);
+				}
 			
 			/* 취소 & 업로드 버튼 디자인 */
 			.btn_send, .btn_back{display: inline-block;
@@ -98,7 +180,7 @@
 			.btn_back:hover .back:after {opacity: 1; left: 0;}
 			
 			/* TEST================================================================= */
-			details {
+			/* details {
 			    display: inline-block;
 			    width: 250px;
 			    background-color: white;
@@ -152,17 +234,40 @@
 			li > label:has(input:checked) {
 			    background-color: var(--dk-gray);
 			    color: black;
-			}
+			} */
 		</style>
 		
 		<script>
+			function onCheck(checkbox, name){
+			    let checkboxes = document.getElementsByName(name);
+			    for(let i = 0; i < checkboxes.length; i++){
+			    	if(checkboxes[i].value != checkbox) {
+			    		checkboxes[i].checked = false;
+			    	}
+			    }
+			}
 			function send(f){
-				
 				//necessary?
 				let subject = f.subject.value;
 				let content = f.content.value;
-				let t_idx = f.t_idx.value;
-				let p_idx = f.p_idx.value;
+				let t_checkboxes = document.getElementsByName('tone');
+				let p_checkboxes = document.getElementsByName('product');
+				let t_idx = 0;
+				let p_idx = 0;
+				
+				for(let i = 0; i < t_checkboxes.length; i++){
+					if(t_checkboxes[i].checked == true){
+						alert("i: " + i + " t_cb: " + t_checkboxes[i].value);
+						t_idx = t_checkboxes[i].value;
+					}
+				}
+				
+				for(let i = 0; i < p_checkboxes.length; i++){
+					if(p_checkboxes[i].checked == true){
+						alert("i: " + i + " p_cb: " + p_checkboxes[i].value);
+						p_idx = p_checkboxes[i].value;
+					}
+				}
 				
 				//return해도 제목과 내용 안없어지게 하기
 				if(subject == ''){
@@ -174,18 +279,16 @@
 					alert("내용을 입력해주세요.");
 					return;
 				}
-				if(t_idx == 'Choose tone'){
+				if(t_idx == 0){
 					alert("톤을 선택해주세요.");
 					return;
 				}
 				
-				if(p_idx == 'Choose product'){
+				if(p_idx == 0){
 					alert("제품을 선택해주세요.");
 					return;
 				}
 				
-				f.method = "POST";
-				f.action = "board_upload.do";
 				f.submit();
 				
 				//Ajax 안됨
@@ -196,7 +299,6 @@
 			}
 			
 			function send_result(){
-				alert("ARE U HERE");
 				if(xhr.readyState == 4 && xhr.status == 200){
 					let data = xhr.responseText;
 					alert("in?")
@@ -225,7 +327,7 @@
 		</c:if> --%>
 		
 		<h1 align="center">New Post</h1>
-		<form>
+		<form action="board_upload.do" method="POST">
 			<div class="outer">
 				<div class="box">
 					<div class="top">
@@ -236,7 +338,47 @@
 						<textarea name="content" placeholder="내용을 입력해주세요."></textarea>
 					</div>
 					<br>
-					<div class="dropdown">
+					<div class="check">
+						<div>톤</div>
+						<label for="spring" class="check-container">봄 웜톤
+						  <input type="checkbox" id="spring" name="tone" value="1" onclick="onCheck(this.value, this.name);">
+						  <span class="checkmark"></span>
+						</label>
+						<label for="summer" class="check-container">여름 쿨톤
+						  <input type="checkbox" id="summer" name="tone" value="2" onclick="onCheck(this.value, this.name);">
+						  <span class="checkmark"></span>
+						</label>
+						<label for="fall" class="check-container">가을 웜톤
+						  <input type="checkbox" id="fall" name="tone" value="3" onclick="onCheck(this.value, this.name);">
+						  <span class="checkmark"></span>
+						</label>
+						<label for="winter" class="check-container">겨울 쿨톤
+						  <input type="checkbox" id="winter" name="tone" value="4" onclick="onCheck(this.value, this.name);">
+						  <span class="checkmark"></span>
+						</label>
+					</div>
+					<br>
+					<div class="check">
+						<div>제품</div>
+						<label for="lip" class="check-container">립
+						  <input type="checkbox" id="lip" name="product" value="1" onclick="onCheck(this.value, this.name);">
+						  <span class="checkmark"></span>
+						</label>
+						<label for="eyeshadow" class="check-container">아이셰도우
+						  <input type="checkbox" id="eyeshadow" name="product" value="2" onclick="onCheck(this.value, this.name);">
+						  <span class="checkmark"></span>
+						</label>
+						<label for="cheek" class="check-container">블러셔
+						  <input type="checkbox" id="cheek" name="product" value="3" onclick="onCheck(this.value, this.name);">
+						  <span class="checkmark"></span>
+						</label>
+						<label for="foundation" class="check-container">파운데이션
+						  <input type="checkbox" id="foundation" name="product" value="4" onclick="onCheck(this.value, this.name);">
+						  <span class="checkmark"></span>
+						</label>
+					</div>
+					<br>
+					<!-- <div class="dropdown">
 						<select name="t_idx">
 							<option disabled selected>Choose tone</option>
 							<option value="1">봄 웜</option>
@@ -246,7 +388,7 @@
 						</select>
 					</div>
 					<br><br>
-					<!-- <div class="dropdown">
+					<div class="dropdown">
 						<select name="p_idx">
 							<option disabled selected>Choose product</option>
 							<option value="1">립</option>
@@ -254,7 +396,7 @@
 							<option value="3">블러셔</option>
 							<option value="4">파운데이션</option>
 						</select>
-					</div> -->
+					</div>
 					<details>
 						<summary>Choose Product</summary>
 						<ul>
@@ -279,9 +421,9 @@
 								</label>
 							</li>
 						</ul>
-					</details>
+					</details> -->
+					<hr>
 				</div>
-				<hr>
 				
 				<div align="right">
 					<button class="btn_back" onclick="back();" style="vertical-align:middle" >
