@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>쇼핑몰 관리자 페이지</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dHㄴ/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
 </head>
 <body>
@@ -34,6 +34,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="admin_member.do">맴버 관리</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="temp.do">메인</a>
             </li>
             <!-- 다른 메뉴 항목들을 추가할 수 있습니다. -->
         </ul>
