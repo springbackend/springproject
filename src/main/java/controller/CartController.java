@@ -53,6 +53,7 @@ public class CartController {
 		cart.setU_idx(u_idx);
 		cart.setQuantity(quantity);
 		cart.setTotalprice(totalprice);
+		cart.setP_idx(p_idx);
 		boolean check = cartService.cartInsertCheck(cart);
 		if(check) {
 			return "true";
