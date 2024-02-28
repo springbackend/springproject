@@ -141,6 +141,7 @@
 		      <li><a href="#">브랜드별</a></li>
 		      <li><a href="#">🎉이벤트</a></li>
 		      <li><a href="board_list.do">게시판</a></li>
+		      <li><a href="admin.do">관리자페이지</a></li>
 		    </ul>
 		    
 		    <!-- 검색 -->
