@@ -34,6 +34,15 @@ public class CartService {
 		return u_idx;
 	}
 	
+	public int total_price(int u_idx) {
+		int totalprice= cartDao.totalprice(u_idx);
+		return totalprice;
+	}
+	
+	public int cart_quantity(CartVO cart) {
+		return cartDao.cart_quantity(cart);
+	}
+	
 	
 
 }

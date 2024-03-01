@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="cart_quantity" parameterType="cart">
-		update cart set quantity = quantity -1, totalprice = totalprice - #{totalprice} where u_idx = #{u_idx} and p_idx = #{p_idx}
+		update cart set quantity = quantity -1, totalprice = #{totalprice} where u_idx = #{u_idx} and p_idx = #{p_idx}
 	</update>
 	
 	<select id="cart_totalprice" resultType="int" parameterType="int">

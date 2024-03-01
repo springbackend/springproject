@@ -35,5 +35,15 @@ public class CartDAO {
 		return u_idx;
 	}
 	
+	public int cart_quantity(CartVO cart) {
+		int up = sqlSession.update("c.cart_quantity", cart);
+		return up;
+	}
+	
+	public int totalprice(int u_idx) {
+		int total = sqlSession.selectOne("c.cart_totalprice",u_idx);
+		return total;
+	}
+	
 
 }
