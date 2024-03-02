@@ -2205,16 +2205,16 @@
       </script>
       <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
-          <ol class="breadcrumb mb-0">
+          <!-- <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item"><a href="#!">Page 1</a></li>
             <li class="breadcrumb-item"><a href="#!">Page 2</a></li>
             <li class="breadcrumb-item active">Default</li>
-          </ol>
+          </ol> -->
         </nav>
         <div class="mb-9">
           <div class="row g-3 mb-4">
             <div class="col-auto">
-              <h2 class="mb-0">Products</h2>
+              <h2 class="mb-0">상품 관리 페이지</h2>
             </div>
           </div>
           <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
@@ -2257,7 +2257,10 @@
                     </div><button class="btn btn-sm btn-phoenix-secondary px-7 flex-shrink-0">More filters</button>
                   </div>
                 </div>
-                <div class="ms-xxl-auto"><button class="btn btn-link text-body me-4 px-0"><span class="fa-solid fa-file-export fs-9 me-2"></span>Export</button><button class="btn btn-primary" id="addBtn"><span class="fas fa-plus me-2" ></span>Add product</button></div>
+                <div class="ms-xxl-auto">
+                <button class="btn btn-link text-body me-4 px-0"><span class="fa-solid fa-file-export fs-9 me-2"></span>Export</button>
+                <button class="btn btn-primary" id="addBtn" onclick="location.href='admin_add_product.do'" ><span class="fas fa-plus me-2"></span>Add product</button>
+                </div>
               </div>
             </div>
             <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-body-emphasis border-top border-bottom border-translucent position-relative top-1">
@@ -2269,13 +2272,13 @@
                         <div class="form-check mb-0 fs-8"><input class="form-check-input" id="checkbox-bulk-products-select" type="checkbox" data-bulk-select='{"body":"products-table-body"}' /></div>
                       </th>
                       <th class="sort white-space-nowrap align-middle fs-10" scope="col" style="width:70px;"></th>
-                      <th class="sort white-space-nowrap align-middle ps-4" scope="col" style="width:350px;" data-sort="product">PRODUCT NAME</th>
-                      <th class="sort align-middle text-end ps-4" scope="col" data-sort="price" style="width:150px;">PRICE</th>
-                      <th class="sort align-middle ps-4" scope="col" data-sort="category" style="width:150px;">CATEGORY</th>
-                      <th class="sort align-middle ps-3" scope="col" data-sort="tags" style="width:250px;">TAGS</th>
+                      <th class="sort white-space-nowrap align-middle ps-4" scope="col" style="width:350px;" data-sort="product">상품 이름</th>
+                      <th class="sort align-middle text-end ps-4" scope="col" data-sort="price" style="width:150px;">가격</th>
+                      <th class="sort align-middle ps-4" scope="col" data-sort="category" style="width:150px;">카테고리</th>
+                      <th class="sort align-middle ps-3" scope="col" data-sort="tags" style="width:250px;">태그</th>
                       <th class="sort align-middle fs-8 text-center ps-4" scope="col" style="width:125px;"></th>
-                      <th class="sort align-middle ps-4" scope="col" data-sort="vendor" style="width:200px;">VENDOR</th>
-                      <th class="sort align-middle ps-4" scope="col" data-sort="time" style="width:50px;">PUBLISHED ON</th>
+                      <th class="sort align-middle ps-4" scope="col" data-sort="vendor" style="width:200px;">회사</th>
+                      <th class="sort align-middle ps-4" scope="col" data-sort="time" style="width:50px;">게시 날짜</th>
                       <th class="sort text-end align-middle pe-0 ps-4" scope="col"></th>
                     </tr>
                   </thead>
