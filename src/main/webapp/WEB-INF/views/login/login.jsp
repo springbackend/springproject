@@ -53,11 +53,11 @@
 			if (data == "bad") {
 				alert("case4");
 				alert("로그인 실패");
-				location.href = "/beauty/main.do";
+				location.href = "main.do";
 			} else {
 				alert("case5");
 				alert("로그인 성공");
-				location.href = "/beauty/main.do";
+				location.href = "main.do";
 			}
 		}
 	}
