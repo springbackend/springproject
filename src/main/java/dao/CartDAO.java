@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import vo.CartVO;
+import vo.ProductVO;
 
 public class CartDAO {
 	
@@ -44,6 +45,8 @@ public class CartDAO {
 		int total = sqlSession.selectOne("c.cart_totalprice",u_idx);
 		return total;
 	}
+	
+	
 	
 
 }

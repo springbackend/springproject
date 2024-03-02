@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.CartDAO;
 import vo.CartVO;
+import vo.ProductVO;
 
 public class CartService {
 	
@@ -42,6 +43,8 @@ public class CartService {
 	public int cart_quantity(CartVO cart) {
 		return cartDao.cart_quantity(cart);
 	}
+	
+	
 	
 	
 
