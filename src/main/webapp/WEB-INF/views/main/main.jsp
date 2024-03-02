@@ -54,6 +54,7 @@
       document.addEventListener('DOMContentLoaded', function() {
   		let searchInput = document.getElementById('searchInput');
   		let dropdownMenu = document.getElementById('searchDropdown');
+  		
   		searchInput.addEventListener('input', function() {
   			let keyword = this.value.trim();
   			if (keyword === '') {
@@ -61,7 +62,7 @@
   				dropdownMenu.classList.remove('show');
   			} else {
   				// AJAX 요청 대신 예시에서는 직접 함수 호출
-  				searchKeyword(keyword);
+  				searchkeyword(keyword);
   			}
   		});
 
@@ -122,8 +123,17 @@
   	}
     </script>
 <link href="resources/vendors/swiper/swiper-bundle.min.css" rel="stylesheet">
-  </head>
+<style type="text/css">
+	.search-form {
+    display: inline-block;
+    width: 100%;
+}
 
+.search-form .dropdown-menu {
+    width: 100%; /* 드롭다운 메뉴의 너비를 form 태그의 너비와 동일하게 설정 */
+}
+</style>
+  </head>
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -198,12 +208,16 @@
 	                </div>
 	                <div class="col-12 col-md-6">
 	                  <div class="search-box ecommerce-search-box w-100">
-	                    <form class="position-relative">
-	                      <input class="form-control search-input search form-control-sm" id="searchInput" type="search" placeholder="검색" aria-label="Search" name="keyword"/>
-            			<span class="fas fa-search search-box-icon"></span>
-            			<div class="dropdown-menu" id="searchDropdown" aria-labelledby="searchInput"></div>
-	                    </form>
-	                  </div>
+									<form class="position-relative search-form" action="search_list.do" method="get">
+										<input
+											class="form-control search-input search form-control-sm"
+											id="searchInput" type="search" placeholder="검색"
+											aria-label="Search" name="keyword" /> <span
+											class="fas fa-search search-box-icon"></span>
+										<div class="dropdown-menu" id="searchDropdown"
+											aria-labelledby="searchInput"></div>
+									</form>
+								</div>
 	                </div>
 	              </div>
 	            </nav>
