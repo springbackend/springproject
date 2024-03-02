@@ -36,6 +36,7 @@
     <link href="resources/assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
     <link href="resources/assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
     <link href="resources/assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
+    <script src="/beauty/resources/js/httpRequest.js"></script>
     <script>
       var phoenixIsRTL = window.config.config.phoenixIsRTL;
       if (phoenixIsRTL) {
@@ -50,8 +51,77 @@
         linkRTL.setAttribute('disabled', true);
         userLinkRTL.setAttribute('disabled', true);
       }
+      document.addEventListener('DOMContentLoaded', function() {
+  		let searchInput = document.getElementById('searchInput');
+  		let dropdownMenu = document.getElementById('searchDropdown');
+  		searchInput.addEventListener('input', function() {
+  			let keyword = this.value.trim();
+  			if (keyword === '') {
+  				dropdownMenu.innerHTML = '';
+  				dropdownMenu.classList.remove('show');
+  			} else {
+  				// AJAX 요청 대신 예시에서는 직접 함수 호출
+  				searchKeyword(keyword);
+  			}
+  		});
+
+  		searchInput.addEventListener('focus', function() {
+  			if (dropdownMenu.childElementCount > 0) {
+  				dropdownMenu.classList.add('show');
+  			}
+  		});
+
+  		searchInput.addEventListener('blur', function() {
+  			setTimeout(function() {
+  				dropdownMenu.classList.remove('show');
+  			}, 100);
+  		});
+  	});
+
+  	function searchkeyword(keyword) {
+  		// 키워드가 있을 때만 검색을 수행
+  		let url = "search_keyword.do";
+  		let param = "keyword=" + keyword;
+  		sendRequest(url, param, resultKeyword, 'post');
+  	}
+
+  	function resultKeyword() {
+  		if (xhr.readyState == 4 && xhr.status == 200) {
+  			let data = xhr.responseText;
+  			let productNames = JSON.parse(data); // JSON 문자열을 문자열 배열로 변환
+  			// 드롭다운 메뉴를 찾고 기존 항목을 지움
+  			let dropdownMenu = document.querySelector('#searchDropdown');
+  			dropdownMenu.innerHTML = '';
+  			if (productNames.length > 0) {
+  				productNames
+  						.forEach(function(productName) {
+  							let listItem = document.createElement('li'); // li 요소 생성
+  							let dropdownItem = document.createElement('a');
+  							dropdownItem.classList.add('dropdown-item');
+  							dropdownItem.href = 'search_list.do?keyword='
+  									+ productName;
+  							dropdownItem.textContent = productName;
+  							listItem.appendChild(dropdownItem); // li 요소 안에 a 요소 추가
+  							dropdownMenu.appendChild(listItem); // 드롭다운 메뉴에 li 요소 추가
+  						});
+
+  				// 드롭다운 메뉴를 보이도록
+  				dropdownMenu.classList.add('show');
+  	        } else {
+  	            dropdownMenu.classList.remove('show');
+  	        }
+  		}
+  	}
+  	function search_list(f) {
+  		let keyword = f.keyword.value.trim();
+  		if (keyword == '') {
+  			alert('검색어를 입력하세요');
+  			return;
+  		}
+  		f.submit();
+  	}
     </script>
-    <link href="resources/vendors/swiper/swiper-bundle.min.css" rel="stylesheet">
+<link href="resources/vendors/swiper/swiper-bundle.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -128,8 +198,10 @@
 	                </div>
 	                <div class="col-12 col-md-6">
 	                  <div class="search-box ecommerce-search-box w-100">
-	                    <form class="position-relative"><input class="form-control search-input search form-control-sm" type="search" placeholder="검색" aria-label="Search" />
-	                      <span class="fas fa-search search-box-icon"></span>
+	                    <form class="position-relative">
+	                      <input class="form-control search-input search form-control-sm" id="searchInput" type="search" placeholder="검색" aria-label="Search" name="keyword"/>
+            			<span class="fas fa-search search-box-icon"></span>
+            			<div class="dropdown-menu" id="searchDropdown" aria-labelledby="searchInput"></div>
 	                    </form>
 	                  </div>
 	                </div>
