@@ -14,6 +14,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE no BETWEEN #{start} AND #{end}
 	</select>
 	
+	<select id="board_order_by" resultType="board" parameterType="board">
+		SELECT * FROM board
+		WHERE t_idx = #{t_idx} AND p_idx = #{p_idx}
+	</select>
+	
+	<select id="board_order_by_tone" resultType="board" parameterType="int">
+		SELECT * FROM board
+		WHERE t_idx = #{t_idx}
+	</select>
+	
+	<select id="board_order_by_product" resultType="board" parameterType="int">
+		SELECT * FROM board
+		WHERE p_idx = #{p_idx}
+	</select>
+	
+	<!-- <select id="board_order_by_only" resultType="board" parameterType="String">
+		SELECT * FROM board
+		ORDER BY readhit DESC
+	</select> -->
+	
 	<select id="board_count" resultType="int">
 		SELECT COUNT(*) FROM board
 	</select>
@@ -26,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="board_write" parameterType="board">
 		INSERT INTO board VALUES(
 			seq_board_idx.nextVal,
-			#{m_idx},
+			#{u_idx},
 			#{subject},
 			#{content},
 			#{ip},

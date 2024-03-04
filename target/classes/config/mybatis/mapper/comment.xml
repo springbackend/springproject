@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO comment_table VALUES(
 			seq_comment_idx.nextVal,
 			#{b_idx},
-			#{m_idx},
+			#{u_idx},
 			#{content},
 			#{ip},
 			sysdate,
@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO comment_table VALUES (
 			seq_comment_idx.nextVal,
 			#{b_idx},
-			#{m_idx},
+			#{u_idx},
 			#{content},
 			#{ip},
 			sysdate,
