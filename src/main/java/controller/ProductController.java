@@ -71,10 +71,6 @@ public class ProductController {
 		return VIEW_PATH+"product_buy_form.jsp";
 	}
 	
-	@RequestMapping("/top_form.do")
-	public String top_form() {
-		return VIEW_PATH+ "top.jsp";
-	}
 	
 	//카테고리_s 보기
 	@RequestMapping(value = "/product_category_s_list.do", method = RequestMethod.GET)

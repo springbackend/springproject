@@ -38,7 +38,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			p.* from product p order by p.p_sold desc) where no between 1 and 20
 	</select>
 	
-	
+	<select id="select_best_main" resultType="product">
+		SELECT *
+		FROM (SELECT * FROM product ORDER BY p_sold DESC) where ROWNUM between 1 and 6
+	</select>
 </mapper>
 
 

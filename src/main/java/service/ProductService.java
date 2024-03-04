@@ -80,5 +80,10 @@ public class ProductService {
 		String p_name = p_dao.select_product_name(p_idx);
 		return p_name;
 	}
+	
+	public List<ProductVO> p_best_main(){
+		List<ProductVO> list = p_dao.select_product_main();
+		return list;
+	}
 
 }
