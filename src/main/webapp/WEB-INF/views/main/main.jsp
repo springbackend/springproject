@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -509,7 +510,7 @@
 															</p>
 														</div>
 														<div>
-															<h3 class="text-body-emphasis">${product.p_price }</h3>
+															<h3 class="text-body-emphasis"><fmt:formatNumber value="${product.p_price}" type="currency" currencySymbol="" groupingUsed="true" />원</h3>
 														</div>
 													</div>
 												</div>
