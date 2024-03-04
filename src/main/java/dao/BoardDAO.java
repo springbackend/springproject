@@ -2,6 +2,7 @@ package dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -20,12 +21,30 @@ public class BoardDAO {
 		 return list; 
 	 }
 	 
+	 public List<BoardVO> board_order_by(int t_idx, int p_idx){
+		 List<BoardVO> list;
+		 
+		 if(t_idx == 0 && p_idx != 0) {
+			 list = sqlSession.selectList("b.board_order_by_product", p_idx);
+		 }else if(p_idx == 0 && t_idx != 0) {
+			 list = sqlSession.selectList("b.board_order_by_tone", t_idx);
+		 }else {
+			 BoardVO vo = new BoardVO();
+			 vo.setT_idx(t_idx);
+			 vo.setP_idx(p_idx);
+			 list = sqlSession.selectList("b.board_order_by", vo);
+		 }
+		 
+		 return list;
+	 }
+	 
 	 public List<BoardVO> selectList(HashMap<String, Integer> map){ 
 		 List<BoardVO> list = sqlSession.selectList("b.board_list", map);
 		 return list; 
 	 }
 	 
 	 public BoardVO board_one(int b_idx) {
+		 System.out.println("in board dao: " + b_idx);
 		 BoardVO vo = sqlSession.selectOne("b.board_one", b_idx);
 		 return vo;
 	 }

@@ -8,27 +8,49 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>${vo.subject}</title>
-		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 		<style>
-			.board{border:2px solid black;
-				   border-radius:30px;
+			@font-face {
+			    font-family: 'Pretendard-Regular';
+			    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+			    font-weight: 400;
+			    font-style: normal;
+			}
+		
+			body{background-color:#f5f7fa;
+				 font-family: 'Pretendard-Regular';} 
+		
+			.board{border:2px solid #dbdee4;
+				   border-radius:30px 30px 0 0;
 			       margin:auto;
 				   width:60%;
 				   padding:15px;
 				   background-color:white;}
+			
+			.comment{
+				border:2px solid #dbdee4;
+				border-top:none;
+				background-color:#eff2f6;
+				border-radius:0 0 30px 30px;
+				margin:auto;
+				width:60%;
+				padding:15px; 
+			}
 			
 			.top{height:50px;
 				 position:relative;
 				 margin-bottom:5px;}
 				       
 			.name{position:absolute;
-				  left:60px;
-				  top:15px;
+				  left:53px;
+				  top:18px;
 				  font-size:18px;}
 			
-			.avatar{width:50px;
+			#avatar{width:50px;
 					height:50px;
-					position:absolute;}
+					position:absolute;
+					font-size:45px;
+					color:#525b75;}
 				   
 			.date{position:absolute; 
 				  right:5px; 
@@ -39,34 +61,39 @@
 				     padding:5px;
 				     font-size:30px;}
 			
-			.content{margin:5px;
-					 padding:10px;} 
-					 
-			/* Like/Comment Button */
-			.comment_icon{font-size:20px;}
+			.content{margin:2px 0 10px 0;
+					 padding:3px;
+					 font-size:16px;
+					 font-family:'Pretendard-Regular';
+					 font-weight:400;} 
 			
-			#like_btn, .readhit_icon{display: inline-block;
-								 	  border-radius:30%;
-								 	  text-align: center;
-								 	  padding:2px;
-									  height:35px;
-								 	  margin:2px;}
+			#like_icon, #readhit_icon, #comment_icon{
+					font-size:20px;
+					color:#525b75;}
+						/* position:absolute;
+					 	  right:20px;
+					 	  padding:3px;
+					 	  color:#525b75; */
+					 	  
+			#readhit_icon{margin-left:88%;}
 
-			#like_btn{cursor: pointer;
+			/* #like_btn{cursor: pointer;
 					  transition: all 0.5s;
 					  font-size:15px;
 					  padding-left:6px;
 					  padding-right:6px;
 					  border:2px solid black;
 					  background-color:white;
-					  margin-left:250px;}
+					  margin-left:250px;} */
 				 	  
-			.like_icon{cursor: pointer;
+			/* #like_icon{cursor: pointer;
 				 	   display: inline-block;
-				 	   transition: 0.5s;}
+				 	   transition: 0.5s;} */
+				 	   
+			#like{margin-left:5px; margin-right:5px;}	
 						  		
-			#like_btn:hover{background-color:#FF2279 !important;}
-			#like_btn:hover .like_icon{color:white !important;}
+			/* #like_btn:hover{background-color:#FF2279 !important;}
+			#like_btn:hover .like_icon{color:white !important;} */
 			
 			/* Tag Design */
 			.tag-box{height:30px;
@@ -76,59 +103,41 @@
 						 border:none;
 						 border-radius:10px;
 						 background-color:#EAEAEB;
-						 padding:5px;}
+						 padding:7px;}
 				 
 			.line{border:2px solid lightgray;}
 			
 			/* 댓글 달기 스타일 */
-			#c_content{width:96%;
-					   height:130px;
-						   border:2px solid #ccc;
-						   resize:none;
-						   padding:10px;
-						   font-size:20px;}
-					 
-			.btn{text-align:right;
-				 align:right;
-				 vertical-align:middle;}
-				 
-			.btn_comment{display: inline-block;
-				 border-radius: 4px;
-				 color: #FFFFFF;
-				 background-color: #00A56B;
-				 border: none;
-				 text-align: center;
-				 font-size: 15px;
-				 padding: 10px;
-				 width: 110px;
-				 transition: all 0.5s;
-				 cursor: pointer;
-				 margin: 2px;}
-				 
-			.cmt{cursor: pointer;
-				 display: inline-block;
-				 position: relative;
-				 transition: 0.5s;}
-						
-			.cmt:after {content:'\00bb';
-						position:absolute;
-						opacity:0;
-						top:0;
-						right:-20px;
-						transition:0.5s;}
-						  		
-			.btn_comment:hover .cmt {padding-right: 15px;}
+			#c_content{display:inline-block;
+					   font-family:'Pretendard-Regular';
+					 	font-weight:400;
+						width:85%;
+					   height:25px;
+						border:2px solid #ccc;
+						resize:none;
+						padding:7px;
+						font-size:20px;}
 			
-			.btn_comment:hover .cmt:after {opacity: 1; right: 0;}
+			.btn_comment{
+				display:inline-block;
+				border-radius: 4px;
+				border: none;
+				text-align: center;
+				padding: 10px;
+				transition: all 0.5s;
+				cursor: pointer;
+				margin: 2px;
+				width:13%;
+				font-family: 'Pretendard-Regular';
+				font-weight:600;
+				font-size:16px;
+				background-color: #3874ff;
+				color:white;
+			}
+			
+			.btn_comment:hover{background-color:#004dff;}
 			
 			.bottom{position:relative;}
-			
-			.readhit_icon{position:absolute;
-					 	  right:10px;
-					 	  padding:3px;
-					 	  font-size:20px;
-					 	  border:none;
-					 	  background-color:white;}
 			
 			img{border:none;
 				height:25px;
@@ -136,7 +145,7 @@
 				cursor:pointer;}
 		</style>
 		
-		<script src="/board/resources/js/httpRequest.js"></script>
+		<script src="resources/js/httpRequest.js"></script>
 		<script>
 			window.onload = function(){
 				comment_list();
@@ -194,7 +203,7 @@
 			}
 			
 			function like_click(){
-				//m_idx 넘기기?
+				//u_idx 넘기기?
 				
 				let url = "board_like.do";
 				let param = "b_idx=${vo.b_idx}";
@@ -217,22 +226,22 @@
 					//like 수 증가 refresh가 맨 위 게시글 밖에 안됨
 					if(data == 0){
 						//좋아요 수가 0일 경우 화면에 좋아요 수 안띄움
-						document.getElementById("like_btn").style.backgroundColor = "white";
-						document.getElementById("like_btn").innerHTML = '<span class="like_icon">🤍</span>';
+						document.getElementById("like").innerHTML = '<i id="like_icon" class="bi bi-heart"></i>';
 					}
 					else if(data >= ${vo.likes_count}){
 						//아이콘 스타일 변경
 						alert("like");
-						document.getElementById("like_btn").style.backgroundColor = "#FF2279";
-						document.getElementById("like_btn").style.color = "white";
-						document.getElementById("like_btn").innerHTML = '<span class="like_icon">🤍&nbsp;' + data + '</span>';
+						document.getElementById("like").innerHTML = '&nbsp;&nbsp;<i id="like_icon" class="bi bi-heart-fill"></i>&nbsp;&nbsp;' 
+							+ data + '&nbsp;&nbsp;';
+						document.getElementById("like_icon").style.color = "#FF2279";
 						
 					}else if(data < ${vo.likes_count}){
 						alert("dislike");
-						document.getElementById("like_btn").style.backgroundColor = "white";
-						document.getElementById("like_btn").innerHTML = '<span class="like_icon">🤍&nbsp;' + data + '</span>';
+						document.getElementById("like").innerHTML = '&nbsp;&nbsp;<i id="like_icon" class="bi bi-heart"></i>&nbsp;&nbsp;' 
+							+ data + '&nbsp;&nbsp;';
 						
 					}
+					
 					
 				}
 			}
@@ -247,12 +256,15 @@
 			function like_check_result(){
 				if(xhr.readyState == 4 && xhr.status == 200){
 					let data = xhr.responseText;
+					alert(data);
 					if(data == "like"){
-						document.getElementById("like_btn").style.backgroundColor = "#FF2279";
+						document.getElementById("like").innerHTML = '&nbsp;&nbsp;<i id="like_icon" class="bi bi-heart-fill"></i>&nbsp;&nbsp;'
+							+ data + '&nbsp;&nbsp;';
+						document.getElementById("like_icon").style.color = "#FF2279";
 						
-					}else if(data == "dislike"){
-						document.getElementById("like_btn").style.backgroundColor = "white";
-					}
+					}/* else if(data == "dislike"){
+						document.getElementById("like_icon").style.color = "white";
+					} */
 				}
 			}
 		</script>
@@ -263,7 +275,7 @@
 		<div class="board">
 			<div class="subject"><strong>${vo.subject}</strong></div>
 			<div class="top">
-				<b><img class="avatar" src="/board/resources/icons/profile_picture.png"></b>
+				<span id="avatar" class="bi bi-person-circle"></span>
 				<b class="name">홍길동</b>
 				<b class="date">${fn:split(vo.regdate, ' ')[0]}</b>
 			</div>
@@ -275,47 +287,52 @@
 			<!-- 구분선 -->
 			<hr>
 			<div class="bottom">
-				<span class="comment_icon">💬&nbsp;${vo.comment_count}</span>
+				<i id="comment_icon" class="bi bi-chat-fill"></i>&nbsp;&nbsp;${vo.comment_count}
 				
 				<c:if test="${vo.likes_count eq 0}">
-					<button id="like_btn" onclick="like_click();">
-						<span class="like_icon">🤍</span></button>
+					<!-- <button id="like_btn" onclick="like_click();"><i id="like_icon" class="bi bi-heart"></i></button> -->
+					<span id="like" onclick="like_click();"><i id="like_icon" class="bi bi-heart"></i></span>
 				</c:if>
 				
 				<c:if test="${vo.likes_count ne 0}">
 					<c:if test="${check_like eq 0}">
-						<button id="like_btn" onclick="like_click();">
-							<span class="like_icon">🤍&nbsp;${vo.likes_count}</span></button>
+						<%-- <button id="like_btn" onclick="like_click();">
+							<span class="like_icon">🤍&nbsp;${vo.likes_count}</span></button> --%>
+						<span id="like" onclick="like_click();">
+							<i id="like_icon" class="bi bi-heart"></i>&nbsp;&nbsp;${vo.likes_count}</span>
 					</c:if>
 					<c:if test="${check_like eq 1}">
-						<button id="like_btn" onclick="like_click();" style="background-color:#FF2279; color:white;">
-							<span class="like_icon">🤍&nbsp;${vo.likes_count}</span></button>
+						<%-- <button id="like_btn" onclick="like_click();" style="background-color:#FF2279; color:white;">
+							<span class="like_icon">🤍&nbsp;${vo.likes_count}</span></button> --%>
+						<span id="like" onclick="like_click();">
+							<i id="like_icon" class="bi bi-heart-fill" style="color:#FF2279;"></i>&nbsp;&nbsp;${vo.likes_count}</span>
 					</c:if>
 				</c:if>
 				
-				<span class="readhit_icon">👁‍🗨&nbsp;${vo.readhit}</span>
+				<i id="readhit_icon" class="bi bi-eye-fill"></i>&nbsp;&nbsp;${vo.readhit}
 				<%-- <b class="readhit"><img src="/board/resources/icons/view.webp">${vo.readhit}</b> --%>
 			</div>
-				
-			<br>
-			<hr class="line">
-			
-			<h2>Comments</h2>
-			
-			<div id="textbox">
-				<textarea id="c_content" placeholder="댓글을 입력해주세요."></textarea>
 			</div>
-			
-			<!-- 로그인 확인 -->
-			
-			<div class="btn"><button class="btn_comment" onclick="comment_send();">
-				<span class="cmt">댓글 등록 </span></button></div>
-			<br>
-			<div id="comment">
+			<div class="comment">
+				<h2>댓글</h2>
 				
+				<div id="textbox">
+					<textarea id="c_content" placeholder="댓글을 입력해주세요."></textarea>
+					<button class="btn_comment" onclick="comment_send();">
+						<span class="cmt">댓글 등록 </span></button>
+				</div>
+				
+				<!-- 로그인 확인 -->
+				
+				<!-- <div class="btn"><button class="btn_comment" onclick="comment_send();">
+					<span class="cmt">댓글 등록 </span></button></div>
+				<br> -->
+				<br>
+				<div id="comment">
+					
+				</div>
 			</div>
-			<br>
-		</div>
+		
 	</body>
 </html>
 

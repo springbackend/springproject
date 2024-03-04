@@ -1,7 +1,10 @@
 package service;
 
+import org.springframework.stereotype.Service;
+
 import dao.ToneDAO;
 
+@Service
 public class ToneService {
 
 	ToneDAO tone_dao;

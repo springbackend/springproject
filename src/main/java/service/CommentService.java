@@ -2,9 +2,12 @@ package service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import dao.CommentDAO;
 import vo.CommentVO;
 
+@Service
 public class CommentService {
 
 	CommentDAO comment_dao;

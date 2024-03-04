@@ -6,9 +6,19 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>대댓글</title>
-		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 		<style>
-			.board{border:2px solid black;
+			@font-face {
+			    font-family: 'Pretendard-Regular';
+			    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+			    font-weight: 400;
+			    font-style: normal;
+			}
+			
+			body{background-color:#f5f7fa;
+				 font-family:'Pretendard-Regular';}
+		
+			.board{border:2px solid #dbdee4;
 				   border-radius:30px;
 			       margin:auto;
 				   width:60%;
@@ -24,12 +34,13 @@
 				  top:15px;
 				  font-size:18px;}
 			
-			.avatar{width:50px;
-					height:50px;
-					position:absolute;}
+			#avatar{font-size:40px;
+					margin-left:5px;
+					position:absolute;
+					color:#525b75;}
 				   
 			.date{position:absolute; 
-				  right:5px; 
+				  right:15px; 
 				  top:15px;
 				  font-size:18px;}
 			
@@ -39,12 +50,15 @@
 			.line{border:2px solid lightgray}
 			
 			/* 댓글 달기 스타일 */
-			#reply_content{width:96%;
-					   height:130px;
-						   border:2px solid #ccc;
-						   resize:none;
-						   padding:10px;
-						   font-size:20px;}
+			#reply_content{display:inline-block;
+					   font-family:'Pretendard-Regular';
+					 	font-weight:400;
+						width:85%;
+					   height:25px;
+						border:2px solid #ccc;
+						resize:none;
+						padding:7px;
+						font-size:20px;}
 			
 			/* #comment{border:1px solid blue;} */
 					 
@@ -55,13 +69,12 @@
 			.btn_comment{display: inline-block;
 				 border-radius: 4px;
 				 color: #FFFFFF;
-				 background-color: #00A56B;
+				 background-color: #3874ff;
 				 border: none;
 				 text-align: center;
 				 font-size: 15px;
 				 padding: 10px;
 				 width: 110px;
-				 transition: all 0.5s;
 				 cursor: pointer;
 				 margin: 2px;}
 				 
@@ -155,26 +168,27 @@
 		<h1 align="center">댓글</h1>
 		<div class="board">
 			<div class="top">
-				<b><img class="avatar" src="/board/resources/icons/profile_picture.png"></b>
-				<b class="name">홍길동</b>
+				<span id="avatar" class="bi bi-person-circle"></span>
+				<b class="name">김길동</b>
 				<b class="date">${fn:split(vo.regdate, ' ')[0]}</b>
 			</div>
 			<div class="content">${vo.content}</div>
 			<!-- 구분선 -->
 			<hr>
-			<div class="bottom">
+			<%-- <div class="bottom">
 				<input type="button" value="삭제" onclick="board_delete(${c_idx});">
 				<input type="button" value="수정" onclick="update(this.form);">
-			</div>
+			</div> --%>
 			<br>
-			<hr class="line">
-			
-			<h2>Comments</h2>
-			<div id="textbox">
-				<textarea id="reply_content" placeholder="댓글을 입력해주세요."></textarea>
-			</div>
-			<div class="btn"><button class="btn_comment" onclick="reply(this.form);">
-					<span class="cmt">댓글 등록 </span></button></div>
+	
+			<h2>댓글</h2>
+				
+				<div id="textbox">
+					<textarea id="reply_content" placeholder="댓글을 입력해주세요."></textarea>
+					<button class="btn_comment" onclick="reply(this.form);">
+						<span class="cmt">댓글 등록 </span></button>
+				</div>
+				<div class="btn">
 			
 			<br>
 			<div id="replies">
