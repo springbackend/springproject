@@ -56,5 +56,15 @@ public class ProductDAO {
 		List<ProductVO> list = sqlSession.selectList("p.select_best");
 		return list;
 	}
+	
+	public List<ProductVO> p_best_main(){
+		List<ProductVO> list = sqlSession.selectList("p.select_best_main");
+		return list;
+	}
+	
+	public List<ProductVO> p_discount(){
+		List<ProductVO> list = sqlSession.selectList("p.select_discount");
+		return list;
+	}
 
 }

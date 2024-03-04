@@ -20,7 +20,9 @@ public class MainController {
 	@RequestMapping(value = "/main.do")
 	public String main1(Model model) {
 		List<ProductVO> list = p_service.p_best_main();
+		List<ProductVO> d_list = p_service.p_discount_main();
 		model.addAttribute("list",list);
+		model.addAttribute("d_list",d_list);
 		return VIEW_PATH + "/main.jsp";
 	}
 

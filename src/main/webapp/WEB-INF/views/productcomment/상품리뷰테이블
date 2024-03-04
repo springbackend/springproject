@@ -23,12 +23,13 @@ update product_comment set pc_good = 0;
 
 create table buy_product(
 bp_idx number(10) primary key, 
-p_idx number(10),
-u_idx number(10),
-p_count number(10),
-totalprice number(20)
+p_idx number(10),--상품번호
+u_idx number(10),--유저번호
+p_count number(10),--유저가 산 상품수량
+totalprice number(20),--총 가격
+bp_regidate date-- 산날짜
 );
 create sequence bp_seq_idx;
-insert into buy_product values(bp_seq_idx.nextval,1,1,3,90000);
+insert into buy_product values(bp_seq_idx.nextval,1,1,3,90000,sysdate);
 
 

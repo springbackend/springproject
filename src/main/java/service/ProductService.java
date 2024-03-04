@@ -75,5 +75,15 @@ public class ProductService {
 		List<ProductVO> list = p_dao.p_best_product();
 		return list;
 	}
+	
+	public List<ProductVO> p_best_main(){
+		List<ProductVO> list = p_dao.p_best_main();
+		return list;
+	}
+	
+	public List<ProductVO> p_discount_main(){
+		List<ProductVO> list = p_dao.p_discount();
+		return list;
+	}
 
 }
