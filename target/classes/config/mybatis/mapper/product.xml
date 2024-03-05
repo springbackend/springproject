@@ -54,18 +54,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="select_best_main" resultType="product">
-		SELECT *
-		FROM (SELECT *
-		FROM product ORDER BY p_sold DESC) where ROWNUM between 1 and 6
+		SELECT p.*,
+		pc.avg_star,
+		pc.total_comments
+		FROM (
+		SELECT p_idx,
+		p_name,
+		p_content,
+		p_regidate,
+		p_category_b,
+		p_category_s,
+		p_image,
+		p_color,
+		p_price,
+		p_hit,
+		p_sold,
+		ROW_NUMBER() OVER (ORDER BY p_sold DESC) AS rank
+		FROM product
+		) p LEFT JOIN (
+		SELECT p_idx,
+		AVG(pc_star) AS avg_star,
+		COUNT(pc_idx) AS total_comments
+		FROM product_comment
+		GROUP BY p_idx
+		) pc ON p.p_idx = pc.p_idx
+		WHERE p.rank BETWEEN 1 AND 6
 	</select>
 
 	<select id="select_discount" resultType="product">
 		SELECT * FROM (
-		SELECT bp.p_idx, p.p_name, SUM(bp.p_count) AS total_sold
+		SELECT bp.p_idx, p.p_name, SUM(bp.p_count) AS
+		total_sold
 		FROM buy_product bp
 		JOIN product p ON bp.p_idx = p.p_idx
 		WHERE bp.bp_regidate >= TRUNC(SYSDATE - 1)
-		AND bp.bp_regidate <![CDATA[<]]> TRUNC(SYSDATE)
+		AND bp.bp_regidate <![CDATA[<]]>
+		TRUNC(SYSDATE)
 		GROUP BY bp.p_idx, p.p_name
 		ORDER BY SUM(bp.p_count) ASC
 		)

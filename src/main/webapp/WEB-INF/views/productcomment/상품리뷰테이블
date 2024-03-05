@@ -5,7 +5,7 @@ pc_image varchar(50),--상품사진
 pc_good number(10),--좋아요갯수
 p_idx number(10),-- 상품번호
 u_idx number(10),-- 유저번호
-pc_star number(5),
+pc_star number(5),--별점
 pc_regidate date
 );
 create sequence pc_seq_idx;
