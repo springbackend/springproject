@@ -10,8 +10,10 @@ public class LikesDAO {
 		this.sqlSession = sqlSession;
 	}
 	
-	public int check_like(LikesVO vo) {
-		int likes = sqlSession.selectOne("l.check_like", vo);
+	public LikesVO check_like(LikesVO vo) {
+		System.out.println("LikesDAO: 14");
+		LikesVO likes = sqlSession.selectOne("l.check_like", vo);
+		System.out.println("LikesDAO: 16");
 		return likes;
 	}
 	

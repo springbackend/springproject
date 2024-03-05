@@ -22,10 +22,10 @@ public class TempController {
 	@Autowired
 	ServletContext servletContext;
 
-	@RequestMapping(value = "/")
-	public String main() {
-		return "redirect:/temp.do";
-	}
+	/*
+	 * @RequestMapping(value = "/") public String main() { return
+	 * "redirect:/temp.do"; }
+	 */
 
 	@RequestMapping(value = { "/temp.do" })
 	public String temp() {

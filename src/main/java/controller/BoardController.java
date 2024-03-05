@@ -2,6 +2,7 @@ package controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.BoardService;
+import service.Board_ProductService;
 import service.CommentService;
 import service.LikesService;
 import service.ProductService;
@@ -31,7 +33,7 @@ public class BoardController {
 
 	BoardService board_service;
 	ToneService tone_service;
-	ProductService product_service;
+	Board_ProductService product_service;
 	CommentService comment_service;
 	LikesService likes_service;
 	UserService user_service;
@@ -42,7 +44,7 @@ public class BoardController {
 	@Autowired
 	HttpSession session;
 	
-	public BoardController(BoardService board_service, ToneService tone_service, ProductService product_service, CommentService comment_service, LikesService likes_service, UserService user_service) {
+	public BoardController(BoardService board_service, ToneService tone_service, Board_ProductService product_service, CommentService comment_service, LikesService likes_service, UserService user_service) {
 		this.board_service = board_service;
 		this.product_service = product_service;
 		this.tone_service = tone_service;
@@ -87,6 +89,22 @@ public class BoardController {
 		return Common.Board.VIEW_PATH + "board_list.jsp";
 	}
 
+	@RequestMapping("/board_order_by.do")
+	public String board_order_by(Model model, String tone, String product) {
+		int t_idx = Integer.parseInt(tone);
+		int p_idx = Integer.parseInt(product);
+		//List<BoardVO> list;
+		
+		if(t_idx == 0 && p_idx == 0) {
+			return "redirect:board_list.do";
+		}
+		
+		List<BoardVO> list = board_service.board_order_by(t_idx, p_idx);
+		
+		model.addAttribute("list", list);
+		return Common.Board.VIEW_PATH + "board_list.jsp";
+	}
+
 	//새 게시글 작성 폼으로 이동
 	@RequestMapping("/board_write.do")
 	public String board_write(Model model) throws Exception{
@@ -119,7 +137,10 @@ public class BoardController {
 		vo.setT_name(t_name);
 		vo.setP_name(p_name);
 		
-		//int res = board_service.board_upload(vo);
+		System.out.println("t_name: " + vo.getT_name());
+		System.out.println("p_name: " + vo.getP_name());
+		
+		int res = board_service.board_upload(vo);
 		
 		/*
 		 * String result = "Fail";
@@ -156,9 +177,9 @@ public class BoardController {
 		int u_idx = 1;
 		LikesVO likes_vo = new LikesVO();
 		likes_vo.setB_idx(b_idx);
-		likes_vo.setU_idx(u_idx); //현재 유저 idx
+		likes_vo.setU_idx(u_idx); //현재 유저 idx 
 		
-		int check_like = likes_service.check_like(likes_vo);
+		LikesVO check_like = likes_service.check_like(likes_vo);
 		
 		//--- Cookie 사용해서 조회수 중복 증가 차단 ---
 		Cookie old_cookie = null;
@@ -205,7 +226,12 @@ public class BoardController {
 		//--- 현재 게시글 정보 가져오기 ---
 		BoardVO vo = board_service.board_one(b_idx);
 		
-		model.addAttribute("check_like", check_like);
+		int like = 0;
+		
+		if(check_like != null) {
+			like = 1;
+		}
+		model.addAttribute("check_like", like);
 		model.addAttribute("vo", vo);
 		
 		return Common.Board.VIEW_PATH + "board_view.jsp";
@@ -387,7 +413,7 @@ public class BoardController {
 		vo.setU_idx(1); //SAMPLE
 		
 		//이미 좋아요를 눌렀는지 여부 확인
-		if(likes_service.check_like(vo) == 0) {
+		if(likes_service.check_like(vo) == null) {
 			//좋아요를 안누른 상태면 좋아요 테이블에 좋아요 추가
 			likes_service.insert(vo);
 			//게시물 좋아요 수 증가

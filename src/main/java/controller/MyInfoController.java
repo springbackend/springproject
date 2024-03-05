@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,14 +31,15 @@ public class MyInfoController {
 	public MyInfoController(UserDAO userdao, UserBoardDAO userBoardDAO) {
 		this.userdao = userdao;
 		this.userBoardDAO = userBoardDAO;
+		
 	}
 
 	static final String VIEW_PATH = "/WEB-INF/views/user/";
 
 	@RequestMapping(value = "/myInfo.do")
 	public String myInfo(HttpSession session) {
-		String id = (String) session.getAttribute("id");
-		if (id == null || id.isEmpty()) {
+		String email = (String) session.getAttribute("email");
+		if (email == null || email.isEmpty()) {
 			return VIEW_PATH + "loginFirst.jsp";
 		}
 		return VIEW_PATH + "myInfo.jsp";
@@ -106,15 +108,19 @@ public class MyInfoController {
 	 */
 
 	// 계정삭제
+	@RequestMapping(value = "/deleteAccount.do", method = RequestMethod.POST)
 	@ResponseBody
-	@RequestMapping(value = "/deleteAccount.do")
 	public String deleteAccount(HttpSession session) {
 		String result = "fail";
 		String email = (String) session.getAttribute("email");
 		int res = userdao.deleteAccount(email);
 		if (res > 0) {
+
 			result = "success";
 		}
+		session.invalidate();
+		System.out.println("135135");
 		return result;
 	}
+
 }

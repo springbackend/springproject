@@ -31,33 +31,28 @@
 <script src="resources/assets/js/config.js"></script>
 <script type="text/javascript" src="/beauty/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
-	function send(f) {
-		let email = document.getElementById("email").value;
-		let pwd = document.getElementById("password").value;
-		let yuji = document.querySelector('#basic-checkbox').checked;
-		if (pwd.trim() == "" || pwd == null) {
-			alert('패스워드를 입력하세요');
-			return;
-		}
-		let url = "login.do";
-		let param = "email=" + email + "&pwd=" + pwd + "&yuji=" + yuji;
-		sendRequest(url, param, resultFn, "POST");
-	}
+function send(event) {
+    // 폼 제출 동작 방지
+    event.preventDefault();
+
+    let email = document.getElementById("email").value;
+    let pwd = document.getElementById("password").value;
+    let yuji = document.querySelector('#basic-checkbox').checked;
+    let url = "login.do";
+    let param = "email=" + encodeURIComponent(email) + "&pwd=" + encodeURIComponent(pwd) + "&yuji=" + yuji;
+
+    sendRequest(url, param, resultFn, "POST");
+}
 
 	function resultFn() {
-		alert("case1");
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			alert("case2");
 			let data = xhr.responseText;
-			alert("case3");
 			if (data == "bad") {
-				alert("case4");
 				alert("로그인 실패");
-				location.href = "/beauty/main.do";
+				location.href = "main.do";
 			} else {
-				alert("case5");
 				alert("로그인 성공");
-				location.href = "/beauty/main.do";
+				location.href = "main.do";
 			}
 		}
 	}
@@ -133,12 +128,12 @@
 						<hr class="bg-body-secondary mt-5 mb-4" />
 						<div class="divider-content-center">이메일로 로그인</div>
 					</div>
-					<form>
+					<form onsubmit="send(event)">
 						<div class="mb-3 text-start">
 							<label class="form-label" for="email">이메일 주소</label>
 							<div class="form-icon-container">
 								<input class="form-control form-icon-input" id="email"
-									type="email" placeholder="name@example.com" /><span
+									type="email" placeholder="name@example.com" name="email"/><span
 									class="fas fa-user text-body fs-9 form-icon"></span>
 							</div>
 						</div>
@@ -166,9 +161,8 @@
 									찾기</a>
 							</div>
 						</div>
-						<button class="btn btn-primary w-100 mb-3"
-							onclick="send(this.form);">로그인</button>
-					</form>
+						<button type="submit" class="btn btn-primary w-100 mb-3">로그인</button>					
+						</form>
 					<div class="text-center">
 						<a class="fs-9 fw-bold" href="regist.do">회원가입 하기</a>
 					</div>

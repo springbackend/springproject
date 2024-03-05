@@ -110,7 +110,7 @@
 </script>
 </head>
 <body>
-<jsp:include page="index.jsp"/>
+<jsp:include page="nav.jsp"/>
 <div class="container mt-3">
   <div class="row align-items-center">
     <!-- 상품 이미지 영역 -->

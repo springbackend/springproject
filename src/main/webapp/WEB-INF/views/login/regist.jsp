@@ -136,10 +136,10 @@
 			let result = decodeURI(decodeURIComponent(xhr.responseText));
 			if (result == "성공") {
 				alert("가입을 환영합니다!");
-				location.href = "/beauty/login.do";
+				location.href = "login.do";
 			} else {
 				alert("서비스 문제로 회원가입에 실패했습니다 \n 처음부터 다시 해주시길바랍니다.");
-				location.href = "/beauty/regist.do";
+				location.href = "regist.do";
 			}
 		}
 	}

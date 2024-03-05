@@ -41,6 +41,14 @@
 	<bean id="board_serviceBean" class="service.BoardService">
 		<constructor-arg ref="board_daoBean" />
 	</bean>
+	
+	<bean id="board_product_daoBean" class="dao.Board_ProductDAO">
+		<constructor-arg ref="sqlSessionBean" />
+	</bean>
+
+	<bean id="board_productserviceBean" class="service.Board_ProductService">
+		<constructor-arg ref="board_product_daoBean" /> 
+	</bean>
 
 	<bean id="tone_daoBean" class="dao.ToneDAO">
 		<constructor-arg ref="sqlSessionBean" />

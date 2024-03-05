@@ -57,9 +57,14 @@ public class ProductDAO {
 		return list;
 	}
 	
-	public String select_product_name(int p_idx) {
-		String p_name = sqlSession.selectOne("p.select_product", p_idx);
-		return p_name;
+	public List<ProductVO> p_best_main(){
+		List<ProductVO> list = sqlSession.selectList("p.select_best_main");
+		return list;
+	}
+	
+	public List<ProductVO> p_discount(){
+		List<ProductVO> list = sqlSession.selectList("p.select_discount");
+		return list;
 	}
 
 }

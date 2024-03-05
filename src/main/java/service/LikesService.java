@@ -1,8 +1,11 @@
 package service;
 
+import org.springframework.stereotype.Service;
+
 import dao.LikesDAO;
 import vo.LikesVO;
 
+@Service
 public class LikesService {
 
 	LikesDAO likes_dao;
@@ -11,8 +14,10 @@ public class LikesService {
 		this.likes_dao = likes_dao;
 	}
 	
-	public int check_like(LikesVO vo) {
-		int likes = likes_dao.check_like(vo);
+	public LikesVO check_like(LikesVO vo) {
+		System.out.println("LikesService: 18");
+		LikesVO likes = likes_dao.check_like(vo);
+		System.out.println("LikesService: 20");
 		return likes;
 	}
 	

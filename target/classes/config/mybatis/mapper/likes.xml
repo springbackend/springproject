@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="l">
 	<select id="check_like" resultType="likes" parameterType="likes">
 		SELECT * FROM likes
-		WHERE b_idx = #{b_idx} AND m_idx = #{m_idx}
+		WHERE b_idx = #{b_idx} AND u_idx = #{u_idx}
 	</select>
 	
 	<select id="count_like" resultType="int" parameterType="int">
@@ -16,14 +16,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="likes">
 		INSERT INTO likes VALUES(
 			#{b_idx},
-			#{m_idx},
+			#{u_idx},
 			sysdate
 		)
 	</insert>
 	
 	<delete id="delete" parameterType="int">
 		DELETE FROM likes
-		WHERE b_idx = #{b_idx} AND m_idx = #{m_idx}
+		WHERE b_idx = #{b_idx} AND u_idx = #{u_idx}
 	</delete>
 
 </mapper>
