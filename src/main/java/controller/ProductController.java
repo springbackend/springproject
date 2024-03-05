@@ -93,5 +93,8 @@ public class ProductController {
 		model.addAttribute("list", list);
 		return VIEW_PATH+"product_best.jsp";
 	}
+	
+	
+	
 
 }

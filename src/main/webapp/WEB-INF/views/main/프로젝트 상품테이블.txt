@@ -48,6 +48,9 @@ insert into product values(seq_product_idx.nextval,'에센스','얼굴',sysdate,
 insert into product values(seq_product_idx.nextval,'스킨푸드','얼굴',sysdate,'gender','face','no_file','white',30000,0,0);
 
 update product set p_sold = p_sold +1;
+ALTER TABLE product ADD (discountprice NUMBER(10));
+UPDATE product
+SET discountprice = p_price * 0.7;
 
 
 
