@@ -19,11 +19,22 @@
 				 font-family:'Pretendard-Regular';}
 		
 			.board{border:2px solid #dbdee4;
-				   border-radius:30px;
+				   border-radius:30px 30px 0 0;
 			       margin:auto;
 				   width:60%;
-				   padding:15px;
-				   background-color:white;}
+				   padding:20px;
+				   background-color:white;
+				   margin-top:50px;}
+				   
+			.comment-box{
+				border:2px solid #dbdee4;
+				border-top:none;
+				background-color:#eff2f6;
+				border-radius:0 0 30px 30px;
+				margin:auto;
+				width:60%;
+				padding:20px; 
+			}
 			
 			.top{height:50px;
 				 position:relative;
@@ -50,63 +61,47 @@
 			.line{border:2px solid lightgray}
 			
 			/* 댓글 달기 스타일 */
-			#reply_content{display:inline-block;
-					   font-family:'Pretendard-Regular';
-					 	font-weight:400;
-						width:85%;
-					   height:25px;
-						border:2px solid #ccc;
-						resize:none;
-						padding:7px;
-						font-size:20px;}
+			.write-comment{
+				position:relative;
+			}
 			
-			/* #comment{border:1px solid blue;} */
-					 
-			.btn{text-align:right;
-				 align:right;
-				 vertical-align:middle}
-				 
-			.btn_comment{display: inline-block;
-				 border-radius: 4px;
-				 color: #FFFFFF;
-				 background-color: #3874ff;
-				 border: none;
-				 text-align: center;
-				 font-size: 15px;
-				 padding: 10px;
-				 width: 110px;
-				 cursor: pointer;
-				 margin: 2px;}
-				 
-			.cmt{cursor: pointer;
-				      display: inline-block;
-				      position: relative;
-				      transition: 0.5s;}
-						
-			.cmt:after {content:'\00bb';
-						 position:absolute;
-						 opacity:0;
-						 top:0;
-						 right:-20px;
-						 transition:0.5s;}
-						  		
-			.btn_comment:hover .cmt {padding-right: 15px;}
+			#reply-content{
+				display:inline-block;
+				font-family:'Pretendard-Regular';
+			 	font-weight:400;
+				width:86%;
+				height:25px;
+				border:2px solid #ccc;
+				resize:none;
+				padding:7px;
+				font-size:18px;}
 			
-			.btn_comment:hover .cmt:after {opacity: 1; right: 0;}
+			.btn-comment{
+				position:absolute;
+				display:inline-block;
+				right:3px;
+				border-radius:4px;
+				border:none;
+				text-align:center;
+				padding:10px;
+				cursor:pointer;
+				margin:2px;
+				width:10%;
+				font-family: 'Pretendard-Regular';
+				font-weight:600;
+				font-size:16px;
+				background-color: #3874ff;
+				color:white;
+			}
 			
-			.bottom{position:relative;}
+			.btn-comment:hover{background-color:#004dff;}
 			
 			.readhit{position:absolute;
 					 right:20px;
 					 padding:3px;}
-			
-			img{border:none;
-				height:25px;
-				width:25px;
-				cursor:pointer;}
 		</style>
 		
-		<script src="/board/resources/js/httpRequest.js"></script>
+		<script src="resources/js/httpRequest.js"></script>
 		<script>
 			window.onload = function(){
 				reply_list();
@@ -128,7 +123,7 @@
 			}
 		
 			function reply(){
-				let reply_content = document.getElementById("reply_content").value ;
+				let reply_content = document.getElementById("reply-content").value ;
 				
 				if(reply_content == ''){
 					alert("내용을 입력해주세요.");
@@ -156,8 +151,7 @@
 						alert("댓글 작성 실패");
 						return; 
 					}
-					alert("댓글 작성 완료");
-					document.getElementById("textbox").innerHTML = '<textarea id="reply_content" placeholder="댓글을 입력해주세요."></textarea>';
+					document.getElementById("textbox").innerHTML = '<textarea id="reply-content" placeholder="댓글을 입력해주세요."></textarea>';
 					reply_list();
 				}
 			}
@@ -165,7 +159,6 @@
 		
 	</head>
 	<body>
-		<h1 align="center">댓글</h1>
 		<div class="board">
 			<div class="top">
 				<span id="avatar" class="bi bi-person-circle"></span>
@@ -173,28 +166,21 @@
 				<b class="date">${fn:split(vo.regdate, ' ')[0]}</b>
 			</div>
 			<div class="content">${vo.content}</div>
-			<!-- 구분선 -->
-			<hr>
-			<%-- <div class="bottom">
-				<input type="button" value="삭제" onclick="board_delete(${c_idx});">
-				<input type="button" value="수정" onclick="update(this.form);">
-			</div> --%>
-			<br>
-	
+		</div>
+		<div class="comment-box">
 			<h2>댓글</h2>
-				
-				<div id="textbox">
-					<textarea id="reply_content" placeholder="댓글을 입력해주세요."></textarea>
-					<button class="btn_comment" onclick="reply(this.form);">
-						<span class="cmt">댓글 등록 </span></button>
-				</div>
-				<div class="btn">
+			
+			<div class="write-comment">
+				<span id="textbox"><textarea id="reply-content" placeholder="댓글을 입력해주세요."></textarea></span>
+				<button class="btn-comment" onclick="reply(this.form);">댓글 등록</button>
+			</div>
+			
+			<!-- 로그인 확인 -->
 			
 			<br>
 			<div id="replies">
-				
 			</div>
-			<br>
+			
 		</div>
 	</body>
 </html>

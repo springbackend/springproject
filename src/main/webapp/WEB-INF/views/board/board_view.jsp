@@ -24,26 +24,26 @@
 				   border-radius:30px 30px 0 0;
 			       margin:auto;
 				   width:60%;
-				   padding:15px;
-				   background-color:white;}
+				   padding:20px;
+				   background-color:white;
+				   margin-top:50px;}
 			
-			.comment{
+			.comment-box{
 				border:2px solid #dbdee4;
 				border-top:none;
 				background-color:#eff2f6;
 				border-radius:0 0 30px 30px;
 				margin:auto;
 				width:60%;
-				padding:15px; 
+				padding:20px; 
 			}
 			
 			.top{height:50px;
-				 position:relative;
-				 margin-bottom:5px;}
+				 position:relative;}
 				       
 			.name{position:absolute;
 				  left:53px;
-				  top:18px;
+				  top:20px;
 				  font-size:18px;}
 			
 			#avatar{width:50px;
@@ -76,24 +76,8 @@
 					 	  color:#525b75; */
 					 	  
 			#readhit_icon{margin-left:88%;}
-
-			/* #like_btn{cursor: pointer;
-					  transition: all 0.5s;
-					  font-size:15px;
-					  padding-left:6px;
-					  padding-right:6px;
-					  border:2px solid black;
-					  background-color:white;
-					  margin-left:250px;} */
-				 	  
-			/* #like_icon{cursor: pointer;
-				 	   display: inline-block;
-				 	   transition: 0.5s;} */
 				 	   
 			#like{margin-left:5px; margin-right:5px;}	
-						  		
-			/* #like_btn:hover{background-color:#FF2279 !important;}
-			#like_btn:hover .like_icon{color:white !important;} */
 			
 			/* Tag Design */
 			.tag-box{height:30px;
@@ -108,26 +92,33 @@
 			.line{border:2px solid lightgray;}
 			
 			/* 댓글 달기 스타일 */
-			#c_content{display:inline-block;
-					   font-family:'Pretendard-Regular';
-					 	font-weight:400;
-						width:85%;
-					   height:25px;
-						border:2px solid #ccc;
-						resize:none;
-						padding:7px;
-						font-size:20px;}
+			.write-comment{
+				position:relative;
+			}
+			
+			#c_content{
+				
+				display:inline-block;
+				font-family:'Pretendard-Regular';
+			 	font-weight:400;
+				width:86%;
+				height:25px;
+				border:2px solid #ccc;
+				resize:none;
+				padding:7px;
+				font-size:18px;}
 			
 			.btn_comment{
+				position:absolute;
 				display:inline-block;
-				border-radius: 4px;
-				border: none;
-				text-align: center;
-				padding: 10px;
-				transition: all 0.5s;
-				cursor: pointer;
-				margin: 2px;
-				width:13%;
+				right:3px;
+				border-radius:4px;
+				border:none;
+				text-align:center;
+				padding:10px;
+				cursor:pointer;
+				margin:2px;
+				width:10%;
 				font-family: 'Pretendard-Regular';
 				font-weight:600;
 				font-size:16px;
@@ -137,12 +128,6 @@
 			
 			.btn_comment:hover{background-color:#004dff;}
 			
-			.bottom{position:relative;}
-			
-			img{border:none;
-				height:25px;
-				width:25px;
-				cursor:pointer;}
 		</style>
 		
 		<script src="resources/js/httpRequest.js"></script>
@@ -195,8 +180,7 @@
 						alert("댓글 작성 실패");
 						return; 
 					}
-					alert("댓글 작성 완료");
-					document.getElementById("textbox").innerHTML = '<textarea id="reply_content" placeholder="댓글을 입력해주세요."></textarea>';
+					document.getElementById("textbox").innerHTML = '<textarea id="c_content" placeholder="댓글을 입력해주세요."></textarea>';
 					
 					comment_list();
 				}
@@ -271,7 +255,6 @@
 		
 	</head>
 	<body>
-		<h1 align="center">상세보기</h1>
 		<div class="board">
 			<div class="subject"><strong>${vo.subject}</strong></div>
 			<div class="top">
@@ -296,40 +279,32 @@
 				
 				<c:if test="${vo.likes_count ne 0}">
 					<c:if test="${check_like eq 0}">
-						<%-- <button id="like_btn" onclick="like_click();">
-							<span class="like_icon">🤍&nbsp;${vo.likes_count}</span></button> --%>
 						<span id="like" onclick="like_click();">
 							<i id="like_icon" class="bi bi-heart"></i>&nbsp;&nbsp;${vo.likes_count}</span>
 					</c:if>
 					<c:if test="${check_like eq 1}">
-						<%-- <button id="like_btn" onclick="like_click();" style="background-color:#FF2279; color:white;">
-							<span class="like_icon">🤍&nbsp;${vo.likes_count}</span></button> --%>
 						<span id="like" onclick="like_click();">
 							<i id="like_icon" class="bi bi-heart-fill" style="color:#FF2279;"></i>&nbsp;&nbsp;${vo.likes_count}</span>
 					</c:if>
 				</c:if>
 				
 				<i id="readhit_icon" class="bi bi-eye-fill"></i>&nbsp;&nbsp;${vo.readhit}
-				<%-- <b class="readhit"><img src="/board/resources/icons/view.webp">${vo.readhit}</b> --%>
 			</div>
 			</div>
-			<div class="comment">
+			<div class="comment-box">
 				<h2>댓글</h2>
 				
-				<div id="textbox">
-					<textarea id="c_content" placeholder="댓글을 입력해주세요."></textarea>
+				<div class="write-comment">
+					<span id="textbox"><textarea id="c_content" placeholder="댓글을 입력해주세요."></textarea></span>
 					<button class="btn_comment" onclick="comment_send();">
-						<span class="cmt">댓글 등록 </span></button>
+						<span class="cmt">댓글 등록</span></button>
 				</div>
 				
 				<!-- 로그인 확인 -->
 				
-				<!-- <div class="btn"><button class="btn_comment" onclick="comment_send();">
-					<span class="cmt">댓글 등록 </span></button></div>
-				<br> -->
+				<br>
 				<br>
 				<div id="comment">
-					
 				</div>
 			</div>
 		

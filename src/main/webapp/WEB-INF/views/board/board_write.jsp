@@ -128,10 +128,11 @@
 				 
 			.send, .back {cursor: pointer;
 				   display: inline-block;
-				   position: relative;
-				   transition: 0.5s;}
+				   position: relative;}
+			
+			.btn_send:hover{background-color:#004dff;}
 						
-			.send:after {content:'\00bb';
+			/* .send:after {content:'\00bb';
 						 position:absolute;
 						 opacity:0;
 						 top:0;
@@ -141,13 +142,13 @@
 			.btn_send:hover .send {padding-right: 15px;}
 			
 			.btn_send:hover .send:after {opacity: 1; right: 0;}
-			 
+			  */
 			/* .back {cursor: pointer;
 				   display: inline-block;
 				   position: relative;
 				   transition: 0.5s;} */
 			 
-			.back:after {content:'\00ab';
+			/* .back:after {content:'\00ab';
 						 position:absolute;
 						 opacity:0;
 						 top:0;
@@ -156,7 +157,7 @@
 						  		
 			.btn_back:hover .back {padding-left: 15px;}
 			
-			.btn_back:hover .back:after {opacity: 1; left: 0;}
+			.btn_back:hover .back:after {opacity: 1; left: 0;} */
 			
 			/* TEST================================================================= */
 			/* details {
@@ -192,13 +193,13 @@
 				   box-border:none;
 				   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 				   z-index: 1; */
-			ul {
+			/* ul {
 			    list-style: none;
 			    margin: 0px;
 			    padding: 5px;
 			    margin-top: 2px;
-			   /*  border: 1px solid #ccc;
-			    box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.2); */
+			  border: 1px solid #ccc;
+			    box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.2);
 			}
 			li {
 			    margin: 0px;

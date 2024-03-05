@@ -11,26 +11,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 		<style>
-			/* @font-face {
-			    font-family: 'GangwonEduPowerExtraBoldA';
-			    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
-			    font-weight: normal;
-			    font-style: normal;
-			} */
-			
-			/* @font-face {
-			    font-family: 'KOTRA_BOLD-Bold';
-			    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
-			    font-weight: normal;
-			    font-style: normal;
-			}
-			
-			@font-face {
-			    font-family: 'SejonghospitalBold'; 
-			    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/SejonghospitalBold.woff2') format('woff2');
-			    font-weight: 700;
-			    font-style: normal;
-			} */
 			
 			@font-face {
 			    font-family: 'Pretendard-Regular';
@@ -236,7 +216,7 @@
 	<body>
 		<%-- <jsp:include page="/WEB-INF/views/main/top_not_user.jsp" /> --%>
 		<%-- <jsp:include page="/WEB-INF/views/board/board_sidebar.jsp" /> --%>
-		<a href="/beauty/main.do">&lt 홈으로 돌아가기</a>
+		<a href="/main.do">&lt 홈으로 돌아가기</a>
 		<div class="top">
 			<h1>게시판</h1>
 			<div class="top-element">

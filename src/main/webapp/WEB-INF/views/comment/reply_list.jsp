@@ -6,33 +6,60 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 	
 		<style>
-			.user_profile{font-size:18px;}
-			.user_info{font-size:16px;
-					   margin-left:83px;
-					   color:gray;}
-			pre{font-size:16px;
-				margin-left:60px;}
-				
-			.avatar{width:50px;
-				height:50px;}
-			.user_profile strong{margin-left:60px;}
+			@font-face {
+			    font-family: 'Pretendard-Regular';
+			    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+			    font-weight: 400;
+			    font-style: normal;
+			}
 			
-			.reply{margin-left:90%;}
+			body{font-family:'Pretendard-Regular';}
+		
+			.outer{
+				border-bottom:2px solid #e5e8ee;
+				position:relative;
+			}
+			
+			pre{font-size:18px;
+				margin-left:60px;
+				font-family:'Pretendard-Regular';
+				display:inline-block;}
+					
+			.user_profile{height:50px;
+				 position:relative;
+				 margin-bottom:2px;}
+				       
+			.name{position:absolute;
+				  left:60px;
+				  top:2px;
+				  font-size:18px;}
+				  
+			.user_info{position:absolute;
+					   font-size:16px;
+					   color:gray;
+					   left:60px;
+				  		top:28px;}
+			
+			#avatar{font-size:40px;
+					margin-left:5px;
+					position:absolute;
+					color:#525b75;}
 					   
 		</style>
 	</head>
 	<body>
 		<c:forEach var="vo" items="${list}">
-			<div class="user_profile">
-				ㄴ
-				<img class="avatar" src="/board/resources/icons/profile_picture.png">
-				<strong>김길동</strong>
+			<div class="outer">
+				<div class="user_profile">
+					<span id="avatar" class="bi bi-person-circle"></span>
+					<b class="name">김길동</b>
+					<div class="user_info">22세/여자/여름 쿨톤</div><!-- User info -->
+				</div>
+				<pre>${vo.content}</pre>	
 			</div>
-			<div class="user_info">22세/여자/여름 쿨톤</div>
-			<pre>${vo.content}</pre>
-			<hr>
 			<br>
 		</c:forEach>
 	</body>
