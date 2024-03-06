@@ -19,7 +19,7 @@
 	<context:annotation-config />
 
 	<!-- 컴포넌트 스캔을 사용하기위한 설정 -->
-	<!-- <context:component-scan base-package="com.shop.beauty" /> -->
+	<context:component-scan base-package="com.shop.beauty" />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
@@ -48,18 +48,18 @@
 	<beans:bean class="controller.Admin1Controller">
 		<beans:constructor-arg ref="admin_servicBean" />
 	</beans:bean>
-	<beans:bean class="controller.MyInfoController">
+	<beans:bean class="com.shop.beauty.user.MyInfoController">
 		<beans:constructor-arg ref="user_userBean" />
 		<beans:constructor-arg
 			ref="userBoard_userBoardBean" />
 	</beans:bean>
 	<beans:bean class="controller.TempController">
 	</beans:bean>
-	<beans:bean class="controller.LoginController">
+	<beans:bean class="com.shop.beauty.user.LoginController">
 	</beans:bean>
 	<beans:bean class="controller.MainController">
 	</beans:bean>
-	<beans:bean class="controller.RegistController">
+	<beans:bean class="com.shop.beauty.user.RegistController">
 		<beans:constructor-arg ref="user_userBean" />
 	</beans:bean>
 	<beans:bean class="controller.ProductController">

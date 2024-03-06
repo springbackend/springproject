@@ -15,13 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shop.beauty.user.UserService;
+
 import service.BoardService;
 import service.Board_ProductService;
 import service.CommentService;
 import service.LikesService;
 import service.ProductService;
 import service.ToneService;
-import service.UserService;
 import util.Common;
 import util.BoardPaging;
 import vo.BoardVO;

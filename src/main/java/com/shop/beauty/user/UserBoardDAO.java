@@ -1,4 +1,4 @@
-package dao;
+package com.shop.beauty.user;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import vo.BoardVO;
 
-@Repository
 public class UserBoardDAO {
 
 	private final SqlSession sqlSession;

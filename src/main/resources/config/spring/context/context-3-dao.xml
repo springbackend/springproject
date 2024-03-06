@@ -15,16 +15,14 @@
 	<!-- 생성자 주입 권장 https://mangkyu.tistory.com/125 -->
 
 
-	<bean id="user_userBean" class="dao.UserDAO">
+	<bean id="user_userBean" class="com.shop.beauty.user.UserDAO">
 		<constructor-arg ref="sqlSessionBean" />
 	</bean>
-	<bean id="userBoard_userBoardBean" class="dao.UserBoardDAO">
+	<bean id="userBoard_userBoardBean"
+		class="com.shop.beauty.user.UserBoardDAO">
 		<constructor-arg ref="sqlSessionBean" />
 	</bean>
-	
-	<bean id="user_serviceBean" class="service.UserService">
-		<constructor-arg ref="user_userBean" />
-	</bean>
+
 
 	<bean id="product_daoBean" class="dao.ProductDAO">
 		<constructor-arg ref="sqlSessionBean" />
@@ -41,13 +39,14 @@
 	<bean id="board_serviceBean" class="service.BoardService">
 		<constructor-arg ref="board_daoBean" />
 	</bean>
-	
+
 	<bean id="board_product_daoBean" class="dao.Board_ProductDAO">
 		<constructor-arg ref="sqlSessionBean" />
 	</bean>
 
-	<bean id="board_productserviceBean" class="service.Board_ProductService">
-		<constructor-arg ref="board_product_daoBean" /> 
+	<bean id="board_productserviceBean"
+		class="service.Board_ProductService">
+		<constructor-arg ref="board_product_daoBean" />
 	</bean>
 
 	<bean id="tone_daoBean" class="dao.ToneDAO">
@@ -89,27 +88,28 @@
 	<bean id="admin_servicBean" class="service.AdminServiceImpl">
 		<constructor-arg ref="admin_adminBean" />
 	</bean>
-	
+
 	<bean id="productcomment_daoBean" class="dao.ProductCommentDAO">
-		<constructor-arg ref="sqlSessionBean"/>
+		<constructor-arg ref="sqlSessionBean" />
 	</bean>
-	
-	<bean id="productcomment_serviceBean" class="service.ProductCommentService">
-		<constructor-arg ref="productcomment_daoBean"/>
+
+	<bean id="productcomment_serviceBean"
+		class="service.ProductCommentService">
+		<constructor-arg ref="productcomment_daoBean" />
 	</bean>
-	
+
 	<bean id="pcgood_daoBean" class="dao.PcGoodDAO">
-		<constructor-arg ref="sqlSessionBean"/>
+		<constructor-arg ref="sqlSessionBean" />
 	</bean>
 	<bean id="pcgood_serviceBean" class="service.PcGoodService">
-		<constructor-arg ref="pcgood_daoBean"/>
+		<constructor-arg ref="pcgood_daoBean" />
 	</bean>
-	
+
 	<bean id="cart_daoBean" class="dao.CartDAO">
-	 	<constructor-arg ref="sqlSessionBean"/>
+		<constructor-arg ref="sqlSessionBean" />
 	</bean>
-	
+
 	<bean id="cart_serviceBean" class="service.CartService">
-		<constructor-arg ref="cart_daoBean"/>
+		<constructor-arg ref="cart_daoBean" />
 	</bean>
 </beans>

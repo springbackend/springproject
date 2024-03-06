@@ -3,14 +3,17 @@
 // 
 -----------------시퀀스 생성-----------------
 --멤버
-CREATE SEQUENCE seq_member_idx 
+DROP SEQUENCE seq_member_idx;
+CREATE SEQUENCE seq_member_idx
 INCREMENT BY 1
 START WITH 1
 MINVALUE 1
 MAXVALUE 999999999999
 NOCYCLE
 NOORDER;
+
 --유저
+DROP SEQUENCE seq_user1_idx;
 CREATE SEQUENCE seq_user1_idx
 INCREMENT BY 1
 START WITH 1
@@ -19,6 +22,7 @@ MAXVALUE 999999999999
 NOCYCLE
 NOORDER;
 --게시판
+DROP SEQUENCE seq_board_idx;
 CREATE SEQUENCE seq_board_idx
 INCREMENT BY 1
 START WITH
@@ -28,7 +32,9 @@ MAXVALUE 999999999999
 NOCYCLE
 NOORDER;
 
+
 --게시판 댓글
+DROP SEQUENCE seq_comment_idx;
 CREATE SEQUENCE seq_comment_idx
 INCREMENT BY 1
 START WITH 1
@@ -38,6 +44,7 @@ NOCYCLE
 NOORDER;
 
 --게시판 톤
+DROP SEQUENCE seq_tone_idx;
 CREATE SEQUENCE seq_tone_idx
 INCREMENT BY 1
 START WITH 1
@@ -47,6 +54,7 @@ NOCYCLE
 NOORDER;
 
 --상품 댓글
+DROP SEQUENCE pc_seq_idx;
 create sequence pc_seq_idx
 INCREMENT BY 1
 START WITH 1
@@ -56,6 +64,7 @@ NOCYCLE
 NOORDER;
  
 --상품 리뷰
+DROP SEQUENCE pcg_seq_idx;
 create sequence pcg_seq_idx
 INCREMENT BY 1
 START WITH 1
@@ -67,6 +76,7 @@ NOORDER;
 
 -----------------테이블 생성-----------------
 --유저
+DROP TABLE USER1;
 CREATE TABLE USER1(
 	u_idx NUMBER(10) NOT NULL PRIMARY KEY,
 	u_email varchar(20) NOT NULL,
@@ -75,7 +85,8 @@ CREATE TABLE USER1(
 	u_regidate varchar(50) NOT NULL,
 	u_regiip varchar(20) NOT NULL
 );
--- 유저 정보(아직 미사용)
+-- 유저 정보
+DROP TABLE USERINFO;
 CREATE TABLE USERINFO(
 	u_idx NUMBER(10) NOT NULL PRIMARY KEY,
 	u_gender varchar(10),
@@ -85,6 +96,7 @@ CREATE TABLE USERINFO(
 	u_addr varchar(100)
 );
 --게시판
+DROP TABLE board;
 CREATE TABLE board (
 	b_idx NUMBER(10) primary key,
 	m_idx NUMBER(5), --작성자 일련번호 (foreign key)
@@ -101,6 +113,7 @@ CREATE TABLE board (
 	comment_count NUMBER(10) --댓글수
 );
 --게시판 댓글
+DROP TABLE comment_table;
 CREATE TABLE comment_table (
 	c_idx NUMBER(10) primary key,
 	b_idx NUMBER(10),
@@ -115,18 +128,21 @@ CREATE TABLE comment_table (
 );
 
 --게시판 좋아요
+DROP TABLE likes;
 CREATE TABLE likes (
 	b_idx NUMBER(10),
 	m_idx NUMBER(10),
 	like_date DATE
 );
 --톤
+DROP TABLE tone;
 CREATE TABLE tone (
 	t_idx NUMBER(5),
 	t_name VARCHAR2(50)
 );
 
 --상품 댓글
+DROP TABLE product_comment;
 create table product_comment(
 pc_idx number(10) primary key, -- 리뷰번호
 pc_content clob,-- 리뷰내용
@@ -139,6 +155,7 @@ pc_regidate date
 );
 
 --상품 리뷰
+DROP TABLE pcgood;
 create table pcgood(
 pcg_idx number(10) primary key,--좋아요번호
 pc_idx number(10),--상품리뷰번호
@@ -151,7 +168,7 @@ COMMIT;
 ALTER TABLE MEMBER ADD CONSTRAINT m_pk PRIMARY KEY (m_id);
 ALTER TABLE tone ADD CONSTRAINT tone_pk PRIMARY KEY (t_idx);
 
------------------외래키 지정-----------------
+-----------------외래키 지정( 데이터 옮길때 제대로 안옮겨질수있어서 실제론 외래키 지정 안하는게 보통임 )-----------------
 
 ALTER TABLE board
 ADD CONSTRAINT fk_board_user FOREIGN KEY (m_idx)
@@ -173,7 +190,7 @@ ALTER TABLE PCGOOD
 ADD CONSTRAINT fk_pcg_user FOREIGN KEY (u_idx)
 REFERENCES USER1(u_idx);
 
-/*에러
+--에러
 ALTER TABLE BOARD
 ADD CONSTRAINT fk_board_tone FOREIGN KEY (T_IDX)
 REFERENCES TONE(T_IDX);
@@ -182,7 +199,6 @@ ALTER TABLE PRODUCT_COMMENT
 ADD CONSTRAINT fk_pc_pcg FOREIGN KEY (pc_idx)
 REFERENCES PCGOOD(pc_idx);
 
-*/
 -----------------데이터-----------------
 
 --톤

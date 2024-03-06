@@ -1,4 +1,4 @@
-package controller;
+package com.shop.beauty.user;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dao.UserBoardDAO;
-import dao.UserDAO;
 import lombok.extern.slf4j.Slf4j;
 import vo.BoardVO;
 import vo.UserVO;
@@ -31,7 +29,7 @@ public class MyInfoController {
 	public MyInfoController(UserDAO userdao, UserBoardDAO userBoardDAO) {
 		this.userdao = userdao;
 		this.userBoardDAO = userBoardDAO;
-		
+
 	}
 
 	static final String VIEW_PATH = "/WEB-INF/views/user/";
@@ -48,15 +46,15 @@ public class MyInfoController {
 	// 내글보기
 	@RequestMapping(value = "/viewMyPosts.do")
 	public String viewMyPosts(HttpSession session, Model model) {
-		String id = (String) session.getAttribute("id");
+		String email = (String) session.getAttribute("email");
 		// 테스트용 임시 세션아이디
 		// id = "asd123";
 
-		if (id == null || id.isEmpty()) {
+		if (email == null || email.isEmpty()) {
 			throw new RuntimeException("세션에 사용자 아이디가 없습니다.");
 		}
 		// 내글조회
-		List<BoardVO> boardList = userBoardDAO.viewMyPosts(id);
+		List<BoardVO> boardList = userBoardDAO.viewMyPosts(email);
 		model.addAttribute("boardList", boardList);
 		return VIEW_PATH + "MyBoard.jsp";
 	}
@@ -75,7 +73,7 @@ public class MyInfoController {
 	@RequestMapping(value = "/changeMyPwd.do", method = RequestMethod.POST)
 	public String changeMyPwd(HttpSession session, String prepwd, String newpwd, Model model) {
 		String email = (String) session.getAttribute("email");
-		Optional<UserVO> option = Optional.ofNullable(userdao.login(email));
+		Optional<UserVO> option = Optional.ofNullable(userdao.findUserByEmail(email));
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		if (option.isEmpty()) {
 			log.warn("계정조회에 실패했습니다 : {}", option);
@@ -91,7 +89,7 @@ public class MyInfoController {
 			return "Failed to check password";
 		}
 		vo.setU_pwd(passwordEncoder.encode(newpwd));
-		int count = userdao.changeMyPwd(vo);
+		int count = userdao.updatePwdByUservo(vo);
 		if (count == 1) {
 			log.warn("변경성공");
 			model.addAttribute("message", "Password changed successfully.");
@@ -113,7 +111,7 @@ public class MyInfoController {
 	public String deleteAccount(HttpSession session) {
 		String result = "fail";
 		String email = (String) session.getAttribute("email");
-		int res = userdao.deleteAccount(email);
+		int res = userdao.deleteUserByEmail(email);
 		if (res > 0) {
 
 			result = "success";

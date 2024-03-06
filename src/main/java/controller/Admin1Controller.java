@@ -2,7 +2,8 @@ package controller;
  
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
- 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,8 +16,7 @@ import service.AdminServiceImpl;
  
 @Controller //관리자 관련 컨트롤러 빈 선언
 public class Admin1Controller {
-    
-    @Inject    //서비스를 호출하기 위해서 의존성을 주입
+    @Autowired    //서비스를 호출하기 위해서 의존성을 주입
     AdminServiceImpl adminServiceImpl;
     
     public Admin1Controller(AdminServiceImpl adminServiceImpl) {
