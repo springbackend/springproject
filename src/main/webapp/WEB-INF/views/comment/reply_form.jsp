@@ -140,9 +140,9 @@
 				if(xhr.readyState == 4 && xhr.status == 200){
 					let data = xhr.responseText
 					
-					if(data == "unknown"){
-						if(confirm("로그인 회원이 아닌 경우 좋아요를 누를 수 없습니다.\n로그인 창으로 이동하시겠습니까?")){
-							location.href = "login.do";
+					if(data == -1){
+						if(confirm("로그인 회원이 아닌 경우 댓글을 작성하실 수 없습니다.\n로그인 창으로 이동하시겠습니까?")){
+							location.href = "/beauty/login.do";
 						}
 						return;
 					}
@@ -162,7 +162,7 @@
 		<div class="board">
 			<div class="top">
 				<span id="avatar" class="bi bi-person-circle"></span>
-				<b class="name">김길동</b>
+				<b class="name">${vo.u_name}</b>
 				<b class="date">${fn:split(vo.regdate, ' ')[0]}</b>
 			</div>
 			<div class="content">${vo.content}</div>

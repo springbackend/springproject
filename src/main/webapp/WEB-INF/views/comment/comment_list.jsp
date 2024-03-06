@@ -34,14 +34,14 @@
 				       
 			.name{position:absolute;
 				  left:60px;
-				  top:2px;
+				  top:13px;
 				  font-size:18px;}
 				  
-			.user_info{position:absolute;
+			/* .user_info{position:absolute;
 					   font-size:16px;
 					   color:gray;
 					   left:60px;
-				  		top:28px;}
+				  		top:28px;} */
 			
 			#avatar{font-size:40px;
 					margin-left:5px;
@@ -62,8 +62,8 @@
 			<div class="outer">
 				<div class="user_profile">
 					<span id="avatar" class="bi bi-person-circle"></span>
-					<b class="name">김길동</b>
-					<div class="user_info">22세/여자/여름 쿨톤</div><!-- User info -->
+					<b class="name">${vo.u_name}</b>
+					<!-- <div class="user_info">22세/여자/여름 쿨톤</div>User info -->
 				</div>
 				<pre>${vo.content}</pre>
 				<span class="reply_icon" onclick="location.href='reply_form.do?c_idx=${vo.c_idx}'">

@@ -27,6 +27,7 @@ import util.BoardPaging;
 import vo.BoardVO;
 import vo.CommentVO;
 import vo.LikesVO;
+import vo.UserVO;
 
 @Controller
 public class BoardController {
@@ -56,6 +57,8 @@ public class BoardController {
 	//게시글 리스트 (게시판 첫 화면)
 	@RequestMapping(value = { "/board_list.do" })
 	public String board_list(Model model, Integer page) throws Exception {
+		
+		System.out.println(session.getAttribute("email"));
 		
 		//--- 페이징 처리 ---
 		int nowPage = 1;
@@ -109,11 +112,9 @@ public class BoardController {
 	@RequestMapping("/board_write.do")
 	public String board_write(Model model) throws Exception{
 		//======= 현재 사용자 로그인 여부 확인 ======
-//		int login = 1;
-//		if(session.getId() == null)	{
-//			login = 0;
-//		}
-//		model.addAttribute("login", login);
+		if(session.getAttribute("email") == null) {
+			return "redirect:login.do";
+		}
 		return Common.Board.VIEW_PATH + "board_write.jsp"; 
 	}
 	
@@ -126,9 +127,13 @@ public class BoardController {
 		
 		vo.setIp(ip);
 		
-		//foreign key
-		//로그인 된 사용자의 정보 가져오기
-		vo.setU_idx(1);
+//		//u_idx 사용
+//		int u_idx = user_service.select_idx(session.getAttribute("email").toString());
+//		vo.setU_idx(u_idx); //현재 게시글 작성한 사용자 정보 저장
+		
+		//u_email 사용
+		vo.setU_email(session.getAttribute("email").toString());
+		vo.setU_name(user_service.select_name(vo.getU_email()));
 		
 		//vo.getT_idx & vo.getP_idx를 통해 톤 이름, 제품 이름 가져오기
 		String p_name = product_service.select_product_name(vo.getP_idx());
@@ -142,11 +147,6 @@ public class BoardController {
 		
 		int res = board_service.board_upload(vo);
 		
-		/*
-		 * String result = "Fail";
-		 * 
-		 * if(res != 0) { result = "Success"; }
-		 */
 		return "redirect:board_list.do";
 		
 	}
@@ -155,31 +155,28 @@ public class BoardController {
 	@RequestMapping("/board_view.do")
 	public String board_view(Model model, Integer b_idx, String page, HttpServletResponse response) throws Exception{ // parameter
 		
-		// ====== 로그인 여부 확인 ======
-//		String u_email = "unknown_user";
-//		int check_like = 0;
-//		
-//		if(session.getId() != null) {
-//			u_email = session.getEmail();
-//			
-//			//--- 현재 user의 정보를 가져와 이 게시물에 좋아요를 눌렀는지 여부 판단하기 ---
-//			int u_idx = user_service.select_idx(u_email);
-//			
-//			LikesVO likes_vo = new LikesVO();
-//			likes_vo.setB_idx(b_idx);
-//			likes_vo.setU_idx(u_idx); //현재 유저 idx
-//			
-//			check_like = likes_service.check_like(likes_vo);
-//			//이미 좋아요를 눌렀는지 여부 확인
-//		}
+		//세션에서 사용자 정보를 가져온 후 좋아요를 눌렀는지의 여부 판단
+		String u_email = session.getAttribute("email").toString();
+		LikesVO check_like = null;
+		int u_idx = 0;
 		
-		// ====== SAMPLE DATA ======
-		int u_idx = 1;
-		LikesVO likes_vo = new LikesVO();
-		likes_vo.setB_idx(b_idx);
-		likes_vo.setU_idx(u_idx); //현재 유저 idx 
+		if(u_email != null) {
+			//현재 user의 정보를 가져와 이 게시물에 좋아요를 눌렀는지 여부 판단하기
+			//u_idx = user_service.select_idx(u_email);
+			
+			LikesVO likes_vo = new LikesVO();
+			likes_vo.setB_idx(b_idx);
+			//likes_vo.setU_idx(u_idx); //현재 유저 idx
+			likes_vo.setU_email(u_email);
+			
+			check_like = likes_service.check_like(likes_vo);
+		}
 		
-		LikesVO check_like = likes_service.check_like(likes_vo);
+		int like = 0;
+		
+		if(check_like != null) {
+			like = 1;
+		}
 		
 		//--- Cookie 사용해서 조회수 중복 증가 차단 ---
 		Cookie old_cookie = null;
@@ -198,14 +195,14 @@ public class BoardController {
 		//old_cookie의 null 여부 확인
 		if(old_cookie != null) {
 			//old_cookie가 null이 아닌 경우
-			if(!old_cookie.getValue().contains("[[" + b_idx + "]_[" + u_idx + "]]")) {
+			if(!old_cookie.getValue().contains("[[" + b_idx + "]_[" + u_email + "]]")) {
 				//만약 old_cookie 속 value중 현재 회원과 일치하는 m_idx가 없다면
 				
 				//조회수 증가
 				board_service.update_readhit(b_idx);
 				
 				//old_cookie에 현재 회원 value 추가
-				old_cookie.setValue(old_cookie.getValue() + "_[[" + b_idx + "]_[" + u_idx + "]]");
+				old_cookie.setValue(old_cookie.getValue() + "_[[" + b_idx + "]_[" + u_email + "]]");
 				old_cookie.setPath("/");
 				old_cookie.setMaxAge(60 * 60 * 5); //5시간 동안 유효
 				response.addCookie(old_cookie);
@@ -217,7 +214,7 @@ public class BoardController {
 			board_service.update_readhit(b_idx);
 			
 			//새 쿠키를 생성하여 response에 추가
-			Cookie new_cookie = new Cookie("board_view", "[[" + b_idx + "]_[" + u_idx + "]]");
+			Cookie new_cookie = new Cookie("board_view", "[[" + b_idx + "]_[" + u_email + "]]");
 			new_cookie.setPath("/");
 			new_cookie.setMaxAge(60 * 60 * 5); //5시간 유효
 			response.addCookie(new_cookie);
@@ -226,11 +223,6 @@ public class BoardController {
 		//--- 현재 게시글 정보 가져오기 ---
 		BoardVO vo = board_service.board_one(b_idx);
 		
-		int like = 0;
-		
-		if(check_like != null) {
-			like = 1;
-		}
 		model.addAttribute("check_like", like);
 		model.addAttribute("vo", vo);
 		
@@ -247,8 +239,8 @@ public class BoardController {
 		
 		vo.setIp(ip);
 		
-		//foreign key
-		vo.setU_idx(1);
+		int u_idx = user_service.select_idx(session.getAttribute("email").toString());
+		vo.setU_idx(u_idx);
 		
 		//vo.getT_idx & vo.getP_idx를 통해 톤 이름, 제품 이름 가져오기
 		String p_name = product_service.select_product_name(vo.getP_idx());
@@ -296,6 +288,8 @@ public class BoardController {
 	@RequestMapping("/comment_list.do")
 	public String comment_list(Model model, int b_idx) throws Exception{
 		List<CommentVO> list = comment_service.comment_list(b_idx);
+		
+		
 		model.addAttribute("list", list);
 		return Common.Comment.VIEW_PATH + "comment_list.jsp";
 	}
@@ -305,17 +299,17 @@ public class BoardController {
 	@ResponseBody
 	public String comment_write(CommentVO vo) throws Exception{
 		// ====== 로그인 여부 확인 ======
-//		String u_email = session.getId();
-//		
-//		if(u_email == null) {
-//			return "unknown";
-//		}
-//		//현재 로그인 된 사용자 정보 가져오기
-//		int u_idx = user_service.select_idx(u_email);
+		if(session.getAttribute("email") == null) {
+			return String.valueOf(-1);
+		}
+		
+		//idx 사용
+//		int u_idx = user_service.select_idx(session.getAttribute("email").toString());
 //		vo.setU_idx(u_idx);
 		
-		//====== SAMPLE DATA ======
-		vo.setU_idx(1);
+		//email 사용
+		vo.setU_email(session.getAttribute("email").toString());
+		vo.setU_name(user_service.select_name(vo.getU_email()));
 		
 		String ip = request.getRemoteAddr();
 		vo.setIp(ip);
@@ -342,14 +336,12 @@ public class BoardController {
 	@ResponseBody
 	public String reply(int c_idx, int b_idx, String content) throws Exception{
 		// ====== 로그인 여부 확인 ======
-//		String u_email = session.getId();
-//		
-//		if(u_email == null) {
-//			return "unknown";
-//		}
-//		
-//		//현재 로그인 된 사용자 정보 가져오기
-//		int u_idx = user_service.select_idx(u_email);
+		if(session.getAttribute("email") == null) {
+			return String.valueOf(-1);
+		}
+		
+		//현재 로그인 된 사용자 정보 가져오기 idx 사용
+		//int u_idx = user_service.select_idx(session.getAttribute("email").toString());
 		
 		String ip = request.getRemoteAddr();
 		
@@ -368,7 +360,8 @@ public class BoardController {
 		vo.setStep(baseVO.getStep()+1);
 		vo.setDepth(1);
 		vo.setContent(content);//sample?
-		vo.setU_idx(1); //sample
+		vo.setU_email(session.getAttribute("email").toString()); //이메일 사용
+		vo.setU_name(user_service.select_name(vo.getU_email()));
 		
 		int res = comment_service.reply(vo); 
 		
@@ -397,20 +390,17 @@ public class BoardController {
 	@ResponseBody
 	public String like_click(int b_idx) throws Exception{
 		// ====== 로그인 여부 확인 ======
-//		String u_email = session.getId();
-//		
-//		if(u_email == null) {
-//			return "unknown";
-//		}
-//		
-//		//현재 로그인 된 사용자 정보 가져오기
-//		int u_idx = user_service.select_idx(u_email);
+		if(session.getAttribute("email") == null) {
+			return String.valueOf(-1);
+		}
 		
-		//====== SAMPLE DATA ======
+		//현재 로그인 된 사용자 정보 가져오기 idx 사용
+		//int u_idx = user_service.select_idx(session.getAttribute("email").toString());
 		
+		//Like에 게시글과 회원정보 담기
 		LikesVO vo = new LikesVO();
 		vo.setB_idx(b_idx);
-		vo.setU_idx(1); //SAMPLE
+		vo.setU_email(session.getAttribute("email").toString()); //이메일 사용
 		
 		//이미 좋아요를 눌렀는지 여부 확인
 		if(likes_service.check_like(vo) == null) {

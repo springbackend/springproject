@@ -20,6 +20,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="select_list" resultType="user">
 		SELECT * FROM USER1
 	</select>
+	
+	<!-- select idx -->
+	<select id="select_idx" resultType="int" parameterType="String">
+		SELECT u_idx FROM USER1 
+		WHERE u_email = #{u_email}
+	</select>
+	
+	<!-- select name -->
+	<select id="select_name" resultType="String" parameterType="String">
+		SELECT u_name FROM USER1 
+		WHERE u_email = #{u_email}
+	</select>
+	
 	<!-- read user one -->
 	<select id="login" parameterType="String" resultType="user">
 		SELECT *

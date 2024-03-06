@@ -70,14 +70,13 @@
 			#like_icon, #readhit_icon, #comment_icon{
 					font-size:20px;
 					color:#525b75;}
-						/* position:absolute;
-					 	  right:20px;
-					 	  padding:3px;
-					 	  color:#525b75; */
-					 	  
-			#readhit_icon{margin-left:88%;}
+			
+			.bottom{position:relative;}
+			#readhit_icon{
+				position:absolute;
+				right:20px;}
 				 	   
-			#like{margin-left:5px; margin-right:5px;}	
+			#like{margin-left:7px !important;}	
 			
 			/* Tag Design */
 			.tag-box{height:30px;
@@ -166,9 +165,9 @@
 				if(xhr.readyState == 4 && xhr.status == 200){
 					let data = xhr.responseText
 					
-					if(data == "unknown"){
-						if(confirm("로그인 회원이 아닌 경우 좋아요를 누를 수 없습니다.\n로그인 창으로 이동하시겠습니까?")){
-							location.href = "login.do";
+					if(data == -1){
+						if(confirm("로그인 회원이 아닌 경우 댓글을 작성하실 수 없습니다.\n로그인 창으로 이동하시겠습니까?")){
+							location.href = "/beauty/login.do";
 						}
 						return;
 					}
@@ -199,14 +198,13 @@
 				if(xhr.readyState == 4 && xhr.status == 200){
 					let data = xhr.responseText;
 					
-					if(data == "unknown"){
+					if(data == -1){
 						if(confirm("로그인 회원이 아닌 경우 좋아요를 누를 수 없습니다.\n로그인 창으로 이동하시겠습니까?")){
-							location.href = "login.do";
+							location.href = "/beauty/login.do";
 						}
 						return;
 					}
 					
-					alert("like_num: " + ${vo.likes_count});
 					//like 수 증가 refresh가 맨 위 게시글 밖에 안됨
 					if(data == 0){
 						//좋아요 수가 0일 경우 화면에 좋아요 수 안띄움
@@ -214,15 +212,13 @@
 					}
 					else if(data >= ${vo.likes_count}){
 						//아이콘 스타일 변경
-						alert("like");
-						document.getElementById("like").innerHTML = '&nbsp;&nbsp;<i id="like_icon" class="bi bi-heart-fill"></i>&nbsp;&nbsp;' 
-							+ data + '&nbsp;&nbsp;';
+						document.getElementById("like").innerHTML = '<i id="like_icon" class="bi bi-heart-fill"></i>&nbsp;' 
+							+ data;
 						document.getElementById("like_icon").style.color = "#FF2279";
 						
 					}else if(data < ${vo.likes_count}){
-						alert("dislike");
-						document.getElementById("like").innerHTML = '&nbsp;&nbsp;<i id="like_icon" class="bi bi-heart"></i>&nbsp;&nbsp;' 
-							+ data + '&nbsp;&nbsp;';
+						document.getElementById("like").innerHTML = '<i id="like_icon" class="bi bi-heart"></i>&nbsp;' 
+							+ data;
 						
 					}
 					
@@ -240,15 +236,12 @@
 			function like_check_result(){
 				if(xhr.readyState == 4 && xhr.status == 200){
 					let data = xhr.responseText;
-					alert(data);
 					if(data == "like"){
-						document.getElementById("like").innerHTML = '&nbsp;&nbsp;<i id="like_icon" class="bi bi-heart-fill"></i>&nbsp;&nbsp;'
+						document.getElementById("like").innerHTML = '<i id="like_icon" class="bi bi-heart-fill"></i>&nbsp;'
 							+ data + '&nbsp;&nbsp;';
 						document.getElementById("like_icon").style.color = "#FF2279";
 						
-					}/* else if(data == "dislike"){
-						document.getElementById("like_icon").style.color = "white";
-					} */
+					}
 				}
 			}
 		</script>
@@ -259,7 +252,7 @@
 			<div class="subject"><strong>${vo.subject}</strong></div>
 			<div class="top">
 				<span id="avatar" class="bi bi-person-circle"></span>
-				<b class="name">홍길동</b>
+				<b class="name">${vo.u_name}</b>
 				<b class="date">${fn:split(vo.regdate, ' ')[0]}</b>
 			</div>
 			<div class="content"><pre>${vo.content}</pre></div>
@@ -270,25 +263,24 @@
 			<!-- 구분선 -->
 			<hr>
 			<div class="bottom">
-				<i id="comment_icon" class="bi bi-chat-fill"></i>&nbsp;&nbsp;${vo.comment_count}
+				<i id="comment_icon" class="bi bi-chat-fill"></i>&nbsp;${vo.comment_count}
 				
 				<c:if test="${vo.likes_count eq 0}">
-					<!-- <button id="like_btn" onclick="like_click();"><i id="like_icon" class="bi bi-heart"></i></button> -->
 					<span id="like" onclick="like_click();"><i id="like_icon" class="bi bi-heart"></i></span>
 				</c:if>
 				
 				<c:if test="${vo.likes_count ne 0}">
 					<c:if test="${check_like eq 0}">
 						<span id="like" onclick="like_click();">
-							<i id="like_icon" class="bi bi-heart"></i>&nbsp;&nbsp;${vo.likes_count}</span>
+							<i id="like_icon" class="bi bi-heart"></i>&nbsp;${vo.likes_count}</span>
 					</c:if>
 					<c:if test="${check_like eq 1}">
 						<span id="like" onclick="like_click();">
-							<i id="like_icon" class="bi bi-heart-fill" style="color:#FF2279;"></i>&nbsp;&nbsp;${vo.likes_count}</span>
+							<i id="like_icon" class="bi bi-heart-fill" style="color:#FF2279;"></i>&nbsp;${vo.likes_count}</span>
 					</c:if>
 				</c:if>
 				
-				<i id="readhit_icon" class="bi bi-eye-fill"></i>&nbsp;&nbsp;${vo.readhit}
+				<span id="readhit_icon" class="bi bi-eye-fill">&nbsp;${vo.readhit}</span>
 			</div>
 			</div>
 			<div class="comment-box">

@@ -17,12 +17,14 @@ public class MainController {
 	@Autowired
 	private ProductService p_service;
 
-	@RequestMapping(value = "/main.do")
+	@Autowired
+	private HttpSession session;
 	public String main1(Model model) {
-		List<ProductVO> list = p_service.p_best_main();
-		List<ProductVO> d_list = p_service.p_discount_main();
-		model.addAttribute("list",list);
-		model.addAttribute("d_list",d_list);
+		int user = 0;
+		if(session.getAttribute("email") != null) {
+			user = 1;
+		}
+		model.addAttribute("user", user);
 		return VIEW_PATH + "/main.jsp";
 	}
 

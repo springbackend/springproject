@@ -70,5 +70,10 @@ public class UserDAO {
 		int res = sqlSession.delete("u.deleteAccount", u_email);
 		return res;
 	}
+	
+	public String select_name(String u_email) {
+		String name = sqlSession.selectOne("u.select_name", u_email);
+		return name;
+	}
 
 }

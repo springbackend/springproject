@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="board_write" parameterType="board">
 		INSERT INTO board VALUES(
 			seq_board_idx.nextVal,
-			#{u_idx},
+			1,
 			#{subject},
 			#{content},
 			#{ip},
@@ -57,7 +57,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{p_idx},
 			#{t_name},
 			#{p_name},
-			0
+			0,
+			#{u_email},
+			#{u_name}
 		)
 	</insert>
 	

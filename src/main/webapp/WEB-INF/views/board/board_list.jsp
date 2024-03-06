@@ -112,12 +112,7 @@
 				   width:50%;
 				   padding:15px;
 				   background-color:white;}
-			
-			/* table{margin:auto;
-				  width:40%;
-				  border:1px solid black;}
-				   */
-			
+
 			.middle{cursor:pointer;}
 			
 			.board-top{height:50px;
@@ -160,19 +155,12 @@
 										  height:40px;
 									 	  margin: 2px;}
 									 	  
-			#comment_btn{transition: all 0.5s;
-						 border: none;
+			#comment_btn{border: none;
 						 cursor: pointer;}
 				 	  
 			.comment_icon{cursor: pointer;
 				 	   	display: inline-block;
-				 	   	transition: 0.5s;
 				 	   	color:#525b75;}
-			
-			/* #comment_btn:hover{background-color:#0A75FF;}
-			
-			#comment_btn:hover .comment_icon{color:white;} */
-			
 			
 			.tag-box{height:30px;}
 			
@@ -182,20 +170,10 @@
 				 background-color:#EAEAEB;
 				 padding:5px;}
 			
-			/* .bottom{position:absolute;} */
-				 
-			.comment, #thumb{cursor:pointer;
-							 left:15px;}
-			
 			.readhit_icon{position:absolute;
 					 	  right:20px;
 					 	  padding:3px;
 					 	  color:#525b75;}
-			
-			img{border:none;
-				height:25px;
-				width:25px;
-				cursor:pointer;}
 		</style>
 		
 		<script src="/board/resources/js/httpRequest.js"></script>
@@ -216,7 +194,7 @@
 	<body>
 		<%-- <jsp:include page="/WEB-INF/views/main/top_not_user.jsp" /> --%>
 		<%-- <jsp:include page="/WEB-INF/views/board/board_sidebar.jsp" /> --%>
-		<a href="/main.do">&lt 홈으로 돌아가기</a>
+		<a href="/beauty/">&lt 홈으로 돌아가기</a>
 		<div class="top">
 			<h1>게시판</h1>
 			<div class="top-element">
@@ -253,7 +231,7 @@
 				<div class="middle" onclick="view(${vo.b_idx});">
 					<div class="board-top">
 						<span id="avatar" class="bi bi-person-circle"></span>
-						<b class="name">홍길동</b>
+						<b class="name">${vo.u_name}</b>
 						<b class="date">${fn:split(vo.regdate, ' ')[0]}</b>
 					</div>
 					<div class="subject">
