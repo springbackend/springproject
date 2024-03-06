@@ -132,59 +132,63 @@
 							<div class="swiper swiper theme-slider"
 								data-swiper='{"slidesPerView":1,"spaceBetween":16,"breakpoints":{"450":{"slidesPerView":2,"spaceBetween":16},"768":{"slidesPerView":3,"spaceBetween":20},"1200":{"slidesPerView":4,"spaceBetween":16},"1540":{"slidesPerView":5,"spaceBetween":16}}}'>
 								<div class="swiper-wrapper">
-								<c:forEach var="product" items="${d_list }">
-									<div class="swiper-slide">
-										<div
-											class="position-relative text-decoration-none product-card h-100">
-											<div class="d-flex flex-column justify-content-between h-100">
-												<div>
-													<div
-														class="border border-1 border-translucent rounded-3 position-relative mb-3">
-														<button
-															class="btn btn-wish btn-wish-primary z-2 d-toggle-container"
-															data-bs-toggle="tooltip" data-bs-placement="top"
-															title="Add to wishlist">
-															<span class="fas fa-heart d-block-hover"></span><span
-																class="far fa-heart d-none-hover"></span>
-														</button>
-														<img class="img-fluid"
+									<c:forEach var="product" items="${d_list }">
+										<div class="swiper-slide">
+											<div
+												class="position-relative text-decoration-none product-card h-100">
+												<div
+													class="d-flex flex-column justify-content-between h-100">
+													<div>
+														<div
+															class="border border-1 border-translucent rounded-3 position-relative mb-3">
+															<button
+																class="btn btn-wish btn-wish-primary z-2 d-toggle-container"
+																data-bs-toggle="tooltip" data-bs-placement="top"
+																title="Add to wishlist">
+																<span class="fas fa-heart d-block-hover"></span><span
+																	class="far fa-heart d-none-hover"></span>
+															</button>
+															<img class="img-fluid"
 																src="resources/productimages/${product.p_image }" alt="" />
-													</div>
-													<a class="stretched-link"
-														href="resources/apps/e-commerce/landing/product-details.html">
-														<h6 class="mb-2 lh-sm line-clamp-3 product-name">${product.p_name }</h6>
-													</a>
-													<p class="fs-9">
+														</div>
+														<a class="stretched-link"
+															href="product_view.do?p_idx=${product.p_idx }">
+															<h6 class="mb-2 lh-sm line-clamp-3 product-name">${product.p_name }</h6>
+														</a>
+														<p class="fs-9">
 
 															<c:forEach begin="1" end="${product.avg_star}" var="i">
 																<span class="fas fa-star text-warning"></span>
 															</c:forEach>
-															<c:forEach begin="${product.avg_star+1}" end="5"
-																var="i">
+															<c:forEach begin="${product.avg_star+1}" end="5" var="i">
 																<span class="far fa-star text-warning"></span>
 															</c:forEach>
 															<span class="text-body-quaternary fw-semibold ms-1">(${product.total_comments}
-																people rated)</span>
+																명 리뷰)</span>
 														</p>
-												</div>
-												<div>
-													<div class="d-flex align-items-center mb-1">
-														<p
-															class="me-2 text-body text-decoration-line-through mb-0">
-															<fmt:formatNumber value="${product.p_price}"
-																type="currency" currencySymbol="" groupingUsed="true" />
-															원</p>
-														<h3 class="text-body-emphasis mb-0"><fmt:formatNumber value="${product.discountprice}"
-																type="currency" currencySymbol="" groupingUsed="true" />
-															원</h3>
 													</div>
-													<!-- <p class="text-body-tertiary fw-semibold fs-9 lh-1 mb-0">2 colors</p> -->
+													<div>
+														<div class="d-flex align-items-center mb-1">
+															<p
+																class="me-2 text-body text-decoration-line-through mb-0">
+																<fmt:formatNumber value="${product.p_price}"
+																	type="currency" currencySymbol="" groupingUsed="true" />
+																원
+															</p>
+															<h3 class="text-body-emphasis mb-0">
+																<fmt:formatNumber value="${product.discountprice}"
+																	type="currency" currencySymbol="" groupingUsed="true" />
+																원
+															</h3>
+														</div>
+														<!-- <p class="text-body-tertiary fw-semibold fs-9 lh-1 mb-0">2 colors</p> -->
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
 									</c:forEach>
-								</div><!-- dd -->
+								</div>
+								<!-- dd -->
 							</div>
 							<!-- <div class="swiper-nav swiper-product-nav">
                     <div class="swiper-button-next"><span class="fas fa-chevron-right nav-icon"></span></div>
@@ -246,12 +250,11 @@
 															<c:forEach begin="1" end="${product.avg_star}" var="i">
 																<span class="fas fa-star text-warning"></span>
 															</c:forEach>
-															<c:forEach begin="${product.avg_star+1}" end="5"
-																var="i">
+															<c:forEach begin="${product.avg_star+1}" end="5" var="i">
 																<span class="far fa-star text-warning"></span>
 															</c:forEach>
 															<span class="text-body-quaternary fw-semibold ms-1">(${product.total_comments}
-																people rated)</span>
+																명 리뷰)</span>
 														</p>
 													</div>
 													<div>

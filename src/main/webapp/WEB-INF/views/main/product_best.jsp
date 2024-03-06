@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,8 +50,13 @@
 									<c:forEach begin="${product.avg_star+1}" end="5" var="i">
 										<span class="far fa-star text-warning"></span>
 									</c:forEach>
-									<span class="text-body-quaternary fw-semibold ms-1">(${product.total_comments}
-										people rated)</span>
+									<br>
+									<span class="text-body-quaternary fw-semibold ms-1">(${product.total_comments}명 리뷰)</span>
+									<h3 class="text-body-emphasis mb-0">
+									<fmt:formatNumber value="${product.p_price}"
+										type="currency" currencySymbol="" groupingUsed="true" />
+									원
+								</h3>
 								</div>
 								<p>
 									<a href="product_view.do?p_idx=${product.p_idx }"

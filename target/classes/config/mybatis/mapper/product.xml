@@ -66,14 +66,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ROW_NUMBER() OVER
 		(ORDER BY p_sold DESC) AS rank
 		FROM product
-		) p LEFT JOIN (
+		) p
+		LEFT JOIN (
 		SELECT p_idx,
 		AVG(pc_star) AS avg_star,
-		COUNT(pc_idx) AS total_comments
+		COUNT(pc_idx) AS
+		total_comments
 		FROM
 		product_comment
 		GROUP BY p_idx
-		) pc ON p.p_idx = pc.p_idx
+		) pc ON p.p_idx =
+		pc.p_idx
 		WHERE p.rank
 		BETWEEN 1 AND 20
 	</select>
@@ -117,35 +120,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		p.p_price,
 		p.discountprice,
 		p.p_image,
-		SUM(bp.p_count) AS total_sold,
+		SUM(bp.p_count)
+		AS total_sold,
 		NVL(pc.avg_star, 0) AS avg_star,
-		NVL(pc.total_comments, 0) AS total_comments
+		NVL(pc.total_comments,
+		0) AS total_comments
 		FROM
 		buy_product bp
 		JOIN
-		product p ON bp.p_idx = p.p_idx
+		product p ON bp.p_idx =
+		p.p_idx
 		LEFT JOIN (
 		SELECT
 		p_idx,
 		AVG(pc_star) AS avg_star,
-		COUNT(pc_idx) AS total_comments
+		COUNT(pc_idx)
+		AS total_comments
 		FROM
 		product_comment
 		GROUP BY
 		p_idx
-		) pc ON bp.p_idx = pc.p_idx
+		) pc ON bp.p_idx =
+		pc.p_idx
 		WHERE
 		bp.bp_regidate >= TRUNC(SYSDATE - 1)
-		AND bp.bp_regidate &lt;
+		AND bp.bp_regidate
+		&lt;
 		TRUNC(SYSDATE)
 		GROUP BY
-		bp.p_idx, p.p_name, p.p_price, p.discountprice, p.p_image, pc.avg_star,
+		bp.p_idx, p.p_name, p.p_price,
+		p.discountprice, p.p_image, pc.avg_star,
 		pc.total_comments
 		ORDER BY
 		total_sold ASC
 		) WHERE ROWNUM BETWEEN 1 AND 6
 	</select>
-	
+
 	<select id="select_discount2" resultType="product">
 		SELECT * FROM (
 		SELECT
@@ -154,35 +164,72 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		p.p_price,
 		p.discountprice,
 		p.p_image,
-		SUM(bp.p_count) AS total_sold,
+		SUM(bp.p_count)
+		AS total_sold,
 		NVL(pc.avg_star, 0) AS avg_star,
-		NVL(pc.total_comments, 0) AS total_comments
+		NVL(pc.total_comments,
+		0) AS total_comments
 		FROM
 		buy_product bp
 		JOIN
-		product p ON bp.p_idx = p.p_idx
+		product p ON bp.p_idx =
+		p.p_idx
 		LEFT JOIN (
 		SELECT
 		p_idx,
 		AVG(pc_star) AS avg_star,
-		COUNT(pc_idx) AS total_comments
+		COUNT(pc_idx)
+		AS total_comments
 		FROM
 		product_comment
 		GROUP BY
 		p_idx
-		) pc ON bp.p_idx = pc.p_idx
+		) pc ON bp.p_idx =
+		pc.p_idx
 		WHERE
 		bp.bp_regidate >= TRUNC(SYSDATE - 1)
-		AND bp.bp_regidate &lt;
+		AND bp.bp_regidate
+		&lt;
 		TRUNC(SYSDATE)
 		GROUP BY
-		bp.p_idx, p.p_name, p.p_price, p.discountprice, p.p_image, pc.avg_star,
+		bp.p_idx, p.p_name, p.p_price,
+		p.discountprice, p.p_image, pc.avg_star,
 		pc.total_comments
 		ORDER BY
 		total_sold ASC
 		) WHERE ROWNUM BETWEEN 1 AND 20
 	</select>
 
+	<select id="select_commend_main" resultType="product">
+		SELECT * FROM (
+		SELECT p.*, pc.avg_star, pc.total_comments
+		FROM product p
+		LEFT JOIN (
+		SELECT p_idx,
+		AVG(pc_star) AS avg_star,
+		COUNT(pc_idx) AS total_comments
+		FROM product_comment
+		GROUP BY p_idx
+		) pc ON p.p_idx = pc.p_idx
+		ORDER BY pc.total_comments DESC, pc.avg_star DESC
+		)
+		WHERE ROWNUM BETWEEN 1 AND 6
+	</select>
+	<select id="select_commend_page" resultType="product">
+		SELECT * FROM (
+		SELECT p.*, pc.avg_star, pc.total_comments
+		FROM product p
+		LEFT JOIN (
+		SELECT p_idx,
+		AVG(pc_star) AS avg_star,
+		COUNT(pc_idx) AS total_comments
+		FROM product_comment
+		GROUP BY p_idx
+		) pc ON p.p_idx = pc.p_idx
+		ORDER BY pc.total_comments DESC, pc.avg_star DESC
+		)
+		WHERE ROWNUM BETWEEN 1 AND 20
+	</select>
 </mapper>
 
 
