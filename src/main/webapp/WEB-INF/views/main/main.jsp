@@ -9,11 +9,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <style>
+    	@font-face {
+		    font-family: 'Pretendard-Regular';
+		    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+		    font-weight: 400;
+		    font-style: normal;
+		}
+	
+		div{font-family:'Pretendard-Regular';}
+		
     	#login{
     		background-color:#3874ff !important;
     		color:white !important;
     	}
     	#login:hover{background-color:#004dff !important;}
+    	#outer{
+    		width: 1280px;;
+    		margin:auto;}
+    		
+    	#slide{background-image: url(resources/product_main_image/slide_bg.png) !important;}
+    	#slide-text{color:black !important; font-family:'Pretendard-Regular';}
+    	#slide-btn{cursor:pointer !important;} 
+    	#slide-btn:hover{background-color:#004dff !important;}
+    	
+    	.nav-link{font-size:15px !important;}
     </style>
 	  <!-- ===============================================-->
     <!--    Favicons-->
@@ -48,8 +67,8 @@
 	</head>
 	<body>
 			<!-- =============================================== 네비게이션 바 ================================================================-->
-			<section class="py-0">
-	        <div class="container-small">
+			<section id="sec" class="py-0">
+	        <div id="test" class="container-small">
 	          <div class="ecommerce-topbar">
 	            <nav class="navbar navbar-expand-lg navbar-light px-0">
 	              <div class="row gx-0 gy-2 w-100 flex-between-center">
@@ -208,7 +227,7 @@
 	          
 	          <!-- 네비게이션 바 -->
 	          <ul class="navbar-nav justify-content-end align-items-center">
-	            <li class="nav-item" data-nav-item="data-nav-item"><a class="nav-link ps-0 active" href="board_list.do">게시판</a></li>
+	            <li class="nav-item" data-nav-item="data-nav-item"><a class="nav-link" href="board_list.do">게시판</a></li>
 	            <li class="nav-item" data-nav-item="data-nav-item"><a class="nav-link" href="resources/apps/e-commerce/landing/favourite-stores.html">세일 상품</a></li>
 	            <li class="nav-item" data-nav-item="data-nav-item"><a class="nav-link" href="resources/apps/e-commerce/landing/products-filter.html">인기 상품</a></li>
 	            <li class="nav-item" data-nav-item="data-nav-item"><a class="nav-link" href="resources/apps/e-commerce/landing/wishlist.html">추천 상품</a></li>
@@ -217,33 +236,34 @@
 	        </div>
 	      </nav>
 			<!-- =============================================== 슬라이드 시작 ================================================================-->
-			<section class="py-0 px-xl-3">
-				<div class="container px-xl-0 px-xxl-3">
-					<div class="row g-3 mb-9">
-						<div class="col-12">
-							<div class="whooping-banner w-100 rounded-3 overflow-hidden">
+			<section class="py-0 px-xl-3"><!-- class="py-0 px-xl-3" -->
+				<div id="outer" class="container px-xl-0 px-xxl-3"><!-- class="container px-xl-0 px-xxl-3" -->
+					<div class="row g-3 mb-9"><!-- class="row g-3 mb-9" -->
+						<div class="col-12"><!-- class="col-12" -->
+							<div id="slide" class="whooping-banner w-100 rounded-3 overflow-hidden"><!-- class="whooping-banner w-100 rounded-3 overflow-hidden" -->
 								<div class="bg-holder z-n1 product-bg"
-									style="background-image: url(resources/assets/img/e-commerce/whooping_banner_product.png); background-position: bottom right;"></div>
+									style="background-image: url(resources/product_main_image/slide_img.jpg); background-position: bottom right;"></div>
+<!-- 								<div class="bg-holder z-n1 product-bg"
+									style="background-image: url(resources/assets/img/e-commerce/whooping_banner_product.png); background-position: bottom right;"></div> -->
 								<!--/.bg-holder-->
 								<div class="bg-holder z-n1 shape-bg"
 									style="background-image: url(resources/assets/img/e-commerce/whooping_banner_shape_2.png); background-position: bottom left;"></div>
 								<!--/.bg-holder-->
 								<div class="banner-text" data-bs-theme="light">
 									<h2 class="text-warning-light fw-bolder fs-lg-3 fs-xxl-2">
-										Whooping <span class="gradient-text">60% </span>Off
+										클리오 최대 <span class="gradient-text">60% </span>세일!
 									</h2>
-									<h3 class="fw-bolder fs-lg-5 fs-xxl-3 text-white">on
-										everyday items</h3>
+									<h3 id="slide-text" class="fw-bolder fs-lg-5 fs-xxl-3 text-white">이 기회를 놓치지 마세요!</h3>
 								</div>
-								<a class="btn btn-lg btn-primary rounded-pill banner-button"
-									href="#!">Shop Now</a>
+								<a id="slide-btn" class="btn btn-lg btn-primary rounded-pill banner-button"
+									href="#!">지금 구매하기</a>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<!-- =============================================== 오늘의 세일 상품 시작 ================================================================-->
-				<div class="row g-4 mb-6">
+				<div id="outer" class="row g-4 mb-6">
 					<div class="col-12 col-lg-9 col-xxl-10">
 						<div class="d-flex flex-between-center mb-3">
 							<div class="d-flex">
@@ -336,10 +356,8 @@
 						</div>
 					</div>
 
-      </div>
 
-
-					<div class="mb-6" id="best_list">
+					<div id="outer" class="mb-6" id="best_list">
 						<div class="d-flex flex-between-center mb-3">
 							<h3>현재 인기 상품</h3>
 							<a class="fw-bold d-none d-md-block" href="#!">더보기<span
@@ -412,7 +430,7 @@
 					</div>
 
 					<!-- =============================================== 추천 상품 시작 ================================================================-->
-					<div class="mb-6">
+					<div id="outer" class="mb-6">
 						<div class="d-flex flex-between-center mb-3">
 							<h3>추천 상품</h3>
 							<a class="fw-bold d-none d-md-block" href="#!">더보기<span

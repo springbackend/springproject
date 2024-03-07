@@ -156,13 +156,14 @@ public class BoardController {
 	public String board_view(Model model, Integer b_idx, String page, HttpServletResponse response) throws Exception{ // parameter
 		
 		//세션에서 사용자 정보를 가져온 후 좋아요를 눌렀는지의 여부 판단
-		String u_email = session.getAttribute("email").toString();
+		String u_email = "unknown-user";
 		LikesVO check_like = null;
 		int u_idx = 0;
 		
-		if(u_email != null) {
+		if(session.getAttribute("email") != null) {
 			//현재 user의 정보를 가져와 이 게시물에 좋아요를 눌렀는지 여부 판단하기
 			//u_idx = user_service.select_idx(u_email);
+			u_email = session.getAttribute("email").toString();
 			
 			LikesVO likes_vo = new LikesVO();
 			likes_vo.setB_idx(b_idx);
