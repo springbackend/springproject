@@ -94,6 +94,15 @@ public class ProductController {
 		return VIEW_PATH+"product_best.jsp";
 	}
 	
+	@RequestMapping(value = "/product_discount_list.do",method = RequestMethod.GET)
+	public String prduct_discount(Model model) {
+		List<ProductVO> list = p_service.p_discount_page();
+		model.addAttribute("list", list);
+		return VIEW_PATH+"product_discount.jsp";
+	}
+	
+	
+	
 	
 	
 

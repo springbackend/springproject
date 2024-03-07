@@ -37,8 +37,9 @@ public class CartController {
 		}
 		int u_idx = cartService.userIdx(u_email);
 		List<CartVO> list = cartService.cartList(u_idx);
-		
+		int total = cartService.total_price(u_idx);
 		model.addAttribute("list", list);
+		model.addAttribute("total",total);
 		return VIEW_PATH + "cart_list.jsp";
 	}
 	
@@ -68,8 +69,39 @@ public class CartController {
 	@ResponseBody
 	public String total_price(int quantity,int p_price) {
 		int totalprice = quantity * p_price;
-		return "₩"+totalprice;
+		return String.valueOf(totalprice);
 	}
 	
+	@RequestMapping(value = "updatecart.do",method = RequestMethod.POST,produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String update_cart(CartVO c_vo) {
+		String u_email = (String)session.getAttribute("email");
+		if(u_email == null) {
+			return "redirect:main.do";
+		}
+		int u_idx = cartService.userIdx(u_email);
+		int res = cartService.update_cart(c_vo);
+		int total = cartService.total_price(u_idx);
+		if(res>0) {
+			return String.valueOf(total);
+		}else {
+			
+			return "no";
+		}
+	}
+	@RequestMapping(value = "deletecart.do",method = RequestMethod.POST,produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String delete_cart(int cart_idx) {
+		String u_email = (String)session.getAttribute("email");
+		if(u_email == null) {
+			return "redirect:main.do";
+		}
+		int res = cartService.delete_cart(cart_idx);
+		if(res>0) {
+			return "yes";
+		}else {
+			return "no";
+		}
+	}
 	
 }

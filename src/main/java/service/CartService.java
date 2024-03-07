@@ -44,6 +44,14 @@ public class CartService {
 		return cartDao.cart_quantity(cart);
 	}
 	
+	public int update_cart(CartVO cart) {
+		return cartDao.updatecart(cart);
+	}
+	
+	public int delete_cart(int cart_idx) {
+		return cartDao.deletecart(cart_idx);
+	}
+	
 	
 	
 	

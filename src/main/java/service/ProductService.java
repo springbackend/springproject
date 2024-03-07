@@ -85,5 +85,10 @@ public class ProductService {
 		List<ProductVO> list = p_dao.p_discount();
 		return list;
 	}
+	
+	public List<ProductVO> p_discount_page(){
+		List<ProductVO> list = p_dao.p_discount2();
+		return list;
+	}
 
 }

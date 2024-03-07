@@ -46,6 +46,15 @@ public class CartDAO {
 		return total;
 	}
 	
+	public int updatecart(CartVO cart) {
+		int res = sqlSession.update("c.cart_update",cart);
+		return res;
+	}
+	
+	public int deletecart(int cart_idx) {
+		return sqlSession.delete("c.cart_delete",cart_idx);
+	}
+	
 	
 	
 
