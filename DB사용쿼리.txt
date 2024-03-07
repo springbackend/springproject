@@ -98,7 +98,9 @@ CREATE TABLE board (
 	p_idx NUMBER(5),
 	t_name VARCHAR2(50),
 	p_name VARCHAR2(50),
-	comment_count NUMBER(10) --댓글수
+	comment_count NUMBER(10), --댓글수
+	u_email VARCHAR2(500),
+	u_name VARCHAR2(300)
 );
 --게시판 댓글
 CREATE TABLE comment_table (
@@ -111,19 +113,28 @@ CREATE TABLE comment_table (
 	ref NUMBER(10),
 	step NUMBER(5),
 	depth NUMBER(3),
-	reply_count NUMBER(10)
+	reply_count NUMBER(10),
+	u_email VARCHAR2(500),
+	u_name VARCHAR2(300)
 );
 
 --게시판 좋아요
 CREATE TABLE likes (
 	b_idx NUMBER(10),
 	m_idx NUMBER(10),
-	like_date DATE
+	like_date DATE,
+	u_email VARCHAR2(500)
 );
 --톤
 CREATE TABLE tone (
 	t_idx NUMBER(5),
 	t_name VARCHAR2(50)
+);
+
+--게시판 상품
+CREATE TABLE board_product(
+	p_idx NUMBER(3),
+	p_name VARCHAR2(300)
 );
 
 --상품 댓글
